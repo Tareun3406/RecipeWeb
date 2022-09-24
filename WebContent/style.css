@@ -1,0 +1,474 @@
+:root{
+    --back-nomal-color : #FFF6E8;
+    --back-point-color : #FFD8A9;
+    --back-header-color : #FDF7DC;
+    --nomal-color : #F1A661;
+    --point-color : #E38B29;
+    --chef-profile-color : var(--nomal-color);
+    --link-highlight-color :#D4BF21;
+
+    --base-a-color : black;
+
+    --placeholder-color : #FFAD7C;
+
+    --table-hover-color : #FAEEBF;
+    --table-hot-color : #FDF7DC;
+}
+
+
+body{
+    margin: 0px;
+    text-align: center;
+    min-width: max-content;
+}
+ß
+a{
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+    padding: 0px;
+}
+
+ul li{
+    margin: 0px;
+    padding: 0px;
+}
+
+#main a {
+    color: var(--base-a-color);
+}
+
+#main h2,header h2 {
+    text-align: left;
+    color: var(--point-color);
+    font-weight: normal;
+}
+
+#main h2 a {
+    color: var(--point-color);
+    text-decoration: none;
+}
+
+#main h3, header h3 {
+    color : var(--point-color);
+    text-align: left;
+    font-weight: normal;
+}
+
+#main body button:hover {
+    cursor: pointer;
+}
+
+header a {
+    color: black;
+}
+
+header a:hover {
+    color: var(--link-highlight-color);
+}
+
+header {
+    background: var(--back-header-color);
+}
+
+header nav {
+    position: fixed;
+    z-index: 20;
+    min-width: max-content;
+    width: 100%;
+    border-bottom: solid 1px;
+    color: var(--point-color);
+    background: var(--back-header-color);
+}
+
+header #logo {
+    height: 30px;
+    width: 300px;
+    margin: 0px;
+    float: left;
+}
+
+header #header-menu {
+    margin: 0px;
+    display: inline-block;
+}
+
+header ul {
+    display: inline-block;
+    list-style: none;
+    margin: 0px 30px 0px 30px;
+    padding: 5px 15px;
+}
+
+header ul li {
+    display: inline-block;
+    margin: 0px 10px;
+    font-size: 18px;
+}
+
+header ul li a {
+    font-weight: bold;
+    color:#212121
+}
+
+header ul .alt a {
+    color: #546E7A;
+}
+
+header ul a:hover {
+    color: var(--link-highlight-color);
+}
+
+header #member {
+    width: 300px;
+    margin: 0px;
+    padding: 0px;
+    float: right;
+}
+
+header #search-recipe-div {
+    border-bottom: solid 1px;
+    height: 435px;
+    color: var(--point-color);
+    position: relative;
+}
+
+header #search-recipe-div #search-trans {
+    border: none;
+    border-radius: 8px;
+    padding: 0px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -275px;
+    margin-top: -43px;
+    z-index: 10;
+}
+header #search-recipe-div #search-trans > a{
+    display: block;
+    margin-left: -90px;
+    color: var(--placeholder-color);
+}
+
+header #search-recipe-div #search-trans > button {
+    background: white;
+    border: 3px solid var(--point-color);
+    border-radius: 8px;
+    font-size: 15px;
+    color: var(--nomal-color);
+    padding: 8px;
+}
+
+header #search-recipe-div #search-trans #search-border {
+    border: 3px solid var(--point-color);
+    border-radius: 8px;
+    display: inline-block;
+    background: white;
+}
+
+header #search-recipe-div #search-trans #search-border button {
+    border: none;
+    background: none;
+    vertical-align: middle;
+    color: var(--point-color);
+    font-size: 20px;
+}
+
+header #search-recipe-div #search-trans #search-border #search-Input {
+    border: none;
+    height: 40px;
+    width: 400px;
+    font-size: 18px;
+    margin: 0px 0px 0px 10px;
+    vertical-align: middle;
+}
+
+header #search-recipe-div #search-trans #search-border #search-Input:focus {
+    outline: none;
+}
+
+header #search-recipe-div #search-trans #search-border #search-Input::placeholder {
+    color: var(--placeholder-color);
+}
+
+header #search-recipe-div #chef-rank-list {
+    padding-top: 280px;
+    display: inline-block;
+}
+
+header #search-recipe-div #chef-rank-list > .chef-profile {
+    display: inline-block;
+    width: 100px;
+    margin: 3px;
+    color: var(--chef-profile-color);
+}
+
+header #search-recipe-div #chef-rank-list > .chef-profile .profile-img {
+    border-radius: 70%;
+    display: block;
+    height: 75px;
+    margin: auto;
+}
+
+footer {
+    border-top: 1px solid var(--point-color);
+    background-color: var(--back-header-color);
+    padding: 50px;
+}
+
+footer div {
+    margin: 10px;
+}
+
+footer a {
+    display: inline-block;
+    margin: 0px 10px;
+    text-decoration: none;
+    color: black;
+}
+
+footer a:hover {
+    color: var(--link-highlight-color);
+}
+
+#main > article {
+    width: max-content;
+    margin: auto;
+    padding: 20px 0px;
+}
+
+.recipe-rank {
+}
+
+.recipe-rank button {
+    border: none;
+    background: none;
+}
+
+.recipe-rank .material-symbols-outlined {
+    font-size: 40px;
+}
+
+.recipe-rank .image-container {
+    display: flex;
+    align-items: flex-end;
+    padding: 0px 30px;
+    width:1200px;
+    overflow-x: hidden;
+}
+
+.recipe-rank .image-container .recipe-info {
+    height: 240px;
+    width: 160px;
+    display: inline-block;
+    border-radius: 8px;
+    display: inline-block;
+    background: var(--back-nomal-color);
+}
+
+.recipe-rank .image-container .recipe-info ul {
+    margin-top: 8px;
+    padding: 0px;
+}
+
+.recipe-rank .image-container .recipe-info ul .recipe-title {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.recipe-rank .image-container .main-image {
+    height: 240px;
+    overflow: hidden;
+    border: none;
+    border-radius: 8px;
+    margin: 0px;
+}
+
+.recipe-rank .image-container .image {
+    height: 180px;
+    overflow: hidden;
+    border: none;
+    border-radius: 8px;
+    margin-left: 20px;
+    display: inline-block;
+}
+
+.popular-menu {
+
+}
+
+.popular-menu ul {
+    border-top: 1px solid var(--point-color);
+    display: inline-flex;
+    width: 1100px;
+    flex-wrap: wrap;
+    padding: 0px;
+    margin: 10px 0px 0px 0px;
+}
+
+.popular-menu ul li {
+    list-style: none;
+    margin: 0px;
+    border-bottom: 1px solid var(--point-color);
+    width: 530px;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.popular-menu ul li:hover {
+    background: var(--back-header-color);
+}
+
+.popular-menu ul li .menu-number {
+    width: 30px;
+    font-size: 25px;
+}
+
+.popular-menu ul li .menu-recipe {
+    width: 380px;
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+}
+
+.popular-menu ul li .menu-recipe .menu-name {
+    margin-left: 50px;
+}
+
+.popular-menu ul li .menu-recipe img {
+    height: 100px;
+}
+
+.popular-menu ul li .material-symbols-outlined {
+    font-size: 30px;
+}
+
+.popular-menu .add-view-list {
+    border-bottom: 1px solid var(--point-color);
+}
+
+.popular-menu .add-view-list a {
+    text-decoration: none;
+    color: lightslategray;
+}
+
+
+.today-special {
+    margin: auto;
+}
+
+.today-special .select-special {
+    width: 500px;
+}
+
+.today-special .select-main {
+    display: inline-block;
+    width: 500px;
+}
+
+.today-special .selected-main {
+    display: inline-block;
+    width: 550px;
+    margin: 10px;
+}
+
+.today-special .selected-main > div {
+    height: 330px;
+    border-radius: 8px;
+    background: var(--back-nomal-color);
+}
+
+.today-special .recomand-special {
+    display: inline-block;
+    width: 130px;
+    margin: 10px;
+}
+
+
+.rollingBanner{
+    width: 1200px;
+    overflow-x: hidden;
+    margin: auto;
+    position: relative;
+}
+.rollingBanner > button{
+    position: absolute;
+    top: 50%;
+    margin-top: -23px;
+    background: none;
+    border: none;
+}
+.rollingBanner > button > .material-symbols-outlined {
+    font-size: 40px;
+}
+.rollingBanner .image-container{
+    display: flex;
+    width: 1200px;  /* 부모객체와 같게설정 할 것*/
+    transform: translateX(0%);
+    transition: 0.5s;
+}
+.rollingBanner .banner_prev{
+    left: 0%;
+}
+.rollingBanner .banner_next{
+    right: 0%;
+}
+.rollingBanner .banner_item{
+}
+.rollingBanner img{
+    width: 1200px; /* 부모객체와 같게설정 할 것*/
+}
+
+.index-board {
+    display: inline-block;
+    margin: auto;
+}
+
+.index-board table {
+    display: inline-block;
+    border-collapse: collapse;
+    border-bottom: 1px solid var(--point-color);
+    margin: 0px 20px;
+}
+
+.index-board table caption {
+    text-align: left;
+}
+
+.index-board table a {
+    color: var(--point-color);
+    text-decoration: none;
+}
+
+.index-board table tr:hover {
+    background: var(--table-hover-color);
+}
+
+.index-board table .hotPost {
+    border-top: 1px solid var(--point-color);
+    border-bottom: 1px solid var(--point-color);
+    background: var(--table-hot-color);
+    width: 50px;
+}
+
+.index-board table .border-tag {
+    width: 50px;
+}
+
+.index-board table .border-title {
+    color: slategrey;
+    width: 450px;
+}
+
+.index-board table .likes-number {
+    color: var(--point-color);
+}
+
+.index-board table .date {
+    color: slategrey;
+    width: 50px;
+}

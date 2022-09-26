@@ -2,56 +2,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link href="style.css" rel="stylesheet" type="text/css">
+    <link href="../../css/style.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
     <link rel="shortcut icon" href="#">
 
-    <script>
-        //롤링배너
-        function bannerPrev(radioName){
-            const radios = document.getElementsByName(radioName);
-            let checkIndex;
-            for(let i = 0; i<radios.length; i++){
-                if(radios[i].checked === true){
-                    checkIndex = i;
-                }
-            }
-            if (checkIndex === 0){
-                radios[radios.length-1].checked = true;
-                bannerChange(radios[radios.length-1]);
-            }
-            else{
-                radios[checkIndex-1].checked = true;
-                bannerChange(radios[checkIndex-1]);
-            }
-                radios[checkIndex-1].checked=true;
-        }
-        function bannerNext(inputName){
-            const radios = document.getElementsByName(inputName);
-            let checkIndex;
-            for(let i = 0; i<radios.length; i++){
-                if(radios[i].checked === true){
-                    checkIndex = i;
-                }
-            }
-            if (checkIndex === radios.length-1) {
-                radios[0].checked = true;
-                bannerChange(radios[0]);
-            }
-            else{
-                radios[checkIndex+1].checked=true;
-                bannerChange(radios[checkIndex+1]);
-            }
-        }
-        function bannerChange(radio){
-            const imgContainers = radio.parentNode.parentNode.getElementsByClassName("image-container");
-            const imgContainer = imgContainers.item(0);
-            if(radio.checked)
-                imgContainer.style.transform= "translateX(-"+radio.value+"00%)";
-        }
-
-    </script>
     <meta charset="UTF-8">
     <title>non-title</title> <!-- 사이트 이름 -->
 </head>
@@ -71,7 +26,7 @@
                 <li class="alt"><a href="#">레시피</a></li>
                 <li class="alt"><a href="#">레시피 전당</a></li>
                 <li><a href="#">즐겨찾는 레시피</a></li>
-                <li><a href="#">이벤트</a></li>
+                <li><a href="#">커뮤니티</a></li>
             </ul>
         </div>
         <div id="member">
@@ -106,61 +61,61 @@
             </h3>
             <figure class="chef-profile">
                 <img class="profile-img" alt="profile"
-                     src="images/profile.png">
+                     src="../../images/profile.png">
                 <figcaption>일등셰프하나</figcaption>
                 <!-- 한글 6자, 영문 10자 -->
             </figure>
             <figure class="chef-profile">
                 <img class="profile-img" alt="profile"
-                     src="images/profile.png">
+                     src="../../images/profile.png">
                 <figcaption>일등셰프하나</figcaption>
                 <!-- 한글 6자, 영문 10자 -->
             </figure>
             <figure class="chef-profile">
                 <img class="profile-img" alt="profile"
-                     src="images/profile.png">
+                     src="../../images/profile.png">
                 <figcaption>일등셰프하나</figcaption>
                 <!-- 한글 6자, 영문 10자 -->
             </figure>
             <figure class="chef-profile">
                 <img class="profile-img" alt="profile"
-                     src="images/profile.png">
+                     src="../../images/profile.png">
                 <figcaption>일등셰프하나</figcaption>
                 <!-- 한글 6자, 영문 10자 -->
             </figure>
             <figure class="chef-profile">
                 <img class="profile-img" alt="profile"
-                     src="images/profile.png">
+                     src="../../images/profile.png">
                 <figcaption>일등셰프하나</figcaption>
                 <!-- 한글 6자, 영문 10자 -->
             </figure>
             <figure class="chef-profile">
                 <img class="profile-img" alt="profile"
-                     src="images/profile.png">
+                     src="../../images/profile.png">
                 <figcaption>일등셰프하나</figcaption>
                 <!-- 한글 6자, 영문 10자 -->
             </figure>
             <figure class="chef-profile">
                 <img class="profile-img" alt="profile"
-                     src="images/profile.png">
+                     src="../../images/profile.png">
                 <figcaption>일등셰프하나</figcaption>
                 <!-- 한글 6자, 영문 10자 -->
             </figure>
             <figure class="chef-profile">
                 <img class="profile-img" alt="profile"
-                     src="images/profile.png">
+                     src="../../images/profile.png">
                 <figcaption>일등셰프하나</figcaption>
                 <!-- 한글 6자, 영문 10자 -->
             </figure>
             <figure class="chef-profile">
                 <img class="profile-img" alt="profile"
-                     src="images/profile.png">
+                     src="../../images/profile.png">
                 <figcaption>일등셰프하나</figcaption>
                 <!-- 한글 6자, 영문 10자 -->
             </figure>
             <figure class="chef-profile">
                 <img class="profile-img" alt="profile"
-                     src="images/profile.png">
+                     src="../../images/profile.png">
                 <figcaption>일등셰프하나</figcaption>
                 <!-- 한글 6자, 영문 10자 -->
             </figure>

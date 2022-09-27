@@ -1,0 +1,87 @@
+:root{
+    --back-nomal-color : #FFF6E8;
+    --back-point-color : #FFD8A9;
+    --back-header-color : #FDF7DC;
+    --nomal-color : #F1A661;
+    --point-color : #E38B29;
+    --chef-profile-color : var(--nomal-color);
+    --link-highlight-color :#D4BF21;
+
+    --base-a-color : black;
+
+    --placeholder-color : #FFAD7C;
+
+    --table-hover-color : #FAEEBF;
+    --table-hot-color : #FDF7DC;
+}
+
+body{
+    width: max-content;
+    margin: auto;
+    border-left: 1px solid;
+    border-right: 1px solid;
+    padding: 40px;
+}
+
+a{
+    text-decoration: none;
+    color: #546E7A;
+}
+
+.logo{
+    border: 1px solid;
+    margin: 100px auto 5px auto;
+    width: 200px;
+    height: 60px;
+    text-align: center;
+}
+
+form{
+    margin: auto;
+    width: min-content;
+    border-radius: 8px;
+    padding: 15px;
+}
+form > div{
+    margin: 15px;
+}
+form .inputArea{
+    border: 1px solid;
+    border-radius: 4px;
+    padding: 10px;
+    background: white;
+}
+form .inputArea input{
+    border: none;
+    font-size: 1.1em;
+}
+form .inputArea input:focus {
+    outline: none;
+}
+
+form .loginBtn{
+    width: 100%;
+    font-size: 1em;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid var(--point-color);
+    background: var(--back-point-color);
+    outline: 0;
+}
+
+.helpInfo{
+    text-align: center;
+}
+.helpInfo a{
+    margin: 5px;
+}
+
+
+
+
+
+
+
+
+
+

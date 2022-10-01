@@ -93,14 +93,57 @@
                 </div>
                 <span class="material-symbols-outlined">star</span>
             </li>
+            <div id="moreList" style="display: none; flex-wrap: wrap">
+                <li>
+                    <span class="menu-number"> 7 </span>
+                    <div class="menu-recipe">
+                        <img src="../../images/recipeThum/food01.jpg">
+                        <span class="menu-name"> 찜닭 </span>
+                    </div>
+                    <span class="material-symbols-outlined">star</span>
+                </li>
+                <li>
+                    <span class="menu-number"> 8 </span>
+                    <div class="menu-recipe">
+                        <img src="../../images/recipeThum/food01.jpg">
+                        <span class="menu-name"> 찜닭 </span>
+                    </div>
+                    <span class="material-symbols-outlined">star</span>
+                </li>
+                <li>
+                    <span class="menu-number"> 9 </span>
+                    <div class="menu-recipe">
+                        <img src="../../images/recipeThum/food01.jpg">
+                        <span class="menu-name"> 찜닭 </span>
+                    </div>
+                    <span class="material-symbols-outlined">star</span>
+                </li>
+                <li>
+                    <span class="menu-number"> 10 </span>
+                    <div class="menu-recipe">
+                        <img src="../../images/recipeThum/food01.jpg">
+                        <span class="menu-name"> 찜닭 </span>
+                    </div>
+                    <span class="material-symbols-outlined">star</span>
+                </li>
+            </div>
         </ul>
         <div class="add-view-list">
-            <a href="#">
+            <button href="#" style="border: none; background: white" onclick="moreList('moreList',this)">
                 <span class="material-symbols-outlined">add_circle</span> 더보기
-            </a>
+            </button>
         </div>
     </article>
-
+    <script>
+        function moreList(id, btn){
+            const list = document.getElementById(id);
+            if( list.style.display == 'flex'){
+                list.style.display = 'none';
+            }else{
+                list.style.display = 'flex';
+            }
+        }
+    </script>
 
     <!-- 오늘의 추천 조합/재료 -->
     <article class="today-special">
@@ -171,7 +214,6 @@
     </article>
     <!-- 배너 스크립트 -->
     <script>
-
         //롤링배너
         function bannerPrev(radioName){
             const radios = document.getElementsByName(radioName);

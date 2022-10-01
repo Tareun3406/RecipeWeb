@@ -240,60 +240,65 @@ footer a:hover {
 }
 
 .recipe-rank {
+    position: relative;
 }
 
 .recipe-rank button {
-    border: none;
+    position: absolute;
+    top: 50%;
+    margin-top: -23px;
     background: none;
+    border: none;
 }
-
+.recipe-rank .button_prev{
+    left: -30px;
+}
+.recipe-rank .button_next{
+    right: -30px;
+}
 .recipe-rank .material-symbols-outlined {
     font-size: 40px;
 }
-
-.recipe-rank .image-container {
-    display: flex;
-    align-items: flex-end;
+.recipe-rank .view-container{
     padding: 0px 30px;
-    width:1200px;
+    width:1000px;
     overflow-x: hidden;
 }
-
-.recipe-rank .image-container .recipe-info {
-    height: 240px;
-    width: 160px;
-    display: inline-block;
-    border-radius: 8px;
-    display: inline-block;
-    background: var(--back-nomal-color);
+.recipe-rank .rank-image-container {
+    display: flex;
+    align-items: flex-end;
+    transform: translateX(0px);
+    transition: 0.5s;
+}
+.recipe-rank .rank-image-container .container-item{
+    display: flex;
+    margin: 0px 10px;
 }
 
-.recipe-rank .image-container .recipe-info ul {
+.recipe-rank .rank-image-container .menu-image {
+    height: 180px;      /* 240px */
+    overflow: hidden;
+    border: none;
+    border-radius: 8px;
+}
+.recipe-rank .rank-image-container .recipe-info {
+    height: 240px;
+    width: 160px;
+    border-radius: 8px;
+    background: var(--back-nomal-color);
+    display:none; /* "block" */
+}
+
+.recipe-rank .rank-image-container .recipe-info ul {
     margin-top: 8px;
     padding: 0px;
 }
 
-.recipe-rank .image-container .recipe-info ul .recipe-title {
+.recipe-rank .rank-image-container .recipe-info ul .recipe-title {
     font-size: 18px;
     margin-bottom: 5px;
 }
 
-.recipe-rank .image-container .main-image {
-    height: 240px;
-    overflow: hidden;
-    border: none;
-    border-radius: 8px;
-    margin: 0px;
-}
-
-.recipe-rank .image-container .image {
-    height: 180px;
-    overflow: hidden;
-    border: none;
-    border-radius: 8px;
-    margin-left: 20px;
-    display: inline-block;
-}
 
 .popular-menu {
 

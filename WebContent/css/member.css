@@ -15,51 +15,57 @@
     --table-hot-color : #FDF7DC;
 }
 
-body{
-    width: max-content;
-    margin: auto;
-    border-left: 1px solid;
-    border-right: 1px solid;
-    padding: 40px;
-}
-
 a{
     text-decoration: none;
     color: #546E7A;
 }
 
-.logo{
+body{
+    width: max-content;
+    margin: auto;
+    text-align: center;
+}
+
+#loginForm .logo{
     border: 1px solid;
     margin: 100px auto 5px auto;
     width: 200px;
     height: 60px;
     text-align: center;
 }
+#loginForm{
+    border-left: 1px solid;
+    border-right: 1px solid;
+    padding: 40px;
+}
 
-form{
+#loginForm form{
     margin: auto;
     width: min-content;
     border-radius: 8px;
     padding: 15px;
 }
-form > div{
+#loginForm form > div{
     margin: 15px;
 }
-form .inputArea{
+#loginForm .checkArea{
+    text-align: left;
+}
+#loginForm form .inputArea{
     border: 1px solid;
     border-radius: 4px;
     padding: 10px;
     background: white;
 }
-form .inputArea input{
+#loginForm form .inputArea input{
     border: none;
     font-size: 1.1em;
 }
-form .inputArea input:focus {
+#loginForm form .inputArea input:focus {
     outline: none;
 }
 
-form .loginBtn{
+#loginForm form .loginBtn{
     width: 100%;
     font-size: 1em;
     padding: 10px;
@@ -69,15 +75,39 @@ form .loginBtn{
     outline: 0;
 }
 
-.helpInfo{
+#loginForm .helpInfo{
     text-align: center;
 }
-.helpInfo a{
+#loginForm .helpInfo a{
     margin: 5px;
 }
 
 
-
+/*-------------------- 회원가입 폼 ------------------- */
+#joinForm{
+    margin-top: 100px;
+    text-align: left;
+    border: 1px solid;
+    border-radius: 8px;
+    padding: 50px;
+}
+#joinForm > div{
+    margin: 20px;
+}
+#joinForm .inputArea{
+    display: block;
+    border: 1px solid;
+    border-radius: 4px;
+    padding: 10px;
+    background: white;
+}
+#joinForm .inputArea input{
+    border: none;
+    font-size: 1.1em;
+}
+#joinForm .inputArea input:focus {
+    outline: none;
+}
 
 
 

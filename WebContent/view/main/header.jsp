@@ -24,8 +24,8 @@
 
         <div id="header-menu">
             <ul>
-                <li class="alt"><a href="#">레시피</a></li>
-                <li class="alt"><a href="#">레시피 전당</a></li>
+                <li class="alt"><a href="../category/categorymenu.jsp">레시피</a></li>
+                <li class="alt"><a href="../category/ranking.jsp">레시피 전당</a></li>
                 <li><a href="#">즐겨찾는 레시피</a></li>
                 <li><a href="#">커뮤니티</a></li>
             </ul>

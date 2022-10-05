@@ -116,15 +116,15 @@ border: solid 1px white; ">
 <div id="fimage">
  <div id="image">
   <div>
-   <img alt="1" src="./images/food/image1.jpg">
+   <img alt="1" src="../../images/food/image1.jpg">
    <span id="span1">1번 레시피</span><span id="span2">별점 ★</span>
   </div>
   <div>
-   <img alt="2" src="./images/food/image2.jpg">
+   <img alt="2" src="../../images/food/image2.jpg">
    <span id="span1">2번 레시피</span><span id="span2">별점 ★</span>
   </div>
   <div>
-   <img alt="3" src="./images/food/image3.jpg">
+   <img alt="3" src="../../images/food/image3.jpg">
    <span id="span1">3번 레시피</span><span id="span2">별점 ★</span>
   </div>
  

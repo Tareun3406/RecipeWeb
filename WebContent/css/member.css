@@ -109,6 +109,44 @@ body{
     outline: none;
 }
 
+/*--------------------- 아이디/비밀번호 찾기 -----------------------*/
+#findHeader{
+    margin-top: 100px;
+    text-align: left;
+    margin-left: 8px;
+}
+#findHeader h3{
+    border: black 1px solid;
+    border-bottom: none;
+    display: inline-block;
+    width: 200px;
+    margin: 0px;
+    padding: 10px;
+    color: #F1A661;
+}
+#findForm{
+    text-align: left;
+    border: 1px solid;
+    border-radius: 8px;
+    padding: 50px;
+}
+#findForm > div{
+    margin: 20px;
+}
+#findForm .inputArea{
+    display: block;
+    border: 1px solid;
+    border-radius: 4px;
+    padding: 10px;
+    background: white;
+}
+#findForm .inputArea input{
+    border: none;
+    font-size: 1.1em;
+}
+#findForm .inputArea input:focus {
+    outline: none;
+}
 
 
 

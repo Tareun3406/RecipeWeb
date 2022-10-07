@@ -24,7 +24,7 @@
     </div>
 </form>
 <div class="helpInfo">
-    <a href="#">아이디 찾기</a> | <a href="#">비밀번호 찾기</a> | <a href="#">회원가입</a>
+    <a href="./findId.jsp">아이디 찾기</a> | <a href="./findPw.jsp">비밀번호 찾기</a> | <a href="./joinForm.jsp">회원가입</a>
 </div>
 
 </body>

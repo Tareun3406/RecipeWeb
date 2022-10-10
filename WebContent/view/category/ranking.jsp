@@ -7,14 +7,15 @@
 <div style="width: 1240px; height: auto; display: flex; margin-right: auto; margin-left:auto; flex-wrap: wrap;
 border: solid 1px white;">
 <div style="width: 960px; height: auto;margin-right: auto; margin-left:auto;">
- <ul style="display: flex;width: 800px;height: auto;margin: auto;justify-content: space-evenly;">
+ <ul id="rankul" style="display: flex;width: 800px;height: auto;margin: auto;justify-content: space-evenly;">
    <li><a href="">레시피 랭킹</a></li>
    <li><a href="">셰프 랭킹</a></li>
-   </ul>
+   
   <ul style="display: flex;justify-content: flex-end;">
    <li style="margin-left: 15px;margin-right:15px;"><a href="">일간</a></li>
    <li style="margin-left: 15px;margin-right:15px;"><a href="">주간</a></li>
    <li style="margin-left: 15px;margin-right:15px;"><a href="">월간</a></li>
+   </ul>
   </ul>
  
 </div>

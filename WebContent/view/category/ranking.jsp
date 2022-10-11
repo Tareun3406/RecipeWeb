@@ -7,14 +7,15 @@
 <div style="width: 1240px; height: auto; display: flex; margin-right: auto; margin-left:auto; flex-wrap: wrap;
 border: solid 1px white;">
 <div style="width: 960px; height: auto;margin-right: auto; margin-left:auto;">
- <ul style="display: flex;width: 800px;height: auto;margin: auto;justify-content: space-evenly;">
+ <ul id="rankul" style="display: flex;width: 800px;height: auto;margin: auto;justify-content: space-evenly;">
    <li><a href="">레시피 랭킹</a></li>
    <li><a href="">셰프 랭킹</a></li>
-   </ul>
+   
   <ul style="display: flex;justify-content: flex-end;">
    <li style="margin-left: 15px;margin-right:15px;"><a href="">일간</a></li>
    <li style="margin-left: 15px;margin-right:15px;"><a href="">주간</a></li>
    <li style="margin-left: 15px;margin-right:15px;"><a href="">월간</a></li>
+   </ul>
   </ul>
  
 </div>
@@ -23,54 +24,54 @@ border: solid 1px white;">
 <div id="fimage">
  <div id="image">
   <div>
-   <img alt="1" src="./images/food/image1.jpg">
+   <img alt="1" src="../../images/food/image1.jpg">
    <span id="span1">1번 레시피</span><span id="span2">별점 ★</span>
   </div>
   <div>
-   <img alt="2" src="./images/food/image2.jpg">
+   <img alt="2" src="../../images/food/image2.jpg">
    <span id="span1">2번 레시피</span><span id="span2">별점 ★</span>
   </div>
   <div>
-   <img alt="3" src="./images/food/image3.jpg">
+   <img alt="3" src="../../images/food/image3.jpg">
    <span id="span1">3번 레시피</span><span id="span2">별점 ★</span>
   </div>
  
   <div>
-   <img alt="4" src="./images/food/image4.jpg">
+   <img alt="4" src="../../images/food/image4.jpg">
    <span id="span1">4번 레시피</span><span id="span2">별점 ★</span>
   </div>
   <div>
-   <img alt="5" src="./images/food/image5.jpg">
+   <img alt="5" src="../../images/food/image5.jpg">
    <span id="span1">5번 레시피</span><span id="span2">별점 ★</span>
   </div>
   <div>
-   <img alt="6" src="./images/food/image6.jpg">
+   <img alt="6" src="../../images/food/image6.jpg">
    <span id="span1">6번 레시피</span><span id="span2">별점 ★</span>
   </div>
  
   <div>
-   <img alt="7" src="./images/food/image7.jpg">
+   <img alt="7" src="../../images/food/image7.jpg">
    <span id="span1">7번 레시피</span><span id="span2">별점 ★</span>
   </div>
   <div>
-   <img alt="8" src="./images/food/image8.jpg">
+   <img alt="8" src="../../images/food/image8.jpg">
    <span id="span1">8번 레시피</span><span id="span2">별점 ★</span>
   </div>
   <div>
-   <img alt="9" src="./images/food/image9.jpg">
+   <img alt="9" src="../../images/food/image9.jpg">
    <span id="span1">9번 레시피</span><span id="span2">별점 ★</span>
   </div>
  
   <div>
-   <img alt="10" src="./images/food/image10.jpg">
+   <img alt="10" src="../../images/food/image10.jpg">
    <span id="span1">10번 레시피</span><span id="span2">별점 ★</span>
   </div>
   <div>
-   <img alt="11" src="./images/food/image11.jpg">
+   <img alt="11" src="../../images/food/image11.jpg">
    <span id="span1">11번 레시피</span><span id="span2">별점 ★</span>
   </div>
   <div>
-   <img alt="12" src="./images/food/image12.jpg">
+   <img alt="12" src="../../images/food/image12.jpg">
    <span id="span1">12번 레시피</span><span id="span2">별점 ★</span>
   </div>
   

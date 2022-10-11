@@ -124,21 +124,26 @@
 }
 #image>div{
     width: 300px;
-    height: 340px;
+    height: auto;
     background: var(--back-header-color);
     margin-top: 10px;
     margin-bottom: 10px;
     
     border: solid 3.5px var(--point-color);
 }
+.contents{
+	text-align: left;
+	margin-left: 5px;
+	padding-bottom: 3px;
+}
 #image img {
 	border-bottom:solid 3.5px var(--point-color);
 }
-#span1{
+.	span1{
 	margin-left:3px;
 	float: left;
 }
-#span2{
+.span2{
 	margin-right:3px;
 	float: right;
 }
@@ -160,3 +165,6 @@
 	justify-content: space-evenly;
 	
 }
+
+/* 랭킹 페이지 */
+

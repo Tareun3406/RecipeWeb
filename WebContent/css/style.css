@@ -49,6 +49,7 @@ ul li{
 #main h2 a {
     color: var(--point-color);
     text-decoration: none;
+    font-size: 1.5em;
 }
 
 #main h3, header h3 {

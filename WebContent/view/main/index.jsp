@@ -334,7 +334,7 @@
         </div>
     </article>
     <script>
-        function moreList(id, btn) {
+        function moreList(id) {
             const list = document.getElementById(id);
             if (list.style.display == 'flex') {
                 list.style.display = 'none';

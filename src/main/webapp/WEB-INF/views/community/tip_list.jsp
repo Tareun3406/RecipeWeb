@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <jsp:include page="../main/header.jsp" flush="false"/>
-    <link href="../css/commu.css" rel="stylesheet" type="text/css">
+    <link href="${pageContext.request.contextPath}/css/commu.css" rel="stylesheet" type="text/css">
 	<section id="contents">
 		<div class="container" >
 			<section id="cont_left">

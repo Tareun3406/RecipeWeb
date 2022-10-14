@@ -1,25 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 
 <jsp:include page="../main/header.jsp" flush="false"/>
-<link href="../../../resources/css/category.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/resources/css/category.css" rel="stylesheet" type="text/css">
 <%-- 절대경로.--%>
 <%-- -----------------------header------------------------ --%>
+
 <div style="width: 1240px; height: auto; display: flex; margin-right: auto; margin-left:auto; flex-wrap: wrap;
 border: solid 1px white;">
-<div style="width: 960px; height: auto;margin-right: auto; margin-left:auto;">
- <ul id="rankul" style="display: flex;width: 800px;height: auto;margin: auto;justify-content: space-evenly;">
-   <li><a href="">레시피 랭킹</a></li>
-   <li><a href="">셰프 랭킹</a></li>
-   
-  <ul style="display: flex;justify-content: flex-end;">
-   <li style="margin-left: 15px;margin-right:15px;"><a href="">일간</a></li>
-   <li style="margin-left: 15px;margin-right:15px;"><a href="">주간</a></li>
-   <li style="margin-left: 15px;margin-right:15px;"><a href="">월간</a></li>
-   </ul>
-  </ul>
+<div style="width: 960px; height: auto;margin-right: auto; margin-left:auto; margin-top:10px;">
+ <div class="rank-first-menu">
+  <div style="width: auto;">
+  <button type="button" class="rankingbutton1">레시피 랭킹</button><button type="button" class="rankingbutton2">쉐프 랭킹</button>
+  </div>
+  <div class="datebutton" style="width: auto;">
+    <button type="button" id="datebutton">일간</button><button type="button" id="weekbutton">주간</button><button type="button" id="monthbutton">월간</button>
+  </div>
+ </div>
  
 </div>
-<div id="dash"></div>
+
 <%--여기밑으로는 카테고리별 이미지 나올 곳 --%>
 <div id="fimage">
  <div id="image">

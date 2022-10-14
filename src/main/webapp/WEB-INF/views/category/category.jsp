@@ -1,14 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 
 <jsp:include page="../main/header.jsp" flush="false"/>
-<link href="../../../resources/css/category.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/resources/css/category.css" rel="stylesheet" type="text/css">
 <%-- 절대경로.--%>
 <%-- -----------------------header------------------------ --%>
 <div style="width: 1240px; height: auto; display: flex; margin-right: auto; margin-left:auto; flex-wrap: wrap;
 border: solid 1px white; ">
-<div id="h123">
+<div id="categoryhead">
 	<div id="category">
-		<button class="button1" type="button" >전체</button> 
+		<button class="button1" type="button" >전체</button>
 		<button type="button" >종류</button> 
 		<button type="button" >재료</button> 
 		<button type="button" >방법</button>

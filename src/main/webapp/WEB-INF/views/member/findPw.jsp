@@ -6,7 +6,7 @@
 </head>
 <body>
 <header id="findHeader">
-    <h3><a href="findId.jsp">아이디 찾기</a></h3>
+    <h3><a href="member/findId">아이디 찾기</a></h3>
     <h3>비밀번호 찾기</h3>
 </header>
 <form id="findForm">

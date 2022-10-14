@@ -7,7 +7,7 @@
 <body>
 <header id="findHeader">
     <h3>아이디 찾기</h3>
-    <h3><a href="findPw.jsp">비밀번호 찾기</a></h3>
+    <h3><a href="member/findPw">비밀번호 찾기</a></h3>
 </header>
 <form id="findForm">
     <div class="caption" style="margin: 20px">

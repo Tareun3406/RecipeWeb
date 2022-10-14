@@ -33,10 +33,10 @@
         <div id="member">
 
             <ul>
-                <li><a href="../member/joinForm.jsp">회원가입</a></li>
+                <li><a href="member/join">회원가입</a></li>
                 <!-- <li><a href="#">로그아웃</a></li> -->
                 <!-- 로그인시 로그아웃 변경 -->
-                <li><a href="../member/loginForm.jsp">로그인</a></li>
+                <li><a href="member/login">로그인</a></li>
                 <!-- <li><a href="#">마이페이지</a></li> -->
                 <!-- 로그인시 마이페이지로 변경 -->
             </ul>

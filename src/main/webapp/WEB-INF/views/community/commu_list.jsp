@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <jsp:include page="../main/header.jsp" flush="false"/>
-    <link href="../css/commu.css" rel="stylesheet" type="text/css">
+    <link href="${pageContext.request.contextPath}/css/commu.css" rel="stylesheet" type="text/css">
 	<section id="contents">
 		<div class="container" >
 			<section id="cont_left">
@@ -42,6 +42,7 @@
 							class="fa fa-plus-circle" aria-hidden="true"></i></a>
 					</div>
 					<!-- //게시판 -->
+
 					<!-- 게시판2 -->
 					<div class="notice2 mt15">
 						<h5>인기 꿀 tip</h5>
@@ -62,18 +63,18 @@
 				</article>
 
 			</section>
-			
+
 			<section id="cont_center">
 				<article class="column col5">
 					<h4 class="col_tit">
-						<a href="#">한줄댓글 글 제목</a>
+						<a href="#">자유게시판 글 제목</a>
 					</h4>
 					<p class="col_desc">이 곳은 내용 부분입니다.</p>
 
 				</article>
 				<article class="column col6">
 					<h4 class="col_tit">
-						<a href="#">한줄댓글 글 제목</a>
+						<a href="#">자유게시판 글 제목</a>
 					</h4>
 					<p class="col_desc">이 곳은 내용 부분입니다.</p>
 
@@ -81,97 +82,97 @@
 				<!-- //col5 -->
 				<article class="column col6">
 					<h4 class="col_tit">
-						<a href="#">한줄댓글 글 제목</a>
+						<a href="#">자유게시판 글 제목</a>
 					</h4>
 					<p class="col_desc">이 곳은 내용 부분입니다.</p>
 
 				</article>
 				<article class="column col6">
 					<h4 class="col_tit">
-						<a href="#">한줄댓글 글 제목</a>
+						<a href="#">자유게시판 글 제목</a>
 					</h4>
 					<p class="col_desc">이 곳은 내용 부분입니다.</p>
 				</article>
 				<article class="column col6">
 					<h4 class="col_tit">
-						<a href="#">한줄댓글 글 제목</a>
+						<a href="#">자유게시판 글 제목</a>
 					</h4>
 					<p class="col_desc">이 곳은 내용 부분입니다.</p>
 				</article>
 
 				<article class="column col6">
 					<h4 class="col_tit">
-						<a href="#">한줄댓글 글 제목</a>
+						<a href="#">자유게시판 글 제목</a>
 					</h4>
 					<p class="col_desc">이 곳은 내용 부분입니다.</p>
 				</article>
-				
+
 				<article class="column col6">
 					<h4 class="col_tit">
-						<a href="#">한줄댓글 글 제목</a>
+						<a href="#">자유게시판 글 제목</a>
 					</h4>
 					<p class="col_desc">이 곳은 내용 부분입니다.</p>
 				</article>
-				
+
 				<article class="column col6">
 					<h4 class="col_tit">
-						<a href="#">한줄댓글 글 제목</a>
+						<a href="#">자유게시판 글 제목</a>
 					</h4>
 					<p class="col_desc">이 곳은 내용 부분입니다.</p>
 				</article>
-				
+
 				<article class="column col6">
 					<h4 class="col_tit">
-						<a href="#">한줄댓글 글 제목</a>
+						<a href="#">자유게시판 글 제목</a>
 					</h4>
 					<p class="col_desc">이 곳은 내용 부분입니다.</p>
 				</article>
-				
+
 				<article class="column col6">
 					<h4 class="col_tit">
-						<a href="#">한줄댓글 글 제목</a>
+						<a href="#">자유게시판 글 제목</a>
 					</h4>
 					<p class="col_desc">이 곳은 내용 부분입니다.</p>
 				</article>
-				
+
 				<article class="column col6">
 					<h4 class="col_tit">
-						<a href="#">한줄댓글 글 제목</a>
+						<a href="#">자유게시판 글 제목</a>
 					</h4>
 					<p class="col_desc">이 곳은 내용 부분입니다.</p>
 				</article>
-				
+
 				<article class="column col6">
 					<h4 class="col_tit">
-						<a href="#">한줄댓글 글 제목</a>
+						<a href="#">자유게시판 글 제목</a>
 					</h4>
 					<p class="col_desc">이 곳은 내용 부분입니다.</p>
 				</article>
-				
+
 				<article class="column col6">
 					<h4 class="col_tit">
-						<a href="#">한줄댓글 글 제목</a>
+						<a href="#">자유게시판 글 제목</a>
 					</h4>
 					<p class="col_desc">이 곳은 내용 부분입니다.</p>
 				</article>
-				
+
 				<article class="column col6">
 					<h4 class="col_tit">
-						<a href="#">한줄댓글 글 제목</a>
+						<a href="#">자유게시판 글 제목</a>
 					</h4>
 					<p class="col_desc">이 곳은 내용 부분입니다.</p>
 				</article>
-				
+
 				<article class="column col6">
 					<h4 class="col_tit">
-						<a href="#">한줄댓글 글 제목</a>
+						<a href="#">자유게시판 글 제목</a>
 					</h4>
 					<p class="col_desc">이 곳은 내용 부분입니다.</p>
 				</article>
-				
-				<article class="column col6">	
-					<button class="writebtn" type="button" value="글쓰기" onclick="#" >글쓰기</button>		
-					
+
+				<article class="column col6">
+					<button class="writebtn" type="button" value="글쓰기" onclick="#" >글쓰기</button>
+
 					<div id='liSearchOption'>
 						<select id='selSearchOption'>
 							<option value='A'>제목+내용</option>
@@ -180,17 +181,17 @@
 						</select> <input id='txtKeyWord' /> <input type='button' value='검색' />
 					</div>
 					</article>
-					
-				<article class="column col6">				
+
+				<article class="column col6">
 				<div class="list_n_menu">
 					<span class="disabled">  &lt; 이전  </span>
 					<span class="current">1</span>
-					<a href="#?page=2">2</a> 
+					<a href="#?page=2">2</a>
 					<a href="#?page=3">3</a>
 					<a href="#?page=4">4</a>
-					<a href="#?page=5">5</a> 
+					<a href="#?page=5">5</a>
 					<a href="#?page=6">6</a>
-					<a href="#?page=7">7</a>...<a href="#?page=10">10</a> 
+					<a href="#?page=7">7</a>...<a href="#?page=10">10</a>
 					<a href="#?page=20">20</a>
 					<a href="#?page=2">다음 ></a>
 				</div>
@@ -200,13 +201,10 @@
                     <article class="column col6">
                         <h4 class="col_tit">광고</h4>
                         <p class="col_ppl">이 곳은 광고 부분입니다.</p>
-                        <!-- -->
-
-                        <!-- // -->
                     </article>
-                    
+
            </section>
-			
+
 		</div>
 	</section>
 

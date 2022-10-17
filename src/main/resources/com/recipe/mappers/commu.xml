@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="commu">
+
+  <!-- 자료실 저장 -->
+  <insert id="commu_in" parameterType="commu"> <!-- parameterType은 전달인자 자료형으로
+  												생략가능함 -->
+    insert into  commu_list(comm_no,comm_name,comm_title,comm_pwd,comm_cont,comm_file,
+    comm_ref,comm_step,comm_level,comm_date)values(comm_no_seq.nextval,
+    #{comm_name},#{comm_title},#{comm_pwd},#{comm_cont},#{comm_file},
+    comm_no_seq.nextval,0,0,sysdate)
+    <!-- #{bbs_name}을 자바코드로 표현하면 bbs.getBbs_name();과 같은 기능을 한다. -->
+    <!-- 과제물 :upload폴더에 실제 변경된 이진파일이 업로드 되게하고, bbs테이블에 레코드를 저장되게 해보자 -->
+  </insert>
+  
+  <!-- 검색 전후 레코드 개수 -->
+  <select id="commu_count" resultType="int"><!-- resultType 속성은 반환 자료형 -->
+    select count(comm_no) from commu_list
+    <where>
+      <if test="find_field==''"></if><!-- 검색전 -->
+      <if test="find_field=='comm_title'"> <!-- 글제목 기준으로 검색할 때 -->
+        comm_title like #{find_name}
+      </if>
+      <if test="find_field=='comm_cont'"><!-- 글내용 기준으로 검색할때 -->
+       comm_cont like #{find_name}
+      </if>
+    </where>
+  </select>
+  
+  <!-- 검색 전후 자료실 목록 -->
+  <select id="commu_list" resultType="commu">
+    select * from (select rowNum rNum,comm_no,comm_name,comm_title,comm_hit,comm_ref,
+    comm_step,comm_level,comm_date from 
+      (select * from commu_list
+      <where>
+        <if test="find_field==''"></if>
+        <if test="find_field=='comm_title'">
+          comm_title like #{find_name}
+        </if>
+        <if test="find_field=='comm_cont'">
+          comm_cont like #{find_name} <!-- like는 ~와 비슷한 문자를 검색하는 검색연산자 -->
+        </if>
+      </where>
+        order by comm_ref desc, comm_level asc))
+        where rNum &gt;=#{startrow} and rNum &lt;=#{endrow}
+        <!-- #gt;= 은 >=의 뜻, &lt;= 은 <= 의 뜻 -->
+  </select>
+
+</mapper>

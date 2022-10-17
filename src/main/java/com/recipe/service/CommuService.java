@@ -1,9 +1,15 @@
 package com.recipe.service;
 
+import java.util.List;
+
 import com.recipe.vo.CommuVO;
 
 public interface CommuService {
 
-	void insertCommu(CommuVO b);
+	void insertCommu(CommuVO c);
+
+	int getListCount(CommuVO c);
+
+	List<CommuVO> getCommuList(CommuVO c);
 
 }

@@ -7,5 +7,7 @@
 <configuration>
     <typeAliases>
 
+	<typeAlias type="com.recipe.vo.CommuVO" alias="commu"/>
+
     </typeAliases>
 </configuration>

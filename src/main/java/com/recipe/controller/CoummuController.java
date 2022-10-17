@@ -2,12 +2,14 @@ package com.recipe.controller;
 
 import java.io.File;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -43,7 +45,7 @@ public class CoummuController {
 		//자료실 저장
 		@RequestMapping(value="/commu_write_ok",method=RequestMethod.POST)
 		//POST방식으로 접근하는 매핑주소 처리.bbs_write_ok 매핑주소 등록
-		public String bbs_write_ok(CommuVO b,HttpServletRequest request) throws Exception {
+		public String bbs_write_ok(CommuVO c,HttpServletRequest request) throws Exception {
 			//이진파일 업로드 서버경로지정
 			String saveFolder = request.getRealPath("/resources/upload");
 			System.out.println(saveFolder);//이진 파일 업로드 되는 서버경로를 출력해본다.
@@ -98,28 +100,66 @@ public class CoummuController {
 				upFile.renameTo(new File(homedir+"/"+refileName));//변경된 이진파일로
 				//생성된 폴더 경로에 실제 업로드한다.
 				
-				b.setComm_file(fileDBName);
+				c.setComm_file(fileDBName);
 			}else {//첨부파일이 없는 경우
 				String fileDBName="";
-				b.setComm_file(fileDBName);
+				c.setComm_file(fileDBName);
 			}
 			
-			b.setComm_name(comm_name); b.setComm_title(comm_title);
-			b.setComm_pwd(comm_pwd); b.setComm_cont(comm_cont);
+			c.setComm_name(comm_name); c.setComm_title(comm_title);
+			c.setComm_pwd(comm_pwd); c.setComm_cont(comm_cont);
 			
-			this.commuService.insertCommu(b);//자료실 저장
+			this.commuService.insertCommu(c);//자료실 저장
 			
-			return "redirect:/bbs_list";//새로운 목록보기 매핑주소로 이동		
+			return "redirect:/commu_list";//새로운 목록보기 매핑주소로 이동		
 		}//bbs_write_ok()
 		
 		
 		
+		//자료실 목록(페이징과 검색기능이 추가됨)
+		@RequestMapping(value="/commu_list",method=RequestMethod.GET) //get으로 접근하는 매핑주소 처리
+		public String commu_list(Model listM,HttpServletRequest request, CommuVO c) {
+			int page=1;
+		      int limit=10;//한페이지에 보여지는 목록개수
+		      if(request.getParameter("page") != null) {
+	        	page=Integer.parseInt(request.getParameter("page"));         
+		      }
+		      String find_name = request.getParameter("find_name");//검색어
+		      String find_field = request.getParameter("find_field");//검색 필드
+		      c.setFind_name("%"+find_name+"%");// %는 데이터 베이스에서 검색 와일드 카드 문자로서 하나이상의 
+		      //임의의 모르는 문자와 매핑대응
+		      c.setFind_field(find_field);
+		      int totalCount=this.commuService.getListCount(c);
+		      //검색 전 총레코드 개수,검색후 레코드 개수
+		      
+		      c.setStartrow((page-1)*10+1);//시작행번호
+		       c.setEndrow(c.getStartrow()+limit-1);//끝행 번호
+		      
+		      List<CommuVO> clist=this.commuService.getCommuList(c);
+		      //검색 전후 목록
+		      
+		      //총 페이지수
+		      int maxpage=(int)((double)totalCount/limit+0.95);
+		      //시작페이지(1,11,21 ..)
+		      int startpage=(((int)((double)page/10+0.9))-1)*10+1;
+		      //현재 페이지에 보여질 마지막 페이지(10,20 ..)
+		      int endpage=maxpage;
+		      if(endpage>startpage+10-1) endpage=startpage+10-1;
+		      
+		      listM.addAttribute("blist",clist);
+		      listM.addAttribute("page",page);
+		      listM.addAttribute("startpage",startpage);
+		      listM.addAttribute("endpage",endpage);
+		      listM.addAttribute("maxpage",maxpage);
+		      listM.addAttribute("listcount",totalCount);
+		      listM.addAttribute("find_field",find_field);//검색 필드
+		      listM.addAttribute("find_name",find_name);//검색어
+		      
+		   
+		      return "community/commu_list";//뷰페이지 경로가/WEB-INF/views/bbs/bbs_list.jsp
+		}//bbs_list()
 		
 		
-	@GetMapping("commu_list")
-	public String commu_list() {
 		
-		return "community/commu_list";
-	}//commu_list()
-
+		
 }

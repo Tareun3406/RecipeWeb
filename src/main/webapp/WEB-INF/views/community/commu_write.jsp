@@ -8,7 +8,7 @@
 
 <div id="bsW_wrap">
 	<h2 class="bsW_title">자료실 글쓰기</h2>
-	<form method="post" action="comm_write_ok"
+	<form method="post" action="commu_write_ok"
 		onsubmit="return write_check();" enctype="multipart/form-data">
 		<%-- 파일을 첨부해서 서버로 업로드 하는 자료실 기능을 만들때 유의 사항)
        1. method=post만 가능하다.get은 안된다. 폼태그 내에서 method속성을 생략하면 기본값이get이다.
@@ -44,7 +44,7 @@
 		<div id="bsW_menu">
 			<input type="submit" value="저장" /> <input type="reset" value="취소"
 				onclick="$('#bbs_name').focus();"> <input type="button"
-				value="목록" onclick="location='comm_list?page=${page}';">
+				value="목록" onclick="location='commu_list?page=${page}';">
 			<%-- bbs_list?page=쪽번호가 get방식 즉 쿼리 스트링 방식으로 전달된다. 주소창에 값이 노출된다.
    		page피라미터 이름에 쪽번호가 담겨져서 전달된다. 이것은 페이징에서 내가 본 페이지 번호로 바로 이동하기
    		위한 책갈피 기능이다. --%>

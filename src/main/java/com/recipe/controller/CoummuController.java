@@ -1,21 +1,24 @@
 package com.recipe.controller;
 
-import java.io.File;
-import java.util.Calendar;
+
+import java.io.PrintWriter;
+
 import java.util.List;
-import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.oreilly.servlet.MultipartRequest;
 import com.recipe.service.CommuService;
 import com.recipe.vo.CommuVO;
 
@@ -25,94 +28,58 @@ public class CoummuController {
 	@Autowired
 	private CommuService commuService;
 	
+	
 	//자료실 글쓰기 폼
-		@GetMapping("/commu_write")//get방식으로 접근하는 매핑주소를 처리,bbs_write라는 매핑주소등록
-		//등록
-		public ModelAndView commu_write(HttpServletRequest request) {
+	@RequestMapping("/commu_write")
+	public ModelAndView commu_write(HttpServletResponse response,HttpSession session
+			,HttpServletRequest request) throws Exception{
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out=response.getWriter();
+		String id = (String)session.getAttribute("id");//관리자 세션 아이디를 구함
+		/*if(id == null) {
+			out.print("<script>");
+			out.print("alert('로그인 하세요!');");
+			out.print("location='loginForm';");
+			out.print("</script>");
+		}else {} */
 			int page=1;
 			if(request.getParameter("page")!= null) {
-				page = Integer.parseInt(request.getParameter("page"));
-				//get으로 전달된 쪽번호를 전달받아서 정수 숫자로 변경해서 저장(책갈피 기능)
+				page = Integer.parseInt(request.getParameter("page"));//get으로 전달된 쪽번호를
+				//받아서 정수 숫자로 변경
 			}
-			ModelAndView wm = new ModelAndView();
-			wm.addObject("page",page);//페이지 키값쌍으로 저장
-			wm.setViewName("./community/commu_write");//뷰리졸브 경로 설정. 
-			//즉 뷰페이지 경로는 /WEB-INF/views/bbs/bbs_write.jsp
+			ModelAndView wm = new ModelAndView("./community/commu_write");
+			wm.addObject("page",page);
 			return wm;
-		}//자료실 글쓰기 폼=>bbs_write()메서드
+		
+		//return null;
+	}//자료실 글쓰기 폼=>commu_write()메서드
 	
 		
 		//자료실 저장
 		@RequestMapping(value="/commu_write_ok",method=RequestMethod.POST)
 		//POST방식으로 접근하는 매핑주소 처리.bbs_write_ok 매핑주소 등록
-		public String bbs_write_ok(CommuVO c,HttpServletRequest request) throws Exception {
-			//이진파일 업로드 서버경로지정
-			String saveFolder = request.getRealPath("/resources/upload");
-			System.out.println(saveFolder);//이진 파일 업로드 되는 서버경로를 출력해본다.
-			//C:\\20220607\\20220607Spring_work\\.metadata\\.plugins\\
-			//org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\Project\\resources\\upload
-			//이클립스 메이븐 폴더 가상경로가 아닌 톰켓 was서버에 의해서 변경된 실제 톰켓 프로젝트 경로가 반환
+		public ModelAndView commu_write_ok(CommuVO c,HttpServletRequest request,HttpServletResponse response
+				,HttpSession session,RedirectAttributes rttr) 
+				throws Exception {
+			response.setContentType("text/html;charset=utf-8");
+			/*PrintWriter out = response.getWriter();
 			
-			int fileSize = 5*1024*1024;//이진파일 업로드 최대크기(5M)
-			MultipartRequest multi = null;//cos-05Nov2002.jar 외부 라이브러리에 있는 api를 사용함
-			//첨부된 이진 파일을 가져오는 api이다.
+			String id = (String)session.getAttribute("id");//관리자 세션 아이디를 구함
+			if(id ==null) {
+				out.print("<script>");
+				out.print("alert('다시 로그인 하세요!');");
+				out.print("location='admin_index';");
+				out.print("</script>");
+			}else {}*/
+				this.commuService.insertCommu(c);//게시판 저장.this.은 생략가능함
+				rttr.addFlashAttribute("msg","SUCCESS");//서버컨트롤로에서 다른 매핑주소로 이동시 값을 전달할 때 
+				//사용한다. msg키이름에 SUCCESSS문자를 담아서 전달한다. 주소창에 노출안된다. 보안이 좋다.
+				return new ModelAndView("redirect:/community/commu_list");//board_list매핑주소로 이동
+
 			
-			multi = new MultipartRequest(request, saveFolder,fileSize,"UTF-8");//throws선택
-			
-			//글쓴이 부터 가져오기
-			String comm_name = multi.getParameter("comm_name");
-			String comm_title = multi.getParameter("comm_title");//글제목 가져오기
-			String comm_pwd = multi.getParameter("comm_pwd");//비번 가져오기
-			String comm_cont = multi.getParameter("comm_cont");//글내용 가져오기
-			
-			File upFile = multi.getFile("comm_file");//첨부된 파일을 가져온다.
-			
-			if(upFile != null) {//첨부된 파일이 있는 경우
-				String fileName = upFile.getName();//첨부된 파일명을 구함
-				Calendar cal = Calendar.getInstance();//칼렌더는 추상클래스로 
-				//new로 객체생성을 못한다. 하지만 년원일시분초 값을 반환할때 사용
-				int year = cal.get(Calendar.YEAR);//년도값
-				int month = cal.get(Calendar.MONTH)+1;//월값,+1을한 이유는 1월이 0으로
-				//반환 되기 때문이다.
-				int date = cal.get(Calendar.DATE);//일값
-				
-				String homedir = saveFolder+"/"+year+"-"+month+"-"+date;//오늘날짜 폴더
-				//경로를 저장
-				File path01 = new File(homedir);
-				
-				if(!(path01.exists())) {//오늘날짜 폴더경로가 없다면
-					path01.mkdir();//오늘 날짜 폴더를 생성
-				}
-				
-				Random r = new Random(); //난수(정해지지 않은 임의의 숫자)를 발생 시키는 클래스
-				int random = r.nextInt(100000000);//0이상 1억 미만의 임의의 정수 숫자 난수 발생
-				
-				//첨부파일 확장자를 구함
-				int index=fileName.lastIndexOf(".");// .를 맨오른쪽 부터 찾아서 가장 먼저 
-				//나오는 .위치 번호를 맨 왼쪽 부터 카운트 해서 구함 첫문자는 0부터 시작
-				String fileExtendsion = fileName.substring(index+1);//첨부파일에서
-				// .이후부터 마지막 문자까지 구함, 첨부 파일 확장자를구함
-				String refileName = "commu"+year+month+date+random+"."+fileExtendsion;
-				//bbs년원일 1억 미만 랜덤 숫자.확장자 즉 새로운 첨부파일명을 구함
-				String fileDBName="/"+year+"-"+month+"-"+date+"/"+refileName;
-				//데이터베이스에 저장될 레코드값
-				
-				upFile.renameTo(new File(homedir+"/"+refileName));//변경된 이진파일로
-				//생성된 폴더 경로에 실제 업로드한다.
-				
-				c.setComm_file(fileDBName);
-			}else {//첨부파일이 없는 경우
-				String fileDBName="";
-				c.setComm_file(fileDBName);
-			}
-			
-			c.setComm_name(comm_name); c.setComm_title(comm_title);
-			c.setComm_pwd(comm_pwd); c.setComm_cont(comm_cont);
-			
-			this.commuService.insertCommu(c);//자료실 저장
-			
-			return "redirect:/commu_list";//새로운 목록보기 매핑주소로 이동		
-		}//bbs_write_ok()
+			//return null;
+		}
+		//commu_write_ok()
 		
 		
 		
@@ -146,7 +113,7 @@ public class CoummuController {
 		      int endpage=maxpage;
 		      if(endpage>startpage+10-1) endpage=startpage+10-1;
 		      
-		      listM.addAttribute("blist",clist);
+		      listM.addAttribute("clist",clist);
 		      listM.addAttribute("page",page);
 		      listM.addAttribute("startpage",startpage);
 		      listM.addAttribute("endpage",endpage);
@@ -157,9 +124,38 @@ public class CoummuController {
 		      
 		   
 		      return "community/commu_list";//뷰페이지 경로가/WEB-INF/views/bbs/bbs_list.jsp
-		}//bbs_list()
+		}//commu_list()
 		
-		
-		
-		
-}
+		//내용보기+답변폼+수정폼+삭제폼
+		@RequestMapping("/commu_cont")
+		public ModelAndView commu_cont(@RequestParam("comu_no")int comu_no, int page,
+				String state,CommuVO c) {
+			//@RequestParam("bbs_no")은 서블릿의 request.getParameter("bbs_no")와 같다
+			//int page,String state만 사용해서 각각 피라미터 값을 받을수 있다.
+			
+			if(state.equals("cont")) {//내용보기일때만 조회수 증가
+				c=this.commuService.getCommuCont(comu_no);
+			}else {//답변폼,수정폼,삭제폼일때 실행->조회수 증가 안함
+				c=this.commuService.getCommuCont2(comu_no);
+			}
+			
+			String content=c.getContent().replace("\n", "<br/>");//textarea 글내용 입력박스에서 
+			//엔터키 친부분을 다음줄로 줄바꿈(<br/>)
+			
+			ModelAndView cm = new ModelAndView();
+			cm.addObject("c",c);
+			cm.addObject("content", content);
+			cm.addObject("page", page);
+			
+			if(state.equals("cont")) {//내용보기 일때
+				cm.setViewName("community/commu_cont");// /WEB-INF/views/bbs/bbs_cont.jsp
+			}else if(state.equals("reply")) {//답변폼
+				cm.setViewName("community/commu_reply");
+			}else if(state.equals("edit")) {//수정폼
+				cm.setViewName("community/commu_edit");
+			}else if(state.equals("del")) {//삭제폼
+				cm.setViewName("community/commu_del");
+			}
+			return cm;
+		}//bbs_cont()
+}		

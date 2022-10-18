@@ -12,4 +12,10 @@ public interface CommuService {
 
 	List<CommuVO> getCommuList(CommuVO c);
 
+	CommuVO getCommuCont(int comu_no);
+
+	CommuVO getCommuCont2(int comu_no);
+
+	void replyCommu(CommuVO rc);
+
 }

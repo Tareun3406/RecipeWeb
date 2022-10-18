@@ -6,7 +6,7 @@
 
 
 <script src="/resources/js/jquery.js"></script>
-<script src="/resources/js/bbs.js"></script>
+<script src="/resources/js/commu.js"></script>
 
 <div id="bsW_wrap">
 	<h2 class="bsW_title">자료실 수정</h2>

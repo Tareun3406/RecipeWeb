@@ -4,7 +4,7 @@
 	rel="stylesheet" type="text/css">
 
 <script src="/resources/js/jquery.js"></script>
-<script src="/resources/js/bbs.js"></script>
+<script src="/resources/js/commu.js"></script>
 
 <div id="bsW_wrap">
 	<h2 class="bsW_title">자료실 글쓰기</h2>
@@ -20,30 +20,25 @@
    --%>
 		<table id="bsW_t">
 			<tr>
-				<th>글쓴이</th>
-				<td><input name="bbs_name" id="bbs_name" size="14" /></td>
-			</tr>
-			<tr>
-				<th>글제목</th>
-				<td><input name="bbs_title" id="bbs_title" size="33" /></td>
-			</tr>
-			<tr>
-				<th>비밀번호</th>
-				<td><input type="password" name="bbs_pwd" id="bbs_pwd"
-					size="14" /></td>
-			</tr>
-			<tr>
-				<th>글내용</th>
-				<td><textarea name="bbs_cont" id="bbs_cont" rows="8" cols="34"></textarea></td>
-			</tr>
-			<tr>
-				<th>파일첨부</th>
-				<td><input type="file" name="bbs_file" /></td>
-			</tr>
+    <th>글쓴이</th>
+    <td><input name="writer" id="bbs_name" size="14" /></td>
+   </tr>
+   <tr>
+    <th>글제목</th>
+    <td><input name="title" id="bbs_title" size="33" />
+    </td>
+   </tr>
+   
+   <tr>
+    <th>글내용</th>
+    <td><textarea name="content" id="bbs_cont" rows="8"
+    cols="34"></textarea></td>
+   </tr>
+   
 		</table>
 		<div id="bsW_menu">
 			<input type="submit" value="저장" /> <input type="reset" value="취소"
-				onclick="$('#bbs_name').focus();"> <input type="button"
+				onclick="$('#comm_name').focus();"> <input type="button"
 				value="목록" onclick="location='commu_list?page=${page}';">
 			<%-- bbs_list?page=쪽번호가 get방식 즉 쿼리 스트링 방식으로 전달된다. 주소창에 값이 노출된다.
    		page피라미터 이름에 쪽번호가 담겨져서 전달된다. 이것은 페이징에서 내가 본 페이지 번호로 바로 이동하기

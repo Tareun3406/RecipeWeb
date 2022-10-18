@@ -28,6 +28,28 @@ public class CommuDAOImpl implements CommuDAO {
 	public List<CommuVO> getCommuList(CommuVO c) {
 		return this.sqlSession.selectList("commu_list",c);
 	}
+
+	@Override
+	public void updateHit(int comu_no) {
+		this.sqlSession.update("commu_hit",comu_no);
+		
+	}
+
+	@Override
+	public CommuVO getCommu_cont(int comu_no) {
+		return this.sqlSession.selectOne("commu_cont",comu_no);
+	}
+
+	@Override
+	public void updateLevel(CommuVO rc) {
+		this.sqlSession.update("commu_levelUp",rc);
+		
+	}
+
+	@Override
+	public void replyCommu(CommuVO rc) {
+		this.sqlSession.insert("reply_in", rc);		
+	}
 	
 	
 }

@@ -12,4 +12,12 @@ public interface CommuDAO {
 
 	List<CommuVO> getCommuList(CommuVO c);
 
+	void updateHit(int comu_no);
+
+	CommuVO getCommu_cont(int comu_no);
+
+	void updateLevel(CommuVO rc);
+
+	void replyCommu(CommuVO rc);
+
 }

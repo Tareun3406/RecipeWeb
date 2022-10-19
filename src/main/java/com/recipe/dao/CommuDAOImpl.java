@@ -10,46 +10,38 @@ import com.recipe.vo.CommuVO;
 
 @Repository
 public class CommuDAOImpl implements CommuDAO {
-
-	@Autowired
-	private SqlSession sqlSession;
-
-	@Override
-	public void insertCommu(CommuVO c) {
-		this.sqlSession.insert("commu_in", c);
-	}
-
-	@Override
-	public int getTotalCount(CommuVO c) {
-		return this.sqlSession.selectOne("commu_count",c);
-	}
-
-	@Override
-	public List<CommuVO> getCommuList(CommuVO c) {
-		return this.sqlSession.selectList("commu_list",c);
-	}
-
-	@Override
-	public void updateHit(int comu_no) {
-		this.sqlSession.update("commu_hit",comu_no);
-		
-	}
-
-	@Override
-	public CommuVO getCommu_cont(int comu_no) {
-		return this.sqlSession.selectOne("commu_cont",comu_no);
-	}
-
-	@Override
-	public void updateLevel(CommuVO rc) {
-		this.sqlSession.update("commu_levelUp",rc);
-		
-	}
-
-	@Override
-	public void replyCommu(CommuVO rc) {
-		this.sqlSession.insert("reply_in", rc);		
-	}
-	
-	
+    @Autowired
+    SqlSession SqlSession;
+    // 01. 게시글 작성
+    @Override
+    public void create(CommuVO vo) throws Exception {
+        SqlSession.insert("insert", vo);
+    }
+    // 02. 게시글 상세보기
+    @Override
+    public CommuVO read(int comu_no) throws Exception {
+        return SqlSession.selectOne("view", comu_no);
+    }
+    // 03. 게시글 수정
+    @Override
+    public void update(CommuVO vo) throws Exception {
+        SqlSession.update("updateArticle", vo);
+ 
+    }
+    // 04. 게시글 삭제
+    @Override
+    public void delete(int comu_no) throws Exception {
+        SqlSession.delete("deleteArticle",comu_no);
+ 
+    }
+    // 05. 게시글 전체 목록
+    @Override
+    public List<CommuVO> listAll() throws Exception {
+        return SqlSession.selectList("listAll");
+    }
+    // 게시글 조회수 증가
+    @Override
+    public  void increaseViewcnt(int comu_no) throws Exception {
+        SqlSession.update("increaseViewcnt", comu_no);
+    }
 }

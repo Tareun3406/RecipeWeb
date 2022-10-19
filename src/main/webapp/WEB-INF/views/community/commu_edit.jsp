@@ -13,17 +13,17 @@ $(document).ready(function(){
             //var title = document.form1.title.value; ==> name속성으로 처리할 경우
             //var content = document.form1.content.value;
             //var writer = document.form1.writer.value;
-            let title_edit = $("#title_edit").val();
-            let content_edit = $("#content_edit").val();
-            let writer_edit = $("#writer_edit").val();
+            let title_edit = $("#title").val();
+            let content_edit = $("#content").val();
+            let writer_edit = $("#writer").val();
             if(title_edit == ""){
                 alert("제목을 입력하세요");
-                document.form1.title_edit.focus();
+                document.form1.title.focus();
                 return;
             }
             if(content_edit == ""){
                 alert("내용을 입력하세요");
-                document.form1.content_edit.focus();
+                document.form1.content.focus();
                 return;
             }
             if(writer_edit == ""){
@@ -43,22 +43,22 @@ $(document).ready(function(){
 
     <div>
         제목
-        <input name="title" id="title_edit" size="80" value="${dto.title}" placeholder="제목을 입력해주세요">
+        <input name="title" id="title" size="80" value="${dto.title}" placeholder="제목을 입력해주세요">
     </div>
     <div>
         내용
-        <textarea name="content" id="content_edit" rows="4" cols="80" placeholder="내용을 입력해주세요">${dto.content}</textarea>
+        <textarea name="content" id="content" rows="4" cols="80" placeholder="내용을 입력해주세요">${dto.content}</textarea>
     </div>
     <div>
         이름
-        <input name="writer" id="writer_edit" value="${dto.writer}" placeholder="이름을 입력해주세요">
+        <input name="writer" id="writer" value="${dto.writer}" placeholder="이름을 입력해주세요">
     </div>
     <div style="width:650px; text-align: center;">
-        <!-- 게시물번호를 hidden으로 처리 
-        <input type="hidden" name="comu_no" value="${dto.comu_no}">-->
+        <!-- 게시물번호를 hidden으로 처리 -->
+        <input type="hidden" name="comu_no" value="${dto.comu_no}">
         <button type="button" id="btnEdit">수정</button>
         <input type="reset" value="취소">
-		<button type="button"onclick="/community/commu_list?page=${page}';">목록</button>
+		<button type="button"onclick="location='${path}/commu_list?page=${page}';">목록</button>
     </div>
 </form>
 </div>

@@ -71,30 +71,34 @@ public class CommuController {
     
     //수정폼 이동
     @RequestMapping(value="/community/commu_edit", method=RequestMethod.GET)
-    public String update(@RequestParam int comu_no, Model model ) throws Exception{
+    public ModelAndView update(@RequestParam int comu_no ) throws Exception{
     	
-        CommuVO vo = this.commuService.read(comu_no);
-        model.addAttribute("dto", vo);//문자열 키이름dto에 vo객체를 저장
-
-        return "/community/commu_edit";
+    	ModelAndView mav = new ModelAndView();
+    	mav.setViewName("/community/commu_edit");
+    	mav.addObject("dto", commuService.read(comu_no));
+ 
+        return mav;
     }
     
     // 04. 게시글 수정
     // 폼에서 입력한 내용들은 @ModelAttribute BoardVO vo로 전달됨
     @RequestMapping(value="/community/commu_edit_ok", method =  RequestMethod.POST)
-    public String update_ok(@ModelAttribute CommuVO vo) throws Exception{
+    public String update_ok(@ModelAttribute CommuVO vo)
+    		throws Exception{
     	
         commuService.update(vo);
         
         return "redirect:/commu_list";
+        
     }
     
     
     // 05. 게시글 삭제
-    @RequestMapping("/commu_del_ok")
+    @RequestMapping("/community/commu_del_ok")
     public String delete(@RequestParam int comu_no) throws Exception{
+    	
         commuService.delete(comu_no);
-        return "redirect:/community/commu_list";
+        return "redirect:/commu_list";
     }
     
 }

@@ -11,7 +11,7 @@
     $(document).ready(function(){
         $("#btnDelete").click(function(){
             if(confirm("삭제하시겠습니까?")){
-                document.form1.action = "${path}/commu_del_ok";
+                document.form1.action = "${path}/community/commu_del_ok";
                 document.form1.submit();
             }
         });
@@ -19,7 +19,7 @@
     });
 </script>
 <body>
-<form id="bsW_title" name="form1" method="post" >
+<form id="bsW_title" name="form1" method="get" >
  <div id="bsC_wrap">
   <h2 class="bsC_title">자료실 내용보기</h2>
   <table id="bsC_t">
@@ -36,9 +36,10 @@
   </table>
   <div id="bsC_menu">
    
+<input type="hidden" name="comu_no" value="${dto.comu_no}">
 <input type="button" value="수정"onclick="location='/community/commu_edit?comu_no=${dto.comu_no}';" />
 <button type="button" id="btnDelete">삭제</button>
-<input type="button" value="목록"onclick="location='commu_list?page=${page}';" />     
+<input type="button" value="목록" onclick="location='${path}/commu_list?page=${page}';" />     
   </div>
  </div>
 </form>

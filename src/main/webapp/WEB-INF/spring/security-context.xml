@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:security="http://www.springframework.org/schema/security"
+       xsi:schemaLocation="http://www.springframework.org/schema/security
+        http://www.springframework.org/schema/security/spring-security.xsd
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- 비밀번호 인코더 빈 설정 -->
+    <bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
+
+    <!-- 로그인 서비스 빈설정 -->
+    <bean id="memberDetailsService" class="com.recipe.security.MemberDetailsService"/>
+
+    <!-- 로그인 성공시 사용할 빈 설정 -->
+    <bean id="memberLoginSuccess" class="com.recipe.security.MemberLoginSuccessHandler"/>
+
+    <!-- 로그인 실패시 사용할 빈 설정 -->
+    <bean id="memberAccessDenied" class="com.recipe.security.MemberAccessDeniedHandler"/>
+
+
+    <security:http>
+        <!--<security:access-denied-handler ref="memberAccessDenied"/> -->
+        <security:form-login login-page="/member/login"
+                             authentication-success-handler-ref="memberLoginSuccess"
+                             username-parameter="id" password-parameter="pw"/>
+
+        <security:logout logout-url="/member/logout" invalidate-session="true"
+                         delete-cookies="remember-me"/>
+    </security:http>
+
+
+    <security:authentication-manager>
+        <security:authentication-provider user-service-ref="memberDetailsService">
+
+            <security:password-encoder ref="bcryptPasswordEncoder"/>
+
+        </security:authentication-provider>
+    </security:authentication-manager>
+</beans>

@@ -1,9 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="s" %>
 <!DOCTYPE html>
 <html>
 <head>
-    <link href="/resources/css/style.css" rel="stylesheet" type="text/css">
-    <link href="/resources/css/commu.css" rel="stylesheet" type="text/css">
+    <link href="${pageContext.request.contextPath}/resources/css/style.css" rel="stylesheet" type="text/css">
+    <link href="${pageContext.request.contextPath}/resources/css/commu.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
     <link rel="shortcut icon" href="#">
@@ -33,12 +35,14 @@
         <div id="member">
 
             <ul>
-                <li><a href="member/join">회원가입</a></li>
-                <!-- <li><a href="#">로그아웃</a></li> -->
-                <!-- 로그인시 로그아웃 변경 -->
-                <li><a href="member/login">로그인</a></li>
-                <!-- <li><a href="#">마이페이지</a></li> -->
-                <!-- 로그인시 마이페이지로 변경 -->
+                <s:authorize access="isAnonymous()">
+                    <li><a href="member/login">로그인</a></li>
+                    <li><a href="member/join">회원가입</a></li>
+                </s:authorize>
+                <s:authorize access="isAuthenticated()">
+                    <li><a href="member/logout">로그아웃</a>
+                    <li><a href="#">마이페이지</a></li>
+                </s:authorize>
             </ul>
         </div>
     </nav>

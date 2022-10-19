@@ -1,66 +1,67 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
 <jsp:include page="../main/header.jsp" flush="false" />
 <link href="${pageContext.request.contextPath}/css/commu.css"
 	rel="stylesheet" type="text/css">
 
-
-
 <script src="/resources/js/jquery.js"></script>
-<script src="/resources/js/commu.js"></script>
 
+<script>
+$(document).ready(function(){
+        $("#btnEdit").click(function(){
+            //var title = document.form1.title.value; ==> name속성으로 처리할 경우
+            //var content = document.form1.content.value;
+            //var writer = document.form1.writer.value;
+            let title_edit = $("#title_edit").val();
+            let content_edit = $("#content_edit").val();
+            let writer_edit = $("#writer_edit").val();
+            if(title_edit == ""){
+                alert("제목을 입력하세요");
+                document.form1.title_edit.focus();
+                return;
+            }
+            if(content_edit == ""){
+                alert("내용을 입력하세요");
+                document.form1.content_edit.focus();
+                return;
+            }
+            if(writer_edit == ""){
+                alert("이름을 입력하세요");
+                document.form1.writer_edit.focus();
+                return;
+            }
+            document.form1.action="/community/commu_edit_ok"
+            // 폼에 입력한 데이터를 서버로 전송
+            document.form1.submit();
+        });
+});
+</script>
 <div id="bsW_wrap">
-	<h2 class="bsW_title">자료실 수정</h2>
-	<form method="post" action="comm_edit_ok"
-		onsubmit="return write_check();" enctype="multipart/form-data">
-		<%-- 파일을 첨부해서 서버로 업로드 하는 자료실 기능을 만들때 유의 사항)
-       1. method=post만 가능하다.get은 안된다. 폼태그 내에서 method속성을 생략하면 기본값이get이다.
-       	그러므로 생략하면 안된다.
-       	
-       2.폼태그내에 enctype="multipart/form-data"속성을 꼭 지정해야 한다. 파일첨부해서
-  		서버로 전송되는 첨부된 파일을 바이너리모드(binary mode)즉 이진파일이라 부른다.
-  		그렇지 않은 일반게시판에서 서버로 전송되는 데이터를 ascii mode(아스키 모드) 파일이라 한다.
-   --%>
+	<h2 class="bsW_title">자료실 글수정</h2>
+	<form name="form1" method="post" >
 
-		<%-- 수정할 히든 기준 번호값을 전달 --%>
-		<input type="hidden" name="bbs_no" value="${b.comm_no }" />
-
-		<%--페이징(쪽나누기)책갈피 기능 --%>
-		<input type="hidden" name="page" value="${page }" />
-
-
-		<table id="bsW_t">
-			<tr>
-				<th>글쓴이</th>
-				<td><input name="bbs_name" id="bbs_name" size="14"
-					value="${b.comm_name }" /></td>
-			</tr>
-			<tr>
-				<th>글제목</th>
-				<td><input name="bbs_title" id="bbs_title" size="33"
-					value="${b.comm_title }" /></td>
-			</tr>
-			<tr>
-				<th>비밀번호</th>
-				<td><input type="password" name="bbs_pwd" id="bbs_pwd"
-					size="14" /></td>
-			</tr>
-			<tr>
-				<th>글내용</th>
-				<td><textarea name="bbs_cont" id="bbs_cont" rows="8" cols="34">${b.comm_cont}</textarea></td>
-			</tr>
-			<tr>
-				<th>파일첨부</th>
-				<td><input type="file" name="bbs_file" /><br />${b.comm_file}</td>
-			</tr>
-		</table>
-		<div id="bsW_menu">
-			<input type="submit" value="수정" /> <input type="reset" value="취소"
-				onclick="$('#comm_name').focus();"> <input type="button"
-				value="목록" onclick="location='comm_list?page=${page}';">
-			<%-- bbs_list?page=쪽번호가 get방식 즉 쿼리 스트링 방식으로 전달된다. 주소창에 값이 노출된다.
-   		page피라미터 이름에 쪽번호가 담겨져서 전달된다. 이것은 페이징에서 내가 본 페이지 번호로 바로 이동하기
-   		위한 책갈피 기능이다. --%>
-		</div>
-	</form>
+    <div>
+        제목
+        <input name="title" id="title_edit" size="80" value="${dto.title}" placeholder="제목을 입력해주세요">
+    </div>
+    <div>
+        내용
+        <textarea name="content" id="content_edit" rows="4" cols="80" placeholder="내용을 입력해주세요">${dto.content}</textarea>
+    </div>
+    <div>
+        이름
+        <input name="writer" id="writer_edit" value="${dto.writer}" placeholder="이름을 입력해주세요">
+    </div>
+    <div style="width:650px; text-align: center;">
+        <!-- 게시물번호를 hidden으로 처리 
+        <input type="hidden" name="comu_no" value="${dto.comu_no}">-->
+        <button type="button" id="btnEdit">수정</button>
+        <input type="reset" value="취소">
+		<button type="button"onclick="/community/commu_list?page=${page}';">목록</button>
+    </div>
+</form>
 </div>
+
+
 <jsp:include page="../main/footer.jsp" flush="false" />

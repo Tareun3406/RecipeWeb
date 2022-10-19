@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
+
 @Controller
 public class CategoryController {
 
@@ -78,6 +79,7 @@ public class CategoryController {
 
         return mv;
     }
+
 
     @RequestMapping("/ranking")
     public  String ranking(){ return "category/ranking";}

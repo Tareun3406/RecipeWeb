@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Reply">
+
+    <insert id="reply_in">
+        insert into recipe_reply(post_no, re_no, reviewer, content, score, regdate) values(#{post_no}, re_no_seq.nextval, #{reviewer}, #{content}, #{score}, sysdate)
+    </insert>
+
+    <select id="reply_getList" resultType="r">
+        select * from recipe_reply where post_no=#{post_no} order by re_no desc
+    </select>
+
+</mapper>

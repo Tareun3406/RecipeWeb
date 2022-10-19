@@ -116,14 +116,14 @@ border: solid 1px white; ">
 <div id="fimage">
  <div id="image">
   <div>
-   <a><img alt="1" src="../../../resources/images/food/image1.jpg"></a>
+   <a><img alt="1" src=${thumnail}></a>
    <div class="contents">
-   <div>1번 레시피</div>
-   <div>글쓴이</div>
+   <div>${blist}</div>
+   <div>글쓴이${writer}</div>
    <div>
     <span>별점</span>
     <span>추천수</span>
-    <span>조회수</span>
+    <span>조회수${hit}</span>
    </div>
    </div>
   </div>

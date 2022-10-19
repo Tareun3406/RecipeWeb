@@ -13,16 +13,17 @@
         </span>
     </div>
     <div>
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
         <span class="rowName">아이디</span>
         <span class="inputArea">
-            <input type="text" size="45" name="id">
+            <input type="text" size="45" name="userid">
         </span>
         <button type="button">중복확인</button>
     </div>
     <div>
         <span class="rowName">비밀번호</span>
         <span class="inputArea">
-            <input type="password" size="45" name="pw">
+            <input type="password" size="45" name="userpw">
         </span>
     </div>
     <div>
@@ -34,7 +35,7 @@
     <div>
         <span class="rowName">닉네임</span>
         <span class="inputArea">
-            <input type="text" size="45" name="name">
+            <input type="text" size="45" name="nickname">
         </span>
     </div>
     <!--

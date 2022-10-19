@@ -21,9 +21,9 @@ public class MemberServiceImpl implements MemberService{
     @Transactional
     @Override
     public void insertMemberUser(MemberVO member) {
-        member.setPw(passwordEncoder.encode(member.getPw()));   // 비밀번호 인코딩
+        member.setUserpw(passwordEncoder.encode(member.getUserpw()));   // 비밀번호 인코딩
         AuthVO auth = new AuthVO();                             // 권한 VO
-        auth.setId(member.getId());
+        auth.setUserid(member.getUserid());
         auth.setAuth(AuthVO.AUTH_USER);
 
         memberDAO.insertMember(member);

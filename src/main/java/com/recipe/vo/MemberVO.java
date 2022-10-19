@@ -13,9 +13,9 @@ import java.util.List;
 public class MemberVO {
 
     //member 테이블 정보
-    private String id;
-    private String pw;
-    private String name;
+    private String userid;
+    private String userpw;
+    private String nickname;
 
     // 권한 정보
     private List<AuthVO> authList;

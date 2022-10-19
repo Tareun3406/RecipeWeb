@@ -17,10 +17,10 @@
         <input type="checkbox" name="keepLoginCheck">로그인 유지
     </div>
     <div class="inputArea">
-        <input type="text" size="45" name="id" placeholder="아이디">
+        <input type="text" size="45" name="userid" placeholder="아이디">
     </div>
     <div class="inputArea">
-        <input type="password" size="45" name="pw" placeholder="비밀번호">
+        <input type="password" size="45" name="userpw" placeholder="비밀번호">
     </div>
     <div>
         <button type="submit" name="loginBtn" class="loginBtn">로그인</button>

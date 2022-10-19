@@ -24,7 +24,7 @@
         <!--<security:access-denied-handler ref="memberAccessDenied"/> -->
         <security:form-login login-page="/member/login"
                              authentication-success-handler-ref="memberLoginSuccess"
-                             username-parameter="id" password-parameter="pw"/>
+                             username-parameter="userid" password-parameter="userpw"/>
 
         <security:logout logout-url="/member/logout" invalidate-session="true"
                          delete-cookies="remember-me"/>

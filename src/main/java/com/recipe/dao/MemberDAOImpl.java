@@ -14,8 +14,8 @@ public class MemberDAOImpl implements MemberDAO{
 
 
     @Override
-    public MemberVO readMemberInfo(String id) {
-       return sqlSession.selectOne("memberSelectAll",id);
+    public MemberVO readMemberInfo(String userid) {
+       return sqlSession.selectOne("memberSelectAll",userid);
     }
 
     @Override

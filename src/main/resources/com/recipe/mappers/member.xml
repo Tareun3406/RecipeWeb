@@ -4,33 +4,33 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="Member">
     <resultMap id="memberMap" type="member">
-        <result property="id" column="id"/>
-        <result property="pw" column="pw"/>
-        <result property="name" column="name"/>
+        <result property="userid" column="userid"/>
+        <result property="userpw" column="userpw"/>
+        <result property="nickname" column="nickname"/>
 
         <collection property="authList" resultMap="authMap"/>
     </resultMap>
     <resultMap id="authMap" type="auth">
-        <result property="id" column="id"/>
+        <result property="userid" column="userid"/>
         <result property="auth" column="auth"/>
     </resultMap>
 
     <!-- 회원 정보 + 권한 조회 -->
     <select id="memberSelectAll" resultMap="memberMap">
-        select MEMBER.ID,PW,NAME,AUTH from MEMBER left outer join AUTH on MEMBER.ID = AUTH.ID
-        where AUTH.ID = #{id}
+        select MEMBER.USERID,USERPW,NICKNAME,AUTH from MEMBER left outer join AUTH on MEMBER.USERID = AUTH.USERID
+        where AUTH.USERID = #{userid}
     </select>
     
     <!-- 회원정보 조회 -->
     <select id="memberSelect" resultType="member">
-        select * from member where ID=#{id}
+        select * from member where USERID=#{userid}
     </select>
 
     <!-- 회원가입 -->
     <insert id="memberInsert">
-        insert into MEMBER VALUES (#{id}, #{pw}, #{name})
+        insert into MEMBER VALUES (#{userid}, #{userpw}, #{nickname})
     </insert>
     <insert id="authInsert">
-        insert into AUTH values (#{id}, #{auth})
+        insert into AUTH values (#{userid}, #{auth})
     </insert>
 </mapper>

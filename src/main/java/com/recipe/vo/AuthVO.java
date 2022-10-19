@@ -9,7 +9,7 @@ import org.springframework.security.core.GrantedAuthority;
 public class AuthVO implements GrantedAuthority {
 
 
-    private String id;
+    private String userid;
     private String auth;
 
     @Override

@@ -4,7 +4,7 @@ import com.recipe.vo.AuthVO;
 import com.recipe.vo.MemberVO;
 
 public interface MemberDAO {
-    MemberVO readMemberInfo(String id);
+    MemberVO readMemberInfo(String userid);
 
     void insertMember(MemberVO vo);
 

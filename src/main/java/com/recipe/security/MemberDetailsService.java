@@ -16,9 +16,9 @@ public class MemberDetailsService implements UserDetailsService {
 
 
     @Override
-    public UserDetails loadUserByUsername(String id) throws UsernameNotFoundException {
-        System.out.println(id);
-        MemberVO memberInfo = memberDAO.readMemberInfo(id);
+    public UserDetails loadUserByUsername(String userid) throws UsernameNotFoundException {
+        System.out.println(userid);
+        MemberVO memberInfo = memberDAO.readMemberInfo(userid);
 
         return memberInfo == null ? null : new MemberUser(memberInfo);
     }

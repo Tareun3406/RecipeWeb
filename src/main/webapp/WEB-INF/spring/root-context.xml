@@ -11,9 +11,6 @@
       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 
-    <!-- 스프링 AOP 자동 프록시 설정
-    <aop:aspectj-autoproxy></aop:aspectj-autoproxy>-->
-
     <!-- root-context.xm 파일의 역할은 서비스를 추가해서 스프링 aop를 통한 트랜잭션 적용, 모델 dao설정 mybatis설정
         데이터베이스 연결 정보가 들어간다. -->
 
@@ -56,16 +53,10 @@
     </bean>
 
     <context:component-scan base-package="com.recipe.dao"/>
-    <!-- 모델 DAOImpl의 @Repository로 설정된 부분을 스프링에서 오토스캔하여 등록. -->
 
     <context:component-scan base-package="com.recipe.service"/>
-    <!-- 서비스 추가 이유
-        1. 고객의 추가 요구사항을 반영
-        2. 스프링의 컨트롤러와 모델 DAO를 연결하는 중간 매개체 역할.
-        3. 스프링의 AOP를 통한 트랜잭션을 처리함으로써 데이터 불일치 현상을 제거.=> 사이트의 신뢰도 향상
-     -->
 
-    <!-- <aop:config />  aop xml방식 설정 -->
+
 </beans>
 
 

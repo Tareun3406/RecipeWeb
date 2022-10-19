@@ -5,7 +5,7 @@
     <link href="${pageContext.request.contextPath}/resources/css/member.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-<form id="joinForm">
+<form id="joinForm" method="post">
     <div class="caption" style="margin: 20px">
         <h3 style="display: inline-block">회원가입</h3>
         <span style="display:inline-block;border: solid 1px; width: 100px; height: 50px; float: right">
@@ -32,15 +32,16 @@
         </span>
     </div>
     <div>
+        <span class="rowName">닉네임</span>
+        <span class="inputArea">
+            <input type="text" size="45" name="name">
+        </span>
+    </div>
+    <!--
+    <div>
         <span class="rowName">이메일</span>
         <span class="inputArea">
             <input type="text" size="45" name="email">
-        </span>
-    </div>
-    <div>
-        <span class="rowName">연락처</span>
-        <span class="inputArea">
-            <input type="text" size="45" name="tel">
         </span>
     </div>
     <div>
@@ -54,7 +55,8 @@
         <span class="inputArea">
             <input type="text" size="45" name="address2">
         </span>
-    </div>
+     </div>
+     -->
     <div class="joinBtnDiv">
         <button type="submit">회원가입</button>
     </div>

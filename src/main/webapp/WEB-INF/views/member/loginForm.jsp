@@ -9,7 +9,10 @@
 <header>
     <div class="logo">로고</div>
 </header>
-<form>
+<form action="/login" method="post">
+    <%-- 위조방지 토큰 --%>
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+
     <div class="checkArea">
         <input type="checkbox" name="keepLoginCheck">로그인 유지
     </div>
@@ -22,6 +25,7 @@
     <div>
         <button type="submit" name="loginBtn" class="loginBtn">로그인</button>
     </div>
+
 </form>
 <div class="helpInfo">
     <a href="findID">아이디 찾기</a> | <a href="findPW">비밀번호 찾기</a> | <a href="join">회원가입</a>

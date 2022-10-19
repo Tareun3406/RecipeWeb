@@ -6,6 +6,7 @@
 
 <configuration>
     <typeAliases>
-
+        <typeAlias type="com.recipe.vo.mypageVO" alias="mypage"/>
+        <typeAlias type="com.recipe.vo.categoryVO" alias="category"/>
     </typeAliases>
 </configuration>

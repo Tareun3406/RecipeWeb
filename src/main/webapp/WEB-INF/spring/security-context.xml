@@ -22,6 +22,7 @@
 
     <security:http>
         <!--<security:access-denied-handler ref="memberAccessDenied"/> -->
+        <security:csrf disabled="false"/>
         <security:form-login login-page="/member/login"
                              authentication-success-handler-ref="memberLoginSuccess"
                              username-parameter="userid" password-parameter="userpw"/>

@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,8 +17,9 @@ public class CategoryController {
 
     @Autowired //자동의존성 주입(DI)
     private CategoryService categoryService;
+
     @RequestMapping("/category") //카테고리 메뉴
-    public ModelAndView category_list(HttpServletRequest request, categoryVO b, Model listM) {
+    public String category_list(HttpServletRequest request, categoryVO b, Model listM) {
 
         int page=1;
         int limit=10;//한페이지에 보여지는 목록개수
@@ -49,17 +49,6 @@ public class CategoryController {
         int endpage=maxpage;
         if(endpage>startpage+10-1) endpage=startpage+10-1;
 
-
-        ModelAndView mv=new ModelAndView();
-
-        mv.addObject("post_no",b.getPost_no());
-        mv.addObject("title",b.getBbs_title());
-        mv.addObject("writer",b.getBbs_name());
-        mv.addObject("hit",b.getHit());
-        mv.addObject("thumnail",b.getThumnail());
-        mv.addObject("cont",b.getCont());
-        mv.setViewName("category/category");
-
         listM.addAttribute("blist",blist);
         listM.addAttribute("page",page);
         listM.addAttribute("startpage",startpage);
@@ -69,15 +58,7 @@ public class CategoryController {
         listM.addAttribute("find_field",find_field);
         listM.addAttribute("find_name",find_name);
 
-
-        /*listM.addAttribute("post_no",b.getPost_no());
-        listM.addAttribute("title",b.getTitle());
-        listM.addAttribute("writer",b.getWriter());
-        listM.addAttribute("hit",b.getHit());
-        listM.addAttribute("cont",b.getCont());
-        listM.addAttribute("thumnail",b.getThumnail()); */
-
-        return mv;
+        return "category/category";
     }
 
 

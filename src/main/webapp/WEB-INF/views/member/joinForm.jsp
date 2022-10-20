@@ -1,7 +1,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <meta name="_csrf" content="${_csrf.token}"/>
+    <!-- default header name is X-CSRF-TOKEN -->
+    <meta name="_csrf_header" content="${_csrf.headerName}"/>
     <title>Title</title>
+    <script src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/member.js"></script>
     <link href="${pageContext.request.contextPath}/resources/css/member.css" rel="stylesheet" type="text/css">
 </head>
 <body>
@@ -13,12 +18,13 @@
         </span>
     </div>
     <div>
-        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" id="token">
         <span class="rowName">아이디</span>
         <span class="inputArea">
-            <input type="text" size="45" name="userid">
+            <input type="text" size="45" name="userid" id="userid">
         </span>
-        <button type="button">중복확인</button>
+        <button type="button" onclick="id_check()">중복확인</button>
+        <span id="idCheckMessage"></span>
     </div>
     <div>
         <span class="rowName">비밀번호</span>

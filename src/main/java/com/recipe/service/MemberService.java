@@ -11,4 +11,6 @@ public interface MemberService {
 
 
     List<MemberVO> findIdList(String email);
+
+    MemberVO idCheck(String id);
 }

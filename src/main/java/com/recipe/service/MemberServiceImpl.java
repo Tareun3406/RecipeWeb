@@ -37,5 +37,10 @@ public class MemberServiceImpl implements MemberService{
         return memberDAO.findIdList(email);
     }
 
+    @Override
+    public MemberVO idCheck(String id) {
+        return memberDAO.checkId(id);
+    }
+
 
 }

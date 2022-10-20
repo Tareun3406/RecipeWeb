@@ -4,13 +4,12 @@ import com.recipe.service.MemberService;
 import com.recipe.vo.MemberVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.PrintWriter;
 import java.util.List;
 
 @Controller
@@ -37,6 +36,23 @@ public class MemberController {
     @GetMapping("/member/join")
     public String memberJoin(){
         return "/member/joinForm";
+    }
+
+    @PostMapping("/member/idCheck")
+    public String member_idcheck(@RequestParam("userid") String userid, HttpServletResponse response) throws Exception{
+        response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = response.getWriter();
+
+        MemberVO db_id = this.memberService.idCheck(userid);
+
+        int re = -1;    // 중복아이디가 없는 경우 반환값
+
+        if(db_id != null){
+            re=1;   // 중복 아이디가 있는 경우
+        }
+        out.println(re);    //값 반환
+
+        return null;
     }
 
     // 회원가입 확인(일반 유저)

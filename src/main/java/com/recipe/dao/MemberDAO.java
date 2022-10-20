@@ -14,4 +14,6 @@ public interface MemberDAO {
 
 
     List<MemberVO> findIdList(String email);
+
+    MemberVO checkId(String id);
 }

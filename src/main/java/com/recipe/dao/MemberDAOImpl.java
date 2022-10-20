@@ -37,5 +37,10 @@ public class MemberDAOImpl implements MemberDAO{
         return sqlSession.selectList("findID",email);
     }
 
+    @Override
+    public MemberVO checkId(String id) {
+        return sqlSession.selectOne("memberSelect",id);
+    }
+
 
 }

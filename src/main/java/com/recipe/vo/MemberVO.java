@@ -16,6 +16,7 @@ public class MemberVO {
     private String userid;
     private String userpw;
     private String nickname;
+    private String email;
 
     // 권한 정보
     private List<AuthVO> authList;

@@ -45,6 +45,7 @@ $(document).ready(function(){
         제목
         <input name="title" id="title" size="80" value="${dto.title}" placeholder="제목을 입력해주세요">
     </div>
+    
     <div>
         내용
         <textarea name="content" id="content" rows="4" cols="80" placeholder="내용을 입력해주세요">${dto.content}</textarea>

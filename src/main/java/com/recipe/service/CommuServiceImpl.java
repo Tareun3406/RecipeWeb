@@ -45,6 +45,23 @@ public class CommuServiceImpl implements CommuService {
     // 03. 게시글 수정
     @Override
     public void update(CommuVO vo) throws Exception {
+    	String title = vo.getTitle();
+        String content = vo.getContent();
+        String writer = vo.getWriter();
+        // *태그문자 처리 (< ==> &lt; > ==> &gt;)
+        // replace(A, B) A를 B로 변경
+        title = title.replace("<", "&lt;");
+        title = title.replace("<", "&gt;");
+        writer = writer.replace("<", "&lt;");
+        writer = writer.replace("<", "&gt;");
+        // *공백문자 처리
+        title = title.replace("  ",    "&nbsp;&nbsp;");
+        writer = writer.replace("  ",    "&nbsp;&nbsp;");
+        // *줄바꿈 문자처리
+        content = content.replace("\n", "<br>");
+        vo.setTitle(title);
+        vo.setContent(content);
+        vo.setWriter(writer);
     	commuDao.update(vo);
     }
     // 04. 게시글 삭제

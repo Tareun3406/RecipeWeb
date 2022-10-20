@@ -19,6 +19,8 @@ public interface CommuService {
     public List<CommuVO> listAll() throws Exception;
     // 06. 게시글 조회
     public void increaseViewcnt(int comu_no, HttpSession session) throws Exception;
+	public int getListCount(CommuVO vo);
+	public List<CommuVO> getComuList(CommuVO vo);
 
 
     

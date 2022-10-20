@@ -2,6 +2,7 @@ package com.recipe.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,13 +28,46 @@ public class CommuController {
     
     // 01. 게시글 목록
     @RequestMapping("/commu_list")
-    public ModelAndView list() throws Exception{
-        List<CommuVO> list = commuService.listAll();
-        // ModelAndView - 모델과 뷰
-        ModelAndView mav = new ModelAndView();
-        mav.setViewName("/community/commu_list"); // 뷰를 list.jsp로 설정
-        mav.addObject("commu_list", list); // 데이터를 저장
-        return mav; // list.jsp로 List가 전달된다.
+    public String list(Model listM,HttpServletRequest request, CommuVO vo) throws Exception{
+    	 int page=1;
+         int limit=10;//한페이지에 보여지는 목록개수
+         if(request.getParameter("page") != null) {
+           page=Integer.parseInt(request.getParameter("page"));         
+         }
+         String find_name = request.getParameter("find_name");//검색어
+         String find_field = request.getParameter("find_field");//검색 필드
+         vo.setFind_name("%"+find_name+"%");// %는 데이터 베이스에서 검색 와일드 카드 문자로서 하나이상의 
+         //임의의 모르는 문자와 매핑대응
+         vo.setFind_field(find_field);
+         int totalCount=this.commuService.getListCount(vo);
+         //검색 전 총레코드 개수,검색후 레코드 개수
+
+         
+         vo.setStartrow((page-1)*10+1);//시작행번호
+          vo.setEndrow(vo.getStartrow()+limit-1);//끝행 번호
+         
+         List<CommuVO> blist=this.commuService.getComuList(vo);
+         //검색 전후 목록
+         
+         //총 페이지수
+         int maxpage=(int)((double)totalCount/limit+0.95);
+         //시작페이지(1,11,21 ..)
+         int startpage=(((int)((double)page/10+0.9))-1)*10+1;
+         //현재 페이지에 보여질 마지막 페이지(10,20 ..)
+         int endpage=maxpage;
+         if(endpage>startpage+10-1) endpage=startpage+10-1;
+         
+         listM.addAttribute("blist",blist);
+         listM.addAttribute("page",page);
+         listM.addAttribute("startpage",startpage);
+         listM.addAttribute("endpage",endpage);
+         listM.addAttribute("maxpage",maxpage);
+         listM.addAttribute("listcount",totalCount);
+         listM.addAttribute("find_field",find_field);//검색 필드
+         listM.addAttribute("find_name",find_name);//검색어
+         
+      
+         return "community/commu_list";//뷰페이지 경로가/WEB-
     }
     
     // 02_01. 게시글 작성화면

@@ -77,109 +77,126 @@
 
 			<section id="cont_center">
 			<article class="column col5">
-				<table border="1" width="600px">
-					<tr>
-						<th>번호</th>
-						<th>제목</th>
-						<th>이름</th>
-						<th>작성일</th>
-						<th>조회수</th>
-					</tr>
-					<c:forEach var="row" items="${commu_list}">
-						<tr>
-							<td>${row.comu_no}</td>
-							<td><a href="/community/commu_cont?comu_no=${row.comu_no}">${row.title}</a></td>
-							<td>${row.writer}</td>
-							
-				
-							
-							<td align="center">${fn:substring(row.regdate,2,16)}</td>
-    <%--위 제목 부분의  jstl fn태그 립을 활용해서 0이상 10미만 사이의 년월일만 오게 해본다.${fn:substring(row.regdate,0,10)} --%>
-								
-							
-							<td>${row.viewcnt}</td>
-						</tr>
-					</c:forEach>
-				</table>
+				<form method="get" action="commu_list">
+					<div id="bList_wrap">
+						<h2 class="bList_title">자료실 목록</h2>
+						<div class="bList_count">글개수: ${listcount}</div>
+						<table id="bList_t">
+							<tr>
+								<th width="6%" height="26">번호</th>
+								<th width="50%">제목</th>
+								<th width="14%">작성자</th>
+								<th width="17%">작성일</th>
+								<th width="14%">조회수</th>
+							</tr>
 
-			</article>
+							<c:if test="${!empty blist}">
+								<c:forEach var="b" items="${blist}">
+								<tr>
+							<td align="center">${b.comu_no}</td>
+							<td align="center">
+							<a href="/community/commu_cont?comu_no=${b.comu_no}">${b.title}</a>
+							</td>
+							<%-- ?bbs_no=번호&state=cont&page=쪽번호 주소창에 노출되는get방식으로 3개의 피라미터
+     				이름에 인자값이 저장되어 전달된다. --%>
+							<td align="center">${b.writer}</td>
+							<td align="center">${fn:substring(b.regdate,2,16)}</td>
+							<%-- 0이상 10미만 사이의 년월일만 반환--%>
+							<td align="center">${b.viewcnt}</td>
+							</tr>
+							</c:forEach>
+							</c:if>
 
+							<c:if test="${empty blist}">
+								<tr>
+									<th colspan="5">자료실 목록이 없습니다.</th>
+								</tr>
+							</c:if>
+						</table>
 
-			<article class="column col6">
-            <div id="writebtn">
-               <input type="button" value="글쓰기"
-                  onclick="location='commu_write?page=${page}';" />
-               
-            </div>
-
-            <div id='liSearchOption'>
-               <select id='selSearchOption'>
-                  <option value='T'><c:if test="${find_field == 'title'}">
-                        ${'selected'}</c:if>제목
-                  </option>
-                  <option value='C'><c:if test="${find_field == 'content'}">
-                        ${'selected'}</c:if>내용
-                  </option>
-               </select> <input id='txtKeyWord' /> <input type='button' value='검색' />
-            </div>
-         </article>
-
-
-         <article class="column col6">
-            <%--페이징(쪽나누기)--%>
-            <div class="list_n_menu">
-               <%--검색전 페이징 --%>
-               <c:if test="${(empty find_field)&&(empty find_name)}">
-                  <c:if test="${page <=1}">
+						<%--페이징(쪽나누기)--%>
+						<div id="bList_paging">
+							<%--검색전 페이징 --%>
+							<c:if test="${(empty find_field)&&(empty find_name)}">
+								<c:if test="${page <=1}">
    [이전]&nbsp;
    </c:if>
-                  <c:if test="${page >1}">
-                     <a href="commu_list?page=${page-1}">[이전]</a>&nbsp;
+								<c:if test="${page >1}">
+									<a href="commu_list?page=${page-1}">[이전]</a>&nbsp;
    </c:if>
 
-                  <%--쪽번호 출력부분 --%>
-                  <c:forEach var="a" begin="${startpage}" end="${endpage}" step="1">
-                     <c:if test="${a == page}"><${a}></c:if>
-                     <%--현재 쪽번호가 선택된 경우 --%>
+								<%--쪽번호 출력부분 --%>
+								<c:forEach var="a" begin="${startpage}" end="${endpage}"
+									step="1">
+									<c:if test="${a == page}"><${a}></c:if>
+									<%--현재 쪽번호가 선택된 경우 --%>
 
-                     <c:if test="${a != page}">
-                        <%--현재 쪽번호가 선택 안된경우 --%>
-                        <a href="commu_list?page=${a}">[${a}]</a>&nbsp;
+									<c:if test="${a != page}">
+										<%--현재 쪽번호가 선택 안된경우 --%>
+										<a href="commu_list?page=${a}">[${a}]</a>&nbsp;
     </c:if>
-                  </c:forEach>
+								</c:forEach>
 
-                  <c:if test="${page>=maxpage}">[다음]</c:if>
-                  <c:if test="${page<maxpage}">
-                     <a href="commu_list?page=${page+1}">[다음]</a>
-                  </c:if>
-               </c:if>
+								<c:if test="${page>=maxpage}">[다음]</c:if>
+								<c:if test="${page<maxpage}">
+									<a href="commu_list?page=${page+1}">[다음]</a>
+								</c:if>
+							</c:if>
 
-               <%--검색후 페이징 --%>
-               <c:if test="${(!empty find_field) || (!empty find_name)}">
-                  <c:if test="${page <=1}">  [이전]&nbsp;  </c:if>
-                  <c:if test="${page >1}">
-                     <a
-                        href="commu_list?page=${page-1}&find_field=${find_field}&find_name=${find_name}">
-                        [이전]</a>&nbsp;</c:if>
+							<%--검색후 페이징 --%>
+							<c:if test="${(!empty find_field) || (!empty find_name)}">
+								<c:if test="${page <=1}">
+   [이전]&nbsp;
+   </c:if>
+								<c:if test="${page >1}">
+									<a
+										href="commu_list?page=${page-1}&find_field=${find_field}&find_name=${find_name}">[이전]</a>&nbsp;
+   </c:if>
 
-                  <%--쪽번호 출력부분 --%>
-                  <c:forEach var="a" begin="${startpage}" end="${endpage}" step="1">
-                     <c:if test="${a == page}"><${a}></c:if>
-                     <c:if test="${a != page}">
-                        <a
-                           href="commu_list?page=${a}&find_field=${find_field}&find_name=${find_name}">
-                           [${a}]</a>&nbsp;</c:if>
-                  </c:forEach>
+								<%--쪽번호 출력부분 --%>
+								<c:forEach var="a" begin="${startpage}" end="${endpage}"
+									step="1">
+									<c:if test="${a == page}"><${a}></c:if>
 
-                  <c:if test="${page>=maxpage}">[다음]</c:if>
-                  <c:if test="${page<maxpage}">
-                     <a
-                        href="commu_list?page=${page+1}&find_field=${find_field}&find_name=${find_name}">
-                        [다음]</a>
-                  </c:if>
-               </c:if>
-            </div>
-         </article>
+									<c:if test="${a != page}">
+										<a
+											href="commu_list?page=${a}&find_field=${find_field}&find_name=${find_name}">[${a}]</a>&nbsp;
+    </c:if>
+								</c:forEach>
+
+								<c:if test="${page>=maxpage}">[다음]</c:if>
+								<c:if test="${page<maxpage}">
+									<a
+										href="commu_list?page=${page+1}&find_field=${find_field}&find_name=${find_name}">[다음]</a>
+								</c:if>
+							</c:if>
+
+						</div>
+
+						<div id="bList_menu">
+							<input type="button" value="글쓰기"
+								onclick="location='commu_write?page=${page}';" />
+							<c:if test="${(!empty find_field) && (!empty find_name)}">
+								<input type="button" value="전체목록"
+									onclick="location='commu_list?page=${page}';" />
+							</c:if>
+						</div>
+
+						<%--검색폼 --%>
+						<div id="bFind_wrap">
+							<select name="find_field">
+								<option value="title"
+									<c:if test="${find_field == 'bbs_title'}">
+   ${'selected'}</c:if>>제목</option>
+								<option value="content"
+									<c:if test="${find_field == 'bbs_cont'}">
+    ${'selected'}</c:if>>내용</option>
+							</select> <input name="find_name" id="find_name" size="14"
+								value="${find_name}" /> <input type="submit" value="검색" />
+						</div>
+					</div>
+				</form>
+			</article>
       </section>
       <section id="cont_right">
          <article class="column col6">

@@ -30,6 +30,9 @@
     <th>내용</th> <td>${dto.content}</td>
    </tr>
    <tr>
+    <th>작성자</th> <td>${dto.userName}</td>   
+   </tr>
+   <tr>
     <th>조회수</th> <td>${dto.viewcnt}</td>   
    </tr>
    

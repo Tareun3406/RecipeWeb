@@ -26,11 +26,11 @@
                 document.form1.content.focus();
                 return;
             }
-            if(writer == ""){
+           /* if(writer == ""){
                 alert("이름을 입력하세요");
                 document.form1.writer.focus();
                 return;
-            }
+            }*/
             // 폼에 입력한 데이터를 서버로 전송
             document.form1.submit();
         });
@@ -48,10 +48,10 @@
         <textarea name="content" id="content" rows="8"
     cols="34" placeholder="내용을 입력해주세요"></textarea>
     </div>
-    <div id="bsW_t">
+    <!-- <div id="bsW_t">
         이름
         <input name="writer" id="writer"  size="14"placeholder="이름을 입력해주세요">
-    </div>
+    </div> -->
     <div id="bsW_t">
         <button type="button" id="btnSave">확인</button>
         <button type="reset">취소</button>

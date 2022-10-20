@@ -174,8 +174,10 @@
 						</div>
 
 						<div id="bList_menu">
+						
 							<input type="button" value="글쓰기"
 								onclick="location='commu_write?page=${page}';" />
+								
 							<c:if test="${(!empty find_field) && (!empty find_name)}">
 								<input type="button" value="전체목록"
 									onclick="location='commu_list?page=${page}';" />

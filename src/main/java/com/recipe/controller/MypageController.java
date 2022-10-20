@@ -2,6 +2,7 @@ package com.recipe.controller;
 
 import com.recipe.service.MypageService;
 import com.recipe.vo.mypageVO;
+import com.recipe.vo.subscribeVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,9 +24,13 @@ public class MypageController {
         String b = "userid01"; //나중에 세션id추가되면 삭제될것 아래 v2까지
         //mypageVO v=this.mypageService.getuser(v2);
 
+        //mypageVO vo = mypageService.getmylist();
+        //List<mypageVO> mylist2 = vo.getSubscriber_id()
+
         List<mypageVO> mylist=this.mypageService.getmylist(b);
 
         mylistm.addAttribute("mylist",mylist);
+
         /*
         ModelAndView mv=new ModelAndView();
 

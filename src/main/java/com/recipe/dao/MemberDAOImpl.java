@@ -6,6 +6,10 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+import java.util.Queue;
+
+
 @Repository
 public class MemberDAOImpl implements MemberDAO{
 
@@ -27,4 +31,11 @@ public class MemberDAOImpl implements MemberDAO{
     public void insertAuth(AuthVO auth) {
         sqlSession.insert("authInsert", auth);
     }
+
+    @Override
+    public List<MemberVO> findIdList(String email) {
+        return sqlSession.selectList("findID",email);
+    }
+
+
 }

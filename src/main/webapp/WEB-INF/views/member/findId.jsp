@@ -9,17 +9,11 @@
     <h3>아이디 찾기</h3>
     <h3><a href="member/findPw">비밀번호 찾기</a></h3>
 </header>
-<form id="findForm">
+<form id="findForm" method="post">
     <div class="caption" style="margin: 20px">
-
-
     </div>
-    <div>
-        <span class="rowName">이름</span>
-        <span class="inputArea">
-            <input type="text" size="45" name="id">
-        </span>
-    </div>
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+
     <div>
         <span class="rowName">이메일</span>
         <span class="inputArea">

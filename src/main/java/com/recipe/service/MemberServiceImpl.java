@@ -8,6 +8,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 public class MemberServiceImpl implements MemberService{
 
@@ -29,5 +31,11 @@ public class MemberServiceImpl implements MemberService{
         memberDAO.insertMember(member);
         memberDAO.insertAuth(auth);
     }
+
+    @Override
+    public List<MemberVO> findIdList(String email) {
+        return memberDAO.findIdList(email);
+    }
+
 
 }

@@ -7,6 +7,7 @@
         <result property="userid" column="userid"/>
         <result property="userpw" column="userpw"/>
         <result property="nickname" column="nickname"/>
+        <result property="email" column="email"/>
 
         <collection property="authList" resultMap="authMap"/>
     </resultMap>
@@ -17,7 +18,7 @@
 
     <!-- 회원 정보 + 권한 조회 -->
     <select id="memberSelectAll" resultMap="memberMap">
-        select MEMBER.USERID,USERPW,NICKNAME,AUTH from MEMBER left outer join AUTH on MEMBER.USERID = AUTH.USERID
+        select MEMBER.USERID,USERPW,NICKNAME,EMAIL,AUTH from MEMBER left outer join AUTH on MEMBER.USERID = AUTH.USERID
         where AUTH.USERID = #{userid}
     </select>
     
@@ -28,7 +29,7 @@
 
     <!-- 회원가입 -->
     <insert id="memberInsert">
-        insert into MEMBER VALUES (#{userid}, #{userpw}, #{nickname})
+        insert into MEMBER VALUES (#{userid}, #{userpw}, #{nickname}, #{email})
     </insert>
     <insert id="authInsert">
         insert into AUTH values (#{userid}, #{auth})

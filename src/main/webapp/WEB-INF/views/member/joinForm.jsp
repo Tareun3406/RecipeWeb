@@ -38,13 +38,13 @@
             <input type="text" size="45" name="nickname">
         </span>
     </div>
-    <!--
     <div>
         <span class="rowName">이메일</span>
         <span class="inputArea">
             <input type="text" size="45" name="email">
         </span>
     </div>
+    <!--
     <div>
         <span class="rowName">주소</span>
         <span class="inputArea">

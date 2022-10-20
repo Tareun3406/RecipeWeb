@@ -3,8 +3,6 @@ package com.recipe.controller;
 import com.recipe.service.MemberService;
 import com.recipe.vo.MemberVO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,7 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.PrintWriter;
+import java.util.List;
 
 @Controller
 public class MemberController {
@@ -52,6 +50,16 @@ public class MemberController {
     public String memberFindID(){
         return "/member/findId";
     }
+
+    @PostMapping("/member/findID")
+    public ModelAndView memberFindIdList(String email){
+
+        ModelAndView mv = new ModelAndView("/member/findIdList");
+        List<MemberVO> memberList =  memberService.findIdList(email);
+        mv.addObject("memberList", memberList);
+        return mv;
+    }
+
 
     @GetMapping("/member/findPW")
     public String memberFindPW(){

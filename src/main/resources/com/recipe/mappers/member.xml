@@ -34,4 +34,9 @@
     <insert id="authInsert">
         insert into AUTH values (#{userid}, #{auth})
     </insert>
+
+    <!-- 아이디찾기 -->
+    <select id="findID" resultType="member">
+        select USERID from MEMBER where EMAIL=#{email}
+    </select>
 </mapper>

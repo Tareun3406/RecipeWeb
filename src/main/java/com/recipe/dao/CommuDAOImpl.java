@@ -44,4 +44,12 @@ public class CommuDAOImpl implements CommuDAO {
     public  void increaseViewcnt(int comu_no) throws Exception {
         SqlSession.update("increaseViewcnt", comu_no);
     }
+	@Override
+	public int getTotalCount(CommuVO vo) {
+		return this.SqlSession.selectOne("bbs_count",vo);
+	}
+	@Override
+	public List<CommuVO> getCommuList(CommuVO vo) {
+		return this.SqlSession.selectList("bbs_list",vo);
+	}
 }

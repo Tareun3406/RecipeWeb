@@ -59,7 +59,7 @@ $(document).ready(function(){
         <input type="hidden" name="comu_no" value="${dto.comu_no}">
         <button type="button" id="btnEdit">수정</button>
         <input type="reset" value="취소">
-		<button type="button"onclick="location='${path}/commu_list?page=${page}';">목록</button>
+		<button type="button"onclick="location='/commu_list';">목록</button>
     </div>
 </form>
 </div>

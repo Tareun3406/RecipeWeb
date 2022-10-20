@@ -17,5 +17,7 @@ public interface CommuDAO {
     public List<CommuVO> listAll() throws Exception;
     // 06. 게시글 조회 증가
     public void increaseViewcnt(int comu_no) throws Exception;
+	public int getTotalCount(CommuVO vo);
+	public List<CommuVO> getCommuList(CommuVO vo);
 
 }

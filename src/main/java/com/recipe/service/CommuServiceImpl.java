@@ -96,6 +96,14 @@ public class CommuServiceImpl implements CommuService {
             
         }
     }
+	@Override
+	public int getListCount(CommuVO vo) {
+		return this.commuDao.getTotalCount(vo);
+	}
+	@Override
+	public List<CommuVO> getComuList(CommuVO vo) {
+		return this.commuDao.getCommuList(vo);
+	}
 	
 	
 

@@ -62,9 +62,8 @@
 
          <div class="conbox con3">
              <div class="contbored">
-             <div>구독한 쉐프 : ${mylist[0].subscriber_id}
-                 ${mylist[1].subscriber_id}
-                 ${mylist[2].subscriber_id}
+             <div>구독한 쉐프 : ${mylist[0].subscribeVOList}
+
                  <br/>
 
              </div>

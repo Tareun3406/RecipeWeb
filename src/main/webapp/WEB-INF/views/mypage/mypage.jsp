@@ -39,9 +39,9 @@
 
          <div class="conbox con1">
              <div class="contbored">
-             <div>내 아이디 : ${id}</div>
-             <div>내 이름 : ${name}</div>
-             <div style="margin-bottom: 0px;">내 비밀번호 : ${pw}</div>
+             <div>내 아이디 : ${mylist[1].userid}</div>
+             <div>내 이름 : ${mylist[1].nickname}</div>
+             <div style="margin-bottom: 0px;">내 비밀번호 : ${mylist[1].userpw}</div>
              </div>
 
          </div>
@@ -49,62 +49,27 @@
          <div class="conbox con2">
              <div class="contbored">
              <div>내가 등록한 글 <br/>
-                 <c:choose>
-                     <c:when test="${!empty subscript}"> <!--등록글번호 컬럼으로 수정-->
-                         ${subscript}
-                     </c:when>
-                     <c:otherwise>
-                         내가 등록한 글이 없습니다.
-                     </c:otherwise>
-                 </c:choose>
+
              </div>
              <div>내가 쓴 댓글 <br/>
-                 <c:choose>
-                     <c:when test="${!empty subscript}"> <!--댓글 번호 컬럼으로 수정-->
-                         ${subscript}
-                     </c:when>
-                     <c:otherwise>
-                         내가 쓴 댓글이 없습니다.
-                     </c:otherwise>
-                 </c:choose>
+
              </div>
              <div>추천 한 글 <br/>
-                 <c:choose>
-                     <c:when test="${!empty subscript}"> <!--추천한 글 번호 컬럼으로 수정-->
-                         ${subscript}
-                     </c:when>
-                     <c:otherwise>
-                         추천 한 글이 없습니다.
-                     </c:otherwise>
-                 </c:choose>
+
              </div>
              </div>
          </div>
 
          <div class="conbox con3">
              <div class="contbored">
-             <div>구독한 쉐프 <br/>
+             <div>구독한 쉐프 : ${mylist[0].subscriber_id}
+                 ${mylist[1].subscriber_id}
+                 ${mylist[2].subscriber_id}
+                 <br/>
 
-                 <c:choose>
-                  <c:when test="${!empty subscript}">
-                          <c:forTokens items="${subscript}" delims="," var="sub">
-                                     쉐프 닉네임 : ${sub}<br/>
-                          </c:forTokens>
-                  </c:when>
-                  <c:otherwise>
-                     구독한 쉐프가 없습니다.
-                  </c:otherwise>
-                 </c:choose>
              </div>
              <div>즐겨 찾기  <br/>
-                 <c:choose>
-                     <c:when test="${!empty bookmark}">
-                         ${bookmark}
-                     </c:when>
-                     <c:otherwise>
-                         즐겨찾기 한 글이 없습니다.
-                     </c:otherwise>
-                 </c:choose>
+
              </div>
          </div>
          </div>
@@ -112,24 +77,10 @@
          <div class="conbox con4">
              <div class="contbored">
              <div>받은 쪽지 <br/>
-                 <c:choose>
-                     <c:when test="${!empty bookmark}"> <!--받은쪽지 컬럼으로 수정-->
-                         ${bookmark}
-                     </c:when>
-                     <c:otherwise>
-                         받은 쪽지가 없습니다.
-                     </c:otherwise>
-                 </c:choose>
+
              </div>
              <div>보낸 쪽지 <br/>
-                 <c:choose>
-                     <c:when test="${!empty bookmark}"> <!--보낸쪽지 컬럼으로 수정-->
-                         ${bookmark}
-                     </c:when>
-                     <c:otherwise>
-                         보낸 쪽지가 없습니다.
-                     </c:otherwise>
-                 </c:choose>
+
              </div>
          </div>
          </div>

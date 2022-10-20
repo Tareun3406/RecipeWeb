@@ -8,23 +8,26 @@ import org.springframework.stereotype.Service;
 @Getter
 public class categoryVO {
 
+    //recipe_post 테이블 변수
     private int post_no;
     private String title;
-    private String writer;
     private int hit;
+    private String regdate;
+    private String updatedate;
     private String thumnail;
-    private String cont;
+    private String ingredient;
+    private int recommend;
+    private String post_tag;
+    private String tip;
 
-    private int bbs_no;
-    private String bbs_name;
-    private String bbs_title;
-    private String bbs_pwd;
-    private String bbs_cont;
-    private String bbs_file;
-    private int bbs_ref;
-    private int bbs_step;
-    private int bbs_level;
-    private String bbs_date;
+    //member테이블 (유저)
+    private String userid;
+    private String userpw;
+    private String nickname;
+
+    //구독 테이블
+    private String subscriber_id;
+    private String target_id;
 
     //검색필드와 검색어
     private String find_field;

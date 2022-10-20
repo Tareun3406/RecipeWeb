@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 
 <jsp:include page="../main/header.jsp" flush="false"/>
@@ -115,66 +116,24 @@ border: solid 1px white; ">
 <%--여기밑으로는 카테고리별 이미지 나올 곳 --%>
 <div id="fimage">
  <div id="image">
-  <div>
-   <a><img alt="1" src=${thumnail}></a>
+	 <%-- 레시피 게시판 반복문으로 게시물 표시하기 --%>
+  <c:forEach var="blist" items="${blist}" begin="0" end="11">
+	  <div>
+   <a><img alt="1" src=${blist.thumnail} ></a>
    <div class="contents">
-   <div>${blist}</div>
-   <div>글쓴이${writer}</div>
+   <div>${blist.post_no}.${blist.title}</div>
+   <div>작성자 : ${blist.userid}</div>
    <div>
-    <span>별점</span>
+    <span>평점</span> <%-- 댓글불러와서 평점만들기--%>
     <span>추천수</span>
-    <span>조회수${hit}</span>
+    <span>조회수 : ${blist.hit}</span>
    </div>
    </div>
   </div>
-  <div>
-   <img alt="2" src="../../../resources/images/food/image2.jpg">
-   <span class="span1">2번 레시피</span><span class="span2">별점 ★</span>
-  </div>
-  <div>
-   <img alt="3" src="../../../resources/images/food/image3.jpg">
-   <span class="span1">3번 레시피</span><span class="span2">별점 ★</span>
-  </div>
- 
-  <div>
-   <img alt="4" src="../../../resources/images/food/image4.jpg">
-   <span class="span1">4번 레시피</span><span class="span2">별점 ★</span>
-  </div>
-  <div>
-   <img alt="5" src="../../../resources/images/food/image5.jpg">
-   <span class="span1">5번 레시피</span><span class="span2">별점 ★</span>
-  </div>
-  <div>
-   <img alt="6" src="../../../resources/images/food/image6.jpg">
-   <span class="span1">6번 레시피</span><span class="span2">별점 ★</span>
-  </div>
- 
-  <div>
-   <img alt="7" src="../../../resources/images/food/image7.jpg">
-   <span class="span1">7번 레시피</span><span class="span2">별점 ★</span>
-  </div>
-  <div>
-   <img alt="8" src="../../../resources/images/food/image8.jpg">
-   <span class="span1">8번 레시피</span><span class="span2">별점 ★</span>
-  </div>
-  <div>
-   <img alt="9" src="../../../resources/images/food/image9.jpg">
-   <span class="span1">9번 레시피</span><span class="span2">별점 ★</span>
-  </div>
- 
-  <div>
-   <img alt="10" src="../../../resources/images/food/image10.jpg">
-   <span class="span1">10번 레시피</span><span class="span2">별점 ★</span>
-  </div>
-  <div>
-   <img alt="11" src="../../../resources/images/food/image11.jpg">
-   <span class="span1">11번 레시피</span><span class="span2">별점 ★</span>
-  </div>
-  <div>
-   <img alt="12" src="../../../resources/images/food/image12.jpg">
-   <span class="span1">12번 레시피</span><span class="span2">별점 ★</span>
-  </div>
-  
+  </c:forEach>
+
+  <%-- 여기까지 한 세트 --%>
+
  </div>
 </div>
 </div>

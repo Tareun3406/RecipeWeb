@@ -6,20 +6,19 @@
 <mapper namespace="category">
 
     <select id="cate_count" resultType="int"> <!-- resultType 속성은 반환 자료형 -->
-        select count(POST_NO) from RECIPE_POST
+        select count(post_no) from RECIPE_POST
         <where>
             <if test="find_field==''"></if> <!-- 검색 전  -->
             <if test="find_field=='title'"> <!-- 글제목 기준으로 검색할 때 -->
                 title like #{find_name}
             </if>
             <if test="find_field == 'cont'"> <!-- 글 내용 기준으로 검색할 때 -->
-                cont like #{find_name}
+                post_tag like #{find_name}
             </if>
         </where>
     </select>
 
     <select id="cate_list" resultType="category">
-        select * from category
-
+        select * from RECIPE_POST order by post_no asc
     </select>
 </mapper>

@@ -1,8 +1,10 @@
 package com.recipe.controller;
 
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -71,17 +73,43 @@ public class CommuController {
     }
     
     // 02_01. 게시글 작성화면
-    // @RequestMapping("board/write.do")
-    // value="", method="전송방식"
     @RequestMapping(value="commu_write", method=RequestMethod.GET)
-    public String write(){
-        return "community/commu_write"; // write.jsp로 이동
+    public ModelAndView write(HttpServletResponse response,HttpSession session
+            ,HttpServletRequest request)throws Exception{
+    	response.setContentType("text/html;charset=UTF-8");
+       
+    	PrintWriter out=response.getWriter();
+        
+        String admin_id = (String)session.getAttribute("userid");  //관리자 세션 아이디를 구함
+        
+        
+        if(admin_id == null) {
+            out.print("<script>");
+            out.print("alert('로그인 하신 후에 이용해세요!');");
+            out.print("location='loginForm';");
+            out.print("</script>");
+         }else {
+           int page=1;
+           if(request.getParameter("page")!= null) {
+              page = Integer.parseInt(request.getParameter("page"));//get으로 전달된 쪽번호를
+              //받아서 정수 숫자로 변경
+           }
+           ModelAndView wm = new ModelAndView("community/commu_write");
+           wm.addObject("page",page);
+           return wm;
+        }
+        return null;
     }
     
-    // 02_02. 게시글 작성처리
+    // 02_02. 게시글 작성처리(로그인 해야만 작성 가능 하게 하기)
     @RequestMapping(value="commu_list", method=RequestMethod.POST)
-    public String insert(@ModelAttribute CommuVO vo) throws Exception{
-        commuService.create(vo);
+    public String insert(@ModelAttribute CommuVO vo,HttpSession session) throws Exception{
+        //session에 저장된 userid를 writer에 저장
+    	//String writer = (String) session.getAttribute("userid");
+    	//vo에 writer를 세팅
+    	//vo.setWriter(writer);
+    	
+    	commuService.create(vo);
         return "redirect:/commu_list";
     }
     
@@ -135,4 +163,18 @@ public class CommuController {
         return "redirect:/commu_list";
     }
     
+   
+    //로그인 화면
+    @RequestMapping("loginForm")
+    public String login() {
+    	return "member/loginForm";
+    }
+    
+    
+    
 }
+
+
+
+
+

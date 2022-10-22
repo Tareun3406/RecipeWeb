@@ -8,6 +8,7 @@
     <typeAliases>
 
 	<typeAlias type="com.recipe.vo.CommuVO" alias="commu"/>
+	<typeAlias type="com.recipe.vo.CommuReplyVO" alias="commu_reply"/>
 
     </typeAliases>
 </configuration>

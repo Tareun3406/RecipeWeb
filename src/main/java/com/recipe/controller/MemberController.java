@@ -1,7 +1,6 @@
 package com.recipe.controller;
 
 import com.recipe.service.MemberService;
-import com.recipe.vo.EmailVO;
 import com.recipe.vo.MemberVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,6 +25,7 @@ public class MemberController {
     }
 
 
+    // 로그아웃
     @RequestMapping("/member/logout")
     public String memberLogout(HttpSession session, HttpServletResponse response){
         session.invalidate();
@@ -39,6 +39,7 @@ public class MemberController {
         return "/member/joinForm";
     }
 
+    //아이디 중복 확인 ajax
     @PostMapping("/member/idCheck")
     public String member_idcheck(@RequestParam("userid") String userid, HttpServletResponse response) throws Exception{
         response.setContentType("text/html;charset=UTF-8");

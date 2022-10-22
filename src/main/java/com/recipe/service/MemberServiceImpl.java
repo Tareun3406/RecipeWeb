@@ -38,16 +38,20 @@ public class MemberServiceImpl implements MemberService{
         memberDAO.insertAuth(auth);
     }
 
+    // 이메일로 가입된 아이디 목록
     @Override
     public List<MemberVO> findIdList(String email) {
         return memberDAO.findIdList(email);
     }
 
+    // 아이디로 회원정보 가져오기
     @Override
     public MemberVO idCheck(String id) {
         return memberDAO.checkId(id);
     }
 
+    // 비밀번호 변경후 이메일 보내기
+    @Transactional
     @Override
     public int changePwSend(MemberVO member) {
         int result;

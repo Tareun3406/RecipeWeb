@@ -39,4 +39,9 @@
     <select id="findID" resultType="member">
         select USERID from MEMBER where EMAIL=#{email}
     </select>
+
+    <!-- 비밀번호 찾기 비밀번호 변경 -->
+    <update id="memberUpdatePw">
+        update MEMBER set USERPW = #{userpw} where USERID = #{userid} and EMAIL = #{email}
+    </update>
 </mapper>

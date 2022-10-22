@@ -52,6 +52,23 @@
         <!-- 생성자를 통한 의존성 주입(DI) -->
     </bean>
 
+    <!-- 메일 빈 -->
+    <bean class="org.springframework.mail.javamail.JavaMailSenderImpl" id="mailSender">
+        <property name="host" value="smtp.gmail.com"/>
+        <property name="port" value="587"/>
+        <property name="defaultEncoding" value="utf-8"/>
+        <property name="username" value="tareun3406@gmail.com"/>
+        <property name="password" value="oaikjjabvjellxfh"/>
+        <property name="javaMailProperties">
+            <props>
+                <prop key="mail.transport.protocol">smtp</prop>
+                <prop key="mail.smtp.auth">true</prop> <!-- 2단계본인인증을 했으니 보안적으로 true라고 준다 -->
+                <prop key="mail.smtp.starttls.enable">true</prop>
+                <prop key="mail.debug">true</prop>
+            </props>
+        </property>
+    </bean>
+
     <context:component-scan base-package="com.recipe.dao"/>
 
     <context:component-scan base-package="com.recipe.service"/>

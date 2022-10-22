@@ -42,5 +42,11 @@ public class MemberDAOImpl implements MemberDAO{
         return sqlSession.selectOne("memberSelect",id);
     }
 
+    // 아이디, 이메일을 기준으로 모두 같을시 비밀번호 변경
+    @Override
+    public int updateFindPw(MemberVO member) {
+        return sqlSession.update("memberUpdatePw",member);
+    }
+
 
 }

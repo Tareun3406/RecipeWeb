@@ -7,47 +7,29 @@
 <mapper namespace="commu">
     <!-- 01. 게시글 전체 목록 조회
     <select id="listAll" resultType="commu">
-        SELECT 
-            comu_no, 
-            title, 
-            content, 
-            writer,
-            regdate, 
-            viewcnt 
-        FROM 
-            comu_post
-        ORDER BY 
-            comu_no desc, 
-            regdate desc
+        SELECT comu_no, title, content, writer, regdate, viewcnt 
+        FROM comu_post ORDER BY comu_no desc, regdate desc
     </select> -->
     
     <!-- 02. 게시글 작성 -->
     <insert id="insert">
         INSERT INTO comu_post (
-          comu_no, 
-          title, 
-          content, 
-          writer
-          ,regdate
-          
+          comu_no, title, content, writer,regdate          
         ) VALUES (
           (SELECT NVL(MAX(comu_no)+1, 1)FROM comu_post),
-          #{title},
-          #{content},
-          #{writer},
-          sysdate
-          
-        )
+          #{title}, #{content}, #{writer}, sysdate)
     </insert>
+    
     <!--03. 게시글 상세보기 조회 -->
     <select id="view" resultType="commu">
-        SELECT * FROM comu_post 
-        WHERE comu_no = #{comu_no}
+        SELECT * FROM comu_post WHERE comu_no = #{comu_no}
     </select>
+    
     <!-- 04. 게시글 조회수 증가처리 -->
     <update id="increaseViewcnt">
         UPDATE comu_post SET viewcnt=viewcnt+1 WHERE comu_no = #{comu_no}
     </update>
+    
     <!-- 05. 게시글 수정처리 -->
     <update id="updateArticle">
         UPDATE comu_post SET title = #{title}, content = #{content}, writer = #{writer} WHERE comu_no = #{comu_no}

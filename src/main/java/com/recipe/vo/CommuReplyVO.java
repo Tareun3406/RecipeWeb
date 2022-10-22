@@ -10,5 +10,7 @@ public class CommuReplyVO {
 		private String reviewer;//댓글 작성자,
 		private String content;//댓글 내용
 		private String regdate;//등록날짜
+		private String secretReply;    // **댓글 숨김 유무 추가
+	    private String writer;        // **게시글의 작성자 추가
 
 }

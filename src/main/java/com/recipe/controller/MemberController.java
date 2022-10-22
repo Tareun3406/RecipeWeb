@@ -1,6 +1,7 @@
 package com.recipe.controller;
 
 import com.recipe.service.MemberService;
+import com.recipe.vo.EmailVO;
 import com.recipe.vo.MemberVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -44,14 +45,11 @@ public class MemberController {
         PrintWriter out = response.getWriter();
 
         MemberVO db_id = this.memberService.idCheck(userid);
-
         int re = -1;    // 중복아이디가 없는 경우 반환값
-
         if(db_id != null){
             re=1;   // 중복 아이디가 있는 경우
         }
         out.println(re);    //값 반환
-
         return null;
     }
 
@@ -62,11 +60,13 @@ public class MemberController {
         return "redirect: login";
     }
 
+    // 아이디 찾기 주소 매핑
     @GetMapping("/member/findID")
     public String memberFindID(){
         return "/member/findId";
     }
 
+    // 아이디 찾기 결과 확인
     @PostMapping("/member/findID")
     public ModelAndView memberFindIdList(String email){
 
@@ -76,9 +76,27 @@ public class MemberController {
         return mv;
     }
 
-
+    // 비밀번호 찾기 주소 매핑
     @GetMapping("/member/findPW")
     public String memberFindPW(){
         return "/member/findPw";
+    }
+
+    // 비밀번호 변경후 이메일로 전송 및 확인
+    @PostMapping("/member/findPW")
+    public ModelAndView sendPwToEmail(MemberVO member){
+        ModelAndView mv = new ModelAndView("/member/findPwSended");
+        String message;
+        System.out.println(member);
+        int result = memberService.changePwSend(member);
+
+        if (result == 0){
+            message = "아이디와 이메일을 다시 확인해주세요";
+        }
+        else {
+            message = "이메일로 비밀번호가 전송되었습니다.";
+        }
+        mv.addObject("message", message);
+        return mv;
     }
 }

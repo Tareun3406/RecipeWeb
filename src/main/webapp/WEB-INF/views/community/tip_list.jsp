@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <jsp:include page="../main/header.jsp" flush="false"/>
-    <link href="../css/commu.css" rel="stylesheet" type="text/css">
+    <link href="${pageContext.request.contextPath}/css/commu.css" rel="stylesheet" type="text/css">
 	<section id="contents">
 		<div class="container" >
 			<section id="cont_left">
@@ -62,18 +62,18 @@
 				</article>
 
 			</section>
-			
+
 			<section id="cont_center">
 				<article class="column col5">
 					<h4 class="col_tit">
-						<a href="#">한줄댓글 글 제목</a>
+						<a href="#">꿀팁 글 제목</a>
 					</h4>
 					<p class="col_desc">이 곳은 내용 부분입니다.</p>
 
 				</article>
 				<article class="column col6">
 					<h4 class="col_tit">
-						<a href="#">한줄댓글 글 제목</a>
+						<a href="#">꿀팁 글 제목</a>
 					</h4>
 					<p class="col_desc">이 곳은 내용 부분입니다.</p>
 
@@ -81,90 +81,90 @@
 				<!-- //col5 -->
 				<article class="column col6">
 					<h4 class="col_tit">
-						<a href="#">한줄댓글 글 제목</a>
+						<a href="#">꿀팁 글 제목</a>
 					</h4>
 					<p class="col_desc">이 곳은 내용 부분입니다.</p>
 
 				</article>
 				<article class="column col6">
 					<h4 class="col_tit">
-						<a href="#">한줄댓글 글 제목</a>
+						<a href="#">꿀팁 글 제목</a>
 					</h4>
 					<p class="col_desc">이 곳은 내용 부분입니다.</p>
 				</article>
 				<article class="column col6">
 					<h4 class="col_tit">
-						<a href="#">한줄댓글 글 제목</a>
+						<a href="#">꿀팁 글 제목</a>
 					</h4>
 					<p class="col_desc">이 곳은 내용 부분입니다.</p>
 				</article>
 
 				<article class="column col6">
 					<h4 class="col_tit">
-						<a href="#">한줄댓글 글 제목</a>
+						<a href="#">꿀팁 글 제목</a>
 					</h4>
 					<p class="col_desc">이 곳은 내용 부분입니다.</p>
 				</article>
 				
 				<article class="column col6">
 					<h4 class="col_tit">
-						<a href="#">한줄댓글 글 제목</a>
+						<a href="#">꿀팁 글 제목</a>
 					</h4>
 					<p class="col_desc">이 곳은 내용 부분입니다.</p>
 				</article>
 				
 				<article class="column col6">
 					<h4 class="col_tit">
-						<a href="#">한줄댓글 글 제목</a>
+						<a href="#">꿀팁 글 제목</a>
 					</h4>
 					<p class="col_desc">이 곳은 내용 부분입니다.</p>
 				</article>
 				
 				<article class="column col6">
 					<h4 class="col_tit">
-						<a href="#">한줄댓글 글 제목</a>
+						<a href="#">꿀팁 글 제목</a>
 					</h4>
 					<p class="col_desc">이 곳은 내용 부분입니다.</p>
 				</article>
 				
 				<article class="column col6">
 					<h4 class="col_tit">
-						<a href="#">한줄댓글 글 제목</a>
+						<a href="#">꿀팁 글 제목</a>
 					</h4>
 					<p class="col_desc">이 곳은 내용 부분입니다.</p>
 				</article>
 				
 				<article class="column col6">
 					<h4 class="col_tit">
-						<a href="#">한줄댓글 글 제목</a>
+						<a href="#">꿀팁 글 제목</a>
 					</h4>
 					<p class="col_desc">이 곳은 내용 부분입니다.</p>
 				</article>
 				
 				<article class="column col6">
 					<h4 class="col_tit">
-						<a href="#">한줄댓글 글 제목</a>
+						<a href="#">꿀팁 글 제목</a>
 					</h4>
 					<p class="col_desc">이 곳은 내용 부분입니다.</p>
 				</article>
 				
 				<article class="column col6">
 					<h4 class="col_tit">
-						<a href="#">한줄댓글 글 제목</a>
+						<a href="#">꿀팁 글 제목</a>
 					</h4>
 					<p class="col_desc">이 곳은 내용 부분입니다.</p>
 				</article>
 				
 				<article class="column col6">
 					<h4 class="col_tit">
-						<a href="#">한줄댓글 글 제목</a>
+						<a href="#">꿀팁 글 제목</a>
 					</h4>
 					<p class="col_desc">이 곳은 내용 부분입니다.</p>
 				</article>
 				
 				<article class="column col6">
 					<h4 class="col_tit">
-						<a href="#">한줄댓글 글 제목</a>
+						<a href="#">꿀팁 글 제목</a>
 					</h4>
 					<p class="col_desc">이 곳은 내용 부분입니다.</p>
 				</article>

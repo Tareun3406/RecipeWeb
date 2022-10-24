@@ -7,7 +7,6 @@
 <configuration>
     <typeAliases>
 
-<<<<<<< HEAD
         <typeAlias type="com.recipe.vo.MemberVO" alias="member"/>
         <typeAlias type="com.recipe.vo.AuthVO" alias="auth"/>
 
@@ -15,10 +14,9 @@
         <typeAlias type="com.recipe.vo.CategoryVO" alias="category"/>
         <typeAlias type="com.recipe.vo.SubscribeVO" alias="sub" />
         <typeAlias type="com.recipe.vo.BookmarkVO" alias="book" />
-=======
-	<typeAlias type="com.recipe.vo.CommuVO" alias="commu"/>
-	<typeAlias type="com.recipe.vo.CommuReplyVO" alias="commu_reply"/>
->>>>>>> comu
+        
+		<typeAlias type="com.recipe.vo.CommuVO" alias="commu"/>
+		<typeAlias type="com.recipe.vo.CommuReplyVO" alias="commu_reply"/>
 
     </typeAliases>
 </configuration>

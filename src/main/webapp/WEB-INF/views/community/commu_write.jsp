@@ -13,9 +13,9 @@
             //var title = document.form1.title.value; ==> name속성으로 처리할 경우
             //var content = document.form1.content.value;
             //var writer = document.form1.writer.value;
-            let title = $("#title").val();
-            let content = $("#content").val();
-            let writer = $("#writer").val();
+            var title = $("#title").val();
+            var content = $("#content").val();
+            var writer = $("#writer").val();
             if(title == ""){
                 alert("제목을 입력하세요");
                 document.form1.title.focus();

@@ -15,6 +15,7 @@ public class CommuReplyServiceImpl implements CommuReplyService {
 
 	@Autowired
 	private CommuReplyDAO replyDao;
+
 	
 	@Autowired //
 	private CommuDAO commuDao;
@@ -38,7 +39,9 @@ public class CommuReplyServiceImpl implements CommuReplyService {
 	@Transactional//트랜잭션적용
 	@Override
 	public void deleteReply(int reply_no) {
+		this.replyDao.getComu_no(reply_no);//삭제되기전 댓글 번호에 해당하는 게시판 번호 구하기
 		replyDao.deleteReply(reply_no);//댓글 삭제
 	}//댓글이 삭제되면 댓글 수 1감소
+	
 
 }

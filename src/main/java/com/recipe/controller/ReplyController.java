@@ -5,11 +5,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.recipe.service.CommuReplyService;
@@ -55,7 +55,42 @@ public class ReplyController {
 			return entity;
 		}//replyList()
 		
+		//댓글 수정
+		@RequestMapping(value="/{reply_no}",method={RequestMethod.PUT, RequestMethod.PATCH}) 
+		//PUT은 전체자료 수정, PATCH는 일부자료 수정
+		public ResponseEntity<String> editReply(@PathVariable("reply_no") int reply_no, @RequestBody CommuReplyVO vo){
+			ResponseEntity<String> entity = null;
+			
+			//rno는 주소창에서 구해주는 댓글 번호이다. 즉json데이터가 아니다. 그러므로 @RequestBody 에의해서json데이터가 ReplyVO
+			//타입으로 변경 안된다. 코드로 따로 저장해야한다.
+			
+			try {
+				vo.setReply_no(reply_no);//댓글번호 따로 저장
+				this.commuReplyService.updateReply(vo);//댓글을 수정
+				entity = new ResponseEntity<>("SUCCESS",HttpStatus.OK);
+			}catch(Exception e) {
+				e.printStackTrace();
+				entity = new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
+			}
+			return entity;
+		}//editReply()
 		
+		//댓글 삭제
+		@RequestMapping(value="/{reply_no}",method=RequestMethod.DELETE)
+		//DELETE는 삭제
+		public ResponseEntity<String> delReply(@PathVariable("reply_no") int reply_no){
+			ResponseEntity<String> entity = null;
+			
+			try {
+				commuReplyService.deleteReply(reply_no);//댓글 번호를 기준으로 삭제
+				entity = new ResponseEntity<>("SUCCESS",HttpStatus.OK);
+			}catch(Exception e) {
+				e.printStackTrace();
+				entity = new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
+			}
+			return entity;
+		}//delReply()
+
 		
 	
 	

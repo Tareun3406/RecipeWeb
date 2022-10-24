@@ -19,6 +19,7 @@
     z-index:1000; /*position 속성이 absolute or fixed 인 곳에서 사용한다. 이 속성은 요소가 겹쳐지는 순서를 제어할수있다.
     				물론, 큰숫자일수록 앞에 나온다.*/ 
   }
+  
 </style>
 <script>
     $(document).ready(function(){
@@ -73,7 +74,7 @@
     
     <div class="modal-title"></div>  <%--댓글번호 --%>
     <div>
-      <textarea rows="3" cols="30" id="content"></textarea>
+      <textarea rows="3" cols="30" id="recontent"></textarea>
     </div>
     <div>
       <button type="button" id="replyModBtn">댓글 수정</button>
@@ -157,8 +158,8 @@
     	$reply_no = reply.attr("data-reply_no");//댓글번호
     	$content = reply.children(".com").text();//댓글내용
     	    	
-    	$('.modal-title').html($reply_no);//댓글번호가 표시
-    	$('#content').val($content);//댓글 내용이 표시
+    	$('.modal-title').val($reply_no);//댓글번호가 표시
+    	$('#recontent').val($content);//댓글 내용이 표시
     	$('#modDiv').show("slow");//display:none; css에 의해서 숨겨진 댓글 수정화면을 표시하게 한다.
     	
     });
@@ -170,15 +171,15 @@
     
     //댓글 수정 완료
     $('#replyModBtn').on('click',function(){
-    	$reply_no=$('.modal-title').html();//댓글 번호
-    	$content=$('#content').val();//수정할 댓글 내용
+    	var $reply_no=$('.modal-title').html();//댓글 번호
+    	var $content=$('#recontent').val();//수정할 댓글 내용
     	
     	$.ajax({
-    		type:'post',
-    		url:'/update/'+$reply_no ,
+    		type:'put',
+    		url:'/'+$reply_no ,
     		headers:{
     			"Content-Type":"application/json",
-    			"X-HTTP-Method-Override":"PATCH"
+    			"X-HTTP-Method-Override":"PUT"
     		},
     		data:JSON.stringify({
     			content: $content //수정할내용
@@ -202,11 +203,11 @@
     	var reply_no=$('.modal-title').html();//댓글 번호
     	
     	$.ajax({
-    		type:'get',//ReplyController.java에서 지정한 삭제 메서드 방식
-    		url: '/delete/'+reply_no ,//삭제url매핑 주소
+    		type:'delete',//ReplyController.java에서 지정한 삭제 메서드 방식
+    		url: '/'+$reply_no ,//삭제url매핑 주소
     		headers:{
     			"Content-Type":"application/json",
-    			"X-HTTP-Method-Override":"POST"
+    			"X-HTTP-Method-Override":"DELETE"
     		},
     		dataType:'text',
     		success:function(data){

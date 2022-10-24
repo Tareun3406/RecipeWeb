@@ -307,3 +307,12 @@ input[id="tab04"]:checked ~.con4{display: block;}
     margin-bottom: 5px;
 }
 
+.subbookspan{
+    padding: 5px;
+    background-color: aquamarine;
+    color:darkslategrey;
+    font-weight:bold;
+    margin:2px;
+    border-radius: 15px;
+}
+

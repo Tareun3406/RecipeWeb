@@ -4,10 +4,30 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mypage">
 
-    <select id="my_list" resultType="mypage">
-        select a.userid, a.userpw,a.nickname ,b.subscriber_id,b.target_id
-        from member a inner join subscribe b
-        on (a.userid = b.subscriber_id and b.subscriber_id in #{b})
+    <resultMap id="mypage" type="mypage">
+        <result property="userid" column="userid"/>
+        <result property="userpw" column="userpw"/>
+        <result property="nickname" column="nickname"/>
+        <result property="email" column="email"/>
+
+        <collection property="subList" resultMap="subMap"/>
+        <collection property="bookList" resultMap="bookMap"/>
+    </resultMap>
+    <resultMap id="subMap" type="sub">
+        <result property="subscriber_id" column="subscriber_id"/>
+        <result property="target_id" column="target_id"/>
+    </resultMap>
+    <resultMap id="bookMap" type="book">
+        <result property="userid" column="userid"/>
+        <result property="post_no" column="post_no"/>
+    </resultMap>
+
+    <select id="my_list" resultMap="mypage">
+        select a.userid, a.userpw,a.nickname ,a.EMAIL,b.subscriber_id,b.target_id,c.USERID,c.POST_NO
+        from member a left join subscribe b
+        on a.USERID = b.SUBSCRIBER_ID right join BOOKMARK c
+        on a.USERID = c.USERID
+        where a.USERID=#{id}
 
     </select>
 

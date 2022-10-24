@@ -1,12 +1,12 @@
 package com.recipe.service;
 
-import com.recipe.vo.categoryVO;
+import com.recipe.vo.CategoryVO;
 
 import java.util.List;
 
 public interface CategoryService {
 
-    int getListCount(categoryVO b);
+    int getListCount(CategoryVO b);
 
-    List<categoryVO> getcategoryList(categoryVO b);
+    List<CategoryVO> getcategoryList(CategoryVO b);
 }

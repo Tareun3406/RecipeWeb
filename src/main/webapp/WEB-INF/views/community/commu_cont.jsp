@@ -74,7 +74,7 @@
     
     <div class="modal-title"></div>  <%--댓글번호 --%>
     <div>
-      <textarea rows="3" cols="30" id="recontent"></textarea>
+      <textarea rows="3" cols="30" id="content"></textarea>
     </div>
     <div>
       <button type="button" id="replyModBtn">댓글 수정</button>
@@ -117,8 +117,7 @@
     	
     		$(data).each(function(){//each()함수에의해서 li태그 단위로 댓글 개수만큼반복
     			$str += "<li data-reply_no='"+this.reply_no+"' class='replyLi'>"
-    			+this.reply_no+" <span class='rvr' style='color:black;font-weight:bold;'>"
-    			+this.reviewer+" : <span class='com' style='color:blue;font-weight:bold;'>"
+    			+this.reply_no+" : <span class='com' style='color:blue;font-weight:bold;'>"
     			+this.content+"</span>"+"<button>댓글수정</button></li><br/>"    		
     		});
     		$('#replies').html($str);//html()함수로 문자와 태그를 함께변경 적용
@@ -159,7 +158,7 @@
     	$content = reply.children(".com").text();//댓글내용
     	    	
     	$('.modal-title').val($reply_no);//댓글번호가 표시
-    	$('#recontent').val($content);//댓글 내용이 표시
+    	$('#content').val($content);//댓글 내용이 표시
     	$('#modDiv').show("slow");//display:none; css에 의해서 숨겨진 댓글 수정화면을 표시하게 한다.
     	
     });
@@ -171,8 +170,8 @@
     
     //댓글 수정 완료
     $('#replyModBtn').on('click',function(){
-    	var $reply_no=$('.modal-title').html();//댓글 번호
-    	var $content=$('#recontent').val();//수정할 댓글 내용
+    	var reply_no=$('.modal-title').html();//댓글 번호
+    	$content=$('#content').val();//수정할 댓글 내용
     	
     	$.ajax({
     		type:'put',

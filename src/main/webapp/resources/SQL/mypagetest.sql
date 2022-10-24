@@ -42,7 +42,35 @@ insert into subscribe values ('userid05','userid02');
 
 commit;
 
+--유저 정보 + 구독정보 조인
 select a.userid, a.userpw,a.nickname ,b.subscriber_id,b.target_id
 from member a inner join subscribe b
     on (a.userid = b.subscriber_id and b.subscriber_id in 'userid01') ;
+
+
+--북마크 테이블 생성
+create table bookmark(
+  userid varchar2(50) --유저아이디
+  ,post_no number(38) --글번호
+);
+
+insert into bookmark values ('userid01','1');
+insert into bookmark values ('userid01','3');
+insert into bookmark values ('userid01','4');
+insert into bookmark values ('userid01','7');
+
+insert into bookmark values ('userid02','1');
+insert into bookmark values ('userid02','2');
+insert into bookmark values ('userid02','7');
+insert into bookmark values ('userid02','9');
+
+commit;
+
+
+
+
+
+
+
+
 

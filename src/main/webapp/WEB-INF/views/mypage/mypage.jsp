@@ -39,9 +39,9 @@
 
          <div class="conbox con1">
              <div class="contbored">
-             <div>내 아이디 : ${mylist[1].userid}</div>
-             <div>내 이름 : ${mylist[1].nickname}</div>
-             <div style="margin-bottom: 0px;">내 비밀번호 : ${mylist[1].userpw}</div>
+             <div>내 아이디 : ${userlist.userid}</div>
+             <div>내 이름 : ${userlist.nickname}</div>
+             <div style="margin-bottom: 0px;">내 이메일 : ${userlist.email}</div>
              </div>
 
          </div>
@@ -62,12 +62,16 @@
 
          <div class="conbox con3">
              <div class="contbored">
-             <div>구독한 쉐프 : ${mylist[0].subscribeVOList}
-
-                 <br/>
-
-             </div>
-             <div>즐겨 찾기  <br/>
+                 <div>구독한 쉐프 :
+                     <c:forEach items="${userlist.subList}" var="item" varStatus="i">
+                         <span class="subbookspan"><c:out value="${item.target_id}"/></span>
+                     </c:forEach>
+                 </div>
+             <div>즐겨 찾기 : ${userlist.bookList[0].post_no}
+                 ${userlist.bookList[1].post_no}
+                 ${userlist.bookList[2].post_no}
+                 ${book[0].post_no}
+                 ${book[0].userid}<br/>
 
              </div>
          </div>

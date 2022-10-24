@@ -2,11 +2,10 @@ package com.recipe.vo;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.stereotype.Service;
 
 @Setter
 @Getter
-public class categoryVO {
+public class CategoryVO {
 
     //recipe_post 테이블 변수
     private int post_no;

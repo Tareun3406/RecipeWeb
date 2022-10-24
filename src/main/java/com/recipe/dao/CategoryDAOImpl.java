@@ -1,6 +1,6 @@
 package com.recipe.dao;
 
-import com.recipe.vo.categoryVO;
+import com.recipe.vo.CategoryVO;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -15,12 +15,12 @@ public class CategoryDAOImpl implements CategoryDAO{
 
 
     @Override
-    public int getListCount(categoryVO b) {
+    public int getListCount(CategoryVO b) {
        return this.sqlSession.selectOne("cate_count",b);
     }
 
     @Override
-    public List<categoryVO> getcategoryList(categoryVO b) {
+    public List<CategoryVO> getcategoryList(CategoryVO b) {
        return this.sqlSession.selectList("cate_list",b);
     }
 }

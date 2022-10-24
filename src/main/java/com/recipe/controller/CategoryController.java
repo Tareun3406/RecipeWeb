@@ -1,7 +1,7 @@
 package com.recipe.controller;
 
 import com.recipe.service.CategoryService;
-import com.recipe.vo.categoryVO;
+import com.recipe.vo.CategoryVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,7 +19,7 @@ public class CategoryController {
     private CategoryService categoryService;
 
     @RequestMapping("/category") //카테고리 메뉴
-    public String category_list(HttpServletRequest request, categoryVO b, Model listM) {
+    public String category_list(HttpServletRequest request, CategoryVO b, Model listM) {
 
         int page=1;
         int limit=10;//한페이지에 보여지는 목록개수
@@ -38,7 +38,7 @@ public class CategoryController {
         b.setStartrow((page-1)*10+1);//시작행번호
         b.setEndrow(b.getStartrow()+limit-1);//끝행 번호
 
-        List<categoryVO> blist=this.categoryService.getcategoryList(b);
+        List<CategoryVO> blist=this.categoryService.getcategoryList(b);
         //검색 전후 목록
 
         //총 페이지수

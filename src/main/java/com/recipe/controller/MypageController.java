@@ -1,8 +1,8 @@
 package com.recipe.controller;
 
 import com.recipe.service.MypageService;
-import com.recipe.vo.mypageVO;
-import com.recipe.vo.subscribeVO;
+import com.recipe.vo.MypageVO;
+import com.recipe.vo.SubscribeVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,30 +22,17 @@ public class MypageController {
 
         //String v2 = "userid01"; //나중에 세션id추가되면 삭제될것 아래 v2까지
         String b = "userid01"; //나중에 세션id추가되면 삭제될것 아래 v2까지
-        //mypageVO v=this.mypageService.getuser(v2);
-
-        //mypageVO vo = mypageService.getmylist();
-        //List<mypageVO> mylist2 = vo.getSubscriber_id()
-
-        List<mypageVO> mylist=this.mypageService.getmylist(b);
-
-        mylistm.addAttribute("mylist",mylist);
-
         /*
-        ModelAndView mv=new ModelAndView();
+        MypageVO vo=(MypageVO)session.getAttribute("id")//로그인세션
+         */
+        MypageVO pvo = mypageService.getmylist(b);
 
-        //멤버테이블
-        mv.addObject("userid",v.getUserid());
-        mv.addObject("userpw",v.getUserpw());
-        mv.addObject("nickname",v.getNickname());
-        //구독테이블
-        mv.addObject("subscriber_id",v.getSubscriber_id());
-        mv.addObject("target_id",v.getTarget_id());
+        mylistm.addAttribute("userlist",pvo);
 
-        mv.setViewName("mypage/mypage");
-        */
         return "mypage/mypage";
     }
+
+
 }
 
 

@@ -10,18 +10,34 @@
         <result property="email" column="email"/>
 
         <collection property="authList" resultMap="authMap"/>
+
+        <collection property="subList" resultMap="subMap"/>
+        <collection property="bookList" resultMap="bookMap"/> <!-- 구독+북마크 vo 맵 국동호 -->
+
     </resultMap>
+
     <resultMap id="authMap" type="auth">
         <result property="userid" column="userid"/>
         <result property="auth" column="auth"/>
     </resultMap>
+    <!-- 구독+북마크 vo 맵 국동호 -->
+    <resultMap id="subMap" type="sub">
+        <result property="subscriber_id" column="subscriber_id"/>
+        <result property="target_id" column="target_id"/>
+    </resultMap>
+    <resultMap id="bookMap" type="book">
+        <result property="userid" column="userid"/>
+        <result property="post_no" column="post_no"/>
+    </resultMap>
+
+
 
     <!-- 회원 정보 + 권한 조회 -->
     <select id="memberSelectAll" resultMap="memberMap">
         select MEMBER.USERID,USERPW,NICKNAME,EMAIL,AUTH from MEMBER left outer join AUTH on MEMBER.USERID = AUTH.USERID
         where AUTH.USERID = #{userid}
     </select>
-    
+
     <!-- 회원정보 조회 -->
     <select id="memberSelect" resultType="member">
         select * from member where USERID=#{userid}
@@ -44,4 +60,16 @@
     <update id="memberUpdatePw">
         update MEMBER set USERPW = #{userpw} where USERID = #{userid} and EMAIL = #{email}
     </update>
-</mapper>
+
+
+    <!-- mypage -->
+    <select id="my_list" resultMap="mypage">
+        select a.userid, a.userpw,a.nickname ,a.EMAIL,b.subscriber_id,b.target_id,c.USERID,c.POST_NO
+        from member a left join subscribe b
+                                on a.USERID = b.SUBSCRIBER_ID right join BOOKMARK c
+                                                                         on a.USERID = c.USERID
+        where a.USERID=#{id}
+
+    </select>
+
+

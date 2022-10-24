@@ -16,6 +16,8 @@ import com.recipe.service.CommuReplyService;
 import com.recipe.vo.CommuReplyVO;
 
 @RestController
+@RequestMapping("/replies")//컨트롤러 자체에 replies 매핑주소 등록
+
 public class ReplyController {
 	
 	@Autowired
@@ -61,7 +63,7 @@ public class ReplyController {
 		public ResponseEntity<String> editReply(@PathVariable("reply_no") int reply_no, @RequestBody CommuReplyVO vo){
 			ResponseEntity<String> entity = null;
 			
-			//rno는 주소창에서 구해주는 댓글 번호이다. 즉json데이터가 아니다. 그러므로 @RequestBody 에의해서json데이터가 ReplyVO
+			//reply_no는 주소창에서 구해주는 댓글 번호이다. 즉json데이터가 아니다. 그러므로 @RequestBody 에의해서json데이터가 ReplyVO
 			//타입으로 변경 안된다. 코드로 따로 저장해야한다.
 			
 			try {

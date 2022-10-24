@@ -111,7 +111,7 @@
     
     //댓글 목록
     function getAllList(){
-    	$.getJSON("/all/"+$comu_no, function(data){//jQuery 비동기식 $.getJSON()함수는 get방식으로 접근하는 
+    	$.getJSON("/replies/all/"+$comu_no, function(data){//jQuery 비동기식 $.getJSON()함수는 get방식으로 접근하는 
     		//json데이터를 처리, 비동기식으로 가져온 것이 성공시 data 매개변수에 가져온 값을 저장한다.
     		$str="";
     	
@@ -132,7 +132,7 @@
     	
     	$.ajax({
     		type:'post',//method 방식
-    		url:'/addreply',//URL매핑주소 경로
+    		url:'/replies/addreply',//URL매핑주소 경로
     		headers:{
     			"Content-Type":"application/json",
     			"X-HTTP-Method-Override":"POST"
@@ -176,7 +176,7 @@
     	
     	$.ajax({
     		type:'put',
-    		url:'/'+$reply_no ,
+    		url:'/replies/'+$reply_no ,
     		headers:{
     			"Content-Type":"application/json",
     			"X-HTTP-Method-Override":"PUT"
@@ -204,7 +204,7 @@
     	
     	$.ajax({
     		type:'delete',//ReplyController.java에서 지정한 삭제 메서드 방식
-    		url: '/'+$reply_no ,//삭제url매핑 주소
+    		url: '/replies/'+$reply_no ,//삭제url매핑 주소
     		headers:{
     			"Content-Type":"application/json",
     			"X-HTTP-Method-Override":"DELETE"

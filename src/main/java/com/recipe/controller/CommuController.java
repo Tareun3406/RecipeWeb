@@ -25,6 +25,9 @@ public class CommuController {
     
     // 의존관계 주입 => BoardServiceImpl 생성
     // IoC 의존관계 역전
+	
+	
+	
     @Autowired
     CommuService commuService;
     

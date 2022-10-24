@@ -17,9 +17,6 @@ public class CommuReplyServiceImpl implements CommuReplyService {
 	private CommuReplyDAO replyDao;
 
 	
-	@Autowired //
-	private CommuDAO commuDao;
-	
 	@Transactional //스프링aop를 통한 트랜잭션 적용
 	@Override
 	public void insertReply(CommuReplyVO vo) {

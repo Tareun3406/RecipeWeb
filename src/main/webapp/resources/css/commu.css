@@ -372,7 +372,7 @@ h1, h2, h3, h4, h5, h6 {
 	COLOR: #ddd;
 }
 
-.writebtn {
+#writebtn {
 	text-align: center;
 	border-radius: 4px;
 	width: 70px;
@@ -384,7 +384,80 @@ h1, h2, h3, h4, h5, h6 {
 	float: left;
 }
 
-.writebtn:hover {
+#writebtn:hover {
 	background-color: #e6ab77;
 	color: #ffffff;
+}
+
+
+
+/* commu_write.jsp ui */
+#bsW_wrap{
+   width:390px; height:auto; overflow:hidden; border:1px solid skyblue;
+   border-radius:5px; margin-left:auto; margin-right:auto;
+   margin-top:70px; margin-bottom:50px;
+}
+#bsW_wrap .bsW_title{
+   margin:20px 0 0 120px; width:140px; background:pink;
+   border-radius:5px; padding:3px; text-align:center;
+   font-size:19px;
+}
+#bsW_wrap .absW_title{
+   margin:20px 0 0 90px; width:200px; background:pink;
+   border-radius:5px; padding:3px; text-align:center;
+   font-size:19px;
+}
+#bsW_t{
+   margin:20px 0 0 20px;
+}
+#bsW_t th{
+   background:pink; border-radius:5px;
+}
+#bsW_menu{
+   margin:17px 0 0 140px;
+}
+
+/* commu_cont.jsp ui */
+#bsC_wrap{
+   width:330px; padding:10px;
+   border:1px solid skyblue; border-radius:5px;
+   margin-left:auto; margin-right:auto;
+   margin-top:50px;margin-bottom:50px; box-shadow:15px 15px 15px #ccc;
+}
+#bsC_wrap .bsC_title{
+   margin:10px 0 0 80px; width:150px; font-size:19px;
+   background:pink; border-radius:5px; text-align:center;
+   padding:2px;
+}
+#bsC_t{
+   margin:15px 0 0 20px;
+}
+#bsC_t th{
+   background:pink; border-radius:5px;
+}
+#bsC_menu{
+    margin:15px 0 5px 75px;   
+}
+
+/* commu_del.jsp ui */
+#bsDel_wrap{
+   width:260px; height:150px;
+   border:1px solid #e49967;
+   border-radius:5px; margin-left:auto;
+   margin-right:auto;
+   margin-top:50px; margin-bottom: 50px;
+}
+#bsDel_wrap .bsDel_title{
+   margin:20px 0 0 66px; width:120px; background:#ecb895;
+   font-size:19px; text-align:center;padding:2px;
+   border-radius:5px;
+}
+#bsDel_t{
+   margin:20px 0 0 20px;
+}
+#bsDel_t th{
+   background:#e49967; border-radius:15px;
+}
+#bsDel_menu{
+   margin:15px 0 0 86px;
 }

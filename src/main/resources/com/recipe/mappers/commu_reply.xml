@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="commu_reply">
+
+  <!-- 댓글 저장 -->
+  <insert id="reply_in" parameterType="commu_reply">
+    insert into comu_reply(reply_no,comu_no,reviewer,content,regdate) 
+    values(reply_no_seq.nextval,#{comu_no},#{reviewer},#{content},sysdate)
+    <!-- #{bno}하면 getBno()를 호출한 것과 같은 효과가 난다. -->
+  </insert>
+
+
+  <!-- 댓글목록, parameterType은 전달인자 타입으로 생략가능함 resultType은 반환타입이다. -->
+  <select id="reply_list" resultType="commu_reply">
+    select * from comu_reply where comu_no=#{comu_no} order by reply_no desc
+  </select>
+
+<!-- 댓글 수정 -->
+  <update id="reply_edit">
+    update comu_reply set content=#{content} where reply_no=#{reply_no}
+  </update>
+  
+  <!-- 댓글 삭제 -->
+  <delete id="reply_del"><!-- parameterType생략 -->
+    delete from comu_reply where reply_no=#{reply_no}  <!-- from 절은 생략가능 -->
+  </delete>
+  
+  <!-- 댓글 번호로 게시판 번호 구하기 -->
+  <select id="reply_comuno" parameterType="int" resultType="int">
+    select comu_no from comu_reply where reply_no=#{reply_no}
+  </select>
+
+
+
+</mapper>

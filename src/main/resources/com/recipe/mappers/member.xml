@@ -11,9 +11,6 @@
 
         <collection property="authList" resultMap="authMap"/>
 
-        <collection property="subList" resultMap="subMap"/>
-        <collection property="bookList" resultMap="bookMap"/> <!-- 구독+북마크 vo 맵 국동호 -->
-
     </resultMap>
 
     <resultMap id="authMap" type="auth">
@@ -21,6 +18,17 @@
         <result property="auth" column="auth"/>
     </resultMap>
     <!-- 구독+북마크 vo 맵 국동호 -->
+
+    <resultMap id="mypageMap" type="mypage">
+        <result property="userid" column="userid"/>
+        <result property="userpw" column="userpw"/>
+        <result property="nickname" column="nickname"/>
+        <result property="email" column="email"/>
+
+        <collection property="subList" resultMap="subMap"/>
+        <collection property="bookList" resultMap="bookMap"/> <!-- 구독+북마크 vo 맵 국동호 -->
+
+    </resultMap>
     <resultMap id="subMap" type="sub">
         <result property="subscriber_id" column="subscriber_id"/>
         <result property="target_id" column="target_id"/>
@@ -63,7 +71,7 @@
 
 
     <!-- mypage -->
-    <select id="my_list" resultMap="mypage">
+    <select id="my_list" resultMap="mypageMap">
         select a.userid, a.userpw,a.nickname ,a.EMAIL,b.subscriber_id,b.target_id,c.USERID,c.POST_NO
         from member a left join subscribe b
                                 on a.USERID = b.SUBSCRIBER_ID right join BOOKMARK c
@@ -72,4 +80,4 @@
 
     </select>
 
-
+</mapper>

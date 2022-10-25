@@ -1,8 +1,9 @@
 package com.recipe.security.domain;
 
-import com.recipe.vo.MemberVO;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
+
+import com.recipe.vo.MemberVO;
 
 import java.util.Collection;
 import java.util.List;

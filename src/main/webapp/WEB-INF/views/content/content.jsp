@@ -7,21 +7,34 @@
 --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <jsp:include page="../main/header.jsp" />
 
 <div class="wrap">
     <div class="main_image">
-        <img src="/resources/images/content/orange.jpg" class="img">
+        <img src="/resources/images/content/${plist[0].thumnail}" class="img">
     </div>
 
     <div class="title">
-        <h1 id="cooking_title">요리 이름</h1>
+        <div class="titleAndHit">
+            <div id="cooking_title">
+                <h1>${plist[0].title}</h1>
+            </div>
+            <div class="hit">
+                <i class="bi bi-eye-fill" style="font-size:30px">${plist[0].hit}</i>
+            </div>
+        </div>
         <div class="writer_container">
             <div class="writer">
                 <a href="#"> <img class="writer_image"
                                   src="/resources/images/content/apple.png" alt="글쓴이 이미지" /></a> <a
-                    class="writer_name" href="#"> <b>글쓴이</b></a>
-                <p>2022.09.26 15:00</p>
+                    class="writer_name" href="#"> <b>${plist[0].member[0].nickname}</b></a>
+                <c:if test="${!empty plist[0].updatedate}">
+                    <p>${plist[0].updatedate}(수정됨)</p>
+                </c:if>
+                <c:if test="${empty plist[0].updatedate}">
+                    <p>${plist[0].regdate}</p>
+                </c:if>
             </div>
             <div class="subscribe">
                 <i class="bi bi-bookmark-plus subscribe_item"></i>
@@ -38,7 +51,6 @@
             <c:forEach var="tag" items="${tagList}">
                 <li><a href="#">#${tag}</a></li>
             </c:forEach>
-<%--            <li><a href="#">#tag</a></li>--%>
         </ul>
     </div>
 
@@ -46,58 +58,79 @@
         <div id="ingredients">
             <h2 style="font-size:35px">재료</h2>
         </div>
+        <c:forEach var="name" items="${ingredient_names}" varStatus="status">
+                    <div class="item">
+                        <a href="#">${name}</a>
+                        <p>${ingredient_amounts[status.index]}</p>
+                    </div>
+        </c:forEach>
+    </div>
 
-<%--        <div class="item">--%>
-<%--            <a href="#">재료</a>--%>
-<%--            <p>양</p>--%>
-<%--        </div>--%>
-
+    <div class="tip">
+        <div class="tip_title">
+            <h2 style="font-size:35px">팁</h2>
+        </div>
+        <div class="tip_text">
+            <p>${plist[0].tip}</p>
+        </div>
     </div>
 
     <div class="recipe">
-        <div id="carouselExampleIndicators" class="carousel slide"
-             data-ride="carousel">
-            <ol class="carousel-indicators">
-                <li data-target="#carouselExampleIndicators" data-slide-to="0"
-                    class="active"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-            </ol>
-            <div class="carousel-inner">
-                <div class="carousel-item active" data-interval="60000*10">
-                    <img src="/resources/images/content/orange.jpg"
-                         class="d-block w-100 image recipe_img" alt="123">
+        <h2 style="font-size:35px">순서</h2>
+        <c:forEach var="c" items="${plist[0].content}">
+            <div class="recipeStep">
+                <div class="recipeStep_manual">
+                    <p>${c.manual}</p>
                 </div>
-                <div class="carousel-item" data-interval="60000*10">
-                    <img src="/resources/images/content/orange.jpg"
-                         class="d-block w-100 image recipe_img" alt="123">
-                </div>
-                <div class="carousel-item" data-interval="60000*10">
-                    <img src="/resources/images/content/orange.jpg"
-                         class="d-block w-100 image recipe_img" alt="123">
+                <div class="recipeStep_image">
+                    <img width="299px" height="250px" src="/resources/images/content/${c.image}">
                 </div>
             </div>
-            <button class="carousel-control-prev" type="button"
-                    data-target="#carouselExampleIndicators" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button"
-                    data-target="#carouselExampleIndicators" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </button>
-        </div>
-        <div class="recipe_content">
-            <p>▶떡볶이소스 고추장 3큰술, 양조간장 1큰술, 황(유기농)설탕 1~1.5큰술, 올리고당 1큰술, 굴소스
-                1/2큰술 --> 떡볶이양념이 많이 달지는 않으니 만들어서 찍어 먹어보고 단맛이 덜하면 올리고당이나 설탕을 약간 추가하셔도
-                됩니다. [출처] 떡볶이 황금레시피 떡볶이소스 라볶이 레시피|작성자 잠꾸러기</p>
-        </div>
+        </c:forEach>
     </div>
+
+<%--        <div id="carouselExampleIndicators" class="carousel slide"--%>
+<%--             data-ride="carousel">--%>
+<%--            <ol class="carousel-indicators">--%>
+<%--                <li data-target="#carouselExampleIndicators" data-slide-to="0"--%>
+<%--                    class="active"></li>--%>
+<%--                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>--%>
+<%--                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>--%>
+<%--            </ol>--%>
+<%--            <div class="carousel-inner">--%>
+<%--                <div class="carousel-item active" data-interval="60000*10">--%>
+<%--                    <img src="/resources/images/content/orange.jpg"--%>
+<%--                         class="d-block w-100 image recipe_img" alt="123">--%>
+<%--                </div>--%>
+<%--                <div class="carousel-item" data-interval="60000*10">--%>
+<%--                    <img src="/resources/images/content/orange.jpg"--%>
+<%--                         class="d-block w-100 image recipe_img" alt="123">--%>
+<%--                </div>--%>
+<%--                <div class="carousel-item" data-interval="60000*10">--%>
+<%--                    <img src="/resources/images/content/orange.jpg"--%>
+<%--                         class="d-block w-100 image recipe_img" alt="123">--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--            <button class="carousel-control-prev" type="button"--%>
+<%--                    data-target="#carouselExampleIndicators" data-slide="prev">--%>
+<%--                <span class="carousel-control-prev-icon" aria-hidden="true"></span>--%>
+<%--                <span class="sr-only">Previous</span>--%>
+<%--            </button>--%>
+<%--            <button class="carousel-control-next" type="button"--%>
+<%--                    data-target="#carouselExampleIndicators" data-slide="next">--%>
+<%--                <span class="carousel-control-next-icon" aria-hidden="true"></span>--%>
+<%--                <span class="sr-only">Next</span>--%>
+<%--            </button>--%>
+<%--        </div>--%>
+<%--        <div class="recipe_content">--%>
+<%--            <p>▶떡볶이소스 고추장 3큰술, 양조간장 1큰술, 황(유기농)설탕 1~1.5큰술, 올리고당 1큰술, 굴소스--%>
+<%--                1/2큰술 --> 떡볶이양념이 많이 달지는 않으니 만들어서 찍어 먹어보고 단맛이 덜하면 올리고당이나 설탕을 약간 추가하셔도--%>
+<%--                됩니다. [출처] 떡볶이 황금레시피 떡볶이소스 라볶이 레시피|작성자 잠꾸러기</p>--%>
+<%--        </div>--%>
 
     <div class="comment">
         <div id="comments">
-            <h2 style="font-size:35px">리뷰</h2>
+            <h2 style="font-size:35px">리뷰 | ${replyCount}  <label id="yellowStar">★</label><fmt:formatNumber value="${averageScore}" pattern=".00"/></h2>
         </div>
         <div class="comment_container">
             <c:if test="${!empty rlist}">
@@ -105,8 +138,13 @@
                     <div class="comment_content">
                         <div class="comment_writer">
                             <a href="#"><img class="comment_writer_image" src="/resources/images/content/apple.png" alt="글쓴이 이미지" /></a>
-                            <a class="comment_writer_name" href="#"> <b>${r.reviewer}</b></a>
-                            <p>${r.regdate}</p>
+                            <a class="comment_writer_name" href="#"> <b>${r.member.get(0).nickname}</b></a>
+                            <c:if test="${!empty r.updatedate}">
+                                <p>${r.updatedate}(수정됨)</p>
+                            </c:if>
+                            <c:if test="${empty r.updatedate}">
+                                <p>${r.regdate}</p>
+                            </c:if>
                         </div>
                         <div class="comment_text">
                             <div class="star_container">

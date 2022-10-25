@@ -5,5 +5,7 @@ import com.recipe.vo.PostVO;
 import java.util.List;
 
 public interface PostDAO {
-    PostVO getPost(int post_no);
+    List<PostVO> getPost(int post_no);
+
+    void updateHit(int post_no);
 }

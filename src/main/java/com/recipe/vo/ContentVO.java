@@ -3,6 +3,8 @@ package com.recipe.vo;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Setter
 @Getter
 public class ContentVO {

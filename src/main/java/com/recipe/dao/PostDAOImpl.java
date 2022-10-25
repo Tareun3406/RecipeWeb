@@ -14,7 +14,13 @@ public class PostDAOImpl implements PostDAO{
     private SqlSession sqlSession;
 
     @Override
-    public PostVO getPost(int post_no) {
-        return sqlSession.selectOne("post_getList", post_no);
+    public List<PostVO> getPost(int post_no) {
+        return sqlSession.selectList("post_getList", post_no);
     }
+
+    @Override
+    public void updateHit(int post_no) {
+        sqlSession.update("post_upHit", post_no);
+    }
+    
 }

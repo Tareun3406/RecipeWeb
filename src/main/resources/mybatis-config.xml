@@ -7,11 +7,13 @@
 <configuration>
     <typeAliases>
 
-        <typeAlias type="com.recipe.vo.ReplyVO" alias="r"/>
+        <typeAlias type="com.recipe.vo.ReplyVO" alias="reply"/>
 
-        <typeAlias type="com.recipe.vo.PostVO" alias="p"/>
+        <typeAlias type="com.recipe.vo.PostVO" alias="post"/>
 
-        <typeAlias type="com.recipe.vo.ContentVO" alias="c"/>
+        <typeAlias type="com.recipe.vo.ContentVO" alias="content"/>
+
+        <typeAlias type="com.recipe.vo.MemberVO" alias="member"/>
 
     </typeAliases>
 </configuration>

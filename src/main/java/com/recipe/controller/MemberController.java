@@ -2,6 +2,7 @@ package com.recipe.controller;
 
 import com.recipe.service.MemberService;
 import com.recipe.vo.MemberVO;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -34,6 +35,8 @@ public class MemberController {
 
         return "redirect: /";
     }
+  
+  
 
     //회원가입페이지 매핑
     @GetMapping("/member/join")

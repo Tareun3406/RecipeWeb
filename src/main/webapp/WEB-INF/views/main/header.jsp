@@ -19,7 +19,7 @@
     <link href="/resources/css/commu.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
-    <link rel="shortcut icon" href="#">
+    <!--<link rel="shortcut icon" href="#">-->
 
     <meta charset="UTF-8">
     <title>non-title</title> <!-- 사이트 이름 -->

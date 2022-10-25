@@ -19,7 +19,8 @@ public class ReplyDAOImpl implements ReplyDAO{
     }
 
     @Override
-    public List<ReplyVO> getReplyList(int post_no) {
-        return sqlSession.selectList("reply_getList" ,post_no);
+    public List<ReplyVO> getReply(int post_no) {
+        return sqlSession.selectList("reply_getList", post_no);
     }
+
 }

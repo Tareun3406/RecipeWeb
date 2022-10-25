@@ -19,7 +19,8 @@ public class ReplyServiceImpl implements ReplyService{
     }
 
     @Override
-    public List<ReplyVO> getReplyList(int post_no) {
-        return replyDAO.getReplyList(post_no);
+    public List<ReplyVO> getReply(int post_no) {
+        return replyDAO.getReply(post_no);
     }
+
 }

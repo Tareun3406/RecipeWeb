@@ -7,5 +7,5 @@ import java.util.List;
 public interface ReplyDAO {
     void insertReply(ReplyVO r);
 
-    List<ReplyVO> getReplyList(int post_no);
+    List<ReplyVO> getReply(int post_no);
 }

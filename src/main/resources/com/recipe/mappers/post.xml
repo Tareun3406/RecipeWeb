@@ -2,10 +2,67 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="Content">
+<mapper namespace="Post">
 
-    <select id="post_getList" resultType="p">
-        select * from recipe_post where post_no=#{post_no}
+    <resultMap id="plist" type="post">
+        <result property="post_no" column="post_no"/>
+        <result property="title" column="title"/>
+        <result property="hit" column="hit"/>
+        <result property="regdate" column="regdate"/>
+        <result property="updatedate" column="updatedate"/>
+        <result property="thumnail" column="thumnail"/>
+        <result property="ingredient" column="ingredient"/>
+        <result property="recommend" column="recommend"/>
+        <result property="post_tag" column="post_tag"/>
+        <result property="tip" column="tip"/>
+        <result property="writer" column="writer"/>
+        <collection property="content" resultMap="clist"/>
+        <collection property="member" resultMap="mlist"/>
+    </resultMap>
+
+    <resultMap id="clist" type="content">
+        <result property="post_no" column="post_no"/>
+        <result property="step" column="step"/>
+        <result property="image" column="image"/>
+        <result property="manual" column="manual"/>
+    </resultMap>
+
+    <resultMap id="rlist" type="reply">
+        <result property="post_no" column="post_no"/>
+        <result property="re_no" column="re_no"/>
+        <result property="reviewer" column="reviewer"/>
+        <result property="content" column="content"/>
+        <result property="score" column="score"/>
+        <result property="regdate" column="regdate"/>
+        <result property="updatedate" column="updatedate"/>
+        <collection property="member" resultMap="mlist"/>
+    </resultMap>
+
+    <resultMap id="mlist" type="member">
+        <result property="userid" column="userid"/>
+        <result property="userpw" column="userpw"/>
+        <result property="nickname" column="nickname"/>
+        <result property="email" column="email"/>
+    </resultMap>
+
+    <select id="post_getList" resultMap="plist">
+        Select p.post_no,p.title,
+               p.hit,p.regdate,
+               p.updatedate,p.thumnail,
+               p.ingredient,p.recommend,
+               p.post_tag,p.tip,
+               c.step,c.image,
+               c.manual,m.userid,m.nickname
+        From recipe_post p
+            Inner join recipe_content c
+                On p.post_no = c.post_no
+            Inner join member m
+                On p.writer = m.userid
+        Where p.post_no = #{post_no}
     </select>
+
+    <update id="post_upHit">
+        update recipe_post set hit=hit+1 where post_no=#{post_no}
+    </update>
 
 </mapper>

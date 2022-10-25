@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Post">
+
+<!-- 게시글 등록 -->
+<insert id="rp_in">
+	insert into RECIPE_POST (post_no, writer, title, hit, regdate, update, thumnail, ingredient, recommend, post_tag, tip, writer ) values
+	(post_no_seq.nextval, #{writer}, #{title}, 0, sysdate, sysdate, #{thumnail}, #{ingredient}, 0, #{post_tag}, #{tip}, #{writer} )
+</insert>
+
+
+</mapper>

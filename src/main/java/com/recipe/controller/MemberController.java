@@ -2,6 +2,7 @@ package com.recipe.controller;
 
 import com.recipe.service.MemberService;
 import com.recipe.vo.MemberVO;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -32,6 +33,8 @@ public class MemberController {
 
         return "redirect: /";
     }
+  
+  
 
     //회원가입페이지 매핑
     @GetMapping("/member/join")

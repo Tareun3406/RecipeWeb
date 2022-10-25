@@ -19,6 +19,21 @@
 
 
     <dependencies>
+    
+    	<!-- 다중파일 업로드 구현 -->
+    	<dependency>
+    		<groupId>commons-io</groupId>
+    		<artifactId>commons-io</artifactId>
+    		<version>2.6</version>
+    	</dependency>
+    	
+    	<dependency>
+    		<groupId>commons-fileupload</groupId>
+    		<artifactId>commons-fileupload</artifactId>
+    		<version>1.3.3</version>
+    	</dependency>
+    	
+    	
 
         <!-- copy begin -->
         <!-- 스프링 시큐리티 라이브러리 추가 -->

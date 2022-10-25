@@ -22,6 +22,11 @@
     </beans:bean>
 
     <context:component-scan base-package="com.recipe.controller" />
+    
+    <!-- 파일 다중업로드 설정 -->
+    <beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+    	<beans:property name="maxUploadSize" value="104857600"></beans:property>
+    </beans:bean>
 
 
 

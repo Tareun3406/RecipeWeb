@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Reply">
+
+    <resultMap id="rlist" type="reply">
+        <result property="post_no" column="post_no"/>
+        <result property="re_no" column="re_no"/>
+        <result property="reviewer" column="reviewer"/>
+        <result property="content" column="content"/>
+        <result property="score" column="score"/>
+        <result property="regdate" column="regdate"/>
+        <result property="updatedate" column="updatedate"/>
+        <collection property="member" resultMap="mlist"/>
+    </resultMap>
+
+    <resultMap id="mlist" type="member">
+        <result property="userid" column="userid"/>
+        <result property="userpw" column="userpw"/>
+        <result property="nickname" column="nickname"/>
+        <result property="email" column="email"/>
+    </resultMap>
+
+    <insert id="reply_in">
+        insert into recipe_reply(post_no, re_no, reviewer, content, score, regdate) values(#{post_no}, re_no_seq.nextval, #{reviewer}, #{content}, #{score}, sysdate)
+    </insert>
+
+    <select id="reply_getList" resultMap="rlist">
+        Select r.re_no,r.content,
+               r.score,r.regdate,
+               r.updatedate,m.nickname
+        From recipe_reply r
+                 Inner join member m
+                            On r.reviewer = m.userid
+        Where r.post_no = #{post_no}
+    </select>
+
+</mapper>

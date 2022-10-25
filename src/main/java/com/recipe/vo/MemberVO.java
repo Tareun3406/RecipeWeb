@@ -12,7 +12,6 @@ import java.util.List;
 @ToString
 public class MemberVO {
 
-    //member 테이블 정보
     private String userid;
     private String userpw;
     private String nickname;
@@ -27,4 +26,5 @@ public class MemberVO {
     public void addAuthList(AuthVO authVO){
         authList.add(authVO);
     }
+
 }

@@ -1,0 +1,504 @@
+@charset "UTF-8";
+
+ body{
+ 	/*height:100%; */
+ 	background-image:url(/resources/images/content/backgroundimage.png);
+ 	background-repeat:repeat;
+ }
+
+.wrap {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width:1100px;
+
+    display:flex;
+    flex-direction:column;
+    flex-wrap:nowrap;
+    justify-content:space-around;
+    align-items:center;
+
+
+    /*
+    min-height:1800px;
+    height: auto;
+    padding-bottom:180px;
+      min-height: 100%;
+      */
+}
+
+.main_image {
+    width:950px;
+    height:500px;
+    margin-top:30px;
+    margin-bottom:10px;
+}
+
+.img {
+    width:950px;
+    height:500px;
+    background-color:gray;
+    border-radius:25px;
+    border:2px solid #e38b29;
+}
+
+.title {
+    width:950px;
+    display:flex;
+    flex-direction:column;
+}
+
+.title a {
+    text-decoration:none;
+}
+
+.titleAndHit {
+    width:950px;
+    min-height:72px;
+    display:flex;
+    flex-direction:row;
+}
+
+.writer_container {
+    width:100%;
+    height:100px;
+    display:flex;
+    flex-direction:row;
+}
+
+#cooking_title {
+    width:798px;
+    height:100%;
+}
+
+#cooking_title h1 {
+    text-align:left;
+    letter-spacing:0;
+    font-family:'Noto Sans KR', sans-serif;
+    font-size:60px;
+    color:black;
+}
+
+.hit {
+    width:150px;
+    height:72px;
+}
+
+.writer {
+    width:80%;
+    float:left;
+    text-align:left;
+}
+
+.writer_image {
+    width:50px;
+    height:50px;
+    border: 1px solid gray;
+    border-radius:50%;
+    float:left;
+}
+
+.writer_name b {
+    font-weight:lighter;
+    color:black;
+    letter-spacing:0;
+    font-size:20px;
+    margin-top:10px;
+}
+
+.subscribe {
+    float:right;
+    margin:10px;
+}
+
+.subscribe_item {
+    margin-left:50px;
+    font-size:30px;
+}
+
+.tag {
+    width:1040px;
+    margin-top:-20px;
+    margin-left:90px;
+}
+
+.tag ul {
+    list-style:none;
+}
+
+.tag li {
+    float:left;
+    border:1px solid #FFD8A9;
+    border-radius:40%;
+    margin-right:20px;
+    background-color:#FFF6E8;
+}
+
+.tag a {
+    padding:10px;
+    display:block;
+    text-decoration:none;
+    font-family:'OTTOGISans', 'Malgun Gothic', '맑은 고딕', "돋움", sans-serif;
+    font-weight:bold;
+    color: black;
+    letter-spacing:0;
+    -webkit-text-size-adjust: none;
+}
+
+.tag li:hover {
+    background-color:#FFD8A9;
+    border-radius:40%;
+}
+
+.tag a:hover {
+    color:#E38B29;
+}
+
+.ingredients {
+    width:950px;
+    min-height:100px;
+    margin-top:50px;
+    margin-bottom:50px;
+    border-radius:25px;
+    background-color:#FFF6E8;
+    display:flex;
+    flex-direction:row;
+    flex-wrap:wrap;
+    border:1px solid #FFD8A9;
+}
+
+#ingredients{
+    color:#E38B29;
+    text-align:left;
+    width:100%;
+    padding-left:20px;
+}
+
+.ingredients div {
+    height:30px;
+    min-width:25%;
+    margin:10px 30px 10px 40px;
+    font-family:'OTTOGISans', 'Malgun Gothic', '맑은 고딕', "돋움", sans-serif;
+    font-size:20px;
+    text-align:center;
+}
+
+.item {
+    border-bottom:1px solid black;
+}
+
+.item a {
+    font-family:'OTTOGISans', 'Malgun Gothic', '맑은 고딕', "돋움", sans-serif;
+    font-size:20px;
+    color:black;
+    text-decoration:none;
+    float:left;
+}
+
+.item a:hover {
+    color:#E38B29;
+}
+
+.item p {
+    text-align:right;
+    font-weight:lighter;
+}
+
+.tip {
+    width:950px;
+    min-height:200px;
+    margin-bottom:50px;
+    border-radius:25px;
+    background-color:#FFF6E8;
+    display:flex;
+    flex-direction:column;
+    flex-wrap:wrap;
+    border:1px solid #FFD8A9;
+}
+
+.tip_title {
+    color:#E38B29;
+    text-align:left;
+    width:100%;
+    margin-left:57px;
+    margin-top:8px;
+}
+
+.tip_text {
+    width:70%;
+    text-align:center;
+    font-size:20px;
+    color:black;
+    margin:0px 15%;
+}
+
+.recipe {
+    width:950px;
+    min-height:200px;
+    margin-bottom:50px;
+    border-radius:25px;
+    background-color:#FFF6E8;
+    display:flex;
+    flex-direction:column;
+    flex-wrap:wrap;
+    border:1px solid #FFD8A9;
+}
+
+.recipe h2 {
+    color:#E38B29;
+    text-align:left;
+    width:100%;
+    margin-left:57px;
+    margin-top:8px;;
+}
+
+.recipeStep {
+    width:950px;
+    min-width:200px;
+    display:flex;
+    flex-direction:row;
+    flex-wrap:nowrap;
+    margin:20px 0px;
+}
+
+.recipeStep_manual {
+    width:500px;
+    float:left;
+    text-align:center;
+    padding:50px 0px;
+    font-size:20px;
+    color:black;
+    border:1px solid #FFD8A9;
+    margin:0px 20px 0px 60px;
+    border-radius:30px;
+}
+
+.recipeStep_image {
+    width:300px;
+    min-height:200px;
+    float:right;
+}
+
+.recipeStep_image img {
+    border-radius:10px;
+}
+
+.slide {
+    width:550px;
+    height:500px;
+    float:left;
+}
+
+.recipe_img {
+    width:550px;
+    height:500px;
+    background-color:#FFF6E8;
+    border-radius:25px;
+    border:2px solid #e38b29;
+}
+
+.recipe_content {
+    width:400px;
+    height:500px;
+    background-color:#FFF6E8;
+    border:1px solid #FFD8A9;
+    border-radius:25px;
+    height:500px;
+}
+
+.recipe_content p {
+    text-align:left;
+    padding:40px;
+    font-size:20px;
+}
+
+.comment {
+    width:950px;
+    min-height:100px;
+    margin-bottom:50px;
+    border-radius:25px;
+    background-color:#FFF6E8;
+    border:1px solid #FFD8A9;
+}
+
+#comments {
+    color:#E38B29;
+    text-align:left;
+    width:100%;
+    padding-left:60px;
+    margin-top:20px;
+    margin-right:50px;
+}
+
+.comment a:hover {
+    text-decoration:none;
+}
+
+.comment_container {
+    display:flex;
+    flex-direction:column;
+    flex-wrap:nowrap;
+}
+
+.comment_content {
+    display:flex;
+    flex-direction:row;
+    flex-wrap:nowrap;
+    border-bottom:1px solid gray;
+    width:90%;
+    margin-left:5%;
+    margin-bottom:10px;
+}
+
+.comment_writer {
+    width:20%;
+    text-align:left;
+    padding:15px 0px;
+}
+
+.comment_writer_image {
+    width:50px;
+    height:50px;
+    border: 1px solid gray;
+    border-radius:50%;
+    float:left;
+}
+
+.comment_writer_name b {
+    font-weight:lighter;
+    color:black;
+    letter-spacing:0;
+    font-size:20px;
+    margin-top:10px;
+    text-align:left;
+}
+
+.comment_writer p {
+    font-weight:lighter;
+    color:gray;
+    text-align:left;
+    font-size:13px;
+}
+
+.comment_text {
+    width:80%;
+}
+
+.comment_text label{
+    font-size:1em;
+    color:transparent;
+    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+    padding-top:15px;
+    float:left;
+}
+
+.star_container{
+    display:flex;
+    flex-direction:row;
+    flex-wrap:nowrap;
+    margin-bottom:-25px;
+}
+
+#yellowStar{
+    font-size:1em;
+    color:transparent;
+    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+}
+
+#grayStar{
+    font-size:1em;
+    color:transparent;
+    text-shadow: 0 0 0 #f0f0f0;
+}
+
+.comment_text p{
+    text-align:left;
+    font-size:15px;
+    padding-bottom:15px;
+}
+
+.add_comment_btn {
+    margin-bottom:20px;
+}
+
+.add_comment_btn button {
+    width:10%;
+    border:1px solid gray;
+    border-radius:5px;
+}
+
+.comment_star {
+    width:90%;
+    margin-left:5%;
+}
+
+#starForm fieldset {
+    /* display:inline-block; */
+    float:left;
+    direction:rtl;
+    border:0;
+}
+
+#starForm fieldset legend {
+    text-align:right;
+}
+
+#starForm input[type=radio] {
+    display:none;
+}
+
+#starForm label {
+    font-size:3em;
+    color:transparent;
+    text-shadow: 0 0 0 #f0f0f0;
+}
+#starForm label:hover {
+    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+}
+
+#starForm label:hover ~ label {
+    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+}
+
+#starForm input[type=radio]:checked ~ label {
+    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+}
+
+.comment_write {
+    display:flex;
+    flex-direction:row;
+    flex-wrap:nowrap;
+    width:90%;
+    height:140px;
+    margin-left:5%;
+    margin-bottom:30px;
+}
+
+.comment_text_write {
+    width:713px;
+    height:140px;
+    border:1px solid gray;
+    border-left:none;
+    border-top:none;
+}
+
+.comment_text_write textarea{
+    width:713px;
+    height:140px;
+    resize:none;
+}
+
+.comment_submit_btn{
+    width:141px;
+    height:140px;
+}
+
+.comment_submit_btn input{
+    width:141px;
+    height:140px;
+    border:1px solid gray;
+}
+
+footer{
+    width:1500px;
+}

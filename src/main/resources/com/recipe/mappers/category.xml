@@ -6,7 +6,7 @@
 <mapper namespace="category">
 
     <select id="cate_count" resultType="int"> <!-- resultType 속성은 반환 자료형 -->
-        select count(post_no) from RECIPE_POST
+        select count(POST_NO) from RECIPE_POST
         <where>
             <if test="find_field==''"></if> <!-- 검색 전  -->
             <if test="find_field=='title'"> <!-- 글제목 기준으로 검색할 때 -->
@@ -19,6 +19,6 @@
     </select>
 
     <select id="cate_list" resultType="category">
-        select * from RECIPE_POST order by post_no asc
+        select * from RECIPE_POST order by POST_NO asc
     </select>
 </mapper>

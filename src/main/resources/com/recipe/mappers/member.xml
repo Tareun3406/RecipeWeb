@@ -17,27 +17,57 @@
         <result property="userid" column="userid"/>
         <result property="auth" column="auth"/>
     </resultMap>
-    <!-- 구독+북마크 vo 맵 국동호 -->
+    <!-- 구독+북마크+레시피본문 vo 맵 국동호 -->
 
-    <resultMap id="mypageMap" type="mypage">
+    <resultMap id="mypageMap" type="member">
         <result property="userid" column="userid"/>
         <result property="userpw" column="userpw"/>
         <result property="nickname" column="nickname"/>
         <result property="email" column="email"/>
 
-        <collection property="subList" resultMap="subMap"/>
-        <collection property="bookList" resultMap="bookMap"/> <!-- 구독+북마크 vo 맵 국동호 -->
 
+        <collection property="bookList" resultMap="bookMap"/>
+         <collection property="messageList" resultMap="messageMap"/>
+        <collection property="recipereplyList" resultMap="replyMap"/>
+        <collection property="subList" resultMap="subMap"/>
+        <collection property="recipeList" resultMap="recipeMap"/>
+    </resultMap>
+
+
+
+    <resultMap id="bookMap" type="book">
+        <result property="userid" column="userid"/>
+        <result property="post_no" column="post_no1" />
+    </resultMap>
+    <resultMap id="messageMap" type="message">
+        <result property="sender" column="sender"/>
+        <result property="receiver" column="receiver"/>
+        <result property="message" column="message"/>
+        <result property="senddate" column="senddate"/>
+        <result property="isread" column="isread"/>
+    </resultMap>
+
+    <resultMap id="recipeMap" type="recipe">
+        <result property="post_no" column="post_no2"/>
+        <result property="writer" column="writer"/>
+        <result property="title" column="title"/>
+        <result property="regdate" column="regdate"/>
     </resultMap>
     <resultMap id="subMap" type="sub">
         <result property="subscriber_id" column="subscriber_id"/>
         <result property="target_id" column="target_id"/>
     </resultMap>
-    <resultMap id="bookMap" type="book">
-        <result property="userid" column="userid"/>
-        <result property="post_no" column="post_no"/>
+    <resultMap id="replyMap" type="reply">
+        <result property="post_no" column="post_no3"/>
+        <result property="content" column="content"/>
+        <result property="regdate" column="regdate"/>
+        <result property="reviewer" column="reviewer"/>
+        <result property="re_no" column="re_no"/>
     </resultMap>
 
+
+
+    <!-- (끝)구독+북마크+레시피본문 vo 맵 국동호 -->
 
 
     <!-- 회원 정보 + 권한 조회 -->
@@ -72,12 +102,23 @@
 
     <!-- mypage -->
     <select id="my_list" resultMap="mypageMap">
-        select a.userid, a.userpw,a.nickname ,a.EMAIL,b.subscriber_id,b.target_id,c.USERID,c.POST_NO
-        from member a left join subscribe b
-                                on a.USERID = b.SUBSCRIBER_ID right join BOOKMARK c
-                                                                         on a.USERID = c.USERID
-        where a.USERID=#{id}
-
+        select  a.USERID,a.userpw,a.nickname,a.EMAIL,
+                b.subscriber_id,b.target_id,
+                c.POST_NO as POST_NO1,
+                d.POST_NO as POST_NO2,d.REGDATE, d.title,
+                e.POST_NO as POST_NO3,e.REGDATE,e.CONTENT,
+                f.sender, f.receiver, f.message, f.senddate, f.isread
+        from MEMBER a left join SUBSCRIBE b
+                           on (a.USERID = b.SUBSCRIBER_ID)
+            left join BOOKMARK c
+                           on (a.USERID = c.USERID )
+            left join RECIPE_POST d
+                           on (a.USERID = d.WRITER)
+            left join RECIPE_REPLY e
+                           on (a.USERID = e.REVIEWER)
+            left join MESSAGE f
+                           on (a.USERID = f.SENDER or a.USERID=f.RECEIVER)
+        where a.USERID = #{id}
     </select>
 
 </mapper>

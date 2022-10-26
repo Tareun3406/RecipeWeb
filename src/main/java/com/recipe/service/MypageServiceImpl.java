@@ -1,7 +1,8 @@
 package com.recipe.service;
 import com.recipe.dao.MypageDAO;
-import com.recipe.vo.BookmarkVO;
-import com.recipe.vo.MypageVO;
+
+import com.recipe.vo.MemberVO;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +15,7 @@ public class MypageServiceImpl implements MypageService {
 
 
     @Override
-    public MypageVO getmylist(String b) {
+    public MemberVO getmylist(String b) {
         return this.mypageDAO.getmylist(b);
     }
 

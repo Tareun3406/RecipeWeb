@@ -41,7 +41,7 @@
                 </s:authorize>
                 <s:authorize access="isAuthenticated()">
                     <li><a href="member/logout">로그아웃</a>
-                    <li><a href="#">마이페이지</a></li>
+                    <li><a href="mypage">마이페이지</a></li>
                 </s:authorize>
             </ul>
         </div>

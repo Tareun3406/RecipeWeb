@@ -24,7 +24,7 @@
         <typeAlias type="com.recipe.vo.ContentVO" alias="content"/>
 
         <typeAlias type="com.recipe.vo.RecipepostVO" alias="recipe"/>
-        <typeAlias type="com.recipe.vo.RecipereplyVO" alias="reply"/>
+        <typeAlias type="com.recipe.vo.RecipereplyVO" alias="recipereply"/>
         <typeAlias type="com.recipe.vo.MessageVO" alias="message"/>
 
 

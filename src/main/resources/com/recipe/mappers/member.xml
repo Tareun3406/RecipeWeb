@@ -28,7 +28,7 @@
 
         <collection property="bookList" resultMap="bookMap"/>
          <collection property="messageList" resultMap="messageMap"/>
-        <collection property="recipereplyList" resultMap="replyMap"/>
+        <collection property="recipereplyList" resultMap="recipereplyMap"/>
         <collection property="subList" resultMap="subMap"/>
         <collection property="recipeList" resultMap="recipeMap"/>
     </resultMap>
@@ -57,7 +57,7 @@
         <result property="subscriber_id" column="subscriber_id"/>
         <result property="target_id" column="target_id"/>
     </resultMap>
-    <resultMap id="replyMap" type="reply">
+    <resultMap id="recipereplyMap" type="recipereply">
         <result property="post_no" column="post_no3"/>
         <result property="content" column="content"/>
         <result property="regdate" column="regdate"/>
@@ -108,15 +108,15 @@
                 d.POST_NO as POST_NO2,d.REGDATE, d.title,
                 e.POST_NO as POST_NO3,e.REGDATE,e.CONTENT,
                 f.sender, f.receiver, f.message, f.senddate, f.isread
-        from MEMBER a left join SUBSCRIBE b
+        from MEMBER a right outer join SUBSCRIBE b
                            on (a.USERID = b.SUBSCRIBER_ID)
-            left join BOOKMARK c
+                      right outer join  BOOKMARK c
                            on (a.USERID = c.USERID )
-            left join RECIPE_POST d
+                      right outer join RECIPE_POST d
                            on (a.USERID = d.WRITER)
-            left join RECIPE_REPLY e
+                      right outer join RECIPE_REPLY e
                            on (a.USERID = e.REVIEWER)
-            left join MESSAGE f
+                      right outer join MESSAGE f
                            on (a.USERID = f.SENDER or a.USERID=f.RECEIVER)
         where a.USERID = #{id}
     </select>

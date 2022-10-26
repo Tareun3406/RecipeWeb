@@ -27,6 +27,6 @@
         <typeAlias type="com.recipe.vo.RecipereplyVO" alias="recipereply"/>
         <typeAlias type="com.recipe.vo.MessageVO" alias="message"/>
 
-  
+
     </typeAliases>
 </configuration>

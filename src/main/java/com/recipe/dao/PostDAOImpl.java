@@ -1,6 +1,7 @@
 package com.recipe.dao;
 
 import com.recipe.vo.PostVO;
+import com.recipe.vo.Recipe_PostDTO;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -22,5 +23,9 @@ public class PostDAOImpl implements PostDAO{
     public void updateHit(int post_no) {
         sqlSession.update("post_upHit", post_no);
     }
-    
+
+    @Override
+    public void insertRp(Recipe_PostDTO rpd) {
+        sqlSession.insert("rp_in",rpd);
+    }
 }

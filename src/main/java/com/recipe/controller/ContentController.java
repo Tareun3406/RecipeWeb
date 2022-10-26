@@ -61,8 +61,6 @@ public class ContentController {
         }
         for(ReplyVO r : rlist){
             r.setContent(r.getContent().replace("\n", "</br>"));
-            System.out.println(r.getReviewer());
-            System.out.println(r.getScore());
         }
         for(PostVO p : plist){
             p.setTip(p.getTip().replace("\n", "</br>"));

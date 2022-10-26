@@ -22,9 +22,20 @@ public class MemberVO {
     private List<AuthVO> authList;
 
 
+    /* mypage 불러올 리스트들 */
+    private List<SubscribeVO> subList; //구독테이블
+    private List<BookmarkVO> bookList; //북마크테이블
+    private List<RecipepostVO> recipeList;//레시피본문 테이블
+    private List<RecipereplyVO> recipereplyList; //댓글테이블
+    private List<MessageVO> messageList; //메세지테이블
+
+    
+
     // 기타 정보
 
     public void addAuthList(AuthVO authVO){
         authList.add(authVO);
     }
+
+
 }

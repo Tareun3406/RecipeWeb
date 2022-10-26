@@ -10,8 +10,11 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
+import javax.sql.RowSet;
+
 public class MemberDetailsService implements UserDetailsService {
 
+    public static RowSet loadUserByUsername;
     @Setter(onMethod_ = {@Autowired})
     public MemberDAO memberDAO;
 
@@ -23,4 +26,6 @@ public class MemberDetailsService implements UserDetailsService {
 
         return memberInfo == null ? null : new MemberUser(memberInfo);
     }
+
+
 }

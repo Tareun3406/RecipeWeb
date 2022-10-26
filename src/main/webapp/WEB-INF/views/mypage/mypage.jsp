@@ -49,13 +49,17 @@
          <div class="conbox con2">
              <div class="contbored">
              <div>내가 등록한 글 <br/>
-
+                 <c:forEach items="${userlist.recipeList}" var="recipe" varStatus="i">
+                     <span class="subbookspan"><c:out value="${recipe.post_no}"/>번 글</span>
+                 </c:forEach>
              </div>
              <div>내가 쓴 댓글 <br/>
-
-             </div>
-             <div>추천 한 글 <br/>
-
+                 <c:forEach items="${userlist.recipereplyList}" var="reply" varStatus="i">
+                     <span class="subbookspan">
+                  댓글 번호:<c:out value="${reply.post_no}"/>
+                     내용:<c:out value="${reply.content}"/>
+                  작성 날짜:<c:out value="${reply.regdate}"/></span><hr/>
+                 </c:forEach>
              </div>
              </div>
          </div>
@@ -63,15 +67,14 @@
          <div class="conbox con3">
              <div class="contbored">
                  <div>구독한 쉐프 :
-                     <c:forEach items="${userlist.subList}" var="item" varStatus="i">
-                         <span class="subbookspan"><c:out value="${item.target_id}"/></span>
+                     <c:forEach items="${userlist.subList}" var="sub" varStatus="i">
+                         <span class="subbookspan"><c:out value="${sub.target_id}"/></span>
                      </c:forEach>
                  </div>
-             <div>즐겨 찾기 : ${userlist.bookList[0].post_no}
-                 ${userlist.bookList[1].post_no}
-                 ${userlist.bookList[2].post_no}
-                 ${book[0].post_no}
-                 ${book[0].userid}<br/>
+             <div>즐겨 찾기 : <c:forEach items="${userlist.bookList}" var="book" varStatus="i">
+                 <span class="subbookspan"><c:out value="${book.post_no}"/>번글</span>
+             </c:forEach>
+                 <br/>
 
              </div>
          </div>
@@ -79,11 +82,24 @@
 
          <div class="conbox con4">
              <div class="contbored">
-             <div>받은 쪽지 <br/>
+             <div>받은 쪽지 <br/><hr/>
+             <c:forEach items="${userlist.messageList}" var="message" varStatus="i">
+                    <c:if test="${userlist.userid == message.receiver}"><span class="subbookspan">
+                  보낸사람:<c:out value="${message.sender}"/>
+                     내용:<c:out value="${message.message}"/>
+                  보낸 날짜:<c:out value="${message.senddate}"/></span><hr/>
+                    </c:if>
+             </c:forEach>
 
              </div>
-             <div>보낸 쪽지 <br/>
-
+             <div>보낸 쪽지 <br/><hr/>
+             <c:forEach items="${userlist.messageList}" var="message" varStatus="i">
+                  <c:if test="${userlist.userid == message.sender}"><span class="subbookspan">
+                   받은사람:<c:out value="${message.receiver}"/>
+                   내용:<c:out value="${message.message}"/>
+                   보낸 날짜:<c:out value="${message.senddate}"/></span><hr/>
+                  </c:if>
+             </c:forEach>
              </div>
          </div>
          </div>

@@ -1,4 +1,5 @@
 package com.recipe.service;
+import com.recipe.vo.MemberVO;
 import com.recipe.vo.MypageVO;
 
 import java.util.List;
@@ -6,5 +7,5 @@ import java.util.List;
 public interface MypageService {
 
 
-    MypageVO getmylist(String b);
+    MemberVO getmylist(String b);
 }

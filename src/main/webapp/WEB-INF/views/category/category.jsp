@@ -16,6 +16,7 @@ border: solid 1px white; ">
 		<button type="button" >테마</button> 
 		<button type="button" >기념일</button> 
 		<button class="button2" type="button" >도구</button>
+		<div class="listcount"><span>전체 게시글 수 </span><span>${listcount}</span></div>
 	</div>
 </div>
 	
@@ -107,9 +108,7 @@ border: solid 1px white; ">
 						<a href="">회</a>
 						<a href="">기타</a>
 					</div>
-					
 				</div>
-		
 	</div>
 
 <div id="dash"></div>
@@ -117,16 +116,16 @@ border: solid 1px white; ">
 <div id="fimage">
  <div id="image">
 	 <%-- 레시피 게시판 반복문으로 게시물 표시하기 --%>
-  <c:forEach var="blist" items="${blist}" begin="0" end="11">
+  <c:forEach var="recipe" items="${blist}" varStatus="i" begin="0" end="11">
 	  <div>
-   <a><img alt="1" src=${blist.thumnail} ></a>
+   <a><img alt="1" src=${recipe.thumnail} ></a>
    <div class="contents">
-   <div>${blist.post_no}.${blist.title}</div>
-   <div>작성자 : ${blist.userid}</div>
-   <div>
-    <span>평점</span> <%-- 댓글불러와서 평점만들기--%>
-    <span>추천수</span>
-    <span>조회수 : ${blist.hit}</span>
+   <div style="margin-left: 2px;">${recipe.post_no}.${recipe.title}</div>
+   <div style="margin-left: 2px;">작성자 : ${nickname[i.index].nickname} </div>
+   <div class="hitandpoint">
+    <span style="margin-left: 2px;">평점 : </span> <%-- 댓글불러와서 평점만들기--%>
+    <span>추천수 : ${recipe.recommend}</span>
+    <span>조회수 : ${recipe.hit}</span>
    </div>
    </div>
   </div>
@@ -143,17 +142,52 @@ border: solid 1px white; ">
 <%--밑에부턴 숫자페이지 --%>
 <nav id="nav1">
 	<ul id="num">
-		<li><a href="">1</a></li>
-		<li><a href="">2</a></li>
-		<li><a href="">3</a></li>
-		<li><a href="">4</a></li>
-		<li><a href="">5</a></li>
-		<li><a href="">6</a></li>
-		<li><a href="">7</a></li>
-		<li><a href="">8</a></li>
-		<li><a href="">9</a></li>
-		<li><a href="">10</a></li>
-		<li><a href="">다음</a></li> <%--aria-label="Next"><span aria-hidden="true"--%> 
+
+			<%--검색전 페이징 --%>
+			<c:if test="${(empty find_field)&&(empty find_name)}">
+				<c:if test="${page <=1}">
+					[이전]&nbsp;
+				</c:if>
+				<c:if test="${page >1}">
+					<a href="category?page=${page-1}">[이전]</a>&nbsp;
+				</c:if>
+
+				<%--쪽번호 출력부분 --%>
+				<c:forEach var="a" begin="${startpage}" end="${endpage}" step="1">
+					<c:if test="${a == page}"><${a}></c:if>
+					<%--현재 쪽번호가 선택된 경우 --%>
+
+					<c:if test="${a != page}">
+						<%--현재 쪽번호가 선택 안된경우 --%>
+						<a href="category?page=${a}">[${a}]</a>&nbsp;
+					</c:if>
+				</c:forEach>
+
+				<c:if test="${page>=maxpage}">[다음]</c:if>
+				<c:if test="${page<maxpage}">
+					<a href="category?page=${page+1}">[다음]</a>
+				</c:if>
+			</c:if>
+
+			<%--검색후 페이징 --%>
+			<c:if test="${(!empty find_field) || (!empty find_name)}">
+				<c:if test="${page <=1}">  [이전]&nbsp;  </c:if>	<c:if test="${page >1}">
+				<a href="category?page=${page-1}&find_field=${find_field}&find_name=${find_name}">
+					[이전]</a>&nbsp;</c:if>
+
+				<%--쪽번호 출력부분 --%>
+				<c:forEach var="a" begin="${startpage}" end="${endpage}" step="1">
+					<c:if test="${a == page}"><${a}></c:if><c:if test="${a != page}">
+					<a href="category?page=${a}&find_field=${find_field}&find_name=${find_name}">
+						[${a}]</a>&nbsp;</c:if>
+				</c:forEach>
+
+				<c:if test="${page>=maxpage}">[다음]</c:if>
+				<c:if test="${page<maxpage}">
+					<a href="category?page=${page+1}&find_field=${find_field}&find_name=${find_name}">
+						[다음]</a> </c:if>
+			</c:if>
+
 	</ul>
 </nav>
 <%-- -----------------------footer------------------------ --%>

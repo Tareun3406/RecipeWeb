@@ -11,19 +11,21 @@
     margin-right: auto;
     margin-top: 10px;
     margin-bottom: 10px;
-    
-    
-    
-}
 
+}
 #category{
-	min-width: 650px;
+	min-width: 600px;
     max-width: 1240px;
-    height: 35px;
+    max-height: 35px;
+    min-height: 35px;
     display: inline-flex;
+    margin-right: auto;
+    margin-left: auto;
+}
+.categoryform{
 
 }
-#category button{
+#category input{
 	/*border-radius: 5px;
     background-color: var(--back-point-color);
     padding-left: 5px;
@@ -33,28 +35,37 @@
     width:max;*/
     
     border-style: solid;
-    border-right-width: 0px;
+    border-right-width:0px;
     width: 100px;
+    height: 35px;
+    max-height: 35px;
     font-size: 14px;
     border-color: gray;
     color:#e98b0c;
     background-color: #FAEEBF;
+
 }
-#category button:hover{
+#category input:hover{
 	background-color: var(--back-point-color);
-	font-size: 18px;
 	color:#808000;
+    font-weight: bold;
+
 }
-#category button.button1{
+#category input.button1{
 	border-top-left-radius: 4px;
     border-bottom-left-radius: 4px;
 }
-#category button.button2{
+#category input.button2{
 	border-top-right-radius: 4px;
     border-bottom-right-radius:4px;
     border-right-width: 2px;
 }
 .listcount{
+  width: 30%;
+    height: 26px;
+  font-size: 18px;
+  background-color: #666666;
+    border-radius: 15px;
 
 }
 #dash{
@@ -63,6 +74,8 @@
     border-bottom: dotted 3px #ffffff;
     margin-bottom: 10px;
     margin-top:5px;
+    display: flex;
+    justify-content: center;
 }
 #tow1{
 	width:100%;

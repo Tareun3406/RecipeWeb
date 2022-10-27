@@ -2,7 +2,7 @@ package com.recipe.security;
 
 import com.recipe.dao.MemberDAO;
 import com.recipe.security.domain.MemberUser;
-import com.recipe.vo.MemberVO;
+import com.recipe.vo.MemberDTO;
 
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +22,7 @@ public class MemberDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String userid) throws UsernameNotFoundException {
         System.out.println(userid);
-        MemberVO memberInfo = memberDAO.readMemberInfo(userid);
+        MemberDTO memberInfo = memberDAO.readMemberInfo(userid);
 
         return memberInfo == null ? null : new MemberUser(memberInfo);
     }

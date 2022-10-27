@@ -1,21 +1,21 @@
 package com.recipe.dao;
 
-import com.recipe.vo.AuthVO;
-import com.recipe.vo.MemberVO;
+import com.recipe.vo.AuthDTO;
+import com.recipe.vo.MemberDTO;
 
 import java.util.List;
 
 public interface MemberDAO {
-    MemberVO readMemberInfo(String userid);
+    MemberDTO readMemberInfo(String userid);
 
-    void insertMember(MemberVO vo);
+    void insertMember(MemberDTO vo);
 
-    void insertAuth(AuthVO auth);
+    void insertAuth(AuthDTO auth);
 
 
-    List<MemberVO> findIdList(String email);
+    List<MemberDTO> findIdList(String email);
 
-    MemberVO checkId(String id);
+    MemberDTO checkId(String id);
 
-    int updateFindPw(MemberVO member);
+    int updateFindPw(MemberDTO member);
 }

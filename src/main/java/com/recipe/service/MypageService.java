@@ -1,11 +1,8 @@
 package com.recipe.service;
-import com.recipe.vo.MemberVO;
-import com.recipe.vo.MypageVO;
-
-import java.util.List;
+import com.recipe.vo.MemberDTO;
 
 public interface MypageService {
 
 
-    MemberVO getmylist(String b);
+    MemberDTO getmylist(String b);
 }

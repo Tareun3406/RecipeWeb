@@ -1,12 +1,10 @@
 package com.recipe.service;
 import com.recipe.dao.MypageDAO;
 
-import com.recipe.vo.MemberVO;
+import com.recipe.vo.MemberDTO;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class MypageServiceImpl implements MypageService {
@@ -15,7 +13,7 @@ public class MypageServiceImpl implements MypageService {
 
 
     @Override
-    public MemberVO getmylist(String b) {
+    public MemberDTO getmylist(String b) {
         return this.mypageDAO.getmylist(b);
     }
 

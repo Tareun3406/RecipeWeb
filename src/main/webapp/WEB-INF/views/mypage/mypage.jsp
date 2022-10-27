@@ -87,13 +87,13 @@
                       </c:when>
                      </c:choose>
                  </div>
-             <div>즐겨 찾기 :<hr/>  
+             <div>좋아요 한 글 :<hr/>
              <c:forEach items="${userlist.bookList}" var="book" varStatus="i">
                  <span class="subbookspan"><c:out value="${book.post_no}"/>번글</span>
              </c:forEach>
                  <c:choose>
                      <c:when test="${empty userlist.bookList[0].post_no}">
-                         즐겨 찾기 한 글이 없습니다.<hr/>
+                         좋아요 한 글이 없습니다.<hr/>
                      </c:when>
                  </c:choose>
              </div>

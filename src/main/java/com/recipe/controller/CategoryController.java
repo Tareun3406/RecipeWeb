@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
+import static java.lang.System.out;
+
 
 @Controller
 public class CategoryController {
@@ -27,11 +29,16 @@ public class CategoryController {
         if(request.getParameter("page") != null) {
             page=Integer.parseInt(request.getParameter("page"));
         }
-        String find_name = request.getParameter("find_name");//검색어
-        String find_field = request.getParameter("find_field");//검색필드
+
+         String find_name = request.getParameter("find_name");//검색어
+
+        if(find_name == null){
+            find_name="";
+        } //find_name에 빈값이 아닌 null이 들어왔을때 공백으로 만들어준다.
+
         recipe.setFind_name("%"+find_name+"%"); //%는 데이터베이스에서 검색 와일드카드문자로서
         //하나이상의 임의의 모르는 문자와 매핑대응
-        recipe.setFind_field(find_field);
+
 
         int totalCount=this.categoryService.getListCount(recipe);
         //총레코드 개수,검색후 레코드 개수,
@@ -60,16 +67,13 @@ public class CategoryController {
         listM.addAttribute("endpage",endpage);
         listM.addAttribute("maxpage",maxpage);
         listM.addAttribute("listcount",totalCount);
-        listM.addAttribute("find_field",find_field);
         listM.addAttribute("find_name",find_name);
        
         return "category/category";
     }
 
-
     @RequestMapping("/ranking")
     public  String ranking(){ return "category/ranking";}
-
 
 
 }

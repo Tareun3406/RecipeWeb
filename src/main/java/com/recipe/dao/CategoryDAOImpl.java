@@ -1,6 +1,7 @@
 package com.recipe.dao;
 
 import com.recipe.vo.CategoryVO;
+import com.recipe.vo.MemberVO;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -22,5 +23,10 @@ public class CategoryDAOImpl implements CategoryDAO{
     @Override
     public List<CategoryVO> getcategoryList(CategoryVO b) {
        return this.sqlSession.selectList("cate_list",b);
+    }
+
+    @Override
+    public List<CategoryVO> getnickname(CategoryVO recipe) {
+       return this.sqlSession.selectList("nick_list",recipe);
     }
 }

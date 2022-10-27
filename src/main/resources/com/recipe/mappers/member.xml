@@ -25,7 +25,6 @@
         <result property="nickname" column="nickname"/>
         <result property="email" column="email"/>
 
-
         <collection property="bookList" resultMap="bookMap"/>
          <collection property="messageList" resultMap="messageMap"/>
         <collection property="recipereplyList" resultMap="recipereplyMap"/>
@@ -36,7 +35,7 @@
 
 
     <resultMap id="bookMap" type="book">
-        <result property="userid" column="userid"/>
+        <result property="userid" column="userid1"/>
         <result property="post_no" column="post_no1" />
     </resultMap>
     <resultMap id="messageMap" type="message">
@@ -51,7 +50,7 @@
         <result property="post_no" column="post_no2"/>
         <result property="writer" column="writer"/>
         <result property="title" column="title"/>
-        <result property="regdate" column="regdate"/>
+        <result property="regdate" column="regdate1"/>
     </resultMap>
     <resultMap id="subMap" type="sub">
         <result property="subscriber_id" column="subscriber_id"/>
@@ -60,7 +59,7 @@
     <resultMap id="recipereplyMap" type="recipereply">
         <result property="post_no" column="post_no3"/>
         <result property="content" column="content"/>
-        <result property="regdate" column="regdate"/>
+        <result property="regdate" column="regdate2"/>
         <result property="reviewer" column="reviewer"/>
         <result property="re_no" column="re_no"/>
     </resultMap>
@@ -103,20 +102,20 @@
     <!-- mypage -->
     <select id="my_list" resultMap="mypageMap">
         select  a.USERID,a.userpw,a.nickname,a.EMAIL,
-                b.subscriber_id,b.target_id,
-                c.POST_NO as POST_NO1,
-                d.POST_NO as POST_NO2,d.REGDATE, d.title,
-                e.POST_NO as POST_NO3,e.REGDATE,e.CONTENT,
+                b.target_id,b.SUBSCRIBER_ID,
+                c.POST_NO as POST_NO1,c.USERID as userid1,
+                d.POST_NO as POST_NO2,d.REGDATE as regdate1, d.title,
+                e.POST_NO as POST_NO3,e.REGDATE as regdate2,e.CONTENT,
                 f.sender, f.receiver, f.message, f.senddate, f.isread
-        from MEMBER a right outer join SUBSCRIBE b
+        from MEMBER a left join SUBSCRIBE b
                            on (a.USERID = b.SUBSCRIBER_ID)
-                      right outer join  BOOKMARK c
+                      left join  BOOKMARK c
                            on (a.USERID = c.USERID )
-                      right outer join RECIPE_POST d
+                      left join RECIPE_POST d
                            on (a.USERID = d.WRITER)
-                      right outer join RECIPE_REPLY e
+                      left join RECIPE_REPLY e
                            on (a.USERID = e.REVIEWER)
-                      right outer join MESSAGE f
+                      left join MESSAGE f
                            on (a.USERID = f.SENDER or a.USERID=f.RECEIVER)
         where a.USERID = #{id}
     </select>

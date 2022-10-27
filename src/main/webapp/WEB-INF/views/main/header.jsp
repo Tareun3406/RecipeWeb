@@ -52,7 +52,7 @@
     </nav>
     <div id="search-recipe-div">
         <div id="search-trans">
-            <form id="search-border" action="#">
+            <form id="search-border" action="/category" name="find_name">
                 <input id="search-Input" name="search" type="text"
                        placeholder="#추천검색어">
                 <button type="submit">

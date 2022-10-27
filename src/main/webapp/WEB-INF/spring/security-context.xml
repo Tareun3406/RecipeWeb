@@ -21,6 +21,8 @@
 
 
     <security:http>
+
+        <security:intercept-url pattern="/admin" access="hasAuthority('ADMIN')"/>
         <!--<security:access-denied-handler ref="memberAccessDenied"/> -->
         <security:csrf disabled="false"/>
         <security:form-login login-page="/member/login"

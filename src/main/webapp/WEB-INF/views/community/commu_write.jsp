@@ -39,6 +39,7 @@
 <div id="bsW_wrap">
 	<h2 id="bsW_title">자료실 글쓰기</h2>
 	<form id="bsW_title" name="form1" method="post" action="/commu_list">
+	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" id="token">
     <div id="bsW_t">
         제목
         <input name="title" id="title" size="33" placeholder="제목을 입력해주세요">
@@ -48,14 +49,14 @@
         <textarea name="content" id="content" rows="8"
     cols="34" placeholder="내용을 입력해주세요"></textarea>
     </div>
-    <!-- <div id="bsW_t">
-        이름
-        <input name="writer" id="writer"  size="14"placeholder="이름을 입력해주세요">
-    </div> -->
+     <div id="bsW_t">
+        이름 <input value="${userlist.nickname}" name=writer readonly="${userlist.nickname}"/>
+        <!--<input name="writer" id="writer"  size="14"placeholder="이름을 입력해주세요">-->
+    </div> 
     <div id="bsW_t">
         <button type="button" id="btnSave">확인</button>
         <button type="reset">취소</button>
-        <button type="button"onclick="location='commu_list?page=${page}';">목록</button>
+        <button type="button"onclick="location='commu_list';">목록</button>
     </div>
 </form>
 </div>

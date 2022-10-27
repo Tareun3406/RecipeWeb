@@ -18,7 +18,7 @@ import com.recipe.vo.CommuReplyVO;
 @RestController
 @RequestMapping("/replies")//컨트롤러 자체에 replies 매핑주소 등록
 
-public class ReplyController {
+public class CommuReplyController {
 	
 	@Autowired
 	CommuReplyService commuReplyService;

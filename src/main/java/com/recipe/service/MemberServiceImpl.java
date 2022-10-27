@@ -1,8 +1,8 @@
 package com.recipe.service;
 
 import com.recipe.dao.MemberDAO;
-import com.recipe.vo.AuthVO;
-import com.recipe.vo.MemberVO;
+import com.recipe.vo.AuthDTO;
+import com.recipe.vo.MemberDTO;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailSender;
@@ -29,11 +29,11 @@ public class MemberServiceImpl implements MemberService{
     //회원가입
     @Transactional
     @Override
-    public void insertMemberUser(MemberVO member) {
+    public void insertMemberUser(MemberDTO member) {
         member.setUserpw(passwordEncoder.encode(member.getUserpw()));   // 비밀번호 인코딩
-        AuthVO auth = new AuthVO();                             // 권한 VO
+        AuthDTO auth = new AuthDTO();                             // 권한 VO
         auth.setUserid(member.getUserid());
-        auth.setAuth(AuthVO.AUTH_USER);
+        auth.setAuth(AuthDTO.AUTH_USER);
 
         memberDAO.insertMember(member);
         memberDAO.insertAuth(auth);
@@ -41,20 +41,20 @@ public class MemberServiceImpl implements MemberService{
 
     // 이메일로 가입된 아이디 목록
     @Override
-    public List<MemberVO> findIdList(String email) {
+    public List<MemberDTO> findIdList(String email) {
         return memberDAO.findIdList(email);
     }
 
     // 아이디로 회원정보 가져오기
     @Override
-    public MemberVO idCheck(String id) {
+    public MemberDTO idCheck(String id) {
         return memberDAO.checkId(id);
     }
 
     // 비밀번호 변경후 이메일 보내기
     @Transactional
     @Override
-    public int changePwSend(MemberVO member) {
+    public int changePwSend(MemberDTO member) {
         int result;
 
         SimpleMailMessage smm = new SimpleMailMessage();

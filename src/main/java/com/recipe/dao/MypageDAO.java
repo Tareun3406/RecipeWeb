@@ -1,11 +1,8 @@
 package com.recipe.dao;
-import com.recipe.vo.MemberVO;
-import com.recipe.vo.MypageVO;
-
-import java.util.List;
+import com.recipe.vo.MemberDTO;
 
 public interface MypageDAO {
 
 
-    MemberVO getmylist(String b);
+    MemberDTO getmylist(String b);
 }

@@ -1,7 +1,7 @@
 package com.recipe.controller;
 
 import com.recipe.service.MemberService;
-import com.recipe.vo.MemberVO;
+import com.recipe.vo.MemberDTO;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -48,7 +48,7 @@ public class MemberController {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
 
-        MemberVO db_id = this.memberService.idCheck(userid);
+        MemberDTO db_id = this.memberService.idCheck(userid);
         int re = -1;    // 중복아이디가 없는 경우 반환값
         if(db_id != null){
             re=1;   // 중복 아이디가 있는 경우
@@ -59,7 +59,7 @@ public class MemberController {
 
     // 회원가입 확인(일반 유저)
     @PostMapping("/member/join")
-    public String memberJoinCheck(MemberVO vo){
+    public String memberJoinCheck(MemberDTO vo){
         memberService.insertMemberUser(vo);
         return "redirect: login";
     }
@@ -75,7 +75,7 @@ public class MemberController {
     public ModelAndView memberFindIdList(String email){
 
         ModelAndView mv = new ModelAndView("/member/findIdList");
-        List<MemberVO> memberList =  memberService.findIdList(email);
+        List<MemberDTO> memberList =  memberService.findIdList(email);
         mv.addObject("memberList", memberList);
         return mv;
     }
@@ -88,7 +88,7 @@ public class MemberController {
 
     // 비밀번호 변경후 이메일로 전송 및 확인
     @PostMapping("/member/findPW")
-    public ModelAndView sendPwToEmail(MemberVO member){
+    public ModelAndView sendPwToEmail(MemberDTO member){
         ModelAndView mv = new ModelAndView("/member/findPwSended");
         String message;
         System.out.println(member);

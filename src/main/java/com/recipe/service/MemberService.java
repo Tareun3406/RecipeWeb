@@ -1,18 +1,18 @@
 package com.recipe.service;
 
-import com.recipe.vo.MemberVO;
+import com.recipe.vo.MemberDTO;
 
 import java.util.List;
 
 
 public interface MemberService {
 
-    void insertMemberUser(MemberVO vo);
+    void insertMemberUser(MemberDTO vo);
 
 
-    List<MemberVO> findIdList(String email);
+    List<MemberDTO> findIdList(String email);
 
-    MemberVO idCheck(String id);
+    MemberDTO idCheck(String id);
 
-    int changePwSend(MemberVO member);
+    int changePwSend(MemberDTO member);
 }

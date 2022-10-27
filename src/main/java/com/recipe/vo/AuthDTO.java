@@ -6,7 +6,7 @@ import org.springframework.security.core.GrantedAuthority;
 
 @Getter
 @Setter
-public class AuthVO implements GrantedAuthority {
+public class AuthDTO implements GrantedAuthority {
 
 
     private String userid;

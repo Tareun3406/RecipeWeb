@@ -3,14 +3,13 @@ package com.recipe.security.domain;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 
-import com.recipe.vo.MemberVO;
+import com.recipe.vo.MemberDTO;
 
 import java.util.Collection;
-import java.util.List;
 
 public class MemberUser extends User {
 
-    public MemberUser(MemberVO vo){
+    public MemberUser(MemberDTO vo){
         super(vo.getUserid(), vo.getUserpw(), vo.getAuthList());
     }
 

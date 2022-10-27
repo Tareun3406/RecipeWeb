@@ -18,6 +18,6 @@ public class ReplyVO {
     private String updatedate;
 
     // 댓글 작성자 정보 리스트로 가져오기
-    private List<MemberVO> member;
+    private List<MemberDTO> member;
 
 }

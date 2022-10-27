@@ -3,14 +3,13 @@ package com.recipe.vo;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import java.util.List;
 
 @Getter
 @Setter
 @ToString
-public class MemberVO {
+public class MemberDTO {
 
     private String userid;
     private String userpw;
@@ -18,7 +17,7 @@ public class MemberVO {
     private String email;
 
     // 권한 정보
-    private List<AuthVO> authList;
+    private List<AuthDTO> authList;
 
 
     /* mypage 불러올 리스트들 */
@@ -32,8 +31,8 @@ public class MemberVO {
 
     // 기타 정보
 
-    public void addAuthList(AuthVO authVO){
-        authList.add(authVO);
+    public void addAuthList(AuthDTO authDTO){
+        authList.add(authDTO);
     }
 
 

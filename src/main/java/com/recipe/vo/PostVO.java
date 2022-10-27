@@ -23,6 +23,6 @@ public class PostVO {
 
     // 레시피와 작성자 정보 리스트로 가져오기
     private List<ContentVO> content;
-    private List<MemberVO> member;
+    private List<MemberDTO> member;
 
 }

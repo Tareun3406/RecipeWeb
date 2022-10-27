@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import java.io.PrintWriter;
 import java.util.List;
 
+@RequestMapping("/member")
 @Controller
 public class MemberController {
 
@@ -20,14 +21,14 @@ public class MemberController {
     private MemberService memberService;
 
     // 로그인 뷰 페이지
-    @GetMapping("/member/login")
+    @GetMapping("/login")
     public String memberLogin(){
         return "/member/loginForm";
     }
 
 
     // 로그아웃
-    @RequestMapping("/member/logout")
+    @RequestMapping("/logout")
     public String memberLogout(HttpSession session, HttpServletResponse response){
         session.invalidate();
 
@@ -37,13 +38,13 @@ public class MemberController {
   
 
     //회원가입페이지 매핑
-    @GetMapping("/member/join")
+    @GetMapping("/join")
     public String memberJoin(){
         return "/member/joinForm";
     }
 
     //아이디 중복 확인 ajax
-    @PostMapping("/member/idCheck")
+    @PostMapping("/idCheck")
     public String member_idcheck(@RequestParam("userid") String userid, HttpServletResponse response) throws Exception{
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
@@ -58,20 +59,20 @@ public class MemberController {
     }
 
     // 회원가입 확인(일반 유저)
-    @PostMapping("/member/join")
+    @PostMapping("/join")
     public String memberJoinCheck(MemberDTO vo){
         memberService.insertMemberUser(vo);
         return "redirect: login";
     }
 
     // 아이디 찾기 주소 매핑
-    @GetMapping("/member/findID")
+    @GetMapping("/findID")
     public String memberFindID(){
         return "/member/findId";
     }
 
     // 아이디 찾기 결과 확인
-    @PostMapping("/member/findID")
+    @PostMapping("/findID")
     public ModelAndView memberFindIdList(String email){
 
         ModelAndView mv = new ModelAndView("/member/findIdList");
@@ -81,13 +82,13 @@ public class MemberController {
     }
 
     // 비밀번호 찾기 주소 매핑
-    @GetMapping("/member/findPW")
+    @GetMapping("/findPW")
     public String memberFindPW(){
         return "/member/findPw";
     }
 
     // 비밀번호 변경후 이메일로 전송 및 확인
-    @PostMapping("/member/findPW")
+    @PostMapping("/findPW")
     public ModelAndView sendPwToEmail(MemberDTO member){
         ModelAndView mv = new ModelAndView("/member/findPwSended");
         String message;

@@ -8,6 +8,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.context.SecurityContextHolderStrategy;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -17,7 +21,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.recipe.service.CommuService;
+import com.recipe.service.MypageService;
 import com.recipe.vo.CommuVO;
+import com.recipe.vo.MemberVO;
 
 @Controller    
 
@@ -26,7 +32,8 @@ public class CommuController {
     // 의존관계 주입 => BoardServiceImpl 생성
     // IoC 의존관계 역전
 	
-	
+	private SecurityContextHolderStrategy securityContextHolderStrategy = SecurityContextHolder
+			.getContextHolderStrategy();
 	
     @Autowired
     CommuService commuService;
@@ -75,42 +82,25 @@ public class CommuController {
          return "community/commu_list";//뷰페이지 경로가/WEB-
     }
     
-    // 02_01. 게시글 작성화면
+    // 02_01. 게시글 작성화면(로그인 해야만 작성 가능 하게 하기)
     @RequestMapping(value="commu_write", method=RequestMethod.GET)
-    public ModelAndView write(HttpServletResponse response,HttpSession session
-            ,HttpServletRequest request)throws Exception{
+    public String write(HttpServletResponse response,HttpServletRequest request
+    		,Model model,Authentication authentication)throws Exception{
+    	UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+    	String c=userDetails.getUsername();
     	response.setContentType("text/html;charset=UTF-8");
-       
-    	PrintWriter out=response.getWriter();
-        
-        String admin_id = (String)session.getAttribute("userid");  //관리자 세션 아이디를 구함
-        
-        
-        if(admin_id == null) {
-            out.print("<script>");
-            out.print("alert('로그인 하신 후에 이용해세요!');");
-            out.print("location='loginForm';");
-            out.print("</script>");
-         }else {
-           int page=1;
-           if(request.getParameter("page")!= null) {
-              page = Integer.parseInt(request.getParameter("page"));//get으로 전달된 쪽번호를
-              //받아서 정수 숫자로 변경
-           }
-           ModelAndView wm = new ModelAndView("community/commu_write");
-           wm.addObject("page",page);
-           return wm;
-        }
-        return null;
+  
+        MemberVO vo = commuService.getmynickname(c);
+
+        model.addAttribute("userlist",vo);
+
+        System.out.println(vo);
+        return "community/commu_write";
     }
     
-    // 02_02. 게시글 작성처리(로그인 해야만 작성 가능 하게 하기)
+    // 02_02. 게시글 작성처리
     @RequestMapping(value="commu_list", method=RequestMethod.POST)
-    public String insert(@ModelAttribute CommuVO vo,HttpSession session) throws Exception{
-        //session에 저장된 userid를 writer에 저장
-    	//String writer = (String) session.getAttribute("userid");
-    	//vo에 writer를 세팅
-    	//vo.setWriter(writer);
+    public String insert(@ModelAttribute CommuVO vo) throws Exception{
     	
     	commuService.create(vo);
         return "redirect:/commu_list";

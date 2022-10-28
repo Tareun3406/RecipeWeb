@@ -11,6 +11,17 @@ create table comu_post(
   ,FOREIGN KEY (userid_fk) REFERENCES member (userid)
 );
 
+select comu_no,title,nickname,regdate,viewcnt from member inner join comu_post on member.userid =
+comu_post.writer;
+
+SELECT * FROM comu_post WHERE
+		comu_no = 11;
+
+select count(comu_no) from member inner join comu_post on member.userid =
+comu_post.writer;
+
+select comu_no,title,nickname,regdate,viewcnt  from member m,comu_post c
+where m.userid=c.writer; 
 
 
 drop table comu_post;
@@ -49,6 +60,6 @@ select reply_no_seq.nextval from dual;
 select * from comu_reply order by reply_no desc;
 
 
-
+select nickname from comu_post left join member on comu_post.writer = member.userid;
 
 

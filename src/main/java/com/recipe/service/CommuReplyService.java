@@ -3,6 +3,7 @@ package com.recipe.service;
 import java.util.List;
 
 import com.recipe.vo.CommuReplyVO;
+import com.recipe.vo.MemberDTO;
 
 public interface CommuReplyService {
 
@@ -15,6 +16,8 @@ public interface CommuReplyService {
 	void updateReply(CommuReplyVO vo);
 
 	void deleteReply(int reply_no);
+
+	MemberDTO getmynickname(String c);
 
 
 }

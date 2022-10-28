@@ -16,14 +16,12 @@ public interface CommuService {
     public void update(CommuVO vo) throws Exception;
     // 04. 게시글 삭제
     public void delete(int comu_no) throws Exception;
-    // 05. 게시글 전체 목록
-    public List<CommuVO> listAll() throws Exception;
     // 06. 게시글 조회
     public void increaseViewcnt(int comu_no, HttpSession session) throws Exception;
 	public int getListCount(CommuVO vo);
+	// 게시글 전체 목록
 	public List<CommuVO> getComuList(CommuVO vo);
 	public MemberDTO getmynickname(String c);
-	public void getnickname(CommuVO vo);
 
 
     

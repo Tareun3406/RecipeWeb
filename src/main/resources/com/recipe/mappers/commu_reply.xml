@@ -31,7 +31,11 @@
   <select id="reply_comuno" parameterType="int" resultType="int">
     select comu_no from comu_reply where reply_no=#{reply_no}
   </select>
-
+	<!-- 로그인한 유저 닉네임 가져오기 -->
+	<select id="my_nick" resultType="member">
+		select * from member where
+		member.userid=#{id}
+	</select>
 
 
 </mapper>

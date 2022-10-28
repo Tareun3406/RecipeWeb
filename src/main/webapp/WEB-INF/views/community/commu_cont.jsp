@@ -131,7 +131,7 @@
     
     //댓글 추가
     $('#replyAddBtn').on('click',function(){
-    	$reviewer=$('#newreviewer');//댓글 작성자
+    	//$reviewer=$('#newreviewer');댓글 작성자
     	$content=$('#newcontent').val();//댓글내용
     	
     	$.ajax({
@@ -144,7 +144,7 @@
     		dataType:'text',
     		data:JSON.stringify({
     			comu_no:$comu_no,//게시판 번호값
-    			reviewer:$reviewer,//댓글 작성자
+    			//reviewer:$reviewer,//댓글 작성자
     			content:$content//댓글 내용
     		}),
     		success:function(data){//비동기식으로 가져오는 것이 성공시 호출되는 콜백 함수, 가져온 문자는 data매개변수에 저장

@@ -27,7 +27,7 @@ border: solid 1px white; ">
    <div style="margin-left: 2px;">${recipe.post_no}.${recipe.title}</div>
    <div style="margin-left: 2px;">작성자 : ${nickname[i.index].nickname} </div>
    <div class="hitandpoint">
-    <span style="margin-left: 2px;">평점 : </span> <%-- 댓글불러와서 평점만들기--%>
+    <span style="margin-left: 2px;">평점 : <c:if test="${score[i.index].post_no == blist[i.index].post_no}"><c:out value="${score[i.index].score}"/> </c:if></span> <%-- 댓글불러와서 평점만들기--%>
     <span>추천수 : ${recipe.recommend}</span>
     <span>조회수 : ${recipe.hit}</span>
    </div>

@@ -103,6 +103,8 @@ public class CommuController {
     public String insert(@ModelAttribute CommuVO vo) throws Exception{
     	
     	commuService.create(vo);
+    	commuService.getnickname(vo);//유저아이디에 해당하는 닉네임 가져오기
+    	
         return "redirect:/commu_list";
     }
     
@@ -112,6 +114,8 @@ public class CommuController {
     @RequestMapping(value="/community/commu_cont", method =RequestMethod.GET)
     public ModelAndView view(@RequestParam int comu_no, HttpSession session) throws Exception{
         // 조회수 증가 처리     
+    	
+    	
         commuService.increaseViewcnt(comu_no,session);//번호에 해당하는 레코드를 가져오고, 그전에 조회수 증가
 		
         // 모델(데이터)+뷰(화면)를 함께 전달하는 객체

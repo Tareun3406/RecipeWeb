@@ -60,4 +60,8 @@ public class CommuDAOImpl implements CommuDAO {
 	public MemberVO getMynickname(String c) {
 		return this.SqlSession.selectOne("my_nickname",c);
 	}
+	@Override
+	public void getnickname(CommuVO vo) {
+		this.SqlSession.selectOne("writer_nickname",vo);
+	}
 }

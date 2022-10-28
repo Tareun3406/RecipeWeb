@@ -107,6 +107,10 @@ public class CommuServiceImpl implements CommuService {
 	public MemberVO getmynickname(String c) {
 		return this.commuDao.getMynickname(c);
 	}
+	@Override
+	public void getnickname(CommuVO vo) {
+		this.commuDao.getnickname(vo);
+	}
 	
 	
 

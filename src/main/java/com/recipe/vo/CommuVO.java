@@ -10,7 +10,8 @@ public class CommuVO {
     private String writer;      // 게시글 작성자
     private String regdate;       // 게시글 작성일자 
     private int viewcnt;        // 게시글 조회수
-    private String userName;    //게시글 회원이름= 게시글작성자
+    private String nickname;    //게시글 회원이름= 게시글작성자
+    
     
   //페이징 관련변수
   	private int startrow;//시작행 번호

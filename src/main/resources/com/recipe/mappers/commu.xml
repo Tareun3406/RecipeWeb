@@ -55,9 +55,16 @@
     </where>
   </select>
 
+
+	<!-- 작성자 닉네임 가져오기 -->
+	<select id="writer_nickname" resultType="commu">
+	select nickname from comu_post left join member on comu_post.writer = member.userid
+	</select>
+	
 	<!-- 검색 전후 자료실 목록 -->
   <select id="bbs_list" resultType="commu">
-    select * from (select rowNum rNum,comu_no,writer,title,viewcnt,regdate from 
+    select * from (select rowNum rNum,comu_no,writer
+     ,title,viewcnt,regdate from 
       (select * from comu_post
       <where>
         <if test="find_field==''"></if>
@@ -66,12 +73,14 @@
         </if>
         <if test="find_field=='content'">
           content like #{find_name} <!-- like는 ~와 비슷한 문자를 검색하는 검색연산자 -->
-        </if>
+        </if>        
       </where>
         )order by comu_no desc)
         where rNum &gt;=#{startrow} and rNum &lt;=#{endrow}
         <!-- #gt;= 은 >=의 뜻, &lt;= 은 <= 의 뜻 -->
   </select>
+  
+  
   
   <!-- 로그인한 유저 닉네임 가져오기 -->
   <select id="my_nickname" resultType="member" >

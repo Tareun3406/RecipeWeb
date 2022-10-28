@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="s" %>
 
 <jsp:include page="../main/header.jsp" flush="false"/>
 <script>
@@ -78,6 +79,7 @@
 			<section id="cont_center">
 			<article class="column col5">
 				<form method="get" action="commu_list">
+				
 					<div id="bList_wrap">
 						<h2 class="bList_title">자료실 목록</h2>
 						<div class="bList_count">글개수: ${listcount}</div>
@@ -99,7 +101,7 @@
 							</td>
 							<%-- ?bbs_no=번호&state=cont&page=쪽번호 주소창에 노출되는get방식으로 3개의 피라미터
      				이름에 인자값이 저장되어 전달된다. --%>
-							<td align="center">${b.writer}</td>
+							<td align="center">${nickname}</td>
 							<td align="center">${fn:substring(b.regdate,2,16)}</td>
 							<%-- 0이상 10미만 사이의 년월일만 반환--%>
 							<td align="center">${b.viewcnt}</td>
@@ -174,9 +176,15 @@
 						</div>
 
 						<div id="bList_menu">
-						
-							<input type="button" value="글쓰기"
-								onclick="location='commu_write?page=${page}';" />
+							
+							 <s:authorize access="isAnonymous()"></s:authorize>
+                    
+              				  
+               				 <s:authorize access="isAuthenticated()">
+                  					  <input type="button" value="글쓰기"
+											onclick="location='commu_write?page=${page}';" />
+               				 </s:authorize>
+							
 								
 							<c:if test="${(!empty find_field) && (!empty find_name)}">
 								<input type="button" value="전체목록"

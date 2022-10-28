@@ -21,5 +21,6 @@ public interface CommuDAO {
 	public int getTotalCount(CommuVO vo);
 	public List<CommuVO> getCommuList(CommuVO vo);
 	public MemberVO getMynickname(String c);
+	public void getnickname(CommuVO vo);
 
 }

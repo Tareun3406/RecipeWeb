@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.recipe.dao.CommuDAO;
 import com.recipe.vo.CommuVO;
+import com.recipe.vo.MemberVO;
 
 @Service
 public class CommuServiceImpl implements CommuService {
@@ -25,16 +26,15 @@ public class CommuServiceImpl implements CommuService {
         // replace(A, B) A를 B로 변경
         title = title.replace("<", "&lt;");
         title = title.replace("<", "&gt;");
-        writer = writer.replace("<", "&lt;");
-        writer = writer.replace("<", "&gt;");
+
         // *공백문자 처리
         title = title.replace("  ",    "&nbsp;&nbsp;");
-        writer = writer.replace("  ",    "&nbsp;&nbsp;");
+
         // *줄바꿈 문자처리
         content = content.replace("\n", "<br>");
         vo.setTitle(title);
         vo.setContent(content);
-        vo.setWriter(writer);
+
         commuDao.create(vo);
     }
     // 02. 게시글 상세보기
@@ -52,16 +52,15 @@ public class CommuServiceImpl implements CommuService {
         // replace(A, B) A를 B로 변경
         title = title.replace("<", "&lt;");
         title = title.replace("<", "&gt;");
-        writer = writer.replace("<", "&lt;");
-        writer = writer.replace("<", "&gt;");
+
         // *공백문자 처리
         title = title.replace("  ",    "&nbsp;&nbsp;");
-        writer = writer.replace("  ",    "&nbsp;&nbsp;");
+
         // *줄바꿈 문자처리
         content = content.replace("\n", "<br>");
         vo.setTitle(title);
         vo.setContent(content);
-        vo.setWriter(writer);
+
     	commuDao.update(vo);
     }
     // 04. 게시글 삭제
@@ -103,6 +102,14 @@ public class CommuServiceImpl implements CommuService {
 	@Override
 	public List<CommuVO> getComuList(CommuVO vo) {
 		return this.commuDao.getCommuList(vo);
+	}
+	@Override
+	public MemberVO getmynickname(String c) {
+		return this.commuDao.getMynickname(c);
+	}
+	@Override
+	public void getnickname(CommuVO vo) {
+		this.commuDao.getnickname(vo);
 	}
 	
 	

@@ -4,13 +4,17 @@ create table comu_post(
   comu_no number(38) not null primary key --자료실번호
   ,title varchar2(200) not null --글제목
   ,content varchar2(4000) not null --글내용
-  ,writer varchar2(50) not null --글쓴이
+  ,writer varchar2(20) not null --글쓴이
   ,regdate date  --글등록 날짜 
-  ,viewcnt number(38) default 0 --조회수  
+  ,viewcnt number(38) default 0 --조회수 
+  ,userid_fk varchar2(20)
+  ,FOREIGN KEY (userid_fk) REFERENCES member (userid)
 );
 
 
+
 drop table comu_post;
+
 select * from comu_post order by comu_no desc;
 
 create SEQUENCE comu_no_seq
@@ -32,10 +36,6 @@ create table comu_reply(
   ,content varchar2(4000) not null
   ,regdate date
 );
-
---bno컬럼 외래키(foreign key) 설정
-alter table comu_reply add constraint comu_reply_comu_no_fk
-foreign key(comu_no) references comu_post(comu_no);
 
 --rno_seq 시퀀스(번호 발생기) 생성
 create SEQUENCE reply_no_seq

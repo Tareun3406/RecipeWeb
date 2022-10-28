@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import com.recipe.vo.CommuVO;
+import com.recipe.vo.MemberVO;
 
 public interface CommuService {
 	// 01. 게시글 작성
@@ -21,6 +22,8 @@ public interface CommuService {
     public void increaseViewcnt(int comu_no, HttpSession session) throws Exception;
 	public int getListCount(CommuVO vo);
 	public List<CommuVO> getComuList(CommuVO vo);
+	public MemberVO getmynickname(String c);
+	public void getnickname(CommuVO vo);
 
 
     

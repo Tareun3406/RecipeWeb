@@ -30,20 +30,24 @@ public class CommuReplyController {
 		@RequestMapping("/addreply") //post로 접근하는 매핑주소 처리
 		public ResponseEntity<String> addReply(@RequestBody CommuReplyVO vo,Model model
 				,Authentication authentication){
-			UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-	    	String c=userDetails.getUsername();
-			
-	    	MemberDTO dto = commuReplyService.getmynickname(c);
-
-	        model.addAttribute("userlist",dto);
-	        
-			//@RequestBody는 전송된 json데이터를 ReplyVO타입으로 변환해준다.
+						//@RequestBody는 전송된 json데이터를 ReplyVO타입으로 변환해준다.
 			ResponseEntity<String> entity = null;
 			
+			
+	       
 			try {
+				
+				UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+				String c=userDetails.getUsername();
+			
+				MemberDTO dto = commuReplyService.getmynickname(c);
+
+				model.addAttribute("userlist",dto);
+				
 				this.commuReplyService.insertReply(vo);//댓글저장
 				entity = new ResponseEntity<>("SUCCESS",HttpStatus.OK);//댓글등록 성공시 SUCCESS문자가 반환되고,
 				//Http 상태 코드 정상을 뜻하는 200(저장 성공한 경우)을 반환한다.
+
 			}catch(Exception e) {
 				e.printStackTrace();
 				entity = new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);

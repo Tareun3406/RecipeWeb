@@ -30,4 +30,9 @@ public class CategoryServiceImpl implements CategoryService{
         return this.categoryDAO.getnickname(recipe);
 
     }
+
+    @Override
+    public List<CategoryVO> getscore(CategoryVO recipe) {
+        return this.categoryDAO.getscore(recipe);
+    }
 }

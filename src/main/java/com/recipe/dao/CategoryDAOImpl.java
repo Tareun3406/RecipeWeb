@@ -29,4 +29,9 @@ public class CategoryDAOImpl implements CategoryDAO{
     public List<CategoryVO> getnickname(CategoryVO recipe) {
        return this.sqlSession.selectList("nick_list",recipe);
     }
+
+    @Override
+    public List<CategoryVO> getscore(CategoryVO recipe) {
+        return this.sqlSession.selectList("score_list",recipe);
+    }
 }

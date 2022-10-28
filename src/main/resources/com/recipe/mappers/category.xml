@@ -28,6 +28,21 @@
     </select>
 
     <select id="nick_list" resultType="category">
-        select b.NICKNAME from RECIPE_POST a left join member b on (a.WRITER=b.USERID)
+        select NICKNAME from
+        RECIPE_POST left join MEMBER
+        on RECIPE_POST.WRITER = MEMBER.USERID
+        <where>
+            <if test="find_name == ''"></if>
+            <if test="find_name != ''">
+                title like #{find_name} or ingredient like #{find_name}
+            </if>
+        </where> order by POST_NO desc
+    </select>
+
+    <select id="score_list" resultType="category">
+        select round(avg(score),1),a.POST_NO from
+        RECIPE_REPLY a join RECIPE_POST b
+        on a.POST_NO = b.POST_NO
+        group by a.POST_NO order by POST_NO desc
     </select>
 </mapper>

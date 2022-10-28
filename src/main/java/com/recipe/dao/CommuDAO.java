@@ -3,7 +3,7 @@ package com.recipe.dao;
 import java.util.List;
 
 import com.recipe.vo.CommuVO;
-import com.recipe.vo.MemberVO;
+import com.recipe.vo.MemberDTO;
 
 public interface CommuDAO {
     // 01. 게시글 작성
@@ -20,7 +20,7 @@ public interface CommuDAO {
     public void increaseViewcnt(int comu_no) throws Exception;
 	public int getTotalCount(CommuVO vo);
 	public List<CommuVO> getCommuList(CommuVO vo);
-	public MemberVO getMynickname(String c);
+	public MemberDTO getMynickname(String c);
 	public void getnickname(CommuVO vo);
 
 }

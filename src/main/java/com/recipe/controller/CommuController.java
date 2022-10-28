@@ -23,7 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.recipe.service.CommuService;
 import com.recipe.service.MypageService;
 import com.recipe.vo.CommuVO;
-import com.recipe.vo.MemberVO;
+import com.recipe.vo.MemberDTO;
 
 @Controller    
 
@@ -90,7 +90,7 @@ public class CommuController {
     	String c=userDetails.getUsername();
     	response.setContentType("text/html;charset=UTF-8");
   
-        MemberVO vo = commuService.getmynickname(c);
+        MemberDTO vo = commuService.getmynickname(c);
 
         model.addAttribute("userlist",vo);
 

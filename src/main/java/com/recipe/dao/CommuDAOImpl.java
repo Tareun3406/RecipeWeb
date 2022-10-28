@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.recipe.vo.CommuVO;
-import com.recipe.vo.MemberVO;
+import com.recipe.vo.MemberDTO;
 
 @Repository
 public class CommuDAOImpl implements CommuDAO {
@@ -57,7 +57,7 @@ public class CommuDAOImpl implements CommuDAO {
 	}
 	//닉네임 가져오기
 	@Override
-	public MemberVO getMynickname(String c) {
+	public MemberDTO getMynickname(String c) {
 		return this.SqlSession.selectOne("my_nickname",c);
 	}
 	@Override

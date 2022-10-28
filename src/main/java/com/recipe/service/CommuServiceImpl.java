@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.recipe.dao.CommuDAO;
 import com.recipe.vo.CommuVO;
-import com.recipe.vo.MemberVO;
+import com.recipe.vo.MemberDTO;
 
 @Service
 public class CommuServiceImpl implements CommuService {
@@ -104,7 +104,7 @@ public class CommuServiceImpl implements CommuService {
 		return this.commuDao.getCommuList(vo);
 	}
 	@Override
-	public MemberVO getmynickname(String c) {
+	public MemberDTO getmynickname(String c) {
 		return this.commuDao.getMynickname(c);
 	}
 	@Override

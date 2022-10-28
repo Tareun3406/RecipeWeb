@@ -121,7 +121,20 @@ header ul .alt a {
 header ul a:hover {
     color: var(--link-highlight-color);
 }
-
+header ul li form{
+    margin: 0px;
+    padding: 0px;
+}
+#logoutBtn{
+    background: none;
+    border: none;
+    font-weight: bold;
+    color:#212121;
+    font-size: 18px;
+}
+#logoutBtn:hover{
+    color: var(--link-highlight-color);
+}
 header #member {
     width: 300px;
     margin: 0px;
@@ -478,3 +491,4 @@ footer a:hover {
     color: slategrey;
     width: 50px;
 }
+

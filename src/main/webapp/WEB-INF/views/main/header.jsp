@@ -44,7 +44,11 @@
                     <li><a href="member/join">회원가입</a></li>
                 </s:authorize>
                 <s:authorize access="isAuthenticated()">
-                    <li><a href="member/logout">로그아웃</a>
+                    <li>
+                        <form method="post" action="/member/logout">
+                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" id="token">
+                            <button type="submit" id="logoutBtn">로그아웃</button>
+                        </form>
                     <li><a href="mypage">마이페이지</a></li>
                 </s:authorize>
             </ul>

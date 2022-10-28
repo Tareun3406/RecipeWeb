@@ -23,7 +23,6 @@ public interface CommuService {
 	public int getListCount(CommuVO vo);
 	public List<CommuVO> getComuList(CommuVO vo);
 	public MemberVO getmynickname(String c);
-	public void getnickname(CommuVO vo);
 
 
     

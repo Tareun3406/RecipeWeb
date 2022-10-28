@@ -101,7 +101,7 @@
 							</td>
 							<%-- ?bbs_no=번호&state=cont&page=쪽번호 주소창에 노출되는get방식으로 3개의 피라미터
      				이름에 인자값이 저장되어 전달된다. --%>
-							<td align="center">${nickname}</td>
+							<td align="center">${b.writer}</td>
 							<td align="center">${fn:substring(b.regdate,2,16)}</td>
 							<%-- 0이상 10미만 사이의 년월일만 반환--%>
 							<td align="center">${b.viewcnt}</td>

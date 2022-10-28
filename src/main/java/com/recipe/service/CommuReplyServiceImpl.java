@@ -6,9 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.recipe.dao.CommuDAO;
 import com.recipe.dao.CommuReplyDAO;
 import com.recipe.vo.CommuReplyVO;
+import com.recipe.vo.MemberDTO;
 
 @Service
 public class CommuReplyServiceImpl implements CommuReplyService {
@@ -39,6 +39,11 @@ public class CommuReplyServiceImpl implements CommuReplyService {
 		this.replyDao.getComu_no(reply_no);//삭제되기전 댓글 번호에 해당하는 게시판 번호 구하기
 		replyDao.deleteReply(reply_no);//댓글 삭제
 	}//댓글이 삭제되면 댓글 수 1감소
+
+	@Override
+	public MemberDTO getmynickname(String c) {
+		return this.replyDao.getmynickname(c);
+	}
 	
 
 }

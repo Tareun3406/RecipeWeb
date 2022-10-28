@@ -68,11 +68,7 @@ public class CommuServiceImpl implements CommuService {
     public void delete(int comu_no) throws Exception {
         commuDao.delete(comu_no);
     }
-    // 05. 게시글 전체 목록
-    @Override
-    public List<CommuVO> listAll() throws Exception {
-        return commuDao.listAll();
-    }
+ 
     
     // 06. 게시글 조회수 증가
     @Override
@@ -99,18 +95,17 @@ public class CommuServiceImpl implements CommuService {
 	public int getListCount(CommuVO vo) {
 		return this.commuDao.getTotalCount(vo);
 	}
+	// 게시글 전체 목록
 	@Override
 	public List<CommuVO> getComuList(CommuVO vo) {
 		return this.commuDao.getCommuList(vo);
 	}
+	//닉네임 가져오기
 	@Override
 	public MemberDTO getmynickname(String c) {
 		return this.commuDao.getMynickname(c);
 	}
-	@Override
-	public void getnickname(CommuVO vo) {
-		this.commuDao.getnickname(vo);
-	}
+
 	
 	
 

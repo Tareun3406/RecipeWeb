@@ -1,6 +1,5 @@
 package com.recipe.controller;
 
-import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -9,8 +8,6 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.context.SecurityContextHolderStrategy;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.recipe.service.CommuService;
-import com.recipe.service.MypageService;
 import com.recipe.vo.CommuVO;
 import com.recipe.vo.MemberDTO;
 
@@ -31,9 +27,6 @@ public class CommuController {
     
     // 의존관계 주입 => BoardServiceImpl 생성
     // IoC 의존관계 역전
-	
-	private SecurityContextHolderStrategy securityContextHolderStrategy = SecurityContextHolder
-			.getContextHolderStrategy();
 	
     @Autowired
     CommuService commuService;
@@ -56,8 +49,10 @@ public class CommuController {
 
          
          vo.setStartrow((page-1)*10+1);//시작행번호
-          vo.setEndrow(vo.getStartrow()+limit-1);//끝행 번호
+         vo.setEndrow(vo.getStartrow()+limit-1);//끝행 번호
          
+
+          
          List<CommuVO> blist=this.commuService.getComuList(vo);
          //검색 전후 목록
          
@@ -88,6 +83,7 @@ public class CommuController {
     		,Model model,Authentication authentication)throws Exception{
     	UserDetails userDetails = (UserDetails) authentication.getPrincipal();
     	String c=userDetails.getUsername();
+    	
     	response.setContentType("text/html;charset=UTF-8");
   
         MemberDTO vo = commuService.getmynickname(c);
@@ -103,8 +99,7 @@ public class CommuController {
     public String insert(@ModelAttribute CommuVO vo) throws Exception{
     	
     	commuService.create(vo);
-    	commuService.getnickname(vo);//유저아이디에 해당하는 닉네임 가져오기
-    	
+
         return "redirect:/commu_list";
     }
     

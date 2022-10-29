@@ -24,8 +24,7 @@ public class CategoryVO {
     private String tip;
     private String writer;
 
-    //검색필드와 검색어
-    private String find_field;
+    //검색어
     private String find_name;
 
     //페이징 관련변수

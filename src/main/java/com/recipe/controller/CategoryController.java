@@ -49,9 +49,6 @@ public class CategoryController {
         out.println(recipe.getEndrow());
 
         List<CategoryVO> blist=this.categoryService.getcategoryList(recipe);//검색 전후 목록
-        List<CategoryVO> nickname= this.categoryService.getnickname(recipe); //게시글닉네임
-        List<CategoryVO> score=this.categoryService.getscore(recipe); //게시글평점
-
 
         //총 페이지수
         int maxpage=(int)((double)totalCount/limit+0.95);
@@ -61,11 +58,8 @@ public class CategoryController {
         int endpage=maxpage;
         if(endpage>startpage+10-1) endpage=startpage+10-1;
         out.println(blist);
-        out.println(nickname);
-        out.println(score);
+
         listM.addAttribute("blist",blist); //작성글 리스트
-        listM.addAttribute("nickname",nickname); //작성자 닉네임
-        listM.addAttribute("score",score); //게시글 평점
         listM.addAttribute("startrow",recipe.getStartrow());
         listM.addAttribute("endrow",recipe.getEndrow());
         listM.addAttribute("page",page);

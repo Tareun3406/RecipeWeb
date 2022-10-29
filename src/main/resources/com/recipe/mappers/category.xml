@@ -16,38 +16,19 @@
     </select>
 
     <select id="cate_list" resultType="category">
-        select * from (select rowNum rNum,post_no,writer,title,THUMNAIL,hit,BOOKMARK from
-        (select * from RECIPE_POST
+        select rNum,POST_NO,title,WRITER,score,BOOKMARK,HIT,THUMNAIL,NICKNAME
+            from member m right join
+            (select rownum rNum,c.POST_NO,c.score,r.TITLE,r.THUMNAIL,r.HIT,r.WRITER,r.BOOKMARK
+                from RECIPE_POST r left join
+                (select a.post_no, nvl(round(avg(score),2),0) as score
+                    from RECIPE_POST a left join RECIPE_REPLY b on(b.post_no=a.POST_NO)
+                    group by a.post_no order by a.POST_NO desc)c on (c.POST_NO=r.POST_NO)
         <where>
             <if test="find_name == ''"></if>
-            <if test="find_name != ''">title like #{find_name}     or ingredient like #{find_name}</if>
-        </where>
-        order by POST_NO desc))
-        where rNum &gt;=#{startrow} and rNum &lt;=#{endrow}
-        <!-- #gt;= 은 >=의 뜻, &lt;= 은 <= 의 뜻 -->
-    </select>
-
-    <select id="nick_list" resultType="category">
-        select*from(select NICKNAME,POST_NO,WRITER from
-        RECIPE_POST left join MEMBER
-        on (RECIPE_POST.WRITER = MEMBER.USERID)
-        <where>
-            <if test="find_name == ''"></if>
-            <if test="find_name != ''">
-                title like #{find_name} or ingredient like #{find_name}
-            </if>
-        </where> order by POST_NO desc)where rowNum &gt;=#{startrow} and rowNum &lt;=#{endrow}
-    </select>
-
-    <select id="score_list" resultType="category">
-        select * from(select rownum rNum,c.* from (select a.post_no, nvl(round(avg(score),2),0) as score
-        from RECIPE_POST a left join RECIPE_REPLY b on(b.post_no=a.POST_NO)
-        <where>
-            <if test="find_name == ''"></if>
-            <if test="find_name != ''">
-                title like #{find_name} or ingredient like #{find_name}
-            </if>
-        </where>group by a.post_no order by a.POST_NO desc)c)d
-        where d.rNum &gt;=#{startrow} and d.rNum &lt;=#{endrow}
+            <if test="find_name != ''">title like #{find_name} or ingredient like #{find_name}</if>
+        </where>)
+        d on (m.USERID=writer)
+        where rNum &gt;=#{startrow} and rNum &lt;=#{endrow} order by rnum
+<!-- #gt;= 은 >=의 뜻, &lt;= 은 <= 의 뜻 -->
     </select>
 </mapper>

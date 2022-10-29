@@ -25,9 +25,9 @@ border: solid 1px white; ">
    <a><img alt="1" width="300" height="300" src=${recipe.thumnail}  ></a>
    <div class="contents">
    <div style="margin-left: 2px;">${recipe.post_no}.${recipe.title}</div>
-   <div style="margin-left: 2px;">작성자 : ${nickname[i.index].nickname} </div>
+   <div style="margin-left: 2px;">작성자 : ${recipe.nickname} </div>
    <div class="hitandpoint">
-    <span style="margin-left: 2px;">평점 : ${score[i.index].score}</span> <%-- 댓글불러와서 평점만들기--%>
+    <span style="margin-left: 2px;">평점 : ${recipe.score}</span> <%-- 댓글불러와서 평점만들기--%>
     <span>추천수 : ${recipe.recommend}</span>
     <span>조회수 : ${recipe.hit}</span>
    </div>

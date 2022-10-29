@@ -14,7 +14,7 @@
     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 
     <div class="checkArea">
-        <input type="checkbox" name="keepLoginCheck">로그인 유지
+        <input type="checkbox" name="remember-me">로그인 유지
     </div>
     <div class="inputArea">
         <input type="text" size="45" name="userid" placeholder="아이디">

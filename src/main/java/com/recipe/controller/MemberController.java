@@ -26,17 +26,6 @@ public class MemberController {
         return "/member/loginForm";
     }
 
-
-    // 로그아웃
-    @RequestMapping("/logout")
-    public String memberLogout(HttpSession session, HttpServletResponse response){
-        session.invalidate();
-
-        return "redirect: /";
-    }
-  
-  
-
     //회원가입페이지 매핑
     @GetMapping("/join")
     public String memberJoin(){

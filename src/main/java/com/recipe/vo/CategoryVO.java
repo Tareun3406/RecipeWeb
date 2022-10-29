@@ -34,5 +34,5 @@ public class CategoryVO {
 
     private String nickname; //member테이블의 닉네임
     
-    private int score; //댓글에 점수
+    private String score; //댓글에 점수
 }

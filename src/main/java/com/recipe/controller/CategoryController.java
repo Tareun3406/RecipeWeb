@@ -43,11 +43,12 @@ public class CategoryController {
         int totalCount=this.categoryService.getListCount(recipe);
         //총레코드 개수,검색후 레코드 개수,
 
-        recipe.setStartrow((page-1)*10+1);//시작행번호
+        recipe.setStartrow((page-1)*12+1);//시작행번호
         recipe.setEndrow(recipe.getStartrow()+limit-1);//끝행 번호
+        out.println(recipe.getStartrow());
+        out.println(recipe.getEndrow());
 
-        List<CategoryVO> blist=this.categoryService.getcategoryList(recipe);
-        //검색 전후 목록
+        List<CategoryVO> blist=this.categoryService.getcategoryList(recipe);//검색 전후 목록
         List<CategoryVO> nickname= this.categoryService.getnickname(recipe); //게시글닉네임
         List<CategoryVO> score=this.categoryService.getscore(recipe); //게시글평점
 
@@ -55,14 +56,18 @@ public class CategoryController {
         //총 페이지수
         int maxpage=(int)((double)totalCount/limit+0.95);
         //시작페이지(1,11,21 ..)
-        int startpage=(((int)((double)page/12+0.9))-1)*12+1;
+        int startpage=(((int)((double)page/10+0.9))-1)*10+1;
         //현재 페이지에 보여질 마지막 페이지(10,20 ..)
         int endpage=maxpage;
         if(endpage>startpage+10-1) endpage=startpage+10-1;
-
+        out.println(blist);
+        out.println(nickname);
+        out.println(score);
         listM.addAttribute("blist",blist); //작성글 리스트
         listM.addAttribute("nickname",nickname); //작성자 닉네임
         listM.addAttribute("score",score); //게시글 평점
+        listM.addAttribute("startrow",recipe.getStartrow());
+        listM.addAttribute("endrow",recipe.getEndrow());
         listM.addAttribute("page",page);
         listM.addAttribute("startpage",startpage);
         listM.addAttribute("endpage",endpage);

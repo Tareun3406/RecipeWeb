@@ -22,22 +22,26 @@
 
     <security:http>
 
-        <!--<security:intercept-url pattern="/admin" access="hasAuthority('ADMIN')"/>-->
-        <!--<security:access-denied-handler ref="memberAccessDenied"/> -->
+        <security:intercept-url pattern="/admin" access="hasAuthority('ADMIN')"/>
+        <security:intercept-url pattern="/member/login" access="isAnonymous()"/>
+        <security:access-denied-handler ref="memberAccessDenied"/>
+
         <security:csrf disabled="false"/>
         <security:form-login login-page="/member/login"
                              authentication-success-handler-ref="memberLoginSuccess"
-                             username-parameter="userid" password-parameter="userpw"/>
+                             username-parameter="userid" password-parameter="userpw"
+                             authentication-failure-forward-url="/member/login?error"/>
 
         <security:remember-me key="test1342"
                               token-validity-seconds="64000"/>
 
         <security:logout logout-url="/member/logout" invalidate-session="true"
                          delete-cookies="remember-me" logout-success-url="/"/>
+
     </security:http>
 
 
-    <security:authentication-manager>
+    <security:authentication-manager >
         <security:authentication-provider user-service-ref="memberDetailsService">
 
             <security:password-encoder ref="bcryptPasswordEncoder"/>

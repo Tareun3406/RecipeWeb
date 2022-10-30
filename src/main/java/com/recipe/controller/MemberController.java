@@ -51,9 +51,7 @@ public class MemberController {
 
         MemberDTO db_id = this.memberService.idCheck(userid);
         int re = -1;    // 중복아이디가 없는 경우 반환값
-        if(db_id != null){
-            re=1;   // 중복 아이디가 있는 경우
-        }
+        if(db_id != null){ re=1; }  // 중복 아이디가 있는 경우
         out.println(re);    //값 반환
         return null;
     }
@@ -95,12 +93,8 @@ public class MemberController {
         System.out.println(member);
         int result = memberService.changePwSend(member);
 
-        if (result == 0){
-            message = "아이디와 이메일을 다시 확인해주세요";
-        }
-        else {
-            message = "이메일로 비밀번호가 전송되었습니다.";
-        }
+        if (result == 0){ message = "아이디와 이메일을 다시 확인해주세요"; }
+        else { message = "이메일로 비밀번호가 전송되었습니다."; }
         mv.addObject("message", message);
         return mv;
     }

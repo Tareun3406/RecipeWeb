@@ -21,7 +21,6 @@ public class MemberDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String userid) throws UsernameNotFoundException {
-        System.out.println(userid);
         MemberDTO memberInfo = memberDAO.readMemberInfo(userid);
 
         return memberInfo == null ? null : new MemberUser(memberInfo);

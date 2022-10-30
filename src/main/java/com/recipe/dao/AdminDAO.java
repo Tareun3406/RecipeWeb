@@ -6,4 +6,8 @@ import java.util.List;
 
 public interface AdminDAO {
     List<MemberDTO> getMemberList();
+
+    MemberDTO getMemberInfo(String userid);
+
+    void updateMember(MemberDTO member);
 }

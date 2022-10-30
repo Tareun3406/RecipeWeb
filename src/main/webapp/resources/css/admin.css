@@ -45,6 +45,10 @@ header a:hover{
     color: var(--link-highlight-color);
 }
 
+form {
+    margin: 0px;
+}
+
 .material-symbols-outlined{
     display: block;
     font-size: 70px;
@@ -87,6 +91,32 @@ header a:hover{
 }
 .index-board table #colName{
     width: 100px;
+}
+
+/*  회원정보 수정 폼 */
+#editForm{
+    margin-top: 100px;
+    text-align: left;
+    border: 1px solid;
+    border-radius: 8px;
+    padding: 50px;
+}
+#editForm > div{
+    margin: 20px;
+}
+#editForm .inputArea{
+    display: block;
+    border: 1px solid;
+    border-radius: 4px;
+    padding: 10px;
+    background: white;
+}
+#editForm .inputArea input{
+    border: none;
+    font-size: 1.1em;
+}
+#editForm .inputArea input:focus {
+    outline: none;
 }
 
 

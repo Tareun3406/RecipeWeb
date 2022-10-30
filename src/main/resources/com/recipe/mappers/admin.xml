@@ -7,4 +7,9 @@
     <select id="memberList" resultType="member">
         select * from MEMBER
     </select>
+
+    <update id="memberUpdate">
+        update MEMBER set NICKNAME = #{nickname}, EMAIL = #{email}, USERPW = #{userpw} where USERID = #{userid}
+    </update>
+
 </mapper>

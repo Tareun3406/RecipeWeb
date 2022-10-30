@@ -30,9 +30,5 @@ public class MemberDTO {
 
     // 기타 정보
 
-    public void addAuthList(AuthDTO authDTO){
-        authList.add(authDTO);
-    }
-
 
 }

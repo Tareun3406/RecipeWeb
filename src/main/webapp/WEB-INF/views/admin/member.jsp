@@ -17,8 +17,12 @@
                 <tr>
                     <td>${member.userid}</td> <td>${member.email}</td> <td>${member.nickname}</td>
                     <td>
-                        <button type="button">수정</button>
-                        <button type="button">삭제</button>
+                        <form action="member/edit" method="post">
+                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" id="token">
+                            <input type="hidden" name="userid" value="${member.userid}">
+                            <button type="submit">수정</button>
+                            <button type="button">삭제</button>
+                        </form>
                     </td>
                 </tr>
             </c:forEach>

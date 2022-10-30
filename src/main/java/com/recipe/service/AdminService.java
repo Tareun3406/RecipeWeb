@@ -8,4 +8,8 @@ public interface AdminService {
 
 
     List<MemberDTO> getMemberList();
+
+    MemberDTO getMemberInfo(String userid);
+
+    void memberUpdate(MemberDTO member);
 }

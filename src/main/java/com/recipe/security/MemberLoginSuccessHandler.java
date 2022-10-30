@@ -14,7 +14,6 @@ public class MemberLoginSuccessHandler implements AuthenticationSuccessHandler {
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response
             , Authentication authentication) throws IOException, ServletException {
 
-        System.out.println("login success");
         response.sendRedirect("/");
     }
 }

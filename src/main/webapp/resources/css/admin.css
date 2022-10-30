@@ -1,0 +1,122 @@
+:root{
+    --back-nomal-color : #FFF6E8;
+    --back-point-color : #FFD8A9;
+    --back-header-color : #FDF7DC;
+    --nomal-color : #F1A661;
+    --point-color : #E38B29;
+    --chef-profile-color : var(--nomal-color);
+    --link-highlight-color :#D4BF21;
+
+    --base-a-color : black;
+
+    --placeholder-color : #FFAD7C;
+
+    --table-hover-color : #FAEEBF;
+    --table-hot-color : #FDF7DC;
+}
+
+body{
+    margin: 0px;
+    text-align: center;
+    min-width: max-content;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
+ul {
+    list-style: none;
+    padding: 0px;
+}
+
+ul li{
+    display: inline-block;
+    margin: 20px;
+    padding: 0px;
+    font-size: 30px;
+}
+
+header a{
+    color: #546E7A;
+}
+header a:hover{
+    color: var(--link-highlight-color);
+}
+
+form {
+    margin: 0px;
+}
+
+.material-symbols-outlined{
+    display: block;
+    font-size: 70px;
+}
+
+#mainList{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -350px;
+    margin-top: -100px;
+}
+
+.index-board {
+    display: inline-block;
+    margin: auto;
+}
+
+.index-board table {
+    display: inline-block;
+    border-collapse: collapse;
+    border-bottom: 1px solid var(--point-color);
+    margin: 0px 20px;
+}
+
+.index-board table th{
+    background-color: var(--table-hot-color);
+    border-top: 1px solid var(--point-color);
+    border-bottom: 1px solid var(--point-color);
+}
+.index-board table tr:hover {
+    background: var(--table-hover-color);
+}
+
+.index-board table #colId{
+    width: 150px;
+}
+.index-board table #colEmail{
+    width: 200px;
+}
+.index-board table #colName{
+    width: 100px;
+}
+
+/*  회원정보 수정 폼 */
+#editForm{
+    margin-top: 100px;
+    text-align: left;
+    border: 1px solid;
+    border-radius: 8px;
+    padding: 50px;
+}
+#editForm > div{
+    margin: 20px;
+}
+#editForm .inputArea{
+    display: block;
+    border: 1px solid;
+    border-radius: 4px;
+    padding: 10px;
+    background: white;
+}
+#editForm .inputArea input{
+    border: none;
+    font-size: 1.1em;
+}
+#editForm .inputArea input:focus {
+    outline: none;
+}
+
+

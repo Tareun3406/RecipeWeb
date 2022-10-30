@@ -22,6 +22,8 @@ create table bookmark(
     post_no number(30) not null
 );
 
+insert into AUTH values ('chanho3406','ADMIN');
+
 
 delete member where userid='aaaaa';
 

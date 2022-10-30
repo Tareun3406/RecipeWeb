@@ -8,7 +8,6 @@ import java.util.List;
 
 @Getter
 @Setter
-@ToString
 public class MemberDTO {
 
     private String userid;
@@ -30,10 +29,6 @@ public class MemberDTO {
     
 
     // 기타 정보
-
-    public void addAuthList(AuthDTO authDTO){
-        authList.add(authDTO);
-    }
 
 
 }

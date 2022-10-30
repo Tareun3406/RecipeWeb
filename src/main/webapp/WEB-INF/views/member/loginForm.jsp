@@ -7,7 +7,8 @@
 
 <body id="loginForm">
 <header>
-    <div class="logo">로고</div>
+
+    <div class="logo"><a href="/">로고</a></div>
 </header>
 <form action="/login" method="post">
     <%-- 위조방지 토큰 --%>

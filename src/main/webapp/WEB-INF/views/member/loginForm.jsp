@@ -25,6 +25,9 @@
     <div>
         <button type="submit" name="loginBtn" class="loginBtn">로그인</button>
     </div>
+    <div>
+        <span style="margin: 20px; color: indianred">${error}</span>
+    </div>
 
 </form>
 <div class="helpInfo">

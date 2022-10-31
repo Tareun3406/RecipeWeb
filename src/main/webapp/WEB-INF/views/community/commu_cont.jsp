@@ -85,9 +85,10 @@
   </div>
   
 
-  
+  <s:authorize access="isAnonymous()"></s:authorize>
   <div>
   <s:authorize access="isAuthenticated()">
+  <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" id="token">
   <div>
   	댓글 작성자:<input name="reviewer" id="newreviewer" value="${userlist.nickname}" readonly="${userlist.nickname}"/> 
   	<%--type속성을생략하면 기본값이 text이다. --%>

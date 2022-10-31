@@ -1,5 +1,6 @@
 package com.recipe.controller;
 
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -103,24 +104,46 @@ public class CommuController {
         return "redirect:/commu_list";
     }
     
+    
     // 03. 게시글 상세내용 조회, 게시글 조회수 증가 처리
     // @RequestParam : get/post방식으로 전달된 변수 1개
     // HttpSession 세션객체
-    @RequestMapping(value="/community/commu_cont", method =RequestMethod.GET)
-    public ModelAndView view(@RequestParam int comu_no, HttpSession session) throws Exception{
-        // 조회수 증가 처리     
+    //댓글 등록화면(로그인 되어있는 유저 닉네임 가져오기)
+	@RequestMapping(value="/commu_cont", method =RequestMethod.GET)
+    public ModelAndView view(@RequestParam int comu_no, HttpSession session
+    		,HttpServletRequest request,Authentication authentication
+    		,HttpServletResponse response) throws Exception{
+	    response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out=response.getWriter();
+		session = request.getSession();
+		 String loginId = (String) session.getAttribute("loginId");
+		if(loginId == null) {
+    		 out.println("<script>");
+	         out.println("alert('로그인후 이용해 주세요!');");
+	         out.println("location='loginForm';");
+	         out.println("</script>");
+    	}
+		//로그인한 유저 닉네임 가져오기
+    	UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+    	System.out.println(userDetails.getUsername());
+
+    	String c=userDetails.getUsername();
+
+    	// 조회수 증가 처리     
+    	commuService.increaseViewcnt(comu_no,session);//번호에 해당하는 레코드를 가져오고, 그전에 조회수 증가
     	
-    	
-        commuService.increaseViewcnt(comu_no,session);//번호에 해당하는 레코드를 가져오고, 그전에 조회수 증가
-		
-        // 모델(데이터)+뷰(화면)를 함께 전달하는 객체
+    	MemberDTO vo = commuService.getmynickname(c);
+    
+    	// 모델(데이터)+뷰(화면)를 함께 전달하는 객체
         ModelAndView mav = new ModelAndView();
         // 뷰의 이름
         mav.setViewName("/community/commu_cont");
         // 뷰에 전달할 데이터
         mav.addObject("dto", commuService.read(comu_no));
+        mav.addObject("userlist",vo);
         
         return mav;
+            	
     }
     
     //수정폼 이동

@@ -34,6 +34,7 @@
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 
+
     <!-- method = post방식으로 전달된 한글을 안깨지게 한다.
          request.setCharacterEncoding("utf-8"); 코드를 추가하지 않아도 된다.-->
 
@@ -52,7 +53,19 @@
     </filter-mapping>
 
 
+
     <!-- security 필터 적용-->
+    <!-- multipart 필터적용 -->
+	<filter>
+    	<display-name>springMultipartFilter</display-name>
+    	<filter-name>springMultipartFilter</filter-name>
+    	<filter-class>org.springframework.web.multipart.support.MultipartFilter</filter-class>
+	</filter>
+	<filter-mapping>
+    	<filter-name>springMultipartFilter</filter-name>
+    	<url-pattern>/*</url-pattern>
+	</filter-mapping>
+    
     <filter>
         <filter-name>springSecurityFilterChain</filter-name>
         <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>

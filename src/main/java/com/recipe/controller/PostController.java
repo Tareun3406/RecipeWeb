@@ -1,13 +1,13 @@
 package com.recipe.controller;
 
 import java.io.File;
-import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,21 +15,23 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.recipe.service.Recipe_PostService;
-import com.recipe.vo.Recipe_ContentDTO;
-import com.recipe.vo.Recipe_PostDTO;
+import com.recipe.service.PostService;
+import com.recipe.vo.ContentVO;
+import com.recipe.vo.PostVO;
 
 @Controller
-public class Recipe_PostController {
+public class PostController {
 
 	@Autowired
-	private Recipe_PostService recipe_PostService;
+	private PostService postService;
+	
+	
 	
 	
 	/*	
@@ -80,6 +82,13 @@ public class Recipe_PostController {
 */	
 	
 	
+	@RequestMapping(value="/form")
+    public String form() {
+        return "uploadForm";
+    }
+	
+	
+	
 	// 레시피 글쓰기
 	@RequestMapping("recipe_post")
 	public ModelAndView recipe_post(HttpServletResponse response,HttpServletRequest request,HttpSession session)throws Exception {
@@ -98,58 +107,15 @@ public class Recipe_PostController {
 	
 	
 	// 레시피 등록완료
-	@PostMapping("recipe_post_ok")
-	public ModelAndView recipe_post_ok(@RequestParam("")List<MultipartFile> multiFileList,Recipe_PostDTO rpd,Recipe_ContentDTO rcd,
-								HttpSession session,HttpServletResponse response,HttpServletRequest request)throws Exception{
+	@RequestMapping("recipe_post_ok")
+	public ModelAndView recipe_post_ok(PostVO pv,ContentVO cv,HttpServletResponse response)throws Exception{
+		this.postService.insertRp(pv,cv);
+
 		
 		response.setContentType("text/html;charset=UTF-8");
-		PrintWriter out=response.getWriter();
+		ModelAndView wv2=new ModelAndView("main/index");
 		
-		
-		
-		// 경로 가져오기
-		String path = request.getSession().getServletContext().getRealPath("resources/upload");
-		String root= path + "/uploadFiles";
-				
-		File fileCheck = new File(root);
-				
-		if(!fileCheck.exists()) fileCheck.mkdirs();
-				
-		List<Map<String,String>> fileList = new ArrayList<>();
-				
-		for(int i=0; i<multiFileList.size(); i++) {
-			String originFile=multiFileList.get(i).getOriginalFilename();
-			String ext=originFile.substring(originFile.lastIndexOf("."));
-			String changeFile = UUID.randomUUID().toString()+ext;
-					
-			Map<String, String> map = new HashMap<>();
-			map.put("originFile",originFile);
-			map.put("changeFile",changeFile);
-			
-			fileList.add(map);
-		}
-				
-		// 파일 업로드
-		try {
-			for(int i =0; i < multiFileList.size(); i++) {
-				File uploadFile = new File(root+"\\"+fileList.get(i).get("changeFile"));
-				multiFileList.get(i).transferTo(uploadFile);
-			}
-			out.println("게시글 등록 완료!");
-			
-		}catch(IllegalStateException | IOException e) {
-			out.println("게시글 등록 실패.");
-			e.printStackTrace();
-			for(int i=0; i < multiFileList.size(); i++) {
-				new File(root+"\\"+fileList.get(i).get("changeFile")).delete();
-			}
-		}
-				
-			this.recipe_PostService.insertRp(rpd);
-			
-			ModelAndView wv2=new ModelAndView("main/index");
-			return wv2;
-		
+		return wv2;
 		
 	}
 }

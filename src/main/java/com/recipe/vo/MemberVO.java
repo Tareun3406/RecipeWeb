@@ -10,7 +10,7 @@ import java.util.List;
 @Getter
 @Setter
 @ToString
-public class MemberVO {
+public class MemberVO<RecipepostVO> {
 
     private String userid;
     private String userpw;

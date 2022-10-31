@@ -7,6 +7,7 @@
   border-radius: 5px;
   border: 2px solid rgba(0,0,0,0.1);
   margin: -15px 0px 0px 140px;
+  background-color: white;
 }
 
 #att_zone:empty:before {
@@ -51,7 +52,7 @@
 .btn.red:active {box-shadow: 0 0 #ff4c4b; background-color: #ff4c4b;}
 
 #backimg{
-	background-image: url('../images/backimg.png');
+	background-image: url('/resources/images/content/backgroundimage.png');
 }
 
 
@@ -102,15 +103,7 @@ insert .file-list .filebox .delete i{
     border: 2px solid rgba(0,0,0,0.1);
 }
 
-#cate{
-	
-	height: 40px;
-    width: 300px;
-    margin: -15px 0px 0px 70px;
-    border-radius: 5px;
-    border: 2px solid rgba(0,0,0,0.1);
-    color:black;
-}
+
 
 
 #ck_title{
@@ -121,11 +114,19 @@ insert .file-list .filebox .delete i{
     border: 2px solid rgba(0,0,0,0.1);
 }
 
+#ck_tag{
+	border-radius: 5px;
+    height: 40px;
+    width: 600px;
+    margin: 20px 0px 0px 100px;
+    border: 2px solid rgba(0,0,0,0.1);
+}
+
 #ck_cont{
 	border-radius: 5px;
     height: 200px;
     width: 600px;
-    margin: 0px 0px 0px 102px;
+    margin: 30px 0px 0px 102px;
     font-size:19px;
     border: 2px solid rgba(0,0,0,0.1);
 }
@@ -174,7 +175,6 @@ hr{
 }
 
 #r9{
-	background-color: white;
 	display:flex;
 	margin: 0 auto;
 	border-radius: 2px;
@@ -187,6 +187,7 @@ hr{
 #re h1{
 	text-align: left;
 	padding:6px 6px 6px 6px;
+	font-size: 22px;
 }
 
 

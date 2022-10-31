@@ -45,9 +45,12 @@
         <result property="email" column="email"/>
     </resultMap>
 
+
+
+
     <!-- 게시글 등록 -->
-    <insert id="rp_in">
-        insert into RECIPE_POST (post_no, writer, title, hit, regdate, update, thumnail, ingredient, recommend, post_tag, tip, writer ) values
+    <insert id="post_insert">
+        insert into RECIPE_POST (post_no, writer, title, hit, regdate, update, thumnail, ingredient, bookmark, post_tag, tip, writer ) values
             (post_no_seq.nextval, #{writer}, #{title}, 0, sysdate, sysdate, #{thumnail}, #{ingredient}, 0, #{post_tag}, #{tip}, #{writer} )
     </insert>
 

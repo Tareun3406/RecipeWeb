@@ -7,7 +7,7 @@ create table RECIPE_POST(
     ,tip varchar2(1000)     -- 나만의 팁
     ,thumnail varchar2(4000)    -- 썸네일
     ,hit varchar2(500)    -- 조회수
-    ,recommend varchar2(500)    -- 추천수
+    ,bookmark number(38)    -- 즐겨찾기
     ,regdate date     -- 등록날짜
     ,editdate date    -- 수정날짜
 );
@@ -26,12 +26,21 @@ nocache;   -- 임시메모리 x
 select post_no_seq.nextval from dual;
 
 
+select *from boardTest;
+
 create table recipe_content(
     STEP NUMBER(38)
    ,IMAGE VARCHAR2(200) NOT NULL
    ,MANUAL VARCHAR2(4000) NOT NULL
    ,POST_NO NUMBER(38)
-   CONSTRAINT FOREIGN_KEY_recipe_content_POST_NO references RECIPE_POST
+   
+   ,CONSTRAINT fk_content Foreign key(post_no)
+   references recipe_post (post_no) on delete cascade
 );
+
+
+select * from recipe_post;
+
+drop table recipe_content;
 
 select * from recipe_content;

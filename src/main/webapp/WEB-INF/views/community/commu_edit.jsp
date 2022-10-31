@@ -26,11 +26,11 @@ $(document).ready(function(){
                 document.form1.content.focus();
                 return;
             }
-            if(writer_edit == ""){
-                alert("이름을 입력하세요");
-                document.form1.writer_edit.focus();
-                return;
-            }
+//             if(writer_edit == ""){
+//                 alert("이름을 입력하세요");
+//                 document.form1.writer_edit.focus();
+//                 return;
+//             }
             document.form1.action="/community/commu_edit_ok"
             // 폼에 입력한 데이터를 서버로 전송
             document.form1.submit();
@@ -40,7 +40,8 @@ $(document).ready(function(){
 <div id="bsW_wrap">
 	<h2 class="bsW_title">자료실 글수정</h2>
 	<form name="form1" method="post" >
-
+	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" id="token">
+	
     <div>
         제목
         <input name="title" id="title" size="80" value="${dto.title}" placeholder="제목을 입력해주세요">
@@ -52,7 +53,7 @@ $(document).ready(function(){
     </div>
     <div>
         이름
-        <input name="writer" id="writer" value="${dto.writer}" placeholder="이름을 입력해주세요">
+        <input name="writer" id="writer" value="${dto.nickname}" readonly="${dto.nickname}"/>
     </div>
     <div style="width:650px; text-align: center;">
         <!-- 게시물번호를 hidden으로 처리 -->

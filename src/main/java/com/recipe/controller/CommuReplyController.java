@@ -2,10 +2,11 @@ package com.recipe.controller;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
+
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,17 +23,19 @@ public class CommuReplyController {
 	
 	@Autowired
 	CommuReplyService commuReplyService;
+
 	
-	//댓글등록
+	//댓글등록처리
 		@RequestMapping("/addreply") //post로 접근하는 매핑주소 처리
 		public ResponseEntity<String> addReply(@RequestBody CommuReplyVO vo){
-			//@RequestBody는 전송된 json데이터를 ReplyVO타입으로 변환해준다.
+						//@RequestBody는 전송된 json데이터를 ReplyVO타입으로 변환해준다.
+
 			ResponseEntity<String> entity = null;
-			
-			try {
+			try {				
 				this.commuReplyService.insertReply(vo);//댓글저장
 				entity = new ResponseEntity<>("SUCCESS",HttpStatus.OK);//댓글등록 성공시 SUCCESS문자가 반환되고,
 				//Http 상태 코드 정상을 뜻하는 200(저장 성공한 경우)을 반환한다.
+
 			}catch(Exception e) {
 				e.printStackTrace();
 				entity = new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);

@@ -22,13 +22,13 @@
 					<!-- 메뉴 -->
 					<div class="menu">
 						<ul>
-							<li><a href="commu.jsp">자유게시판 <i
+							<li><a href="/commu_list">자유게시판 <i
 									class="fa fa-angle-double-right" aria-hidden="true"></i></a></li>
-							<li><a href="Q&A.jsp">Q&A <i class="fa fa-angle-double-right"
+							<li><a href="#">Q&A <i class="fa fa-angle-double-right"
                                                          aria-hidden="true"></i></a></li>
-							<li><a href="comment.jsp">한줄댓글 <i class="fa fa-angle-double-right"
+							<li><a href="#">한줄댓글 <i class="fa fa-angle-double-right"
                                                               aria-hidden="true"></i></a></li>
-							<li><a href="tip.jsp">꿀 tip <i
+							<li><a href="#">꿀 tip <i
 									class="fa fa-angle-double-right" aria-hidden="true"></i></a></li>
 
 						</ul>
@@ -97,11 +97,11 @@
 								<tr>
 							<td align="center">${b.comu_no}</td>
 							<td align="center">
-							<a href="/community/commu_cont?comu_no=${b.comu_no}">${b.title}</a>
+							<a href="/commu_cont?comu_no=${b.comu_no}">${b.title}</a>
 							</td>
 							<%-- ?bbs_no=번호&state=cont&page=쪽번호 주소창에 노출되는get방식으로 3개의 피라미터
      				이름에 인자값이 저장되어 전달된다. --%>
-							<td align="center">${nickname}</td>
+							<td align="center">${b.nickname}</td>
 							<td align="center">${fn:substring(b.regdate,2,16)}</td>
 							<%-- 0이상 10미만 사이의 년월일만 반환--%>
 							<td align="center">${b.viewcnt}</td>

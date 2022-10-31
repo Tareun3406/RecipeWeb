@@ -35,33 +35,27 @@ public class CommuDAOImpl implements CommuDAO {
         SqlSession.delete("deleteArticle",comu_no);
  
     }
-    // 05. 게시글 전체 목록
-    @Override
-    public List<CommuVO> listAll() throws Exception {
-        return SqlSession.selectList("listAll");
-    }
+
     // 게시글 조회수 증가
     @Override
     public  void increaseViewcnt(int comu_no) throws Exception {
         SqlSession.update("increaseViewcnt", comu_no);
     }
-    //
+    //게시글 총 개수
 	@Override
 	public int getTotalCount(CommuVO vo) {
-		return this.SqlSession.selectOne("bbs_count",vo);
+		return this.SqlSession.selectOne("comu_count",vo);
 	}
-	//
+	//게시글 목록
 	@Override
 	public List<CommuVO> getCommuList(CommuVO vo) {
-		return this.SqlSession.selectList("bbs_list",vo);
+		return this.SqlSession.selectList("comu_list",vo);
 	}
 	//닉네임 가져오기
 	@Override
 	public MemberDTO getMynickname(String c) {
 		return this.SqlSession.selectOne("my_nickname",c);
 	}
-	@Override
-	public void getnickname(CommuVO vo) {
-		this.SqlSession.selectOne("writer_nickname",vo);
-	}
+
+
 }

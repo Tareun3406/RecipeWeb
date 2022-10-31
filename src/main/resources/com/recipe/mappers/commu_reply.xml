@@ -7,7 +7,8 @@
   <!-- 댓글 저장 -->
   <insert id="reply_in" parameterType="commu_reply">
     insert into comu_reply(reply_no,comu_no,reviewer,content,regdate) 
-    values(reply_no_seq.nextval,#{comu_no},#{reviewer},#{content},sysdate)
+    values(reply_no_seq.nextval,#{comu_no},(select userid from member where
+		NICKNAME=#{reviewer}),#{content},sysdate)
     <!-- #{bno}하면 getBno()를 호출한 것과 같은 효과가 난다. -->
   </insert>
 
@@ -31,7 +32,12 @@
   <select id="reply_comuno" parameterType="int" resultType="int">
     select comu_no from comu_reply where reply_no=#{reply_no}
   </select>
-
+  
+	<!-- 로그인한 유저 닉네임 가져오기 -->
+	<select id="my_nick" resultType="member">
+		select * from member where
+		member.userid=#{id}
+	</select>
 
 
 </mapper>

@@ -15,12 +15,10 @@ public interface CommuDAO {
     // 04. 게시글 삭제
     public void delete(int comu_no) throws Exception;
     // 05. 게시글 전체 목록
-    public List<CommuVO> listAll() throws Exception;
+    public List<CommuVO> getCommuList(CommuVO vo);
     // 06. 게시글 조회 증가
     public void increaseViewcnt(int comu_no) throws Exception;
 	public int getTotalCount(CommuVO vo);
-	public List<CommuVO> getCommuList(CommuVO vo);
 	public MemberDTO getMynickname(String c);
-	public void getnickname(CommuVO vo);
 
 }

@@ -3,6 +3,7 @@ package com.recipe.dao;
 import java.util.List;
 
 import com.recipe.vo.CommuReplyVO;
+import com.recipe.vo.MemberDTO;
 
 public interface CommuReplyDAO {
 
@@ -15,5 +16,7 @@ public interface CommuReplyDAO {
 	void deleteReply(int reply_no);
 
 	int getComu_no(int reply_no);
+
+	MemberDTO getmynickname(String c);
 
 }

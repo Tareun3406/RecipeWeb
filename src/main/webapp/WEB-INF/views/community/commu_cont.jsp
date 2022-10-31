@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="s" %>
 
 <jsp:include page="../main/header.jsp" flush="false" />
 <link href="${pageContext.request.contextPath}/css/commu.css"
@@ -47,7 +48,7 @@
     <th>내용</th> <td>${dto.content}</td>
    </tr>
    <tr>
-    <th>작성자</th> <td>${userlist.nickname}</td>   
+    <th>작성자</th> <td>${dto.nickname}</td>   
    </tr>
    <tr>
     <th>조회수</th> <td>${dto.viewcnt}</td>   
@@ -83,11 +84,14 @@
     </div>
   </div>
   
-  <h2>비동기식 아작스 연습(REST api)</h2>
-  
+
+  <s:authorize access="isAnonymous()"></s:authorize>
   <div>
+  <s:authorize access="isAuthenticated()">
+  <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" id="token">
   <div>
-  	댓글 작성자:<input name="reviewer" id="newreviewer"/> <%--type속성을생략하면 기본값이 text이다. --%>
+  	댓글 작성자:<input name="reviewer" id="newreviewer" value="${userlist.nickname}" readonly="${userlist.nickname}"/> 
+  	<%--type속성을생략하면 기본값이 text이다. --%>
   </div>
   <br/>
   <div>
@@ -95,6 +99,7 @@
   </div>
   <br/>
     <button id="replyAddBtn">댓글 등록</button>
+  </s:authorize>
   </div>
   
   <br/>
@@ -127,7 +132,7 @@
     
     //댓글 추가
     $('#replyAddBtn').on('click',function(){
-    	$reviewer=$('#newreviewer').val();//댓글 작성자
+    	//$reviewer=$('#newreviewer');댓글 작성자
     	$content=$('#newcontent').val();//댓글내용
     	
     	$.ajax({
@@ -140,7 +145,7 @@
     		dataType:'text',
     		data:JSON.stringify({
     			comu_no:$comu_no,//게시판 번호값
-    			reviewer:$reviewer,//댓글 작성자
+    			//reviewer:$reviewer,//댓글 작성자
     			content:$content//댓글 내용
     		}),
     		success:function(data){//비동기식으로 가져오는 것이 성공시 호출되는 콜백 함수, 가져온 문자는 data매개변수에 저장

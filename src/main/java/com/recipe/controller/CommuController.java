@@ -9,8 +9,6 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.context.SecurityContextHolderStrategy;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.recipe.service.CommuService;
-import com.recipe.service.MypageService;
 import com.recipe.vo.CommuVO;
 import com.recipe.vo.MemberDTO;
 
@@ -31,9 +28,6 @@ public class CommuController {
     
     // 의존관계 주입 => BoardServiceImpl 생성
     // IoC 의존관계 역전
-	
-	private SecurityContextHolderStrategy securityContextHolderStrategy = SecurityContextHolder
-			.getContextHolderStrategy();
 	
     @Autowired
     CommuService commuService;
@@ -56,8 +50,10 @@ public class CommuController {
 
          
          vo.setStartrow((page-1)*10+1);//시작행번호
-          vo.setEndrow(vo.getStartrow()+limit-1);//끝행 번호
+         vo.setEndrow(vo.getStartrow()+limit-1);//끝행 번호
          
+
+          
          List<CommuVO> blist=this.commuService.getComuList(vo);
          //검색 전후 목록
          
@@ -88,6 +84,7 @@ public class CommuController {
     		,Model model,Authentication authentication)throws Exception{
     	UserDetails userDetails = (UserDetails) authentication.getPrincipal();
     	String c=userDetails.getUsername();
+    	
     	response.setContentType("text/html;charset=UTF-8");
   
         MemberDTO vo = commuService.getmynickname(c);
@@ -103,29 +100,50 @@ public class CommuController {
     public String insert(@ModelAttribute CommuVO vo) throws Exception{
     	
     	commuService.create(vo);
-    	commuService.getnickname(vo);//유저아이디에 해당하는 닉네임 가져오기
-    	
+
         return "redirect:/commu_list";
     }
+    
     
     // 03. 게시글 상세내용 조회, 게시글 조회수 증가 처리
     // @RequestParam : get/post방식으로 전달된 변수 1개
     // HttpSession 세션객체
-    @RequestMapping(value="/community/commu_cont", method =RequestMethod.GET)
-    public ModelAndView view(@RequestParam int comu_no, HttpSession session) throws Exception{
-        // 조회수 증가 처리     
+    //댓글 등록화면(로그인 되어있는 유저 닉네임 가져오기)
+	@RequestMapping(value="/commu_cont", method =RequestMethod.GET)
+    public ModelAndView view(@RequestParam int comu_no, HttpSession session
+    		,HttpServletRequest request,Authentication authentication
+    		,HttpServletResponse response) throws Exception{
+	    response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out=response.getWriter();
+		session = request.getSession();
+		 String loginId = (String) session.getAttribute("loginId");
+		if(loginId == null) {
+    		 out.println("<script>");
+	         out.println("alert('로그인후 이용해 주세요!');");
+	         out.println("location='loginForm';");
+	         out.println("</script>");
+    	}
+		//로그인한 유저 닉네임 가져오기
+    	UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+    	System.out.println(userDetails.getUsername());
+
+    	String c=userDetails.getUsername();
+
+    	// 조회수 증가 처리     
+    	commuService.increaseViewcnt(comu_no,session);//번호에 해당하는 레코드를 가져오고, 그전에 조회수 증가
     	
-    	
-        commuService.increaseViewcnt(comu_no,session);//번호에 해당하는 레코드를 가져오고, 그전에 조회수 증가
-		
-        // 모델(데이터)+뷰(화면)를 함께 전달하는 객체
+    	MemberDTO vo = commuService.getmynickname(c);
+    
+    	// 모델(데이터)+뷰(화면)를 함께 전달하는 객체
         ModelAndView mav = new ModelAndView();
         // 뷰의 이름
         mav.setViewName("/community/commu_cont");
         // 뷰에 전달할 데이터
         mav.addObject("dto", commuService.read(comu_no));
+        mav.addObject("userlist",vo);
         
         return mav;
+            	
     }
     
     //수정폼 이동

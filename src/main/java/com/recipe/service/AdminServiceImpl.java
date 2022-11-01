@@ -63,5 +63,10 @@ public class AdminServiceImpl implements AdminService{
         adminDAO.updateMember(member);
     }
 
+    @Override
+    public void deleteMember(String userid) {
+        adminDAO.deleteMember(userid);
+    }
+
 
 }

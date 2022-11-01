@@ -12,4 +12,6 @@ public interface AdminDAO {
     void updateMember(MemberDTO member);
 
     int getMemberListCount(String search);
+
+    void deleteMember(String userid);
 }

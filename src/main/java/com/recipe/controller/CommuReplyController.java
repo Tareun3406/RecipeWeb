@@ -18,7 +18,6 @@ import com.recipe.vo.CommuReplyVO;
 
 @RestController
 @RequestMapping("/replies")//컨트롤러 자체에 replies 매핑주소 등록
-
 public class CommuReplyController {
 	
 	@Autowired
@@ -26,7 +25,7 @@ public class CommuReplyController {
 
 	
 	//댓글등록처리
-		@RequestMapping("/addreply") //post로 접근하는 매핑주소 처리
+		@RequestMapping(value="/addreply") //post로 접근하는 매핑주소 처리
 		public ResponseEntity<String> addReply(@RequestBody CommuReplyVO vo){
 						//@RequestBody는 전송된 json데이터를 ReplyVO타입으로 변환해준다.
 

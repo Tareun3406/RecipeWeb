@@ -32,7 +32,7 @@ public class AdminDAOImpl implements AdminDAO{
     }
 
     @Override
-    public int getMemberListCount() {
-        return sqlSession.selectOne("memberListCount");
+    public int getMemberListCount(String search) {
+        return sqlSession.selectOne("memberListCount", search);
     }
 }

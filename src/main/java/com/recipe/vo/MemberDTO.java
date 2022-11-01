@@ -28,8 +28,9 @@ public class MemberDTO {
 
     
 
-    // 관리자 페이징
-    private int rowMin;
-    private int rowMax;
+    // 관리자 페이지.
+    private int rowMin; // 레코드 시작번호
+    private int rowMax; // 레코드 끝 번호
+    private String search;// 검색어
 
 }

@@ -5,11 +5,28 @@
 
 <mapper namespace="admin">
     <select id="memberList" resultType="member">
-        select * from (select * from MEMBER) where ROWNUM between ${rowMin} and ${rowMax}
+        select * from (select ROWNUM rNum,member.* from MEMBER
+                        <where>
+                            <if test="search == ''"/>  <!-- 검색어 없음 -->
+                            <if test="search != ''">
+                                userid like '%${search}%'
+                                or nickname like '%${search}%'
+                                or email like '%${search}%'
+                            </if>
+                        </where>)
+                 where rNum between ${rowMin} and ${rowMax}
     </select>
 
     <select id="memberListCount" resultType="int">
-        select count(*) from MEMBER
+        select count(*) from (select * from MEMBER
+            <where>
+                <if test="search == ''"/>  <!-- 검색어 없음 -->
+                <if test="search != ''">
+                    userid like '%${search}%'
+                    or nickname like '%${search}%'
+                    or email like '%${search}%'
+                </if>
+            </where>)
     </select>
 
     <update id="memberUpdate">

@@ -5,8 +5,9 @@
 <script>
 </script>
 <div>
-    <form>
-        <input type="text" name="idSearch">
+    <form action="/admin/member" method="get">
+        <input type="text" name="search" size="50">
+        <input type="submit" value="검색">
     </form>
     <article class="index-board">
         <table>
@@ -28,17 +29,20 @@
             </c:forEach>
         </table>
         <br>
-        <c:forEach var="i" begin="${page}" end="${totalPage}">
-            <c:if test="${i<=0}">
-                ${i = 1}
-            </c:if>
-            <c:if test="${i == page}">
-                <c:out value="[${page}]"/>
-            </c:if>
-            <c:if test="${i != page}">
-                <a href="/admin/member?page=${i}">${i}</a>
-            </c:if>
-            &nbsp;
+        <c:forEach var="i" begin="1" end="${totalPage}">
+                <c:if test="${i == page}">
+                    <c:out value="[${page}]"/>
+                </c:if>
+                <c:if test="${i != page}">
+                    <c:if test="${search == null}">
+                        <a href="/admin/member?page=${i}">${i}</a>
+                    </c:if>
+                    <c:if test="${search != null}">
+                        <a href="/admin/member?search=${search}&page=${i}">${i}</a>
+                    </c:if>
+
+                </c:if>
+                &nbsp
         </c:forEach>
     </article>
 </div>

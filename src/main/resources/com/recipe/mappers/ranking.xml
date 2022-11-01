@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ranking">
+<select id="rank_count" resultType="int" >
+    select count(post_no) from
+    (select * from RECIPE_POST left join member on (RECIPE_POST.WRITER = MEMBER.USERID))
+    <where>
+        <if test="find_date == ''"></if>
+        <if test="find_date == 1">REGDATE &gt;= to_date(sysdate-1,'yy-mm-dd') and REGDATE &lt;=to_date(sysdate,'yy-mm-dd')</if>
+        <if test="find_date == 7">REGDATE &gt;= to_date(sysdate-7,'yy-mm-dd') and REGDATE &lt;=to_date(sysdate,'yy-mm-dd')</if>
+        <if test="find_date == 30">REGDATE &gt;= to_date(sysdate-30,'yy-mm-dd') and REGDATE &lt;=to_date(sysdate,'yy-mm-dd')</if>
+    </where>
+</select>
+
+    <select id="rank_list" resultType="ranking">
+        select * from (select p.*,ROWNUM rNum from
+
+        (select u.POST_NO,TITLE,hit,THUMNAIL,BOOKMARK,WRITER,score,nickname,REGDATE
+        from member right join
+
+        (select c.POST_NO,TITLE,hit,THUMNAIL,BOOKMARK,WRITER,score,UPDATEDATE,REGDATE
+        from RECIPE_POST left join
+
+        (select a.post_no, nvl(round(avg(score), 2), 0) as score
+        from RECIPE_POST a left join RECIPE_REPLY b on (b.post_no = a.POST_NO)
+        group by a.post_no order by POST_NO desc)c on c.POST_NO=RECIPE_POST.POST_NO )u
+
+        on (WRITER=userid)
+            <if test="find_name == ''">order by hit desc</if>
+            <if test="find_name == '레시피랭킹'">order by hit desc</if>
+            <if test="find_name == '쉐프랭킹'">order by BOOKMARK desc</if>
+            )p
+        <where>
+            <if test="find_date == ''"></if>
+            <if test="find_date == 1">REGDATE &gt;= to_date(sysdate-1,'yy-mm-dd') and REGDATE &lt;=to_date(sysdate,'yy-mm-dd')</if>
+            <if test="find_date == 7">REGDATE &gt;= to_date(sysdate-7,'yy-mm-dd') and REGDATE &lt;=to_date(sysdate,'yy-mm-dd')</if>
+            <if test="find_date == 30">REGDATE &gt;= to_date(sysdate-30,'yy-mm-dd') and REGDATE &lt;=to_date(sysdate,'yy-mm-dd')</if>
+        </where>
+        )where rNum &gt;=#{startrow} and rNum &lt;=#{endrow} order by rNum
+    </select>
+</mapper>

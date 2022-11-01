@@ -28,7 +28,7 @@ border: solid 1px white; ">
    <div style="margin-left: 2px;">작성자 : ${recipe.nickname} </div>
    <div class="hitandpoint">
     <span style="margin-left: 2px;">평점 : ${recipe.score}</span> <%-- 댓글불러와서 평점만들기--%>
-    <span>추천수 : ${recipe.recommend}</span>
+    <span>추천수 : ${recipe.bookmark}</span>
     <span>조회수 : ${recipe.hit}</span>
    </div>
    </div>

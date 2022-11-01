@@ -24,12 +24,7 @@
 						<ul>
 							<li><a href="/commu_list">자유게시판 <i
 									class="fa fa-angle-double-right" aria-hidden="true"></i></a></li>
-							<li><a href="#">Q&A <i class="fa fa-angle-double-right"
-                                                         aria-hidden="true"></i></a></li>
-							<li><a href="#">한줄댓글 <i class="fa fa-angle-double-right"
-                                                              aria-hidden="true"></i></a></li>
-							<li><a href="#">꿀 tip <i
-									class="fa fa-angle-double-right" aria-hidden="true"></i></a></li>
+						
 
 						</ul>
 					</div>
@@ -42,36 +37,7 @@
 						<a href="#">* 커뮤니티 이용관련 공지사항 *</a>
 					</p>
 					<!-- 게시판 -->
-					<div class="notice1">
-						<h5>인기 게시물</h5>
-						<ul>
-							<li><a href="#">자유게시판 제목 넣어야징~~</a></li>
-							<li><a href="#">자유게시판 제목 넣어야징~~</a></li>
-							<li><a href="#">자유게시판 제목 넣어야징~~</a></li>
-							<li><a href="#">자유게시판 제목 넣어야징~~</a></li>
-						</ul>
-						<a href="commu.jsp" class="more" title="더 보기">More<i
-							class="fa fa-plus-circle" aria-hidden="true"></i></a>
-					</div>
-					<!-- //게시판 -->
-
-					<!-- 게시판2 -->
-					<div class="notice2 mt15">
-						<h5>인기 꿀 tip</h5>
-						<ul>
-							<li><a href="#">인기있는 꿀 팁 제목 어쩌구~인기있는 꿀 팁 제목 어쩌구~ 인기있는 꿀
-									팁 제목 어쩌구~</a></li>
-							<li><a href="#">인기있는 꿀 팁 제목 어쩌구~인기있는 꿀 팁 제목 어쩌구~ 인기있는 꿀
-									팁 제목 어쩌구~</a></li>
-							<li><a href="#">인기있는 꿀 팁 제목 어쩌구~인기있는 꿀 팁 제목 어쩌구~ 인기있는 꿀
-									팁 제목 어쩌구~</a></li>
-							<li><a href="#">인기있는 꿀 팁 제목 어쩌구~인기있는 꿀 팁 제목 어쩌구~ 인기있는 꿀
-									팁 제목 어쩌구~</a></li>
-						</ul>
-						<a href="tip.jsp" class="more" title="더 보기">More<i
-							class="fa fa-plus-circle" aria-hidden="true"></i></a>
-					</div>
-					<!-- //게시판2 -->
+			
 				</article>
 
 			</section>

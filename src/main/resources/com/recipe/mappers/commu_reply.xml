@@ -9,7 +9,7 @@
     insert into comu_reply(reply_no,comu_no,reviewer,content,regdate) 
     values(reply_no_seq.nextval,#{comu_no},(select userid from member where
 		NICKNAME=#{reviewer}),#{content},sysdate)
-    <!-- #{bno}하면 getBno()를 호출한 것과 같은 효과가 난다. -->
+    
   </insert>
 
 

@@ -11,5 +11,4 @@ public class SubscribeVO {
     private String subscriber_id; //구독한 사람
     private String target_id; //구독받은 사람
 
-
 }

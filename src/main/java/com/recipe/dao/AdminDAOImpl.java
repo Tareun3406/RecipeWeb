@@ -15,8 +15,8 @@ public class AdminDAOImpl implements AdminDAO{
 
     // 회원 리스트
     @Override
-    public List<MemberDTO> getMemberList() {
-        return sqlSession.selectList("memberList");
+    public List<MemberDTO> getMemberList(MemberDTO dto) {
+        return sqlSession.selectList("memberList", dto);
     }
 
     // 회원 정보
@@ -29,5 +29,10 @@ public class AdminDAOImpl implements AdminDAO{
     @Override
     public void updateMember(MemberDTO member) {
         sqlSession.update("memberUpdate", member);
+    }
+
+    @Override
+    public int getMemberListCount() {
+        return sqlSession.selectOne("memberListCount");
     }
 }

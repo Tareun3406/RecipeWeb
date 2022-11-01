@@ -13,13 +13,13 @@
                 <a href="/">메인페이지</a>
             </li>
             <li>
-                <a href="recipe">레시피 관리</a>
+                <a href="/admin/recipe">레시피 관리</a>
             </li>
             <li>
-                <a href="community">커뮤니티 관리</a>
+                <a href="/admin/community">커뮤니티 관리</a>
             </li>
             <li>
-                <a href="member">회원 관리</a>
+                <a href="/admin/member">회원 관리</a>
             </li>
         </ul>
     </div>

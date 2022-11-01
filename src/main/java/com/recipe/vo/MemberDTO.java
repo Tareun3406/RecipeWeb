@@ -28,7 +28,8 @@ public class MemberDTO {
 
     
 
-    // 기타 정보
-
+    // 관리자 페이징
+    private int rowMin;
+    private int rowMax;
 
 }

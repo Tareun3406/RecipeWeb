@@ -9,6 +9,31 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <jsp:include page="../main/header.jsp" />
+<link href="${pageContext.request.contextPath}/resources/css/content.css" rel="stylesheet" type="text/css">
+<script src="https://kit.fontawesome.com/129ea0b18b.js" crossorigin="anonymous"></script>
+<script>
+    function goLogin(){
+        alert('로그인 후 이용해주세요.');
+        location = '/member/login';
+    }
+    function duplicateRegistration(){
+        alert('등록된 리뷰가 존재합니다.');
+    }
+    function reviewCheck(){
+        if($('#review_text').val().length <= 0 || $('#review_text').val() == '댓글을 입력해주세요.'){
+            alert('댓글을 입력해주세요.');
+            return false;
+        }else{
+            document.getElementById('starForm').submit();
+        }
+    }
+    function UnSubscribeable(){
+        alert('본인은 구독할 수 없습니다.');
+    }
+    function UnReviewable(){
+        alert('본인 글에는 리뷰를 등록할 수 없습니다.');
+    }
+</script>
 
 <div class="wrap">
     <div class="main_image">
@@ -20,8 +45,43 @@
             <div id="cooking_title">
                 <h1>${plist[0].title}</h1>
             </div>
+
+            <c:if test="${userid == 'notlogin'}">
+
+                <div class="report">
+                    <button type="button" onclick="goLogin()">신고하기</button>
+                </div>
+
+            </c:if>
+
+            <c:if test="${userid != 'notlogin'}">
+
+                <c:if test="${report_state == 0}">
+                    <form method="post" action="insert_report">
+                        <input type="hidden" name="post_no" value="1">
+                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" id="token" >
+                        <input type="hidden" name="userid" value="${userid}">
+                        <div class="report">
+                            <button type="submit">신고하기</button>
+                        </div>
+                    </form>
+                </c:if>
+
+                <c:if test="${report_state == 1}">
+                    <form method="post" action="del_report">
+                        <input type="hidden" name="post_no" value="1">
+                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" id="token" >
+                        <input type="hidden" name="userid" value="${userid}">
+                        <div class="report">
+                            <button type="submit">신고취소</button>
+                        </div>
+                    </form>
+                </c:if>
+
+            </c:if>
+
             <div class="hit">
-                <i class="bi bi-eye-fill" style="font-size:30px">${plist[0].hit}</i>
+                <i class="fa-solid fa-eye" style="font-size:30px">${plist[0].hit}</i>
             </div>
         </div>
         <div class="writer_container">
@@ -36,11 +96,89 @@
                     <p>${plist[0].regdate}</p>
                 </c:if>
             </div>
+
             <div class="subscribe">
-                <i class="bi bi-bookmark-plus subscribe_item"></i>
-                <!-- <i class="bi bi-bookmark-plus-fill sbuscribe_item"></i> -->
-                <i class="bi bi-hand-thumbs-up subscribe_item"></i>
-                <!-- <i class="bi bi-hand-thumbs-up-fill subscribe_item"></i> -->
+
+            <!-- 비로그인 -->
+                <c:if test="${userid == 'notlogin'}">
+                    <button class="sub_btn" type="button" onclick="goLogin()" style="border:0px; background-image:url(/resources/images/content/backgroundimage.png);">
+                        <i class="fa-regular fa-bookmark" style="font-size:30px"></i>
+                    </button>
+                    <button class="sub_btn" type="button" onclick="goLogin()" style="border:0px; background-image:url(/resources/images/content/backgroundimage.png);">
+                        <i class="fa-regular fa-star" style="font-size:30px"></i>
+                    </button>
+                </c:if>
+
+            <!-- 로그인 -->
+                <c:if test="${userid != 'notlogin'}">
+
+                    <!-- 로그인한 사람 == 글쓴이 -->
+                    <c:if test="${userid == plist[0].member[0].userid}">
+                        <button class="sub_btn" type="button" onclick="UnSubscribeable()" style="border:0px; background-image:url(/resources/images/content/backgroundimage.png);">
+                            <i class="fa-regular fa-bookmark" style="font-size:30px"></i>
+                        </button>
+                    </c:if>
+
+                    <!-- 로그인한 사람 != 글쓴이 -->
+                    <c:if test="${userid != plist[0].member[0].userid}">
+                        <!-- 비구독 -->
+                        <c:if test="${subscribe_state == 0}">
+                            <form method="post" action="insert_subscribe">
+                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" id="token" >
+                                <input type="hidden" name="subscriber_id" value="${userid}">
+                                <input type="hidden" name="target_id" value="${plist[0].member[0].userid}">
+                                <div class="sub_btn">
+                                    <button type="submit" style="border:0px; background-image:url(/resources/images/content/backgroundimage.png);">
+                                        <i class="fa-regular fa-bookmark" style="font-size:30px"></i>
+                                    </button>
+                                </div>
+                            </form>
+                        </c:if>
+
+                        <!-- 구독 -->
+                        <c:if test="${subscribe_state == 1}">
+                            <form method="post" action="del_subscribe">
+                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" id="token" >
+                                <input type="hidden" name="subscriber_id" value="${userid}">
+                                <input type="hidden" name="target_id" value="${plist[0].member[0].userid}">
+                                <div class="sub_btn">
+                                    <button type="submit" style="border:0px; background-image:url(/resources/images/content/backgroundimage.png);">
+                                        <i class="fa-solid fa-bookmark" style="font-size:30px"></i>
+                                    </button>
+                                </div>
+                            </form>
+                        </c:if>
+                    </c:if>
+
+                    <!-- 비즐찾 -->
+                    <c:if test="${bookmark_state == 0}">
+                         <form method="post" action="insert_bookmark">
+                             <input type="hidden" name="post_no" value="1">
+                             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" id="token" >
+                             <input type="hidden" name="userid" value="${userid}">
+                             <div class="sub_btn">
+                                 <button type="submit" style="border:0px; background-image:url(/resources/images/content/backgroundimage.png);">
+                                     <i class="fa-regular fa-star" style="font-size:30px"></i>
+                                 </button>
+                            </div>
+                         </form>
+                    </c:if>
+
+                    <!-- 즐찾 -->
+                    <c:if test="${bookmark_state == 1}">
+                        <form method="post" action="del_bookmark">
+                            <input type="hidden" name="post_no" value="1">
+                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" id="token" >
+                            <input type="hidden" name="userid" value="${userid}">
+                            <div class="sub_btn">
+                                <button style="border:0px; background-image:url(/resources/images/content/backgroundimage.png);">
+                                    <i class="fa-solid fa-star" style="font-size:30px"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </c:if>
+
+                </c:if>
             </div>
         </div>
 
@@ -89,48 +227,13 @@
         </c:forEach>
     </div>
 
-<%--        <div id="carouselExampleIndicators" class="carousel slide"--%>
-<%--             data-ride="carousel">--%>
-<%--            <ol class="carousel-indicators">--%>
-<%--                <li data-target="#carouselExampleIndicators" data-slide-to="0"--%>
-<%--                    class="active"></li>--%>
-<%--                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>--%>
-<%--                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>--%>
-<%--            </ol>--%>
-<%--            <div class="carousel-inner">--%>
-<%--                <div class="carousel-item active" data-interval="60000*10">--%>
-<%--                    <img src="/resources/images/content/orange.jpg"--%>
-<%--                         class="d-block w-100 image recipe_img" alt="123">--%>
-<%--                </div>--%>
-<%--                <div class="carousel-item" data-interval="60000*10">--%>
-<%--                    <img src="/resources/images/content/orange.jpg"--%>
-<%--                         class="d-block w-100 image recipe_img" alt="123">--%>
-<%--                </div>--%>
-<%--                <div class="carousel-item" data-interval="60000*10">--%>
-<%--                    <img src="/resources/images/content/orange.jpg"--%>
-<%--                         class="d-block w-100 image recipe_img" alt="123">--%>
-<%--                </div>--%>
-<%--            </div>--%>
-<%--            <button class="carousel-control-prev" type="button"--%>
-<%--                    data-target="#carouselExampleIndicators" data-slide="prev">--%>
-<%--                <span class="carousel-control-prev-icon" aria-hidden="true"></span>--%>
-<%--                <span class="sr-only">Previous</span>--%>
-<%--            </button>--%>
-<%--            <button class="carousel-control-next" type="button"--%>
-<%--                    data-target="#carouselExampleIndicators" data-slide="next">--%>
-<%--                <span class="carousel-control-next-icon" aria-hidden="true"></span>--%>
-<%--                <span class="sr-only">Next</span>--%>
-<%--            </button>--%>
-<%--        </div>--%>
-<%--        <div class="recipe_content">--%>
-<%--            <p>▶떡볶이소스 고추장 3큰술, 양조간장 1큰술, 황(유기농)설탕 1~1.5큰술, 올리고당 1큰술, 굴소스--%>
-<%--                1/2큰술 --> 떡볶이양념이 많이 달지는 않으니 만들어서 찍어 먹어보고 단맛이 덜하면 올리고당이나 설탕을 약간 추가하셔도--%>
-<%--                됩니다. [출처] 떡볶이 황금레시피 떡볶이소스 라볶이 레시피|작성자 잠꾸러기</p>--%>
-<%--        </div>--%>
-
     <div class="comment">
         <div id="comments">
-            <h2 style="font-size:35px">리뷰 | ${replyCount}  <label id="yellowStar">★</label><fmt:formatNumber value="${averageScore}" pattern=".00"/></h2>
+            <h2 style="font-size:35px">리뷰 | ${replyCount}  <label id="yellowStar">★</label>
+                <c:if test="${!empty averageScore}">
+                    <fmt:formatNumber value="${averageScore}" pattern=".00"/>
+                </c:if>
+            </h2>
         </div>
         <div class="comment_container">
             <c:if test="${!empty rlist}">
@@ -144,6 +247,20 @@
                             </c:if>
                             <c:if test="${empty r.updatedate}">
                                 <p>${r.regdate}</p>
+                            </c:if>
+                            <c:if test="${userid == r.member.get(0).userid}">
+                                <form action="edit_reply" style="float:left;">
+                                    <input type="hidden" name="post_no" value="1">
+                                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" id="token" >
+                                    <input type="hidden" name="reviewer" value="${userid}">
+                                    <button type="submit">수정</button>
+                                </form>
+                                <form action="del_reply" style="float:left;">
+                                    <input type="hidden" name="post_no" value="1">
+                                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" id="token" >
+                                    <input type="hidden" name="reviewer" value="${userid}">
+                                    <button type="submit">삭제</button>
+                                </form>
                             </c:if>
                         </div>
                         <div class="comment_text">
@@ -161,6 +278,9 @@
                     </div>
                 </c:forEach>
             </c:if>
+
+
+
 
             <!--
             <div id="add_comment_btn">
@@ -181,9 +301,12 @@
             </script>
              -->
 
-            <form action="addreply" name="starForm" id="starForm" method="post">
+            <form action="insert_reply" name="starForm" id="starForm" method="post">
                 <input type="hidden" name="post_no" value="1">
-                <input type="hidden" name="reviewer" value="홍길동">
+                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" id="token" >
+                <c:if test="${userid != 'notlogin'}">
+                    <input type="hidden" name="reviewer" value="${userid}">
+                </c:if>
                 <div class="comment_star">
                     <fieldset>
                         <span class="text-bold">별점을 선택해주세요</span> <input type="radio"
@@ -199,10 +322,25 @@
                 </div>
                 <div class="comment_write">
                     <div class="comment_text_write">
-                        <textarea cols="93" name="content">댓글을 입력해주세요.</textarea>
+                        <textarea id="review_text" cols="93" name="content">댓글을 입력해주세요.</textarea>
                     </div>
                     <div class="comment_submit_btn">
-                        <input type="submit" value="등록" />
+                        <c:if test="${userid == 'notlogin'}">
+                            <input type="button" onclick="goLogin()" value="등록" />
+                        </c:if>
+                        <c:if test="${userid != 'notlogin'}">
+                            <c:if test="${userid == plist[0].member[0].userid}">
+                                <input type="button" onclick="UnReviewable()" value="등록" />
+                            </c:if>
+                            <c:if test="${userid != plist[0].member[0].userid}">
+                                <c:if test="${reply_state == 0}">
+                                    <input type="button" onclick="reviewCheck()" value="등록" />
+                                </c:if>
+                                <c:if test="${reply_state == 1}">
+                                    <input type="button" onclick="duplicateRegistration()" value="등록" />
+                                </c:if>
+                            </c:if>
+                        </c:if>
                     </div>
                 </div>
             </form>

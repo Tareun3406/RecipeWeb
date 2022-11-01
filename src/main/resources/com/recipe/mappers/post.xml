@@ -12,7 +12,7 @@
         <result property="updatedate" column="updatedate"/>
         <result property="thumnail" column="thumnail"/>
         <result property="ingredient" column="ingredient"/>
-        <result property="recommend" column="recommend"/>
+        <result property="bookmark" column="bookmark"/>
         <result property="post_tag" column="post_tag"/>
         <result property="tip" column="tip"/>
         <result property="writer" column="writer"/>
@@ -47,15 +47,16 @@
 
     <!-- 게시글 등록 -->
     <insert id="rp_in">
-        insert into RECIPE_POST (post_no, writer, title, hit, regdate, update, thumnail, ingredient, recommend, post_tag, tip, writer ) values
+        insert into RECIPE_POST (post_no, writer, title, hit, regdate, update, thumnail, ingredient, bookmark, post_tag, tip, writer ) values
             (post_no_seq.nextval, #{writer}, #{title}, 0, sysdate, sysdate, #{thumnail}, #{ingredient}, 0, #{post_tag}, #{tip}, #{writer} )
     </insert>
 
+    <!-- 게시글, 댓글 가져오기 -->
     <select id="post_getList" resultMap="plist">
         Select p.post_no,p.title,
                p.hit,p.regdate,
                p.updatedate,p.thumnail,
-               p.ingredient,p.recommend,
+               p.ingredient,p.bookmark,
                p.post_tag,p.tip,
                c.step,c.image,
                c.manual,m.userid,m.nickname
@@ -67,8 +68,84 @@
         Where p.post_no = #{post_no}
     </select>
 
+    <!-- 조회수 +1 -->
     <update id="post_upHit">
         update recipe_post set hit=hit+1 where post_no=#{post_no}
     </update>
+
+    <!-- 즐겨찾기 등록 -->
+    <insert id="bookmark_insert">
+        insert into bookmark values (#{userid}, #{post_no})
+    </insert>
+
+    <!-- 즐겨찾기 삭제 -->
+    <delete id="bookmark_delete">
+        delete from bookmark where userid=#{userid} and post_no=${post_no}
+    </delete>
+
+    <!-- 즐겨찾기 수 +1 -->
+    <update id="bookmark_updatePlus">
+        update recipe_post set bookmark=bookmark+1 where post_no=#{post_no}
+    </update>
+
+    <!-- 즐겨찾기 수 -1 -->
+    <update id="bookmark_updateMinus">
+        update recipe_post set bookmark=bookmark-1 where post_no=#{post_no}
+    </update>
+
+    <!-- 즐겨찾기 유저 목록 가져오기 -->
+    <select id="bookmark_getList" resultType="book">
+        select userid from bookmark where post_no=#{post_no}
+    </select>
+
+    <!-- 신고 등록 -->
+    <insert id="report_insert">
+        insert into report values (#{post_no}, #{userid})
+    </insert>
+
+    <!-- 신고 삭제 -->
+    <delete id="report_delete">
+        delete from report where userid=#{userid} and post_no=${post_no}
+    </delete>
+
+    <!-- 신고 수 +1 -->
+    <update id="report_updatePlus">
+        update recipe_post set report=report+1 where post_no=#{post_no}
+    </update>
+
+    <!-- 신고 수 -1 -->
+    <update id="report_updateMinus">
+        update recipe_post set report=report-1 where post_no=#{post_no}
+    </update>
+
+    <!-- 레시피 신고한 유저 목록 가져오기 -->
+    <select id="report_getList" resultType="report">
+        select userid from report where post_no=#{post_no}
+    </select>
+
+    <!-- 구독 등록 -->
+    <insert id="subscribe_insert">
+        insert into subscribe values (#{subscriber_id}, #{target_id})
+    </insert>
+
+    <!-- 구독 삭제 -->
+    <delete id="subscribe_delete">
+        delete subscribe where subscriber_id=#{subscriber_id} and target_id=#{target_id}
+    </delete>
+
+    <!-- 구독 +1 -->
+    <update id="subscribe_updatePlus">
+        update member set subscribe=subscribe+1 where userid=#{target_id}
+    </update>
+
+    <!-- 구독 -1 -->
+    <update id="subscribe_updateMinus">
+        update member set subscribe=subscribe-1 where userid=#{target_id}
+    </update>
+
+    <!-- 구독자 리스트 가져오기 -->
+    <select id="subscribe_getList" resultType="sub">
+        select subscriber_id from subscribe where target_id=#{target_id}
+    </select>
 
 </mapper>

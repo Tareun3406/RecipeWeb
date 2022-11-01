@@ -16,7 +16,7 @@ public class PostVO {
     private String updatedate;
     private String thumnail;
     private String ingredient;
-    private int recommend;
+    private int bookmark;
     private String post_tag;
     private String tip;
     private String writer;

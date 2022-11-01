@@ -11,7 +11,4 @@ public interface CategoryDAO {
 
     List<CategoryVO> getcategoryList(CategoryVO b);
 
-    List<CategoryVO> getnickname(CategoryVO recipe);
-
-    List<CategoryVO> getscore(CategoryVO recipe);
 }

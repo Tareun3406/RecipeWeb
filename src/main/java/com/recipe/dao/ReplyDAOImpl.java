@@ -15,12 +15,22 @@ public class ReplyDAOImpl implements ReplyDAO{
 
     @Override
     public void insertReply(ReplyVO r) {
-        sqlSession.insert("reply_in", r);
+        sqlSession.insert("insert_reply", r);
     }
 
     @Override
     public List<ReplyVO> getReply(int post_no) {
         return sqlSession.selectList("reply_getList", post_no);
+    }
+
+    @Override
+    public void deleteReply(ReplyVO replyVO) {
+        sqlSession.delete("delete_reply", replyVO);
+    }
+
+    @Override
+    public int getReplyState(ReplyVO replyVO) {
+        return sqlSession.selectOne("getReplyState", replyVO);
     }
 
 }

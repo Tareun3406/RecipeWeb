@@ -20,7 +20,23 @@ public class ReplyServiceImpl implements ReplyService{
 
     @Override
     public List<ReplyVO> getReply(int post_no) {
+
+        List<ReplyVO> replyVOList = replyDAO.getReply(post_no);
+        // 리뷰 줄 바꾸기
+        for(ReplyVO replyVO : replyVOList) {
+            replyVO.setContent(replyVO.getContent().replace("\n", "</br>"));
+        }
         return replyDAO.getReply(post_no);
+    }
+
+    @Override
+    public void deleteReply(ReplyVO replyVO) {
+        replyDAO.deleteReply(replyVO);
+    }
+
+    @Override
+    public int getReplyState(ReplyVO replyVO) {
+        return replyDAO.getReplyState(replyVO);
     }
 
 }

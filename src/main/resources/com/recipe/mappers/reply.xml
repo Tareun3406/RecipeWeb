@@ -22,18 +22,27 @@
         <result property="email" column="email"/>
     </resultMap>
 
-    <insert id="reply_in">
+    <insert id="insert_reply">
         insert into recipe_reply(post_no, re_no, reviewer, content, score, regdate) values(#{post_no}, re_no_seq.nextval, #{reviewer}, #{content}, #{score}, sysdate)
     </insert>
 
     <select id="reply_getList" resultMap="rlist">
         Select r.re_no,r.content,
                r.score,r.regdate,
-               r.updatedate,m.nickname
+               r.updatedate,m.nickname,
+               m.userid
         From recipe_reply r
                  Inner join member m
                             On r.reviewer = m.userid
-        Where r.post_no = #{post_no}
+        Where r.post_no = #{post_no} order by re_no desc
     </select>
+
+    <select id="getReplyState" resultType="int">
+        select count(*) from recipe_reply where post_no=#{post_no} and reviewer=#{reviewer}
+    </select>
+
+    <delete id="delete_reply">
+        delete from recipe_reply where post_no=#{post_no} and reviewer=#{reviewer}
+    </delete>
 
 </mapper>

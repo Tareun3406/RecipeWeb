@@ -109,11 +109,17 @@
 .subscribe {
     float:right;
     margin:10px;
+    display:flex;
+    flex-direction:row;
 }
 
 .subscribe_item {
     margin-left:50px;
     font-size:30px;
+}
+
+.sub_btn {
+    margin:30px;
 }
 
 .tag {

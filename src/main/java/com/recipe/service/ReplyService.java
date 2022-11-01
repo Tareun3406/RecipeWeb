@@ -8,4 +8,8 @@ public interface ReplyService {
     void insertReply(ReplyVO r);
 
     List<ReplyVO> getReply(int post_no);
+
+    void deleteReply(ReplyVO replyVO);
+
+    int getReplyState(ReplyVO replyVO);
 }

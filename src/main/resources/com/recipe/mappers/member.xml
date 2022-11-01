@@ -83,7 +83,7 @@
 
     <!-- 회원가입 -->
     <insert id="memberInsert">
-        insert into MEMBER VALUES (#{userid}, #{userpw}, #{nickname}, #{email})
+        insert into MEMBER VALUES (#{userid}, #{userpw}, #{nickname}, #{email}, 0)
     </insert>
     <insert id="authInsert">
         insert into AUTH values (#{userid}, #{auth})

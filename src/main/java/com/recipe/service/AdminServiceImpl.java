@@ -19,10 +19,31 @@ public class AdminServiceImpl implements AdminService{
 
     // 회원 리스트
     @Override
-    public List<MemberDTO> getMemberList() {
-        return adminDAO.getMemberList();
+    public List<MemberDTO> getMemberList(String page,int listNum)
+    {
+        int pageNum =  0;  // 현재 페이지
+        try
+        {
+            pageNum += Integer.parseInt(page);
+        }catch (NumberFormatException e){
+            pageNum = 1;
+        }
+        MemberDTO dto = new MemberDTO();
+        dto.setRowMin((pageNum-1)*listNum+1);
+        dto.setRowMax(pageNum*listNum);
+
+        return adminDAO.getMemberList(dto);
     }
 
+    @Override
+    public int getMemberListCount(int listNum) {
+        int listCount = adminDAO.getMemberListCount();
+        int totalPage = listCount/listNum;
+        if(listCount%listNum == 0){
+            return totalPage;
+        }
+        return totalPage+1;
+    }
     // 회원 정보
     @Override
     public MemberDTO getMemberInfo(String userid) {
@@ -35,4 +56,6 @@ public class AdminServiceImpl implements AdminService{
         member.setUserpw(passwordEncoder.encode(member.getUserpw()));
         adminDAO.updateMember(member);
     }
+
+
 }

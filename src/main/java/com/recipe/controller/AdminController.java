@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -32,12 +33,17 @@ public class AdminController {
 
     // 회원정보 리스트 뷰
     @RequestMapping("member")
-    public ModelAndView adminMember(){
+    public ModelAndView adminMember(String page){
         ModelAndView mv =new ModelAndView("/admin/member");
+        final int listNum = 20;      // 페이지당 표시할 레코드 개수
+        int totalPage = 0;
+        if (page == null) page = "1";
 
-        List<MemberDTO> memberList = adminService.getMemberList();
+        List<MemberDTO> memberList = adminService.getMemberList(page, listNum);
+        totalPage = adminService.getMemberListCount(listNum);
         mv.addObject("memberList",memberList);
-
+        mv.addObject("totalPage",totalPage);
+        mv.addObject("page", page);
         return mv;
     }
 

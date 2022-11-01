@@ -5,7 +5,11 @@
 
 <mapper namespace="admin">
     <select id="memberList" resultType="member">
-        select * from MEMBER
+        select * from (select * from MEMBER) where ROWNUM between ${rowMin} and ${rowMax}
+    </select>
+
+    <select id="memberListCount" resultType="int">
+        select count(*) from MEMBER
     </select>
 
     <update id="memberUpdate">

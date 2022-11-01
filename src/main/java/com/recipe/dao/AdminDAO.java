@@ -11,5 +11,5 @@ public interface AdminDAO {
 
     void updateMember(MemberDTO member);
 
-    int getMemberListCount();
+    int getMemberListCount(String search);
 }

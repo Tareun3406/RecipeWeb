@@ -7,9 +7,9 @@ import java.util.List;
 public interface AdminService {
 
 
-    List<MemberDTO> getMemberList(String page, int listNum);
+    List<MemberDTO> getMemberList(String search, String page, int listNum);
 
-    int getMemberListCount(int listNum);
+    int getMemberListCount(String search, int listNum);
 
     MemberDTO getMemberInfo(String userid);
 

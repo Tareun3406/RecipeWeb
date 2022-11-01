@@ -33,17 +33,19 @@ public class AdminController {
 
     // 회원정보 리스트 뷰
     @RequestMapping("member")
-    public ModelAndView adminMember(String page){
+    public ModelAndView adminMember(String search, String page){
         ModelAndView mv =new ModelAndView("/admin/member");
         final int listNum = 20;      // 페이지당 표시할 레코드 개수
         int totalPage = 0;
-        if (page == null) page = "1";
+        if (page == null) page = "1";   // 현재페이지 값 없을경우 1 입력.
 
-        List<MemberDTO> memberList = adminService.getMemberList(page, listNum);
-        totalPage = adminService.getMemberListCount(listNum);
-        mv.addObject("memberList",memberList);
-        mv.addObject("totalPage",totalPage);
-        mv.addObject("page", page);
+        List<MemberDTO> memberList = adminService.getMemberList(search, page, listNum); // 회원 목록 검색
+        totalPage = adminService.getMemberListCount(search ,listNum);   // 총 페이지 수
+
+        mv.addObject("memberList",memberList);  // 회원 목록
+        mv.addObject("totalPage",totalPage);    // 총 페이지 수
+        mv.addObject("page", page); // 현제 페이지
+        mv.addObject("search",search);  // 검색어
         return mv;
     }
 

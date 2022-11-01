@@ -21,9 +21,11 @@ public class MemberController {
     private MemberService memberService;
 
     // 로그인 뷰 페이지
-    @GetMapping("/login")
-    public String memberLogin(){
-        return "/member/loginForm";
+    @RequestMapping("/login")
+    public ModelAndView memberLogin(String error){
+        ModelAndView mv = new ModelAndView("/member/loginForm");
+        if(error != null){ mv.addObject("error","아이디와 비밀번호를 확인해주세요"); }
+        return mv;
     }
 
     //회원가입페이지 매핑

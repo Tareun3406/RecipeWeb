@@ -21,7 +21,8 @@
         </span>
     </div>
     <div class="joinBtnDiv">
-        <button type="submit">아이디 찾기</button>
+        <button type="button" onclick="location.href='/member/login'">로그인 페이지로</button>
+        <button type="submit" style="float: right">아이디 찾기</button>
     </div>
 </form>
 

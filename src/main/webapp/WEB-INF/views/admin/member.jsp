@@ -27,6 +27,19 @@
                 </tr>
             </c:forEach>
         </table>
+        <br>
+        <c:forEach var="i" begin="${page}" end="${totalPage}">
+            <c:if test="${i<=0}">
+                ${i = 1}
+            </c:if>
+            <c:if test="${i == page}">
+                <c:out value="[${page}]"/>
+            </c:if>
+            <c:if test="${i != page}">
+                <a href="/admin/member?page=${i}">${i}</a>
+            </c:if>
+            &nbsp;
+        </c:forEach>
     </article>
 </div>
 

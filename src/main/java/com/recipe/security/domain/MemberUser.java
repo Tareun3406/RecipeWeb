@@ -9,8 +9,8 @@ import java.util.Collection;
 
 public class MemberUser extends User {
 
-    public MemberUser(MemberDTO vo){
-        super(vo.getUserid(), vo.getUserpw(), vo.getAuthList());
+    public MemberUser(MemberDTO dto){
+        super(dto.getUserid(), dto.getUserpw(), dto.getAuthList());
     }
 
     public MemberUser(String username, String password, Collection<? extends GrantedAuthority> authorities) {

@@ -35,4 +35,9 @@ public class AdminDAOImpl implements AdminDAO{
     public int getMemberListCount(String search) {
         return sqlSession.selectOne("memberListCount", search);
     }
+
+    @Override
+    public void deleteMember(String userid) {
+        sqlSession.delete("memberDelete",userid);
+    }
 }

@@ -29,6 +29,9 @@
             </where>)
     </select>
 
+    <delete id="memberDelete">
+        delete MEMBER where USERID=#{userid}
+    </delete>
     <update id="memberUpdate">
         update MEMBER set NICKNAME = #{nickname}, EMAIL = #{email}, USERPW = #{userpw} where USERID = #{userid}
     </update>

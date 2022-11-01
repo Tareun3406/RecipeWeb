@@ -3,10 +3,15 @@
 <jsp:include page="header.jsp"/>
 
 <script>
+    function onDeleteBtn() {
+        let ans = prompt("정말로 삭제하시겠습니까? \n 삭제하려면 '삭제하기'를 입력해주세요")
+        if (ans === '삭제하기') return true;
+        else return false;
+    }
 </script>
 <div>
     <form action="/admin/member" method="get">
-        <input type="text" name="search" size="50">
+        <input type="text" name="search" size="30" style="margin-bottom: 10px">
         <input type="submit" value="검색">
     </form>
     <article class="index-board">
@@ -18,11 +23,15 @@
                 <tr>
                     <td>${member.userid}</td> <td>${member.email}</td> <td>${member.nickname}</td>
                     <td>
-                        <form action="member/edit" method="post">
+                        <form action="member/edit" method="post" style="display: inline-block">
                             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" id="token">
                             <input type="hidden" name="userid" value="${member.userid}">
                             <button type="submit">수정</button>
-                            <button type="button">삭제</button>
+                        </form>
+                        <form action="member/delete" method="post" style="display: inline-block" onsubmit="return onDeleteBtn()">
+                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" id="token">
+                            <input type="hidden" name="userid" value="${member.userid}">
+                            <button type="submit">삭제</button>
                         </form>
                     </td>
                 </tr>

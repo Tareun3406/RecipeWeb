@@ -9,6 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.util.List;
 
 @RequestMapping("/admin")
@@ -47,6 +51,21 @@ public class AdminController {
         mv.addObject("page", page); // 현제 페이지
         mv.addObject("search",search);  // 검색어
         return mv;
+    }
+
+    //회원정보 삭제
+    @PostMapping("member/delete")
+    public String modelAndView(String userid, HttpServletResponse response) throws IOException {
+        response.setContentType("text/html; charset=UTF-8");
+        PrintWriter out =  response.getWriter();
+        adminService.deleteMember(userid);
+
+        out.println("<script>");
+        out.println("alert('삭제되었습니다.');");
+        out.println("location='/admin/member';");
+        out.println("</script>");
+
+        return null;
     }
 
     // 회원정보 수정 뷰

@@ -16,4 +16,5 @@ public interface AdminService {
     void memberUpdate(MemberDTO member);
 
 
+    void deleteMember(String userid);
 }

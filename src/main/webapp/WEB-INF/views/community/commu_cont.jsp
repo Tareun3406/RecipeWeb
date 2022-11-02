@@ -99,7 +99,8 @@
   	댓글 내용:<textarea rows="5" cols="30" name="content" id="newcontent"></textarea>
   </div>
   <br/>
-    <button id="commuReplyBtn">댓글 등록</button>
+    <button name="commuReplyBtn" id="commuReplyBtn" type="button">댓글 등록</button>
+    
   </div>
   
   <br/>
@@ -131,12 +132,10 @@
     }//getAllList()
     
     //댓글 추가
-    $('#commuReplyBtn').on("click",function(){    	
+    $('#commuReplyBtn').on("click",function(){     	
     	 $reviewer=$('#newreviewer').val();//댓글 작성자
     	 $content=$('#newcontent').val();//댓글내용
-
-    	
-    	$.ajax({
+    	 $.ajax({
     		type:'post',//method 방식
     		url:'/replies/addreply',//URL매핑주소 경로
     		headers:{
@@ -196,8 +195,7 @@
     			if(result == 'SUCCESS'){
     				alert('댓글이 수정되었습니다!');
     				$('#modDiv').hide('slow');
-    				getAllList();//댓글 목록 함수 호출
-    				
+    				getAllList();//댓글 목록 함수 호출	
     			}
     		}
     	});

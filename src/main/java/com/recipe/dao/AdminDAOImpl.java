@@ -1,5 +1,6 @@
 package com.recipe.dao;
 
+import com.recipe.vo.CommuVO;
 import com.recipe.vo.MemberDTO;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,11 @@ public class AdminDAOImpl implements AdminDAO{
 
     @Autowired
     private SqlSession sqlSession;
+
+    @Override
+    public List<CommuVO> readCommuList() {
+        return sqlSession.selectList("commuList");
+    }
 
     // 회원 리스트
     @Override

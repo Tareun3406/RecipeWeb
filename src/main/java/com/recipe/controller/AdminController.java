@@ -1,6 +1,7 @@
 package com.recipe.controller;
 
 import com.recipe.service.AdminService;
+import com.recipe.vo.CommuVO;
 import com.recipe.vo.MemberDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -33,7 +34,15 @@ public class AdminController {
 
     // 커뮤니티 글 리스트 뷰
     @RequestMapping("community")
-    public String adminCommunity(){ return "/admin/community"; }
+    public ModelAndView adminCommunity(){
+        ModelAndView mv = new ModelAndView("/admin/community");
+
+        List<CommuVO> commuList = adminService.readCommuList();    // 게시글 목록 가져오기
+
+        mv.addObject("commuList",commuList);
+
+        return mv;
+    }
 
     // 회원정보 리스트 뷰
     @RequestMapping("member")

@@ -1,7 +1,6 @@
 package com.recipe.dao;
 
 import com.recipe.vo.CategoryVO;
-import com.recipe.vo.MemberVO;
 
 import java.util.List;
 

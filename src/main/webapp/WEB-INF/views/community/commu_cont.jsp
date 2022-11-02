@@ -99,7 +99,7 @@
   	댓글 내용:<textarea rows="5" cols="30" name="content" id="newcontent"></textarea>
   </div>
   <br/>
-    <button name="commuReplyBtn" id="commuReplyBtn" type="button">댓글 등록</button>
+    <button id="commuReplyBtn" type="button">댓글 등록</button>
     
   </div>
   
@@ -123,7 +123,7 @@
     	
     		$(data).each(function(){//each()함수에의해서 li태그 단위로 댓글 개수만큼반복
     			$str += "<li data-reply_no='"+this.reply_no+"' class='replyLi'>"
-    			+this.reply_no+this.reviewer
+    			+this.reply_no+this.nickname
     			+" : <span class='com' style='color:blue;font-weight:bold;'>"
     			+this.content+"</span>"+"<button>댓글수정</button></li><br/>"    		
     		});
@@ -132,9 +132,13 @@
     }//getAllList()
     
     //댓글 추가
+    let csrfParameter = $("meta[name='_csrf_parameter']").attr("content");
+    let csrfHeader = $("meta[name='_csrf_header']").attr("content");
+    let csrfToken = $("meta[name='_csrf']").attr("content");
     $('#commuReplyBtn').on("click",function(){     	
     	 $reviewer=$('#newreviewer').val();//댓글 작성자
     	 $content=$('#newcontent').val();//댓글내용
+    	 
     	 $.ajax({
     		type:'post',//method 방식
     		url:'/replies/addreply',//URL매핑주소 경로
@@ -142,6 +146,10 @@
     			"Content-Type":"application/json",
     			"X-HTTP-Method-Override":"POST"
     		},
+    		beforeSend : function(xhr)
+            {   /*데이터를 전송하기 전에 헤더에 csrf값을 설정한다*/
+                xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+            },
     		dataType:'text',
     		data:JSON.stringify({
     			comu_no:$comu_no,//게시판 번호값
@@ -154,6 +162,7 @@
     				getAllList();//댓글 목록 함수를 호출
     			}
     		}
+    				
     	});//jQuery 비동기식 아작스 함수
     });
     
@@ -178,7 +187,6 @@
     $('#replyModBtn').on('click',function(){
     	var reply_no=$('.modal-title').html();//댓글 번호
     	$content=$('#content').val();//수정할 댓글 내용
-    	
     	$.ajax({
     		type:'put',
     		url:'/replies/'+$reply_no ,
@@ -186,6 +194,10 @@
     			"Content-Type":"application/json",
     			"X-HTTP-Method-Override":"PUT"
     		},
+    		beforeSend : function(xhr)
+            {   /*데이터를 전송하기 전에 헤더에 csrf값을 설정한다*/
+                xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+            },
     		data:JSON.stringify({
     			content: $content //수정할내용
     			
@@ -213,6 +225,10 @@
     			"Content-Type":"application/json",
     			"X-HTTP-Method-Override":"DELETE"
     		},
+    		beforeSend : function(xhr)
+            {   /*데이터를 전송하기 전에 헤더에 csrf값을 설정한다*/
+                xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+            },
     		dataType:'text',
     		success:function(data){
     			if(data =="SUCCESS"){

@@ -65,4 +65,6 @@ select * from comu_reply order by reply_no desc;
 
 select nickname from comu_post left join member on comu_post.writer = member.userid;
 
+    select reply_no,nickname,content,regdate from member inner join comu_reply on 
+    member.userid =comu_reply.reviewer where comu_no=12 order by reply_no desc
 

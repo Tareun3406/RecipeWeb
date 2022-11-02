@@ -74,7 +74,7 @@ public class CommuController {
          listM.addAttribute("find_field",find_field);//검색 필드
          listM.addAttribute("find_name",find_name);//검색어
          
-      
+      System.out.println(blist);
          return "community/commu_list";//뷰페이지 경로가/WEB-
     }
     

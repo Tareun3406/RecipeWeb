@@ -15,9 +15,12 @@ public class CategoryVO {
     private String updatedate;
     private String thumnail;
     private String ingredient;
+    private int bookmark;
     private int recommend;
     private String post_tag;
     private String tip;
+    private String writer;
+    private int report;
 
     //member테이블 (유저)
     private String userid;

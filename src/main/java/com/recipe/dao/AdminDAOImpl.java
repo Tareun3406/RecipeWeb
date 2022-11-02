@@ -1,5 +1,6 @@
 package com.recipe.dao;
 
+import com.recipe.vo.CategoryVO;
 import com.recipe.vo.CommuVO;
 import com.recipe.vo.MemberDTO;
 import org.apache.ibatis.session.SqlSession;
@@ -13,6 +14,11 @@ public class AdminDAOImpl implements AdminDAO{
 
     @Autowired
     private SqlSession sqlSession;
+
+    @Override
+    public List<CategoryVO> readRecipeList() {
+        return sqlSession.selectList("recipeList");
+    }
 
     @Override
     public List<CommuVO> readCommuList() {

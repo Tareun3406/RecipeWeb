@@ -5,6 +5,9 @@
 
 <mapper namespace="admin">
 
+    <select id="recipeList" resultType="category">
+        select * from RECIPE_POST
+    </select>
 
     <select id="commuList" resultType="commu">
         select * from COMU_POST

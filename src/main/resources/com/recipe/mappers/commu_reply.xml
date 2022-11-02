@@ -9,13 +9,16 @@
     insert into comu_reply(reply_no,comu_no,reviewer,content,regdate) 
     values(reply_no_seq.nextval,#{comu_no},(select userid from member where
 		NICKNAME=#{reviewer}),#{content},sysdate)
-    <!-- #{bno}하면 getBno()를 호출한 것과 같은 효과가 난다. -->
+    
   </insert>
 
 
   <!-- 댓글목록, parameterType은 전달인자 타입으로 생략가능함 resultType은 반환타입이다. -->
   <select id="reply_list" resultType="commu_reply">
-    select * from comu_reply where comu_no=#{comu_no} order by reply_no desc
+<!--     select * from comu_reply where comu_no=#{comu_no} order by reply_no desc -->
+    select reply_no,nickname,content,regdate from member inner join comu_reply on 
+    member.userid =comu_reply.reviewer where comu_no=#{comu_no} order by reply_no desc
+    
   </select>
 
 <!-- 댓글 수정 -->

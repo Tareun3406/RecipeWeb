@@ -1,6 +1,7 @@
 package com.recipe.service;
 
 import com.recipe.dao.AdminDAO;
+import com.recipe.vo.CategoryVO;
 import com.recipe.vo.CommuVO;
 import com.recipe.vo.MemberDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,11 @@ public class AdminServiceImpl implements AdminService{
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+
+    @Override
+    public List<CategoryVO> readRecipeList() {
+        return adminDAO.readRecipeList();
+    }
 
     @Override
     public List<CommuVO> readCommuList() {

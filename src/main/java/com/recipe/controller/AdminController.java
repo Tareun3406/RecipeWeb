@@ -1,6 +1,7 @@
 package com.recipe.controller;
 
 import com.recipe.service.AdminService;
+import com.recipe.vo.CategoryVO;
 import com.recipe.vo.CommuVO;
 import com.recipe.vo.MemberDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +31,14 @@ public class AdminController {
 
     // 레시피 글 리스트 뷰
     @RequestMapping("recipe")
-    public String adminRecipe(){ return "/admin/recipe";}
+    public ModelAndView adminRecipe(){
+        ModelAndView mv = new ModelAndView("/admin/recipe");
+
+        List<CategoryVO> recipeList = adminService.readRecipeList();
+
+        mv.addObject("recipeList", recipeList);
+        return mv;
+    }
 
     // 커뮤니티 글 리스트 뷰
     @RequestMapping("community")

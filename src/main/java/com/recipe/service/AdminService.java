@@ -1,11 +1,14 @@
 package com.recipe.service;
 
+import com.recipe.vo.CategoryVO;
 import com.recipe.vo.CommuVO;
 import com.recipe.vo.MemberDTO;
 
 import java.util.List;
 
 public interface AdminService {
+
+    List<CategoryVO> readRecipeList();
 
     List<CommuVO> readCommuList();
 
@@ -16,7 +19,6 @@ public interface AdminService {
     MemberDTO getMemberInfo(String userid);
 
     void memberUpdate(MemberDTO member);
-
 
     void deleteMember(String userid);
 

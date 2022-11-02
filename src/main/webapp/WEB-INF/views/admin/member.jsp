@@ -5,8 +5,7 @@
 <script>
     function onDeleteBtn() {
         let ans = prompt("정말로 삭제하시겠습니까? \n 삭제하려면 '삭제하기'를 입력해주세요")
-        if (ans === '삭제하기') return true;
-        else return false;
+        return ans === '삭제하기';
     }
 </script>
 <div>

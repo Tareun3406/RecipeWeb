@@ -1,10 +1,14 @@
 package com.recipe.dao;
 
+import com.recipe.vo.CommuVO;
 import com.recipe.vo.MemberDTO;
 
 import java.util.List;
 
 public interface AdminDAO {
+
+    List<CommuVO> readCommuList();
+
     List<MemberDTO> getMemberList(MemberDTO dto);
 
     MemberDTO getMemberInfo(String userid);

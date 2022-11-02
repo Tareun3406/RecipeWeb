@@ -1,6 +1,7 @@
 package com.recipe.service;
 
 import com.recipe.dao.AdminDAO;
+import com.recipe.vo.CommuVO;
 import com.recipe.vo.MemberDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -16,6 +17,12 @@ public class AdminServiceImpl implements AdminService{
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+
+    @Override
+    public List<CommuVO> readCommuList() {
+        return adminDAO.readCommuList();
+    }
 
     // 회원 리스트
     @Override
@@ -40,6 +47,7 @@ public class AdminServiceImpl implements AdminService{
         return adminDAO.getMemberList(dto);
     }
 
+    // 회원 페이지수
     @Override
     public int getMemberListCount(String search,int listNum) {
         if (search == null) search = "";
@@ -67,6 +75,8 @@ public class AdminServiceImpl implements AdminService{
     public void deleteMember(String userid) {
         adminDAO.deleteMember(userid);
     }
+
+
 
 
 }

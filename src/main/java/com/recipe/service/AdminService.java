@@ -1,11 +1,13 @@
 package com.recipe.service;
 
+import com.recipe.vo.CommuVO;
 import com.recipe.vo.MemberDTO;
 
 import java.util.List;
 
 public interface AdminService {
 
+    List<CommuVO> readCommuList();
 
     List<MemberDTO> getMemberList(String search, String page, int listNum);
 
@@ -17,4 +19,6 @@ public interface AdminService {
 
 
     void deleteMember(String userid);
+
+
 }

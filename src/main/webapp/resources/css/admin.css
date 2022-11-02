@@ -83,6 +83,7 @@ form {
     background: var(--table-hover-color);
 }
 
+/* 회원 관리 */
 .index-board table #colId{
     width: 150px;
 }
@@ -90,6 +91,27 @@ form {
     width: 200px;
 }
 .index-board table #colName{
+    width: 100px;
+}
+
+/* 커뮤니티 관리 */
+.index-board table #communityCap h3{
+    color: var(--nomal-color);
+}
+
+.index-board table #no{
+    width: 40px;
+}
+.index-board table #title{
+    width: 300px;
+}
+.index-board table #writer{
+    width: 100px;
+}
+.index-board table #hit{
+    width: 60px;
+}
+.index-board table #date{
     width: 100px;
 }
 

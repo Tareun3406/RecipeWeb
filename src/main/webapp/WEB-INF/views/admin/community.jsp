@@ -1,134 +1,29 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="header.jsp"/>
 
 
 
 <article class="index-board">
-    <table>
-        <caption><a href="#">요리연구소/팁</a></caption>
-        <tr class="hotPost">
-            <td class="border-tag">연구</td>
-            <td class="border-title">제목</td>
-            <td class="likes-number">13</td>
+    <table style="margin-top: 20px">
+        <caption id="communityCap"><h3>자유게시판</h3></caption>
+        <tr id="tableCol">
+            <th id="no">번호</th>
+            <th id="title">제목</th>
+            <th id="writer">작성자(id)</th>
+            <th id="hit">조회수</th>
+            <th id="date">작성일</th>
         </tr>
-        <tr class="hotPost">
-            <td class="border-tag">연구</td>
-            <td class="border-title">제목</td>
-            <td class="likes-number">13</td>
-        </tr>
-        <tr class="hotPost">
-            <td class="border-tag">팁</td>
-            <td class="border-title">제목</td>
-            <td class="likes-number">13</td>
-        </tr>
-        <tr>
-            <td class="border-tag">연구</td>
-            <td class="border-title">제목</td>
-            <td class="date">오늘</td>
-        </tr>
-        <tr>
-            <td class="border-tag">팁</td>
-            <td class="border-title">제목</td>
-            <td class="date">오늘</td>
-        </tr>
-        <tr>
-            <td class="border-tag">연구</td>
-            <td class="border-title">제목</td>
-            <td class="date">오늘</td>
-        </tr>
-        <tr>
-            <td class="border-tag">팁</td>
-            <td class="border-title">제목</td>
-            <td class="date">오늘</td>
-        </tr>
-        <tr>
-            <td class="border-tag">팁</td>
-            <td class="border-title">제목</td>
-            <td class="date">오늘</td>
-        </tr>
-        <tr>
-            <td class="border-tag">연구</td>
-            <td class="border-title">제목</td>
-            <td class="date">오늘</td>
-        </tr>
-        <tr>
-            <td class="border-tag">연구</td>
-            <td class="border-title">제목</td>
-            <td class="date">오늘</td>
-        </tr>
-        <tr>
-            <td class="border-tag">팁</td>
-            <td class="border-title">제목</td>
-            <td class="date">오늘</td>
-        </tr>
-        <tr>
-            <td class="border-tag">팁</td>
-            <td class="border-title">제목</td>
-            <td class="date">오늘</td>
-        </tr>
-    </table>
-    <table>
-        <caption><a href="#">자유게시판</a></caption>
-        <tr class="hotPost">
-            <td class="border-tag">QnA</td>
-            <td class="border-title">제목</td>
-            <td class="likes-number">13</td>
-        </tr>
-        <tr class="hotPost">
-            <td class="border-tag">잡담</td>
-            <td class="border-title">제목</td>
-            <td class="likes-number">13</td>
-        </tr>
-        <tr class="hotPost">
-            <td class="border-tag">QnA</td>
-            <td class="border-title">제목</td>
-            <td class="likes-number">13</td>
-        </tr>
-        <tr>
-            <td class="border-tag">잡담</td>
-            <td class="border-title">제목</td>
-            <td class="date">오늘</td>
-        </tr>
-        <tr>
-            <td class="border-tag">잡담</td>
-            <td class="border-title">제목</td>
-            <td class="date">오늘</td>
-        </tr>
-        <tr>
-            <td class="border-tag">QnA</td>
-            <td class="border-title">제목</td>
-            <td class="date">오늘</td>
-        </tr>
-        <tr>
-            <td class="border-tag">잡담</td>
-            <td class="border-title">제목</td>
-            <td class="date">오늘</td>
-        </tr>
-        <tr>
-            <td class="border-tag">QnA</td>
-            <td class="border-title">제목</td>
-            <td class="date">오늘</td>
-        </tr>
-        <tr>
-            <td class="border-tag">QnA</td>
-            <td class="border-title">제목</td>
-            <td class="date">오늘</td>
-        </tr>
-        <tr>
-            <td class="border-tag">잡담</td>
-            <td class="border-title">제목</td>
-            <td class="date">오늘</td>
-        </tr>
-        <tr>
-            <td class="border-tag">QnA</td>
-            <td class="border-title">제목</td>
-            <td class="date">오늘</td>
-        </tr>
-        <tr>
-            <td class="border-tag">잡담</td>
-            <td class="border-title">제목</td>
-            <td class="date">오늘</td>
-        </tr>
+        <c:forEach items="${commuList}" var="commu">
+            <tr>
+                <td style="text-align: center">${commu.comu_no}</td>
+                <td>${commu.title}</td>
+                <td style="text-align: center">${commu.writer}</td>
+                <td style="text-align: center">${commu.viewcnt}</td>
+                <td style="text-align: center">${commu.regdate}</td>
+            </tr>
+        </c:forEach>
+
 
     </table>
 </article>

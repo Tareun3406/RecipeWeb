@@ -2,6 +2,7 @@ package com.recipe.service;
 
 import com.recipe.dao.CategoryDAO;
 import com.recipe.vo.CategoryVO;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,4 +24,5 @@ public class CategoryServiceImpl implements CategoryService{
     public List<CategoryVO> getcategoryList(CategoryVO b) {
         return this.categoryDAO.getcategoryList(b);
     }
+
 }

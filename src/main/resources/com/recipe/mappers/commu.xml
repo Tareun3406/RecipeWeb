@@ -67,8 +67,8 @@
 
 	<!-- 검색 전후 자료실 목록 -->
 	<select id="comu_list" resultType="commu">
-		select * from (select rowNum
-		rNum,comu_no,title,nickname,regdate,viewcnt from
+		select * from (select rowNum rNum
+		,comu_no,title,nickname,regdate,viewcnt from
 		(select * from member
 		inner join comu_post on member.userid =
 		comu_post.writer
@@ -81,9 +81,8 @@
 				content like #{find_name} <!-- like는 ~와 비슷한 문자를 검색하는 검색연산자 -->
 			</if>
 		</where>
-		)order by comu_no desc)
-		where rNum &gt;=#{startrow} and rNum
-		&lt;=#{endrow}
+		order by comu_no desc))
+		where rNum &gt;= #{startrow} and rNum &lt;= #{endrow}
 		<!-- #gt;= 은 >=의 뜻, &lt;= 은 <= 의 뜻 -->
 	</select>
 

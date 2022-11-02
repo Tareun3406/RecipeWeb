@@ -10,9 +10,8 @@ import java.sql.Date;
 @Setter
 @Getter
 @ToString
-public class CategoryVO {
+public class RankingVO {
 
-    //recipe_post 테이블 변수
     private String post_no;
     private String title;
     private int hit;
@@ -33,6 +32,8 @@ public class CategoryVO {
     private int endrow; //끝행번호
 
     private String nickname; //member테이블의 닉네임
-    
+
     private String score; //댓글에 점수
+    
+    private String find_date; //검색날짜에 따른 값저장용
 }

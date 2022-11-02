@@ -12,12 +12,11 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import javax.sql.RowSet;
+
+
 import java.util.ArrayList;
 
 public class MemberDetailsService implements UserDetailsService {
-
-    public static RowSet loadUserByUsername;
 
     @Setter(onMethod_ = {@Autowired})
     public MemberDAO memberDAO;

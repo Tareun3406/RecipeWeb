@@ -37,8 +37,7 @@ public class CategoryController {
 
         recipe.setFind_name("%"+find_name+"%"); //%는 데이터베이스에서 검색 와일드카드문자로서
         //하나이상의 임의의 모르는 문자와 매핑대응
-        System.out.println(find_name);
-        System.out.println(recipe.getFind_name());
+
         int totalCount=this.categoryService.getListCount(recipe);
         //총레코드 개수,검색후 레코드 개수,
 

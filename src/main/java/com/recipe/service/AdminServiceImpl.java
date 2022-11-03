@@ -21,13 +21,32 @@ public class AdminServiceImpl implements AdminService{
 
 
     @Override
-    public List<CategoryVO> readRecipeList() {
-        return adminDAO.getRecipeList();
+    public List<CategoryVO> getRecipeList(String page, String search, int listNum) {
+        CategoryVO dto = new CategoryVO();    // 인수로 보내질 값 저장
+
+        int pageNum;    // 페이지 정수형
+        pageNum = Integer.parseInt(page);
+
+        dto.setStartrow((pageNum-1)*listNum+1);
+        dto.setEndrow(pageNum*listNum);
+        dto.setFind_name(search);
+
+        return adminDAO.getRecipeList(dto);
+    }
+
+    @Override
+    public int readRecipeListCount(String search, int listNum) {
+        int listCount = adminDAO.getRecipeListCount(search);
+        int totalPage = listCount/listNum;
+        if(listCount%listNum == 0){
+            return totalPage;
+        }
+        return totalPage+1;
     }
 
     // 커뮤니티 목록 가져오기
     @Override
-    public List<CommuVO> readCommuList(String page, String search, int listNum) {
+    public List<CommuVO> getCommuList(String page, String search, int listNum) {
         CommuVO dto = new CommuVO();    // 인수로 보내질 값 저장
 
         int pageNum;    // 페이지 정수형
@@ -42,7 +61,7 @@ public class AdminServiceImpl implements AdminService{
 
     // 커뮤니티 페이지 수
     @Override
-    public int readComuListCount(String search, int listNum) {
+    public int getComuListCount(String search, int listNum) {
         int listCount = adminDAO.getCommuListCount(search);
         int totalPage = listCount/listNum;
         if(listCount%listNum == 0){

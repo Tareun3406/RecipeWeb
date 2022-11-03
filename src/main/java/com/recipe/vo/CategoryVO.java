@@ -37,4 +37,7 @@ public class CategoryVO {
     private String nickname; //member테이블의 닉네임
     
     private String score; //댓글에 점수
+
+    // 메인페이지 순위체크용
+    private int rNum;
 }

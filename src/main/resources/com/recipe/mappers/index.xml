@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="index">
+
+    <select id="recipeRanked" resultType="category">
+        select ROWNUM rNum,d.* from (select a.POST_NO,a.THUMNAIL,a.TITLE, a.INGREDIENT, b.nickname, a.HIT
+        from RECIPE_POST a left join MEMBER b on (a.WRITER = b.USERID)
+        order by HIT desc) d where ROWNUM &lt;= 10
+    </select>
+
+
+</mapper>

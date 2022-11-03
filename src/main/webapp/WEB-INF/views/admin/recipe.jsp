@@ -21,7 +21,7 @@
             <th id="date">작성일</th>
         </tr>
         <c:forEach items="${recipeList}" var="recipe">
-            <tr>
+            <tr onclick="location.href='#'">
                 <td style="text-align: center">${recipe.post_no}</td>
                 <td>${recipe.title}</td>
                 <td style="text-align: center">${recipe.writer}</td>

@@ -4,14 +4,90 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="admin">
+
+    <select id="recipeList" resultType="category">
+        select * from (select ROWNUM rNum,post.* from RECIPE_POST post
+        <where>
+            <if test="find_name == ''"/>  <!-- 검색어 없음 -->
+            <if test="find_name != ''">
+                title like '%${find_name}%'
+                or writer like '%${find_name}%'
+                or post_no = '${find_name}'
+            </if>
+        </where>)
+        where rNum between ${startrow} and ${endrow}
+    </select>
+    
+    <select id="recipeListCount" resultType="int">
+        select count(*) from (select POST_NO from RECIPE_POST
+        <where>
+            <if test="search == ''"/>  <!-- 검색어 없음 -->
+            <if test="search != ''">
+                title like '%${search}%'
+                or writer like '%${search}%'
+                or POST_NO = '${search}'
+            </if>
+        </where>)
+    </select>
+
+
+    <!-- 커뮤니티 목록 -->
+    <select id="commuList" resultType="commu">
+        select * from (select ROWNUM rNum,post.* from COMU_POST post
+        <where>
+            <if test="find_name == ''"/>  <!-- 검색어 없음 -->
+            <if test="find_name != ''">
+                title like '%${find_name}%'
+                or writer like '%${find_name}%'
+                or comu_no = '${find_name}'
+            </if>
+        </where>)
+        where rNum between ${startrow} and ${endrow}
+    </select>
+
+    <!-- 커뮤니티 게시글 개수 -->
+    <select id="commuListCount" resultType="int">
+        select count(*) from (select COMU_NO from COMU_POST
+        <where>
+            <if test="search == ''"/>  <!-- 검색어 없음 -->
+            <if test="search != ''">
+                title like '%${search}%'
+                or writer like '%${search}%'
+                or comu_no = '${search}'
+            </if>
+        </where>)
+    </select>
+
+    <!-- 회원관리 -->
     <select id="memberList" resultType="member">
-        select * from (select * from MEMBER) where ROWNUM between ${rowMin} and ${rowMax}
+        select * from (select ROWNUM rNum,member.* from MEMBER
+                        <where>
+                            <if test="search == ''"/>  <!-- 검색어 없음 -->
+                            <if test="search != ''">
+                                userid like '%${search}%'
+                                or nickname like '%${search}%'
+                                or email like '%${search}%'
+                            </if>
+                        </where>)
+                 where rNum between ${rowMin} and ${rowMax}
     </select>
 
+    <!-- 회원수 -->
     <select id="memberListCount" resultType="int">
-        select count(*) from MEMBER
+        select count(*) from (select USERID from MEMBER
+            <where>
+                <if test="search == ''"/>  <!-- 검색어 없음 -->
+                <if test="search != ''">
+                    userid like '%${search}%'
+                    or nickname like '%${search}%'
+                    or email like '%${search}%'
+                </if>
+            </where>)
     </select>
 
+    <delete id="memberDelete">
+        delete MEMBER where USERID=#{userid}
+    </delete>
     <update id="memberUpdate">
         update MEMBER set NICKNAME = #{nickname}, EMAIL = #{email}, USERPW = #{userpw} where USERID = #{userid}
     </update>

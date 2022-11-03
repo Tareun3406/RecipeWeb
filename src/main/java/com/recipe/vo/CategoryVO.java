@@ -24,6 +24,8 @@ public class CategoryVO {
     private String post_tag;
     private String tip;
     private String writer;
+    private int report;
+
 
     //검색어
     private String find_name;

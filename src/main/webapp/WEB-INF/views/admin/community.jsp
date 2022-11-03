@@ -21,7 +21,7 @@
             <th id="date">작성일</th>
         </tr>
         <c:forEach items="${commuList}" var="commu">
-            <tr>
+            <tr onclick="location.href='/commu_cont?comu_no=${commu.comu_no}'">
                 <td style="text-align: center">${commu.comu_no}</td>
                 <td>${commu.title}</td>
                 <td style="text-align: center">${commu.writer}</td>

@@ -22,28 +22,41 @@ public class AdminServiceImpl implements AdminService{
 
     @Override
     public List<CategoryVO> readRecipeList() {
-        return adminDAO.readRecipeList();
+        return adminDAO.getRecipeList();
     }
 
+    // 커뮤니티 목록 가져오기
     @Override
-    public List<CommuVO> readCommuList() {
-        return adminDAO.readCommuList();
+    public List<CommuVO> readCommuList(String page, String search, int listNum) {
+        CommuVO dto = new CommuVO();    // 인수로 보내질 값 저장
+
+        int pageNum;    // 페이지 정수형
+        pageNum = Integer.parseInt(page);
+
+        dto.setStartrow((pageNum-1)*listNum+1);
+        dto.setEndrow(pageNum*listNum);
+        dto.setFind_name(search);
+
+        return adminDAO.getCommuList(dto);
     }
 
+    // 커뮤니티 페이지 수
+    @Override
+    public int readComuListCount(String search, int listNum) {
+        int listCount = adminDAO.getCommuListCount(search);
+        int totalPage = listCount/listNum;
+        if(listCount%listNum == 0){
+            return totalPage;
+        }
+        return totalPage+1;
+    }
     // 회원 리스트
     @Override
     public List<MemberDTO> getMemberList(String search, String page,int listNum)
     {
         int pageNum =  0;  // 현재 페이지
 
-        try {   // 페이지 번호 예외처리
-            pageNum += Integer.parseInt(page);
-        }catch (NumberFormatException e){
-            pageNum = 1;
-        }
-        if(search == null){
-            search = "";
-        }
+        pageNum += Integer.parseInt(page);
 
         MemberDTO dto = new MemberDTO();
         dto.setRowMin((pageNum-1)*listNum+1);
@@ -56,7 +69,6 @@ public class AdminServiceImpl implements AdminService{
     // 회원 페이지수
     @Override
     public int getMemberListCount(String search,int listNum) {
-        if (search == null) search = "";
         int listCount = adminDAO.getMemberListCount(search);
         int totalPage = listCount/listNum;
         if(listCount%listNum == 0){

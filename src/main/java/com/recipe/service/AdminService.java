@@ -10,7 +10,9 @@ public interface AdminService {
 
     List<CategoryVO> readRecipeList();
 
-    List<CommuVO> readCommuList();
+    List<CommuVO> readCommuList(String page,String search, int pageList);
+
+    int readComuListCount(String search, int listNum);
 
     List<MemberDTO> getMemberList(String search, String page, int listNum);
 
@@ -21,6 +23,4 @@ public interface AdminService {
     void memberUpdate(MemberDTO member);
 
     void deleteMember(String userid);
-
-
 }

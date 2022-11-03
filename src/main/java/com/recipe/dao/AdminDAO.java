@@ -8,9 +8,11 @@ import java.util.List;
 
 public interface AdminDAO {
 
-    List<CategoryVO> readRecipeList();
+    List<CategoryVO> getRecipeList();
 
-    List<CommuVO> readCommuList();
+    List<CommuVO> getCommuList(CommuVO dto);
+
+    int getCommuListCount(String search);
 
     List<MemberDTO> getMemberList(MemberDTO dto);
 
@@ -21,5 +23,4 @@ public interface AdminDAO {
     int getMemberListCount(String search);
 
     void deleteMember(String userid);
-
 }

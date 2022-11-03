@@ -8,12 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.util.List;
 
@@ -42,11 +40,20 @@ public class AdminController {
 
     // 커뮤니티 글 리스트 뷰
     @RequestMapping("community")
-    public ModelAndView adminCommunity(){
+    public ModelAndView adminCommunity(String page, String search){
         ModelAndView mv = new ModelAndView("/admin/community");
+        final int listNum = 10;      // 페이지당 표시할 레코드 개수
+        int totalPage;           // 전체 페이지수
+        if (page == null) page = "1";   // 현재페이지 값 없을경우 1 입력.
+        if (search == null) search = "";
 
-        List<CommuVO> commuList = adminService.readCommuList();    // 게시글 목록 가져오기
+        List<CommuVO> commuList = adminService.readCommuList(page,search, listNum);    // 게시글 목록 가져오기
+        totalPage = adminService.readComuListCount(search, listNum);
 
+
+        mv.addObject("totalPage", totalPage);
+        mv.addObject("page",page);
+        mv.addObject("search",search);
         mv.addObject("commuList",commuList);
 
         return mv;
@@ -57,8 +64,9 @@ public class AdminController {
     public ModelAndView adminMember(String search, String page){
         ModelAndView mv =new ModelAndView("/admin/member");
         final int listNum = 20;      // 페이지당 표시할 레코드 개수
-        int totalPage = 0;
+        int totalPage;           // 전체 페이지수
         if (page == null) page = "1";   // 현재페이지 값 없을경우 1 입력.
+        if (search == null) search = "";
 
         List<MemberDTO> memberList = adminService.getMemberList(search, page, listNum); // 회원 목록 검색
         totalPage = adminService.getMemberListCount(search ,listNum);   // 총 페이지 수

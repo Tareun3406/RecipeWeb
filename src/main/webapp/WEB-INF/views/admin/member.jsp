@@ -42,10 +42,10 @@
                     <c:out value="[${page}]"/>
                 </c:if>
                 <c:if test="${i != page}">
-                    <c:if test="${search == null}">
+                    <c:if test="${search == ''}">
                         <a href="/admin/member?page=${i}">${i}</a>
                     </c:if>
-                    <c:if test="${search != null}">
+                    <c:if test="${search != ''}">
                         <a href="/admin/member?search=${search}&page=${i}">${i}</a>
                     </c:if>
 

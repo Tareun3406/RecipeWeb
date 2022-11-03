@@ -9,8 +9,32 @@
         select * from RECIPE_POST
     </select>
 
+
+    <!-- 커뮤니티 목록 -->
     <select id="commuList" resultType="commu">
-        select * from COMU_POST
+        select * from (select ROWNUM rNum,post.* from COMU_POST post
+        <where>
+            <if test="find_name == ''"/>  <!-- 검색어 없음 -->
+            <if test="find_name != ''">
+                title like '%${find_name}%'
+                or writer like '%${find_name}%'
+                or comu_no = '${find_name}'
+            </if>
+        </where>)
+        where rNum between ${startrow} and ${endrow}
+    </select>
+
+    <!-- 커뮤니티 게시글 개수 -->
+    <select id="commuListCount" resultType="int">
+        select count(*) from (select COMU_NO from COMU_POST
+        <where>
+            <if test="search == ''"/>  <!-- 검색어 없음 -->
+            <if test="search != ''">
+                title like '%${search}%'
+                or writer like '%${search}%'
+                or comu_no = '${search}'
+            </if>
+        </where>)
     </select>
 
     <!-- 회원관리 -->
@@ -27,6 +51,7 @@
                  where rNum between ${rowMin} and ${rowMax}
     </select>
 
+    <!-- 회원수 -->
     <select id="memberListCount" resultType="int">
         select count(*) from (select * from MEMBER
             <where>

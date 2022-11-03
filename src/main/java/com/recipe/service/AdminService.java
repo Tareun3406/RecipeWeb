@@ -8,11 +8,13 @@ import java.util.List;
 
 public interface AdminService {
 
-    List<CategoryVO> readRecipeList();
+    List<CategoryVO> getRecipeList(String page, String search, int listNum);
 
-    List<CommuVO> readCommuList(String page,String search, int pageList);
+    int readRecipeListCount(String search, int listNum);
 
-    int readComuListCount(String search, int listNum);
+    List<CommuVO> getCommuList(String page, String search, int pageList);
+
+    int getComuListCount(String search, int listNum);
 
     List<MemberDTO> getMemberList(String search, String page, int listNum);
 

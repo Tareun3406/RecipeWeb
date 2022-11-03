@@ -6,7 +6,28 @@
 <mapper namespace="admin">
 
     <select id="recipeList" resultType="category">
-        select * from RECIPE_POST
+        select * from (select ROWNUM rNum,post.* from RECIPE_POST post
+        <where>
+            <if test="find_name == ''"/>  <!-- 검색어 없음 -->
+            <if test="find_name != ''">
+                title like '%${find_name}%'
+                or writer like '%${find_name}%'
+                or post_no = '${find_name}'
+            </if>
+        </where>)
+        where rNum between ${startrow} and ${endrow}
+    </select>
+    
+    <select id="recipeListCount" resultType="int">
+        select count(*) from (select POST_NO from RECIPE_POST
+        <where>
+            <if test="search == ''"/>  <!-- 검색어 없음 -->
+            <if test="search != ''">
+                title like '%${search}%'
+                or writer like '%${search}%'
+                or POST_NO = '${search}'
+            </if>
+        </where>)
     </select>
 
 
@@ -53,7 +74,7 @@
 
     <!-- 회원수 -->
     <select id="memberListCount" resultType="int">
-        select count(*) from (select * from MEMBER
+        select count(*) from (select USERID from MEMBER
             <where>
                 <if test="search == ''"/>  <!-- 검색어 없음 -->
                 <if test="search != ''">

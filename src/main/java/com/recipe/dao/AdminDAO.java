@@ -8,7 +8,9 @@ import java.util.List;
 
 public interface AdminDAO {
 
-    List<CategoryVO> getRecipeList();
+    List<CategoryVO> getRecipeList(CategoryVO dto);
+
+    int getRecipeListCount(String search);
 
     List<CommuVO> getCommuList(CommuVO dto);
 

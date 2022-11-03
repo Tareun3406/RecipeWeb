@@ -29,12 +29,22 @@ public class AdminController {
 
     // 레시피 글 리스트 뷰
     @RequestMapping("recipe")
-    public ModelAndView adminRecipe(){
+    public ModelAndView adminRecipe(String page, String search){
         ModelAndView mv = new ModelAndView("/admin/recipe");
+        final int listNum = 10;      // 페이지당 표시할 레코드 개수
+        int totalPage;           // 전체 페이지수
+        if (page == null) page = "1";   // 현재페이지 값 없을경우 1 입력.
+        if (search == null) search = "";
 
-        List<CategoryVO> recipeList = adminService.readRecipeList();
+        List<CategoryVO> recipeList = adminService.getRecipeList(page, search, listNum);
+        totalPage = adminService.readRecipeListCount(search, listNum);
 
-        mv.addObject("recipeList", recipeList);
+
+        mv.addObject("totalPage", totalPage);
+        mv.addObject("page",page);
+        mv.addObject("search",search);
+        mv.addObject("recipeList",recipeList);
+
         return mv;
     }
 
@@ -47,8 +57,8 @@ public class AdminController {
         if (page == null) page = "1";   // 현재페이지 값 없을경우 1 입력.
         if (search == null) search = "";
 
-        List<CommuVO> commuList = adminService.readCommuList(page,search, listNum);    // 게시글 목록 가져오기
-        totalPage = adminService.readComuListCount(search, listNum);
+        List<CommuVO> commuList = adminService.getCommuList(page,search, listNum);    // 게시글 목록 가져오기
+        totalPage = adminService.getComuListCount(search, listNum);
 
 
         mv.addObject("totalPage", totalPage);

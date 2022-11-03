@@ -16,8 +16,13 @@ public class AdminDAOImpl implements AdminDAO{
     private SqlSession sqlSession;
 
     @Override
-    public List<CategoryVO> getRecipeList() {
-        return sqlSession.selectList("recipeList");
+    public List<CategoryVO> getRecipeList(CategoryVO dto) {
+        return sqlSession.selectList("recipeList",dto);
+    }
+
+    @Override
+    public int getRecipeListCount(String search) {
+        return sqlSession.selectOne("recipeListCount",search);
     }
 
     @Override

@@ -74,6 +74,10 @@ form {
     margin: 0px 20px;
 }
 
+.index-board table th, .index-board table tr{
+    height: 25px;
+}
+
 .index-board table th{
     background-color: var(--table-hot-color);
     border-top: 1px solid var(--point-color);

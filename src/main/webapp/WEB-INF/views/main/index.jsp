@@ -1,11 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="header.jsp" flush="false"/>
-<!-- header -->
-
 
 <section id="main">
-
     <!-- 레시피 랭킹 -->
     <article class="recipe-rank">
         <h2>
@@ -54,14 +51,17 @@
 
         function selectMenu(num) {
             imageList[num].style.height = '240px';
+            imageList[num].style.width = '240px';
             infoList[num].style.display = 'block';
 
-            rankImageContainer.style.transform = "translateX(-" + num * 180 + "px)";
+            if(num <= 7)
+                rankImageContainer.style.transform = "translateX(-" + num * 180 + "px)";
             // rankImageContainer.style.transform = "translateX(-" + parseInt(num/4) * 180*4 + "px)";
         }
 
         function unSelectMenu(num) {
             imageList[num].style.height = '180px';
+            imageList[num].style.width = '180px';
             infoList[num].style.display = 'none';
         }
 
@@ -94,5 +94,6 @@
         }
     </script>
 </section>
-    <!-- footer -->
-<jsp:include page="footer.jsp" flush="false"/>
+
+</body>
+</html>

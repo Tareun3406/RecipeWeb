@@ -49,8 +49,7 @@ public class RankingController {
 
         r.setFind_name(find_name);
         //하나이상의 임의의 모르는 문자와 매핑대응
-        System.out.println(find_name);
-        System.out.println(r.getFind_name());
+
         int totalCount=this.rankingService.getListCount(r);
         //총레코드 개수,검색후 레코드 개수,
 

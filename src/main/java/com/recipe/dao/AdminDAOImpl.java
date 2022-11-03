@@ -16,13 +16,18 @@ public class AdminDAOImpl implements AdminDAO{
     private SqlSession sqlSession;
 
     @Override
-    public List<CategoryVO> readRecipeList() {
+    public List<CategoryVO> getRecipeList() {
         return sqlSession.selectList("recipeList");
     }
 
     @Override
-    public List<CommuVO> readCommuList() {
-        return sqlSession.selectList("commuList");
+    public List<CommuVO> getCommuList(CommuVO dto) {
+        return sqlSession.selectList("commuList", dto);
+    }
+
+    @Override
+    public int getCommuListCount(String search) {
+        return sqlSession.selectOne("commuListCount",search);
     }
 
     // 회원 리스트

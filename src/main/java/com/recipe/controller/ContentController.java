@@ -31,10 +31,10 @@ public class ContentController { // 신고, 구독, 즐겨찾기 아작스
 
     // 본문 페이지
     @RequestMapping("/content")
-    public String content(Model m, Principal principal) {
+    public String content(Model m, Principal principal,int post_no) {
 
         // 받아올 정보
-        int post_no = 1;
+
 
         ReplyVO replyVO = new ReplyVO();
         List<PostVO> plist = postService.getPost(post_no); // 본문내용, 작성자, 레시피

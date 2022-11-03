@@ -25,7 +25,6 @@ public class MypageController {
         //시큐리티 인증로그인 할때 저장된 유저이름 가져오기
         String b=userDetails.getUsername();
 
-        out.println("마이페이지 간다"+b);
         MemberDTO pvo = mypageService.getmylist(b);
 
         pvo.setNickname(b);

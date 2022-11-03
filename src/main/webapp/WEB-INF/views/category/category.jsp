@@ -22,7 +22,7 @@ border: solid 1px white; ">
 	 <%-- 레시피 게시판 반복문으로 게시물 표시하기 --%>
   <c:forEach var="recipe" items="${blist}" varStatus="i" step="1" begin="0" end="11">
 	  <div>
-   <a><img alt="1" width="300" height="300" src=${recipe.thumnail}  ></a>
+   <a href="/content?post_no=${recipe.post_no}"><img alt="1" width="300" height="300" src=${recipe.thumnail}  ></a>
    <div class="contents">
    <div style="margin-left: 2px;">${recipe.post_no}.${recipe.title}</div>
    <div style="margin-left: 2px;">작성자 : ${recipe.nickname} </div>

@@ -50,7 +50,7 @@
              <div class="contbored">
                  <div>내가 등록한 글<hr/>
                  <c:forEach items="${userlist.recipeList}" var="recipe" varStatus="i">
-                  <span class="subbookspan"><c:out value="${recipe.post_no}"/>번 글</span>
+                  <span class="subbookspan" onclick="location.href='/content?post_no=${recipe.post_no}'"><c:out value="${recipe.post_no}"/>번 글</span>
                  </c:forEach>
                      <c:choose>
                          <c:when test="${empty userlist.recipeList[0].post_no}">
@@ -60,9 +60,9 @@
              </div>
              <div>내가 쓴 댓글 <hr/>
                  <c:forEach items="${userlist.recipereplyList}" var="reply" varStatus="i">
-                     <span class="subbookspan">
-                     댓글 번호:<c:out value="${reply.post_no}"/>
-                     내용:<c:out value="${reply.content}"/>
+                     <span class="subbookspan" onclick="location.href='/content?post_no=${reply.post_no}'">
+                     댓글을 단 글번호:<c:out value="${reply.post_no}"/>
+                     댓글 내용:<c:out value="${reply.content}"/>
                      작성 날짜:<c:out value="${reply.regdate}"/></span><hr/>
                  </c:forEach>
                  <c:choose>
@@ -79,7 +79,7 @@
              <div class="contbored">
                  <div>구독한 쉐프 : <hr/>
                      <c:forEach items="${userlist.subList}" var="sub" varStatus="i">
-                         <span class="subbookspan"><c:out value="${sub.target_id}"/></span>
+                         <span class="subbookspan" onclick="location.href='/category?find_name=${sub.target_id}'" ><c:out value="${sub.target_id}"/></span>
                      </c:forEach>
                      <c:choose>
                       <c:when test="${empty userlist.subList[0].target_id}">
@@ -87,13 +87,13 @@
                       </c:when>
                      </c:choose>
                  </div>
-             <div>좋아요 한 글 :<hr/>
+             <div>북마크 한 글 :<hr/>
              <c:forEach items="${userlist.bookList}" var="book" varStatus="i">
-                 <span class="subbookspan"><c:out value="${book.post_no}"/>번글</span>
+                 <span class="subbookspan" onclick="location.href='/content?post_no=${book.post_no}'"><c:out value="${book.post_no}"/>번글</span>
              </c:forEach>
                  <c:choose>
                      <c:when test="${empty userlist.bookList[0].post_no}">
-                         좋아요 한 글이 없습니다.<hr/>
+                         북마크 한 글이 없습니다.<hr/>
                      </c:when>
                  </c:choose>
              </div>

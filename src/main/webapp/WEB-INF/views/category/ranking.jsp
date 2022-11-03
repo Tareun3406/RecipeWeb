@@ -11,16 +11,17 @@ border: solid 1px white;">
 <div style="width: 960px; height: auto;margin-right: auto; margin-left:auto; margin-top:10px;">
  <div class="rank-first-menu">
   <div style="width: auto;">
-    <form action="/ranking" ><input type="hidden" value="${find_date}" name="find_date"/>
-  <input type="submit" class="rankingbutton1" value="레시피랭킹" name="find_name" /><input type="submit" class="rankingbutton2" value="쉐프랭킹" name="find_name" /></form>
+    <form action="/ranking" >
+        <input type="hidden" value="${find_date}" name="find_date"/><input type="submit" class="rankingbutton1" value="레시피랭킹" name="find_name" /><input type="submit" class="rankingbutton2" value="쉐프랭킹" name="find_name" />
+    </form>
   </div>
   <div class="datebutton" style="width: auto;">
       <form action="/ranking" >
-          <input type="hidden" value="${find_name}" name="find_name"/>
-          <input type="submit" class="datebutton" value="1" name="find_date"/><input type="submit" class="weekbutton" value="7" name="find_date" /><input type="submit" class="monthbutton" value="30" name="find_date" /></form>
+          <input type="hidden" value="${find_name}" name="find_name"/><input type="submit" class="datebutton" value="1" name="find_date"/><input type="submit" class="weekbutton" value="7" name="find_date" /><input type="submit" class="monthbutton" value="30" name="find_date" />
+      </form>
   </div>
  </div>
- 
+
 </div>
 
 <%--여기밑으로는 카테고리별 이미지 나올 곳 --%>
@@ -31,7 +32,7 @@ border: solid 1px white;">
    <%-- 레시피 게시판 반복문으로 게시물 표시하기 --%>
    <c:forEach var="rank" items="${rlist}" varStatus="i" step="1" begin="0" end="11">
    <div>
-    <a><img alt="1" width="300" height="300" src=${rank.thumnail}  ></a>
+       <a href="/content?post_no=${recipe.post_no}"><img alt="1" width="300" height="300" src=${rank.thumnail}  ></a>
     <div class="contents">
      <div style="margin-left: 2px;">${rank.post_no}.${rank.title}</div>
      <div style="margin-left: 2px;">작성자 : ${rank.nickname} </div>

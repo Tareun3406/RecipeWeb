@@ -26,7 +26,7 @@
         <result property="email" column="email"/>
 
         <collection property="bookList" resultMap="bookMap"/>
-         <collection property="messageList" resultMap="messageMap"/>
+        <collection property="messageList" resultMap="messageMap"/>
         <collection property="recipereplyList" resultMap="recipereplyMap"/>
         <collection property="subList" resultMap="subMap"/>
         <collection property="recipeList" resultMap="recipeMap"/>
@@ -102,21 +102,22 @@
     <!-- mypage -->
     <select id="my_list" resultMap="mypageMap">
         select  a.USERID,a.userpw,a.nickname,a.EMAIL,
-                b.target_id,b.SUBSCRIBER_ID,
+                g.target_id,g.SUBSCRIBER_ID,
                 c.POST_NO as POST_NO1,c.USERID as userid1,
                 d.POST_NO as POST_NO2,d.REGDATE as regdate1, d.title,
                 e.POST_NO as POST_NO3,e.REGDATE as regdate2,e.CONTENT,
                 f.sender, f.receiver, f.message, f.senddate, f.isread
-        from MEMBER a left join SUBSCRIBE b
-                           on (a.USERID = b.SUBSCRIBER_ID)
+        from MEMBER a left join (select NICKNAME as target_id,b.SUBSCRIBER_ID
+                                 from SUBSCRIBE b left join MEMBER M on b.TARGET_ID = M.USERID) g
+                                on (a.USERID = g.SUBSCRIBER_ID)
                       left join  BOOKMARK c
-                           on (a.USERID = c.USERID )
+                                 on (a.USERID = c.USERID )
                       left join RECIPE_POST d
-                           on (a.USERID = d.WRITER)
+                                on (a.USERID = d.WRITER)
                       left join RECIPE_REPLY e
-                           on (a.USERID = e.REVIEWER)
+                                on (a.USERID = e.REVIEWER)
                       left join MESSAGE f
-                           on (a.USERID = f.SENDER or a.USERID=f.RECEIVER)
+                                on (a.USERID = f.SENDER or a.USERID=f.RECEIVER)
         where a.USERID = #{id}
     </select>
 

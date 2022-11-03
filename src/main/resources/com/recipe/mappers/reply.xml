@@ -29,7 +29,7 @@
     <select id="reply_getList" resultMap="rlist">
         Select r.re_no,r.content,
                r.score,r.regdate,
-               r.updatedate,m.nickname,
+               m.nickname,
                m.userid
         From recipe_reply r
                  Inner join member m

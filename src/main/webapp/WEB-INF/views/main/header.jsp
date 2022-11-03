@@ -5,12 +5,11 @@
 <html>
 <head>
 
-    <link href="${pageContext.request.contextPath}/resources/css/style.css" rel="stylesheet" type="text/css">
-    <link href="${pageContext.request.contextPath}/resources/css/commu.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
-    <script src="/resources/js/jquery.js"></script>
-
+    <link href="${pageContext.request.contextPath}/resources/css/style.css" rel="stylesheet" type="text/css">
+    <link href="${pageContext.request.contextPath}/resources/css/commu.css" rel="stylesheet" type="text/css">
+    <script src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
     <meta name="viewport"
           content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta charset="UTF-8">
@@ -24,7 +23,7 @@
     <!-- 위 내용 추가시 css에서 header nav 부분 fixed를 sticky로 변경-->
     <nav id="headerTop">
         <div id="logo">
-            <a href="#">로고</a>
+            <a href="/">로고</a>
         </div>
 
         <div id="header-menu">

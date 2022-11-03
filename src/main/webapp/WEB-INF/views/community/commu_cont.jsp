@@ -58,13 +58,10 @@
    
   </table>
   <div id="bsC_menu">
-
-
-<c:if test="${userlist.nickname == dto.nickname }">
+   
 <input type="hidden" name="comu_no" value="${dto.comu_no}">
 <input type="button" value="수정"onclick="location='/community/commu_edit?comu_no=${dto.comu_no}';" />
 <button type="button" id="btnDelete">삭제</button>
-</c:if>
 <input type="button" value="목록" onclick="location='/commu_list';" />     
   </div>
   </div>
@@ -115,6 +112,7 @@
   <script>
     $comu_no=${dto.comu_no};//게시판 번호
 	
+	
     getAllList();//댓글 목록함수를 호출
     
     //댓글 목록
@@ -122,7 +120,7 @@
     	$.getJSON("/replies/all/"+$comu_no, function(data){//jQuery 비동기식 $.getJSON()함수는 get방식으로 접근하는 
     		//json데이터를 처리, 비동기식으로 가져온 것이 성공시 data 매개변수에 가져온 값을 저장한다.
     		$str="";
-
+    	
     		$(data).each(function(){//each()함수에의해서 li태그 단위로 댓글 개수만큼반복
     			$str += "<li data-reply_no='"+this.reply_no+"' class='replyLi'>"
     			+this.reply_no+this.nickname

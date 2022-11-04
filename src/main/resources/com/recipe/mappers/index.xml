@@ -11,5 +11,22 @@
         order by HIT desc) d where ROWNUM &lt;= 10
     </select>
 
+    <select id="recipeBookmarked" resultType="category">
+        select ROWNUM rNum,d.NICKNAME writer,d.* from (select a.POST_NO,a.THUMNAIL,a.TITLE, a.INGREDIENT, b.nickname, a.BOOKMARK
+                                     from RECIPE_POST a left join MEMBER b on (a.WRITER = b.USERID)
+                                     order by BOOKMARK desc) d where ROWNUM &lt;= 10
+    </select>
+
+    <select id="recipeRecent" resultType="category">
+        select ROWNUM rNum,d.NICKNAME writer,d.* from (select a.POST_NO,a.THUMNAIL,a.TITLE, a.INGREDIENT, b.nickname, a.BOOKMARK
+                                     from RECIPE_POST a left join MEMBER b on (a.WRITER = b.USERID)
+                                     order by POST_NO desc) d where ROWNUM &lt;= 10
+    </select>
+
+    <select id="commuRecent" resultType="commu">
+        select ROWNUM rNum,d.NICKNAME writer,d.* from (select a.COMU_NO,a.TITLE, b.nickname, a.VIEWCNT
+                                     from COMU_POST a left join MEMBER b on (a.WRITER = b.USERID)
+                                     order by COMU_NO desc) d where ROWNUM &lt;= 10
+    </select>
 
 </mapper>

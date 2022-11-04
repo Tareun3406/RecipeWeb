@@ -2,6 +2,7 @@ package com.recipe.service;
 
 import com.recipe.dao.HomeDAO;
 import com.recipe.vo.CategoryVO;
+import com.recipe.vo.CommuVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,5 +17,20 @@ public class HomeServiceImpl implements HomeService{
     @Override
     public List<CategoryVO> getRecipeRankedList() {
         return homeDAO.getRecipeRankedList();
+    }
+
+    @Override
+    public List<CategoryVO> getBookmarkRecipeList() {
+        return homeDAO.getBookmarkRecipeList();
+    }
+
+    @Override
+    public List<CategoryVO> getRecentRecipeList() {
+        return homeDAO.getRecentRecipeList();
+    }
+
+    @Override
+    public List<CommuVO> getRecentCommuList() {
+        return homeDAO.getRecentCommuList();
     }
 }

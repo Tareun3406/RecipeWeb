@@ -17,6 +17,8 @@
 
 
 body{
+    background-image:url(/resources/images/content/backgroundimage.png);
+    background-repeat:repeat;
     margin: 0px;
     text-align: center;
     min-width: max-content;
@@ -356,11 +358,23 @@ footer a:hover {
 }
 
 .popular-menu ul li .menu-recipe .menu-name {
+    display: block;
+    margin-left: 50px;
+}
+.popular-menu ul li .menu-recipe .bWriter{
+    display: block;
+    font-size: 15px;
+    text-align: left;
+}
+
+.popular-menu ul li .menu-recipe .menu-recipe{
+    display: block;
     margin-left: 50px;
 }
 
 .popular-menu ul li .menu-recipe img {
     height: 100px;
+    width: 100px;
 }
 
 .popular-menu ul li .material-symbols-outlined {
@@ -475,21 +489,26 @@ footer a:hover {
     width: 50px;
 }
 
-.index-board table .border-tag {
-    width: 50px;
+.index-board table .border-no {
+    width: 80px;
 }
 
 .index-board table .border-title {
     color: slategrey;
-    width: 450px;
+    width: 300px;
+}
+
+.index-board table .border-writer{
+    width: 80px;
 }
 
 .index-board table .likes-number {
+    width: 80px;
     color: var(--point-color);
 }
 
 .index-board table .date {
     color: slategrey;
-    width: 50px;
+    width: 100px;
 }
 

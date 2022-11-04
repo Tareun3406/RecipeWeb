@@ -1,6 +1,7 @@
 package com.recipe.dao;
 
 import com.recipe.vo.CategoryVO;
+import com.recipe.vo.CommuVO;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -16,5 +17,20 @@ public class HomeDAOImpl implements HomeDAO{
     @Override
     public List<CategoryVO> getRecipeRankedList() {
         return sqlSession.selectList("recipeRanked");
+    }
+
+    @Override
+    public List<CategoryVO> getBookmarkRecipeList() {
+        return sqlSession.selectList("recipeBookmarked");
+    }
+
+    @Override
+    public List<CategoryVO> getRecentRecipeList() {
+        return sqlSession.selectList("recipeRecent");
+    }
+
+    @Override
+    public List<CommuVO> getRecentCommuList() {
+        return sqlSession.selectList("commuRecent");
     }
 }

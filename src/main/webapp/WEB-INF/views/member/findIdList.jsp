@@ -5,24 +5,23 @@
 <head>
     <title>아이디 목록</title>
 </head>
-<body>
-    <table>
-        <tr>
-            <td>아이디 목록</td>
-        </tr>
-        <c:forEach items="${memberList}" var="member">
+<body style="text-align: center">
+    <div class="index-board">
+        <table style="margin: auto; margin-top: 200px">
             <tr>
-                <td>
-                    ${member.userid}
-                </td>
+                <th id="colId">아이디 목록</th>
             </tr>
-        </c:forEach>
-        <tr>
-            <td>
-                <a href="/member/login"> 로그인 페이지로 </a>
-                <a href="/member/findPW"> 비밀번호 찾기 </a>
-            </td>
-        </tr>
-    </table>
+            <c:forEach items="${memberList}" var="member">
+                <tr>
+                    <td>
+                            ${member.userid}
+                    </td>
+                </tr>
+            </c:forEach>
+        </table><br>
+        <a href="/member/login" style="margin-right: 100px;"> 로그인 페이지로 </a>
+        <a href="/member/findPW"> 비밀번호 찾기 </a>
+    </div>
+
 </body>
 </html>

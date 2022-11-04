@@ -150,6 +150,42 @@ body{
 
 
 
+.index-board {
+    display: inline-block;
+    margin: auto;
+}
+
+.index-board table {
+    display: inline-block;
+    border-collapse: collapse;
+    border-bottom: 1px solid var(--point-color);
+    margin: 0px 20px;
+}
+
+.index-board table th, .index-board table tr{
+    height: 25px;
+}
+
+.index-board table th{
+    background-color: var(--table-hot-color);
+    border-top: 1px solid var(--point-color);
+    border-bottom: 1px solid var(--point-color);
+}
+.index-board table tr:hover {
+    background: var(--table-hover-color);
+}
+
+.index-board table #colId{
+    width: 300px;
+}
+.index-board table #colEmail{
+    width: 200px;
+}
+.index-board table #colName{
+    width: 100px;
+}
+
+
 
 
 

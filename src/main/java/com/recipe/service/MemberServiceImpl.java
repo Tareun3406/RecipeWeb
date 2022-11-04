@@ -5,6 +5,7 @@ import com.recipe.vo.AuthDTO;
 import com.recipe.vo.MemberDTO;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.MailSendException;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -69,7 +70,9 @@ public class MemberServiceImpl implements MemberService{
         smm.setSubject("cookbook 비밀번호 찾기");
         smm.setText("변경된 비밀번호입니다 로그인후 변경해주세요 \n"+ranPw);
 
-        mailSender.send(smm);
+        try {
+            mailSender.send(smm);
+        }catch (MailSendException e){}
 
         return result;
     }

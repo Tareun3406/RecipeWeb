@@ -2,54 +2,58 @@
 
 <!-- header -->
 <jsp:include page="../main/header.jsp" flush="false"/>
-<link rel="stylesheet" type="text/css" href="../../..//resources/css/registration.css" />
-<script src="../../../resources/js/jquery.js"></script>
-<script src="../../../resources/js/reg_test.js"></script>
+<link rel="stylesheet" type="text/css" href="../../../resources/css/registration.css" />
 
 <section id="backimg">
  <article>
-  <div id="r9">
-   <form  name="ck" method="post" action="#" enctype="multipart/form-data" id="cK_form" onsubmit="return check();">
+  <div id="r9">				<!--  method="post" enctype="multipart/form-data" -->
+   <form  name="ck" action="recipe_post_ok" id="cK_form" onsubmit="return check();">
+   <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" id="token">
  <div id="re">
   <div id="re_1">
   <h1>레시피 등록</h1>
   </div>
  <ul id="rs">
-  <li><span style="font-size:16px">요리 제목 </span><input id="ck_title" name="ck_title" placeholder="요리제목을 입력해주세요."></li><br/>
+  <li><span style="font-size:16px">요리 제목 </span><input id="ck_title" name="title" placeholder=" 요리제목을 입력해주세요."></li><br/>
+  </ul>
+  <div class="content">
+        <div>
+        <ul>
+            <li><span style="font-size:16px">태그</span><input type="text" id="post_tag" name="post_tag" placeholder=" #을 사용하고 태그를 등록할때는 스페이스바를 눌러주세요. 예) #한식,#떡볶이" /></li>
+        	<li><input type=“hidden” value=""></li>
+        </ul>
+        </div>
+        <ul id="tag-list">
+        </ul>
+    </div>
+  </div>
+   // 자바스크립트로 특정값을 input에 넣는법
+  <div id="img_num">
+  <ul>
+      <p></p>
+    <li><span style="font-size:16px">요리순서</span>
+    <div id="box">
+      <input type="button" id="btn_blue" value="추가" onclick="add_textbox()">
+      </div>
+      </li>
   </ul>
   </div>
-  
-  <div>
-	<ul>
-<li><span style="font-size:16px"> 카테고리</span> <select name="cook" id="cate">
-	<option value="Korean food">한식</option>
-	<option value="Western food">양식</option>
-	<option value="Japanese food">일식</option>
-	</select>
-	</li>
-	</ul>
-</div>
-
-<div>
+        <div id="ing_wrap">
+        <ul>
+            <li><span style="font-size:16px"> 재료 </span><input id="ck_ing" name="ingredient" placeholder=" : 세미콜론을 사용하고 스페이스바로 등록해주세요 . 예) 설탕:한큰술"></li><br/>
+        </ul>
+        </div>
+        <ul id="ing-list">
+        </ul>
+ <div id="tip_wrap">
   <ul>
-  <li><span style="font-size:16px"> 내용 </span><input id="ck_cont" name="ck_cont" placeholder="요리에 관한 레시피내용을 입력해주세요."></li><br/>
-  <li><span style="font-size:16px"> 재료 </span><input id="ck_ing" name="ck_ma" placeholder="요리에 들어가는 재료를 기입해주세요."></li><br/>
-  <li><span style="font-size:16px"> 나만의 팁 </span><input id="ck_tip" placeholder="나만의 꿀팁을 적어보세요."></li><br/>
+  <li><span style="font-size:16px"> 나만의 팁 </span><input id="ck_tip" name="tip" placeholder=" 나만의 꿀팁을 적어보세요."></li><br/>
  </ul>
  </div>
- <div id='image_preview'>
-<ul>
-<li><span style="font-size:16px"> 요리사진 </span>
-<div id='att_zone'> <input  id='btnAtt' type="file" name="ck_file" multiple>
-</div>
-</li>
-</ul>
- </div>
-<div>
-<ul>
-<li><span style="font-size:16px"> 요리 동영상</span> <input type="url" id="ck_video" placeholder="요리에 대한 동영상이있다면 주소를 넣어주세요(단 유튜브주소만 가능)"><br/>
-</ul>
-</div>
+    </div>
+
+
+
 <div>
 <input type="submit" class="btn green rounded" value="등록">
 <input type="reset" class="btn red rounded" value="취소" onclick="ck.title.focus()">
@@ -60,7 +64,12 @@
 </section>
 
 
-<script src="js/reg_multi_img.js"></script>
+
+<script src="/resources/js/jquery.js"></script>
+<script src="/resources/js/ing_check.js"></script>
+<script src="/resources/js/post_tag.js"></script>
+<script src="/resources/js/img_content.js"></script>
+<script src="/resources/js/reg_test.js"></script>
 
 
 

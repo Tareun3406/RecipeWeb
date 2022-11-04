@@ -63,7 +63,7 @@
                 </button>
             </form>
             <!--  -->
-            <button type="button">레시피 등록</button>
+            <button type="button" onclick="location.href='recipe_post';">레시피 등록</button>
             <a href="#">#추천검색어 를 검색해보세요</a>
         </div>
         <div id="chef-rank-list">

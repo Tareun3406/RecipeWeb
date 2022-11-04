@@ -78,15 +78,28 @@ public class MemberController {
 
     // 비밀번호 변경후 이메일로 전송 및 확인
     @PostMapping("/findPW")
-    public ModelAndView sendPwToEmail(MemberDTO member){
-        ModelAndView mv = new ModelAndView("/member/findPwSended");
-        String message;
-        System.out.println(member);
-        int result = memberService.changePwSend(member);
+    public String sendPwToEmail(MemberDTO member, HttpServletResponse response){
+        response.setContentType("text/html; charset=UTF-8");
 
-        if (result == 0){ message = "아이디와 이메일을 다시 확인해주세요"; }
-        else { message = "이메일로 비밀번호가 전송되었습니다."; }
-        mv.addObject("message", message);
-        return mv;
+        int result = memberService.changePwSend(member);
+        String message;
+        try{
+            PrintWriter out =  response.getWriter();
+            if (result == 0){ message = "아이디와 이메일을 다시 확인해주세요";}
+            else { message = "이메일로 비밀번호가 전송되었습니다."; }
+            out.println("<script>");
+            out.println("alert('"+message+"');");
+            if (result == 0)
+                out.println("history.back();");
+            else
+                out.println("location='/member/login';");
+            out.println("</script>");
+        }catch (Exception e){
+
+        }
+
+
+
+        return null;
     }
 }

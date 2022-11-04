@@ -33,6 +33,16 @@
         <servlet-name>appServlet</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
+    
+    
+    <!-- 멀티 다중파일 업로드 필터 -->
+    <filter>
+        <description>스프링 파일업로드 필터 등록-스프링시큐리티설정전에 위치해야 한다</description>
+        <filter-name>MultipartFilter</filter-name>
+        <filter-class>org.springframework.web.multipart.support.MultipartFilter</filter-class>
+    </filter>
+    
+    
 
     <!-- method = post방식으로 전달된 한글을 안깨지게 한다.
          request.setCharacterEncoding("utf-8"); 코드를 추가하지 않아도 된다.-->

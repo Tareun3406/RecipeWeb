@@ -11,18 +11,16 @@
 
 
 function check(){
-		if($.trim($('ck_title').val()) == ""){
+		if($.trim($('#ck_title').val()) == ""){
 			alert('요리제목을 입력해주세요!');
 		}
-		if($.trim($('ck_cont').val()) == ""){
-			alert('요리내용을 입력해주세요!');
+		if($.trim($('#tag').val()) == ""){
+			alert('태그를 입력해주세요!');
 		}
-		if($.trim($('ck_ma').val()) == ""){
+		if($.trim($('#ck_ing').val()) == ""){
 			alert('요리관한 재료를 입력해주세요!');
 		}
-		if($.trim($('ck_file').val()) == ""){
-			alert('요리관한 사진을 올려주세요!');
-		}
+		
    }
         
         

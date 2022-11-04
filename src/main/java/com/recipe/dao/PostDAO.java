@@ -1,12 +1,13 @@
 package com.recipe.dao;
 
-import com.recipe.vo.*;
 
+import com.recipe.vo.*;
+import com.recipe.vo.ContentVO;
+import com.recipe.vo.PostVO;
 import java.util.List;
 
 public interface PostDAO {
     List<PostVO> getPost(int post_no);
-    void insertRp(Recipe_PostDTO rpd);
     void updateHit(int post_no);
 
     void inserBookmark(BookmarkVO bookmarkVO);
@@ -38,4 +39,7 @@ public interface PostDAO {
     void minusSubscribe(String target_id);
 
     List<SubscribeVO> getSubscriberList(String writer);
+
+	void insertRp(PostVO pv, ContentVO cv);
+
 }

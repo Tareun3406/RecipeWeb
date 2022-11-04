@@ -2,6 +2,8 @@ package com.recipe.service;
 
 import com.recipe.dao.PostDAO;
 import com.recipe.vo.*;
+import com.recipe.vo.ContentVO;
+import com.recipe.vo.PostVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,10 +33,7 @@ public class PostServiceImpl implements PostService{
         return postVOList;
     }
 
-    @Override
-    public void insertRp(Recipe_PostDTO rpd) {
-        postDAO.insertRp(rpd);
-    }
+    
 
     @Transactional
     @Override
@@ -92,4 +91,9 @@ public class PostServiceImpl implements PostService{
     public List<SubscribeVO> getSubscriberList(String writer) {
         return postDAO.getSubscriberList(writer);
     }
+
+	@Override
+	public void insertRp(PostVO pv, ContentVO cv) {
+		postDAO.insertRp(pv,cv);
+	}
 }

@@ -49,7 +49,18 @@
     <insert id="rp_in">
         insert into RECIPE_POST (post_no, writer, title, hit, regdate, update, thumnail, ingredient, bookmark, post_tag, tip, writer ) values
             (post_no_seq.nextval, #{writer}, #{title}, 0, sysdate, sysdate, #{thumnail}, #{ingredient}, 0, #{post_tag}, #{tip}, #{writer} )
+	</insert>
+
+    <insert id="rc_post">
+        insert into RECIPE_POST (post_no, title, hit, regdate, thumnail, ingredient, bookmark, post_tag, tip, writer) values
+            (post_no, #{title}, 0, sysdate, #{thumnail}, #{ingredient}, 0, #{post_tag}, #{tip}, #{writer} )
     </insert>
+    
+    
+    
+    
+    
+    
 
     <!-- 게시글, 댓글 가져오기 -->
     <select id="post_getList" resultMap="plist">

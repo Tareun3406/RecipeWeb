@@ -3,6 +3,7 @@ package com.recipe.service;
 import com.recipe.dao.HomeDAO;
 import com.recipe.vo.CategoryVO;
 import com.recipe.vo.CommuVO;
+import com.recipe.vo.MemberDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,5 +33,10 @@ public class HomeServiceImpl implements HomeService{
     @Override
     public List<CommuVO> getRecentCommuList() {
         return homeDAO.getRecentCommuList();
+    }
+
+    @Override
+    public List<MemberDTO> getChefRankedList() {
+        return homeDAO.getChefRankedList();
     }
 }

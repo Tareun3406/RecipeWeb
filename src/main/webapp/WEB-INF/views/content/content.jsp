@@ -8,7 +8,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<jsp:include page="../main/header.jsp" />
+<c:import url="/header"/>
 <link href="${pageContext.request.contextPath}/resources/css/content.css" rel="stylesheet" type="text/css">
 <script src="https://kit.fontawesome.com/129ea0b18b.js" crossorigin="anonymous"></script>
 <script>

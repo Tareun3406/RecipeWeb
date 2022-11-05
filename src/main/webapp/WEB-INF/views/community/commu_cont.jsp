@@ -3,9 +3,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="s" %>
-
-
-<jsp:include page="../main/header.jsp" flush="false" />
+<c:import url="/header"/>
 <link href="${pageContext.request.contextPath}/css/commu.css"
 	rel="stylesheet" type="text/css">
 <script src="/resources/js/jquery.js"></script>

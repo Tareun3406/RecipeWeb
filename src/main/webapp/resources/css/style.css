@@ -276,9 +276,13 @@ footer a:hover {
     font-size: 40px;
 }
 .recipe-rank .view-container{
-    padding: 0px 30px;
+    padding:5px 30px;
     width:1000px;
     overflow-x: hidden;
+    background: var(--back-nomal-color);
+    border-top: 1px solid var(--point-color);
+    border-bottom: 1px solid var(--point-color);
+
 }
 .recipe-rank .rank-image-container {
     display: flex;
@@ -339,6 +343,7 @@ footer a:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background: var(--back-nomal-color);
 }
 
 .popular-menu ul li:hover {
@@ -390,73 +395,6 @@ footer a:hover {
     color: lightslategray;
 }
 
-
-.today-special {
-    margin: auto;
-}
-
-.today-special .select-special {
-    width: 500px;
-}
-
-.today-special .select-main {
-    display: inline-block;
-    width: 500px;
-}
-
-.today-special .selected-main {
-    display: inline-block;
-    width: 550px;
-    margin: 10px;
-}
-
-.today-special .selected-main > div {
-    height: 330px;
-    border-radius: 8px;
-    background: var(--back-nomal-color);
-}
-
-.today-special .recomand-special {
-    display: inline-block;
-    width: 130px;
-    margin: 10px;
-}
-
-
-.rollingBanner{
-    width: 1200px;
-    overflow-x: hidden;
-    margin: auto;
-    position: relative;
-}
-.rollingBanner > button{
-    position: absolute;
-    top: 50%;
-    margin-top: -23px;
-    background: none;
-    border: none;
-}
-.rollingBanner > button > .material-symbols-outlined {
-    font-size: 40px;
-}
-.rollingBanner .image-container{
-    display: flex;
-    width: 1200px;  /* 부모객체와 같게설정 할 것*/
-    transform: translateX(0%);
-    transition: 0.5s;
-}
-.rollingBanner .banner_prev{
-    left: 0%;
-}
-.rollingBanner .banner_next{
-    right: 0%;
-}
-.rollingBanner .banner_item{
-}
-.rollingBanner img{
-    width: 1200px; /* 부모객체와 같게설정 할 것*/
-}
-
 .index-board {
     display: inline-block;
     margin: auto;
@@ -476,6 +414,10 @@ footer a:hover {
 .index-board table a {
     color: var(--point-color);
     text-decoration: none;
+}
+
+.index-board table tr{
+    background: var(--back-nomal-color);
 }
 
 .index-board table tr:hover {

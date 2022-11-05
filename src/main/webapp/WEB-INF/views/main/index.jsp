@@ -14,7 +14,7 @@
                         <input type="radio" value="${recipe.RNum}" style="display: none;" onclick="rankOnClick(this)">
                         <img class="menu-image" alt=""
                              src="${recipe.thumnail}">
-                        <ul class="recipe-info">
+                        <ul class="recipe-info" style="background:  #fffde4; border: 1px solid var(--point-color);">
                             <li class="recipe-title">${recipe.RNum}. ${recipe.title}</li>
                             <li>재료 1</li>
                             <li>재료 2</li>
@@ -111,26 +111,28 @@
                         </div>
 
                     </div>
-                    <span class="material-symbols-outlined">star</span>
+                    <span class="material-symbols-outlined"></span> <%-- 즐겨찾기 이미지 추가 예정--%>
                 </li>
                 <c:if test="${recipe.RNum == 10}">
                     </div>
                 </c:if>
             </c:forEach>
         </ul>
-        <div class="add-view-list">
-            <button href="#" style="border: none; background: white" onclick="moreList('moreList',this)">
+        <div class="add-view-list" style="background: var(--back-nomal-color);">
+            <button href="#" style="border: none; background: var(--back-nomal-color);" onclick="moreList('moreList',this)">
                 더보기
             </button>
         </div>
     </article>
     <script>
-        function moreList(id) {
+        function moreList(id, btn) {
             const list = document.getElementById(id);
             if (list.style.display == 'flex') {
                 list.style.display = 'none';
+                btn.innerText = "더보기";
             } else {
                 list.style.display = 'flex';
+                btn.innerText = "숨기기";
             }
         }
     </script>

@@ -30,8 +30,8 @@
 
         on (WRITER=userid)
             <if test="find_name == ''">order by hit desc</if>
-            <if test="find_name == '레시피랭킹'">order by hit desc</if>
-            <if test="find_name == '쉐프랭킹'">order by BOOKMARK desc</if>
+            <if test="find_name == '조회수'">order by hit desc</if>
+            <if test="find_name == '추천수'">order by BOOKMARK desc</if>
             )p
         <where>
             <if test="find_date == ''"></if>

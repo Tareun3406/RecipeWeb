@@ -24,7 +24,8 @@ public class MemberDTO {
     private List<BookmarkVO> bookList; //북마크테이블
     private List<RecipepostVO> recipeList;//레시피본문 테이블
     private List<RecipereplyVO> recipereplyList; //댓글테이블
-    private List<MessageVO> messageList; //메세지테이블
+    private List<MessageVO> messageList;  //메세지테이블(보낸사람)
+    private List<MessageVO> messageList2; //메세지테이블(받은사람)
 
     
 

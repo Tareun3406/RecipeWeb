@@ -105,35 +105,34 @@
              <div>받은 쪽지<hr/>
              <c:forEach items="${userlist.messageList}" var="message" varStatus="i">
                  <c:if test="${userlist.userid == message.receiver}"><span class="subbookspan">
-                  보낸사람:<c:out value="${message.sender}"/>
-                     내용:<c:out value="${message.message}"/>
-                  보낸 날짜:<c:out value="${message.senddate}"/></span><hr/>
+                  보낸사람 : <c:out value="${message.snickname}"/>  /
+                     내용 : <c:out value="${message.message}"/>  /
+                  보낸 날짜 : <c:out value="${message.senddate}"/></span><hr/>
                  </c:if>
              </c:forEach>
                  <c:choose>
-                     <c:when test="${empty userlist.messageList[0].sender}">
+                     <c:when test="${empty userlist.messageList}">
                          받은 쪽지가 없습니다.<hr/>
                      </c:when>
                  </c:choose>
 
              </div>
              <div>보낸 쪽지<hr/>
-                 <c:forEach items="${userlist.messageList}" var="message" varStatus="i">
-                     <c:if test="${userlist.userid == message.sender}"><span class="subbookspan">
-                   받은사람:<c:out value="${message.receiver}"/>
-                   내용:<c:out value="${message.message}"/>
-                   보낸 날짜:<c:out value="${message.senddate}"/></span><hr/>
+                 <c:forEach items="${userlist.messageList2}" var="message2" varStatus="i">
+                     <c:if test="${userlist.userid == message2.sender2}"><span class="subbookspan">
+                   받은사람 : <c:out value="${message2.rnickname}"/>  /
+                   내용 : <c:out value="${message2.message2}"/>  /
+                   보낸 날짜 : <c:out value="${message2.senddate2}"/></span><hr/>
                      </c:if>
                  </c:forEach>
                  <c:choose>
-                     <c:when test="${empty userlist.messageList[0].sender}">
+                     <c:when test="${empty userlist.messageList2}">
                          보낸 쪽지가 없습니다.<hr/>
                      </c:when>
                  </c:choose>
              </div>
          </div>
          </div>
-
      </div>
  </div>
 </div>

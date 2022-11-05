@@ -21,10 +21,16 @@ public class RankingController {
     public String ranking(HttpServletRequest request, RankingVO r, Model model){
 
 
-        String find_date=request.getParameter("find_date");
+        String find_date=request.getParameter("find_date");//작성일이 1일전 7일전 30일전으로 검색가능하게 함
 
         if(find_date==null){
             find_date="";
+        }//null일때 ""으로 공백처리 sql에서 인식이상함
+
+        switch (find_date){
+            case "1일"  : find_date="1";  break;
+            case "7일"  : find_date="7";  break;
+            case "30일" : find_date="30"; break;
         }
         r.setFind_date(find_date);
 
@@ -39,16 +45,10 @@ public class RankingController {
         if(find_name == null) {
             find_name="";
         }
-        if(find_name.equals("레시피랭킹")){
-            find_name="레시피랭킹";
-        }
-        if(find_name.equals("쉐프랭킹")){
-            find_name="쉐프랭킹";
-        }
+
         //find_name에 빈값이 아닌 null이 들어왔을때 공백으로 만들어준다.
 
         r.setFind_name(find_name);
-        //하나이상의 임의의 모르는 문자와 매핑대응
 
         int totalCount=this.rankingService.getListCount(r);
         //총레코드 개수,검색후 레코드 개수,

@@ -10,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import static java.lang.System.out;
 
 @Controller
 public class MypageController {
@@ -21,13 +20,11 @@ public class MypageController {
 
     @RequestMapping("/mypage") //마이페이지 본문
     public String mypage(Model mylistm,Authentication authentication ){
-        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-        //시큐리티 인증로그인 할때 저장된 유저이름 가져오기
-        String b=userDetails.getUsername();
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();//시큐리티 인증로그인 할때 저장된 유저이름 가져오기
+        String b=userDetails.getUsername();//가져온 이름 b객체에 저장
 
-        MemberDTO pvo = mypageService.getmylist(b);
+        MemberDTO pvo = mypageService.getmylist(b); //저장된 b로 내정보 가져오기
 
-        pvo.setNickname(b);
         mylistm.addAttribute("userlist",pvo);
 
         return "mypage/mypage";

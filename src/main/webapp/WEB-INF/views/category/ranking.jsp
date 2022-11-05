@@ -12,12 +12,12 @@ border: solid 1px white;">
  <div class="rank-first-menu">
   <div style="width: auto;">
     <form action="/ranking" >
-        <input type="hidden" value="${find_date}" name="find_date"/><input type="submit" class="rankingbutton1" value="레시피랭킹" name="find_name" /><input type="submit" class="rankingbutton2" value="쉐프랭킹" name="find_name" />
+        <input type="hidden" value="${find_date}" name="find_date"/><input type="submit" class="rankingbutton1" value="조회수" name="find_name" /><input type="submit" class="rankingbutton2" value="추천수" name="find_name" />
     </form>
   </div>
   <div class="datebutton" style="width: auto;">
       <form action="/ranking" >
-          <input type="hidden" value="${find_name}" name="find_name"/><input type="submit" class="datebutton" value="1" name="find_date"/><input type="submit" class="weekbutton" value="7" name="find_date" /><input type="submit" class="monthbutton" value="30" name="find_date" />
+          <input type="hidden" value="${find_name}" name="find_name"/><input type="submit" class="datebutton" value="1일" name="find_date"/><input type="submit" class="weekbutton" value="7일" name="find_date" /><input type="submit" class="monthbutton" value="30일" name="find_date" />
       </form>
   </div>
  </div>

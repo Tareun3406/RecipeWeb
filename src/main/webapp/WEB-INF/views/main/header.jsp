@@ -4,7 +4,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
     <link href="${pageContext.request.contextPath}/resources/css/style.css" rel="stylesheet" type="text/css">
@@ -70,67 +69,14 @@
             <h3 style="margin-bottom: 10px;">인기 셰프
                 Top10
             </h3>
-            <figure class="chef-profile">
-                <img class="profile-img" alt="profile"
-                     src="/resources/images/profile.png">
-                <figcaption>일등셰프하나</figcaption>
-                <!-- 한글 6자, 영문 10자 -->
-            </figure>
-            <figure class="chef-profile">
-                <img class="profile-img" alt="profile"
-                     src="/resources/images/profile.png">
-                <figcaption>일등셰프하나</figcaption>
-                <!-- 한글 6자, 영문 10자 -->
-            </figure>
-            <figure class="chef-profile">
-                <img class="profile-img" alt="profile"
-                     src="/resources/images/profile.png">
-                <figcaption>일등셰프하나</figcaption>
-                <!-- 한글 6자, 영문 10자 -->
-            </figure>
-            <figure class="chef-profile">
-                <img class="profile-img" alt="profile"
-                     src="/resources/images/profile.png">
-                <figcaption>일등셰프하나</figcaption>
-                <!-- 한글 6자, 영문 10자 -->
-            </figure>
-            <figure class="chef-profile">
-                <img class="profile-img" alt="profile"
-                     src="/resources/images/profile.png">
-                <figcaption>일등셰프하나</figcaption>
-                <!-- 한글 6자, 영문 10자 -->
-            </figure>
-            <figure class="chef-profile">
-                <img class="profile-img" alt="profile"
-                     src="/resources/images/profile.png">
-                <figcaption>일등셰프하나</figcaption>
-                <!-- 한글 6자, 영문 10자 -->
-            </figure>
-            <figure class="chef-profile">
-                <img class="profile-img" alt="profile"
-                     src="/resources/images/profile.png">
-                <figcaption>일등셰프하나</figcaption>
-                <!-- 한글 6자, 영문 10자 -->
-            </figure>
-            <figure class="chef-profile">
-                <img class="profile-img" alt="profile"
-                     src="/resources/images/profile.png">
-                <figcaption>일등셰프하나</figcaption>
-                <!-- 한글 6자, 영문 10자 -->
-            </figure>
-            <figure class="chef-profile">
-                <img class="profile-img" alt="profile"
-                     src="/resources/images/profile.png">
-                <figcaption>일등셰프하나</figcaption>
-                <!-- 한글 6자, 영문 10자 -->
-            </figure>
-            <figure class="chef-profile">
-                <img class="profile-img" alt="profile"
-                     src="/resources/images/profile.png">
-                <figcaption>일등셰프하나</figcaption>
-                <!-- 한글 6자, 영문 10자 -->
-            </figure>
-
+            <c:forEach items="${chefList}" var="chef">
+                <figure class="chef-profile">
+                    <img class="profile-img" onerror=this.src="/resources/images/profile.png"
+                         src="/resources/images/profile.png">
+                    <figcaption>${chef.nickname}</figcaption>
+                    <!-- 한글 6자, 영문 10자 -->
+                </figure>
+            </c:forEach>
 
         </div>
     </div>

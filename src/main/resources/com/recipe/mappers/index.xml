@@ -29,4 +29,12 @@
                                      order by COMU_NO desc) d where ROWNUM &lt;= 10
     </select>
 
+    <select id="chefRanked" resultType="member">
+        select a.* from (select sum(w.score) as score, nickname
+        from member m right join
+        (select s.*,writer from recipe_post r right join
+        (select POST_NO,sum(SCORE) as score from RECIPE_REPLY group by POST_NO)s
+        on r.POST_NO=s.POST_NO)w
+        on (w.WRITER=m.USERID) group by nickname order by score desc)a where ROWNUM &lt;= 10
+    </select>
 </mapper>

@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-
-<jsp:include page="../main/header.jsp" flush="false" />
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:import url="/header"/>
 <link href="${pageContext.request.contextPath}/css/commu.css"
 	rel="stylesheet" type="text/css">
 

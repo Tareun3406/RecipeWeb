@@ -1,7 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!-- header -->
-<jsp:include page="../main/header.jsp" flush="false"/>
+<c:import url="/header"/>
 <link rel="stylesheet" type="text/css" href="../../../resources/css/registration.css" />
 
 <section id="backimg">

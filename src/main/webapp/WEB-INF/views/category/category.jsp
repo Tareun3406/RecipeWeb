@@ -1,7 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
-
-<jsp:include page="../main/header.jsp" flush="false"/>
+<c:import url="/header"/>
 <link href="${pageContext.request.contextPath}/resources/css/category.css" rel="stylesheet" type="text/css">
 <%-- 절대경로.--%>
 <%-- -----------------------header------------------------ --%>

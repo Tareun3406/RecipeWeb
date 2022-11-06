@@ -26,7 +26,8 @@
         <security:intercept-url pattern="/member/login" access="isAnonymous()"/>
         <security:access-denied-handler ref="memberAccessDenied"/>
 
-        <security:csrf disabled="false"/>
+        <security:csrf disabled="false"/> <!-- true = csrf 끄기, 테스트용으로만 사용할것-->
+
         <security:form-login login-page="/member/login"
                              authentication-success-handler-ref="memberLoginSuccess"
                              username-parameter="userid" password-parameter="userpw"

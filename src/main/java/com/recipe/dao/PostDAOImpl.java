@@ -2,13 +2,12 @@ package com.recipe.dao;
 
 
 import com.recipe.vo.*;
-import com.recipe.vo.ContentVO;
-import com.recipe.vo.PostVO;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public class PostDAOImpl implements PostDAO{
@@ -101,9 +100,18 @@ public class PostDAOImpl implements PostDAO{
         return sqlSession.selectList("subscribe_getList", target_id);
     }
 
+    @Override
+    public int getNextNo() {
+        return sqlSession.selectOne("selectPostNextVal");
+    }
 
-	@Override
-	public void insertRp(PostVO pv, ContentVO cv) {
-		sqlSession.insert("rc_post",pv);
-	}
+    @Override
+    public void insertPost(RecipeUploadDTO recipeContent) {
+        sqlSession.insert("insertPost",recipeContent);
+    }
+
+    @Override
+    public void insertPostContent(Map<String, Object> map) {
+        sqlSession.insert("insertPostContent",map);
+    }
 }

@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class PostServiceImpl implements PostService{
@@ -92,8 +94,21 @@ public class PostServiceImpl implements PostService{
         return postDAO.getSubscriberList(writer);
     }
 
-	@Override
-	public void insertRp(PostVO pv, ContentVO cv) {
-		postDAO.insertRp(pv,cv);
-	}
+    @Transactional
+    @Override
+    public void insertPost(RecipeUploadDTO recipeContent, List<RecipeContentDTO> contentlist) {
+        postDAO.insertPost(recipeContent);
+
+        Map<String, Object> map = new HashMap<>();
+        System.out.println(contentlist);
+        map.put("contentlist",contentlist);
+
+        postDAO.insertPostContent(map);
+    }
+
+    @Override
+    public int getNextNo() {
+        return postDAO.getNextNo();
+    }
+
 }

@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.security.Principal;
@@ -239,11 +240,72 @@ public class ContentController { // 신고, 구독, 즐겨찾기 아작스
 
     // 레시피 작성내용 업로드
     @PostMapping("/recipeUpload")
-    public String recipeUpload(RecipeUploadDTO recipeContent, Principal principal
-    , MultipartFile thumbnailImg, List<MultipartFile> recipeImgs){
-        System.out.println("아이디 정보: "+principal.getName());
-        System.out.println("글 내용: "+recipeContent);
-        return "redirect:/";
+    public String recipeUpload(RecipeUploadDTO recipeContent, Principal principal, HttpSession session){
+
+        recipeContent.setWriter(principal.getName());
+
+        MultipartFile thumbnail = recipeContent.getThumnailImg();   // 업로드 될 썸네일 이미지파일
+        List<MultipartFile> recipeImgs = recipeContent.getRecipeImgs(); // 업로드 될 내용 이미지파일 리스트
+        List<String> recipeTexts = recipeContent.getRecipeText();       // db에 들어갈 내용 텍스트 리스트
+        List<RecipeContentDTO> contentlist; // db에 들어갈 내용 이미지 경로
+
+        int post_no = 30; //postService.getNextNo();    // 글번호
+
+        String fileName = thumbnail.getOriginalFilename();  // 원본파일명 가져오기. Internet Explorer의 경우 경로까지 가져오니 유의
+        String uploadPath = session.getServletContext().getRealPath("/resources/uploadImg/"+post_no);   //저장될 경로 가져오기
+
+        uploadImg(thumbnail, fileName, uploadPath); // 썸네일 업로드
+        recipeContent.setThumnail(uploadPath+"/"+fileName);
+        recipeContent.setPost_no(post_no);
+
+        contentlist = uploadList(recipeImgs,recipeTexts,uploadPath,post_no);  // 내용 업로드+ db에 넣을 값 저장
+
+        postService.insertPost(recipeContent, contentlist);
+
+        return "redirect:/category";
     }
 
+
+
+
+
+    // 폴더생성 + 파일 업로드 (파일, 파일이름, 파일 경로)
+    private void uploadImg(MultipartFile file, String fileName, String uploadPath){
+        File folder = new File(uploadPath);
+        if(!folder.exists()){
+            try{
+                folder.mkdir();
+                System.out.println("폴더 생성");
+            }catch (SecurityException e){
+
+            }
+        }
+        try{
+            file.transferTo(new File(uploadPath+"/"+fileName)); // 시퀀스 번호로 경로 추가
+        }catch (IOException | IllegalStateException e){
+            e.printStackTrace();
+        }
+    }
+
+    //이미지 업로드후 dto리스트 반환
+    private List<RecipeContentDTO> uploadList(List<MultipartFile> recipeImgs,
+                List<String> recipeTexts ,String uploadPath, int post_no){
+
+        List<RecipeContentDTO> contentList = new ArrayList<>();
+        String fileName = null;
+        for (int i = 0; i<recipeImgs.size(); i++){    // 내용 이미지 업로드
+            MultipartFile file = recipeImgs.get(i);
+            fileName = file.getOriginalFilename();
+            uploadImg(file,fileName,uploadPath);
+
+            RecipeContentDTO content = new RecipeContentDTO();
+            content.setImage(uploadPath+"/"+fileName);
+            content.setManual(recipeTexts.get(i));
+            content.setStep(i);
+            content.setPost_no(post_no);
+
+            contentList.add(content);
+        }
+        return contentList;
+    }
 }

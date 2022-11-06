@@ -28,7 +28,7 @@
                             <ul>
                                 <li>
                                     <span style="font-size:16px">썸네일</span>
-                                    <input type='file' name='thumbnailImg' id="thumnail"/>
+                                    <input type='file' name='thumnailImg' id="thumnail" accept="image/*"/>
                                 </li>
                             </ul>
                         </div>

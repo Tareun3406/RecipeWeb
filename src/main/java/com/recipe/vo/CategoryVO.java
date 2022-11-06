@@ -5,6 +5,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.sql.Date;
+import java.util.List;
 
 
 @Setter
@@ -35,4 +36,12 @@ public class CategoryVO {
     private String nickname; //member테이블의 닉네임
     
     private String score; //댓글에 점수
+
+    List<ContentVO> contentVOList;
+    List<ReportVO> reportVOList;
+    List<BookmarkVO> bookmarkVOList;
+    List<SubscribeVO> subscribeVOList;
+    List<ReplyVO> replyVOList;
+    List<MemberDTO> memberDTOList;
+
 }

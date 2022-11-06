@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Member">
+    <resultMap id="memberMap" type="member">
+        <result property="userid" column="userid"/>
+        <result property="userpw" column="userpw"/>
+        <result property="nickname" column="nickname"/>
+        <result property="email" column="email"/>
+
+        <collection property="authList" resultMap="authMap"/>
+
+    </resultMap>
+
+    <resultMap id="authMap" type="auth">
+        <result property="userid" column="userid"/>
+        <result property="auth" column="auth"/>
+    </resultMap>
+    <!-- 구독+북마크+레시피본문 vo 맵 국동호 -->
+
+    <resultMap id="mypageMap" type="member">
+        <result property="userid" column="userid"/>
+        <result property="userpw" column="userpw"/>
+        <result property="nickname" column="nickname"/>
+        <result property="email" column="email"/>
+
+        <collection property="bookList" resultMap="bookMap"/>
+         <collection property="messageList" resultMap="messageMap"/>
+        <collection property="recipereplyList" resultMap="recipereplyMap"/>
+        <collection property="subList" resultMap="subMap"/>
+        <collection property="recipeList" resultMap="recipeMap"/>
+    </resultMap>
+
+
+
+    <resultMap id="bookMap" type="book">
+        <result property="userid" column="userid1"/>
+        <result property="post_no" column="post_no1" />
+    </resultMap>
+    <resultMap id="messageMap" type="message">
+        <result property="sender" column="sender"/>
+        <result property="receiver" column="receiver"/>
+        <result property="message" column="message"/>
+        <result property="senddate" column="senddate"/>
+        <result property="isread" column="isread"/>
+    </resultMap>
+
+    <resultMap id="recipeMap" type="recipe">
+        <result property="post_no" column="post_no2"/>
+        <result property="writer" column="writer"/>
+        <result property="title" column="title"/>
+        <result property="regdate" column="regdate1"/>
+    </resultMap>
+    <resultMap id="subMap" type="sub">
+        <result property="subscriber_id" column="subscriber_id"/>
+        <result property="target_id" column="target_id"/>
+    </resultMap>
+    <resultMap id="recipereplyMap" type="recipereply">
+        <result property="post_no" column="post_no3"/>
+        <result property="content" column="content"/>
+        <result property="regdate" column="regdate2"/>
+        <result property="reviewer" column="reviewer"/>
+        <result property="re_no" column="re_no"/>
+    </resultMap>
+
+
+
+    <!-- (끝)구독+북마크+레시피본문 vo 맵 국동호 -->
+
+
+    <!-- 회원 정보 + 권한 조회 -->
+    <select id="memberSelectAll" resultMap="memberMap">
+        select MEMBER.USERID,USERPW,NICKNAME,EMAIL,AUTH from MEMBER left outer join AUTH on MEMBER.USERID = AUTH.USERID
+        where AUTH.USERID = #{userid}
+    </select>
+
+    <!-- 회원정보 조회 -->
+    <select id="memberSelect" resultType="member">
+        select * from member where USERID=#{userid}
+    </select>
+
+    <!-- 회원가입 -->
+    <insert id="memberInsert">
+        insert into MEMBER VALUES (#{userid}, #{userpw}, #{nickname}, #{email}, 0)
+    </insert>
+    <insert id="authInsert">
+        insert into AUTH values (#{userid}, #{auth})
+    </insert>
+
+    <!-- 아이디찾기 -->
+    <select id="findID" resultType="member">
+        select USERID from MEMBER where EMAIL=#{email}
+    </select>
+
+    <!-- 비밀번호 찾기 비밀번호 변경 -->
+    <update id="memberUpdatePw">
+        update MEMBER set USERPW = #{userpw} where USERID = #{userid} and EMAIL = #{email}
+    </update>
+
+
+    <!-- mypage -->
+    <select id="my_list" resultMap="mypageMap">
+        select  a.USERID,a.userpw,a.nickname,a.EMAIL,
+                b.target_id,b.SUBSCRIBER_ID,
+                c.POST_NO as POST_NO1,c.USERID as userid1,
+                d.POST_NO as POST_NO2,d.REGDATE as regdate1, d.title,
+                e.POST_NO as POST_NO3,e.REGDATE as regdate2,e.CONTENT,
+                f.sender, f.receiver, f.message, f.senddate, f.isread
+        from MEMBER a left join SUBSCRIBE b
+                           on (a.USERID = b.SUBSCRIBER_ID)
+                      left join  BOOKMARK c
+                           on (a.USERID = c.USERID )
+                      left join RECIPE_POST d
+                           on (a.USERID = d.WRITER)
+                      left join RECIPE_REPLY e
+                           on (a.USERID = e.REVIEWER)
+                      left join MESSAGE f
+                           on (a.USERID = f.SENDER or a.USERID=f.RECEIVER)
+        where a.USERID = #{id}
+    </select>
+
+</mapper>

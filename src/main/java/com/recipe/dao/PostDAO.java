@@ -5,7 +5,7 @@ import com.recipe.vo.*;
 import java.util.List;
 
 public interface PostDAO {
-    List<PostVO> getPost(int post_no);
+    List<CategoryVO> getPost(int post_no);
     void insertRp(Recipe_PostDTO rpd);
     void updateHit(int post_no);
 

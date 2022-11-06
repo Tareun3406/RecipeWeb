@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.3.xsd
+      http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+      http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+      http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+
+    <!-- root-context.xm 파일의 역할은 서비스를 추가해서 스프링 aop를 통한 트랜잭션 적용, 모델 dao설정 mybatis설정
+        데이터베이스 연결 정보가 들어간다. -->
+
+    <!-- 스프링 API를 통한 JDBC연결 즉 오라클 연결 -->
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <!-- bean단위가 자바 클래스 단위이며 id명은 객체명에 해당된다. -->
+        <property name="driverClassName" value="oracle.jdbc.OracleDriver"/>
+        <!-- driverClassName 멤버변수에 value 속성값을 저장 -->
+        <property name="url" value="jdbc:oracle:thin:@istar.synology.me:1521:XE"/>
+        <!-- 오라클 접속주소 -->
+        <property name="username" value="recipe"/> <!-- 오라클 사용 -->
+        <property name="password" value="recipe"/> <!-- 사용자 비번 -->
+    </bean>
+
+    <!-- 스프링 jdbc와 mybatis연결, 데이터 저장빈 클래스 객체 별칭을 관리하는 mybatis-config.xml 파일을 기입 -->
+
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <!-- setter()메서드를 통한 의존성 주입(DI)후 ref속성값 dataSource가 빈아이디 객체명을 참조해서 오라클에 연결한다. -->
+        <property name="configLocation" value="classpath:/mybatis-config.xml"/>
+        <!-- classpath 경로는 was서버에의해 변경된 실제 프로젝트의 WEB-INF/classes 경로를 가리킨다. -->
+        <!-- 해당 개발툴의 가상경로는 src/main/resources이다. -->
+
+        <property name="mapperLocations" value="classpath:/com/recipe/mappers/*.xml"/>
+        <!-- 쿼리문을 담을 mybatis 매퍼 태그 xml파일이 들어가는 경로이다. -->
+    </bean>
+
+    <!-- 트랜잭션 매니저(관리자) 설정 -->
+    <bean id ="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource"	ref="dataSource"/>
+        <!-- setter 메서드를 통한 의존성 주입. ref 빈아이디 dataSource를 호출 -->
+    </bean>
+    <tx:annotation-driven/>
+
+
+    <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">
+        <!-- destroy-method="clearCash"는 임시 메모리를 비워 DB연결을 해제한다. -->
+        <constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"/>
+        <!-- 생성자를 통한 의존성 주입(DI) -->
+    </bean>
+
+    <!-- 메일 빈 -->
+    <bean class="org.springframework.mail.javamail.JavaMailSenderImpl" id="mailSender">
+        <property name="host" value="smtp.gmail.com"/>
+        <property name="port" value="587"/>
+        <property name="defaultEncoding" value="utf-8"/>
+        <property name="username" value="tareun3406@gmail.com"/>
+        <property name="password" value="iinnykxfktdkgzyv"/>
+        <property name="javaMailProperties">
+            <props>
+                <prop key="mail.transport.protocol">smtp</prop>
+                <prop key="mail.smtp.auth">true</prop> <!-- 2단계본인인증을 했으니 보안적으로 true라고 준다 -->
+                <prop key="mail.smtp.starttls.enable">true</prop>
+                <prop key="mail.debug">true</prop>
+            </props>
+        </property>
+    </bean>
+
+    <context:component-scan base-package="com.recipe.dao"/>
+
+    <context:component-scan base-package="com.recipe.service"/>
+
+</beans>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="admin">
+    <select id="memberList" resultType="member">
+        select * from (select * from MEMBER) where ROWNUM between ${rowMin} and ${rowMax}
+    </select>
+
+    <select id="memberListCount" resultType="int">
+        select count(*) from MEMBER
+    </select>
+
+    <update id="memberUpdate">
+        update MEMBER set NICKNAME = #{nickname}, EMAIL = #{email}, USERPW = #{userpw} where USERID = #{userid}
+    </update>
+
+</mapper>

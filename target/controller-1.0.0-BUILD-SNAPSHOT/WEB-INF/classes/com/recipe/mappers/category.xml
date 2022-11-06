@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="category">
+
+    <select id="cate_count" resultType="int"> <!-- resultType 속성은 반환 자료형 -->
+        select count(post_no) from recipe_post left join member on RECIPE_POST.WRITER = MEMBER.USERID
+        <where>
+         <if test="find_name == ''"></if>
+         <if test="find_name != ''">
+         title like #{find_name} or ingredient like #{find_name} or nickname like #{find_name}
+         </if>
+        </where>
+    </select>
+
+    <select id="cate_list" resultType="category">
+        select * from
+        (select ROWNUM rNum,g.*,h.THUMNAIL,h.TITLE,h.HIT from
+        RECIPE_POST h left join
+        (select e.*,nickname from
+        member f right join
+        (select c.*,writer from
+        RECIPE_POST d left join
+        (select a.post_no, nvl(round(avg(score),2),0) as score
+        from RECIPE_POST a left join RECIPE_REPLY b on(b.post_no=a.POST_NO)
+        group by a.post_no order by a.POST_NO desc)c on (c.POST_NO=d.POST_NO))e
+        on (e.WRITER=f.USERID))g on (g.POST_NO=h.POST_NO)
+            <where>
+            <if test="find_name == ''"></if>
+            <if test="find_name != ''">title like #{find_name} or ingredient like #{find_name} or nickname like #{find_name} </if>
+        </where>)
+        where rNum &gt;=#{startrow} and rNum &lt;=#{endrow} order by rnum
+<!-- #gt;= 은 >=의 뜻, &lt;= 은 <= 의 뜻 -->
+    </select>
+</mapper>

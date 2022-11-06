@@ -31,20 +31,17 @@ public class ContentController { // 신고, 구독, 즐겨찾기 아작스
 
     // 본문 페이지
     @RequestMapping("/content")
-    public String content(Model m, Principal principal) {
-
-        // 받아올 정보
-        int post_no = 1;
+    public String content(Model m, Principal principal, int post_no) {
 
         ReplyVO replyVO = new ReplyVO();
-        List<PostVO> plist = postService.getPost(post_no); // 본문내용, 작성자, 레시피
-        List<ReplyVO> rlist = replyService.getReply(post_no); // 댓글, 댓글 작성자
+        List<CategoryVO> plist = postService.getPost(post_no); // 본문내용, 작성자, 레시피
+        //List<ReplyVO> rlist = replyService.getReply(post_no); // 댓글, 댓글 작성자
         List<String> tagList = new ArrayList<>(); //태그 리스트
         List<String> ingredient_names = new ArrayList<>(); // 재료 이름 리스트
         List<String> ingredient_amounts = new ArrayList<>(); // 재료 양 리스트
-        List<SubscribeVO> subscriberList = postService.getSubscriberList(plist.get(0).getMember().get(0).getUserid()); // 구독자 리스트
-        List<BookmarkVO> bookmarkList = postService.getBookmarkList(post_no); // 즐겨찾기 아이디 리스트
-        List<ReportVO> reportList = postService.getReportList(post_no); // 신고자 리스트
+        //List<SubscribeVO> subscriberList = postService.getSubscriberList(plist.get(0).getMember().get(0).getUserid()); // 구독자 리스트
+        //List<BookmarkVO> bookmarkList = postService.getBookmarkList(post_no); // 즐겨찾기 아이디 리스트
+        //List<ReportVO> reportList = postService.getReportList(post_no); // 신고자 리스트
         String userid = null; // 로그인한 유저 아이디
         int report_state = 0; // 신고 여부
         int subscribe_state = 0; // 글쓴이 구독 여부
@@ -70,17 +67,17 @@ public class ContentController { // 신고, 구독, 즐겨찾기 아작스
         reply_state = replyService.getReplyState(replyVO);
 
         // 즐겨찾기 상태 표시 (1일때 즐겨찾기 상태)
-        for(BookmarkVO bookmark : bookmarkList){
+        for(BookmarkVO bookmark : plist.get(0).getBookmarkVOList()){
             if(bookmark.getUserid().equals(userid)){
                 bookmark_state = 1;
             }
         }
-        for(ReportVO reportVO : reportList){
+        for(ReportVO reportVO : plist.get(0).getReportVOList()){
             if(reportVO.getUserid().equals(userid)){
                 report_state = 1;
             }
         }
-        for(SubscribeVO subscribeVO: subscriberList){
+        for(SubscribeVO subscribeVO: plist.get(0).getSubscribeVOList()){
             if(subscribeVO.getSubscriber_id().equals(userid)){
                 subscribe_state = 1;
             }
@@ -105,7 +102,7 @@ public class ContentController { // 신고, 구독, 즐겨찾기 아작스
         }
 
         // 리뷰 개수 구하기, 평점 구하기
-        for(ReplyVO r : rlist) {
+        for(ReplyVO r : plist.get(0).getReplyVOList()) {
             replyCount += 1; // 리뷰 개수
             total += r.getScore();
         }
@@ -119,7 +116,7 @@ public class ContentController { // 신고, 구독, 즐겨찾기 아작스
         m.addAttribute("tagList", tagList);
         m.addAttribute("ingredient_names", ingredient_names);
         m.addAttribute("ingredient_amounts", ingredient_amounts);
-        m.addAttribute("rlist", rlist);
+        //m.addAttribute("rlist", rlist);
         m.addAttribute("replyCount", replyCount);
         m.addAttribute("averageScore", averageScore);
         m.addAttribute("reply_state", reply_state);

@@ -1,0 +1,339 @@
+
+#contents{
+	min-width : max-content;
+}
+#categoryhead{
+	max-width:1240px;
+	height:auto;
+	display:flex;
+	flex-wrap: wrap;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+}
+#category{
+	min-width: 600px;
+    max-width: 1240px;
+    max-height: 35px;
+    min-height: 35px;
+    display: inline-flex;
+    margin-right: auto;
+    margin-left: auto;
+}
+.categoryform{
+
+}
+#category input{
+	/*border-radius: 5px;
+    background-color: var(--back-point-color);
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-left:5px;
+    margin-right: 5px;
+    width:max;*/
+    
+    border-style: solid;
+    border-right-width:0px;
+    width: 100px;
+    height: 35px;
+    max-height: 35px;
+    font-size: 14px;
+    border-color: gray;
+    color:#e98b0c;
+    background-color: #FAEEBF;
+
+}
+#category input:hover{
+	background-color: var(--back-point-color);
+	color:#808000;
+    font-weight: bold;
+
+}
+#category input.button1{
+	border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+#category input.button2{
+	border-top-right-radius: 4px;
+    border-bottom-right-radius:4px;
+    border-right-width: 2px;
+}
+.listcount{
+  width: 30%;
+    height: 26px;
+  font-size: 18px;
+  background-color: #666666;
+    border-radius: 15px;
+
+}
+#dash{
+	width:100%;
+	height:10px;
+    border-bottom: dotted 3px #ffffff;
+    margin-bottom: 10px;
+    margin-top:5px;
+    display: flex;
+    justify-content: center;
+}
+#tow1{
+	width:100%;
+	height: auto;
+	display: flex;
+	justify-content: center;
+}
+#two{
+	width: 5%;
+    height: auto;
+    display: flex;
+    text-align: left;
+    flex-direction: column;
+
+    margin-right: 10px;
+    border-right: dotted #ffffff 2px;  
+    
+}
+#two span{
+	margin-top: 2px;
+    margin-bottom: 2px;
+    border-radius: 10px;
+    background-color: var(--nomal-color);
+    padding-left: 5px;
+    padding-right: 5px;
+    text-align: center;
+}
+
+#three{
+    width: auto;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+#three div{
+	margin-top:2px;
+	margin-bottom:2px;
+}
+#three a{
+	margin: 5px 3px 5px 3px;
+	
+}
+
+#fimage{
+	width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    
+	
+}
+#image{
+	width: 1000px;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+#image>div{
+    width: 300px;
+    height: auto;
+    background: var(--back-header-color);
+    margin-top: 10px;
+    margin-bottom: 10px;
+    
+    /* border: solid 3.5px var(--point-color); */
+}
+.contents{
+	text-align: left;
+	margin-left: 5px;
+	padding-bottom: 3px;
+}
+#image img {
+	/* border-bottom:solid 3.5px var(--point-color); */
+}
+.	span1{
+	margin-left:3px;
+	float: left;
+}
+.span2{
+	margin-right:3px;
+	float: right;
+}
+#num{
+	width: auto;
+    height: auto;
+    display: flex;
+    justify-content: space-evenly;
+    margin-left: 35%;
+    margin-right: 35%;
+    outline-color: #c0c0c0;
+    list-style:none;
+}
+#num li{
+	margin:0px 6px 0px 6px;
+}
+#nav1{
+	display: flex;
+	justify-content: space-evenly;
+	
+}
+
+/* 랭킹 페이지 */
+
+.rank-first-menu{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.rankingbutton1{
+    width: 120px;
+    font-size: 14px;
+    line-height: 20px;
+    padding: 0px 16px;
+    height: 40px;
+    font-weight: bold;
+    display: inline-block;
+    vertical-align: middle;
+    border-radius: 4px 0px 0px 4px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    margin-left: 0px;
+
+}
+.rankingbutton2{
+    width: 120px;
+    font-size: 14px;
+    line-height: 20px;
+    padding: 0px 16px;
+    height: 40px;
+    font-weight: bold;
+    display: inline-block;
+    vertical-align: middle;
+    border-radius: 0px 4px 4px 0px;
+    border-left: none;
+    background-repeat: no-repeat;
+    background-position: center center;
+    margin-right: 0px;
+}
+.rank-first-menu button:hover{
+    color: #ffb700;
+    font-size: 110%;
+}
+
+.datebutton input{
+    width: 80px;
+    font-size: 12px;
+    line-height: 20px;
+    padding: 0px 16px;
+    height: 40px;
+    font-weight: bold;
+    display: inline-block;
+    vertical-align: middle;
+    background-repeat: no-repeat;
+    background-position: center center;
+    margin-right: 0px;
+}
+.datebutton{
+    border-right: none;
+    border-bottom-left-radius: 4px;
+    border-top-left-radius: 4px;
+}
+.weekbutton{
+
+}
+.monthbutton{
+    border-left: none;
+    border-bottom-right-radius: 4px;
+    border-top-right-radius: 4px;
+}
+
+
+
+/* -- mypage css 테스트용-- */
+
+.mypagediv{
+    display: flex;
+    width: 800px;
+    justify-content: space-around;
+}
+.div1{
+    display: flex;
+    flex-wrap: wrap;
+}
+input[id*="tab"]{
+    display: none;
+
+}
+input[type="radio"]+label{
+    display: inline-block;
+    padding: 20px;
+    cursor:pointer;
+    background-color: #fffdfd;
+    width:160px;
+
+    border-top:5px dotted #fff4f3;
+    border-bottom:none;
+}
+input[type="radio"]:checked+label{
+    background-color: #FAEEBF;
+}
+.conbox{
+    width: 800px;
+    min-height: 550px;
+    background-color: #FAEEBF;
+    margin:auto;
+    display: none;
+    color: #222222;
+    text-align: left;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    border:5px dotted mistyrose;
+    border-top:none;
+
+}
+input[id="tab01"]:checked ~.con1{display: block;}
+input[id="tab02"]:checked ~.con2{display: block;}
+input[id="tab03"]:checked ~.con3{display: block;}
+input[id="tab04"]:checked ~.con4{display: block;}
+
+.contbored {
+    display: block;
+    max-width: 750px;
+    min-height: 500px;
+    height: auto;
+    background-color: white;
+    border: 2px black solid;
+    margin: 30px;
+    border-radius: 10px;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding: 10px;
+}
+.contbored div{
+    width: auto;
+    min-height: 150px;
+    background-color: #FAEEBF;
+    border-radius: 5px;
+    padding:5px;
+    margin-bottom: 5px;
+}
+
+.subbookspan{
+    padding: 5px;
+    background-color: aquamarine;
+    color:darkslategrey;
+    font-weight:bold;
+    margin:2px;
+    border-radius: 15px;
+}
+.hitandpoint{
+    display: flex;
+    justify-content: left;
+}
+.hitandpoint span{
+    margin-left: auto;
+    margin-right: auto;
+}
+

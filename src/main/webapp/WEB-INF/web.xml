@@ -10,8 +10,8 @@
             /WEB-INF/spring/root-context.xml
             /WEB-INF/spring/security-context.xml
         </param-value>
-
     </context-param>
+
 
     <!-- Creates the Spring Container shared by all Servlets and Filters -->
     <listener>
@@ -33,20 +33,11 @@
         <servlet-name>appServlet</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
-    
-    
-    <!-- 멀티 다중파일 업로드 필터 -->
-    <filter>
-        <description>스프링 파일업로드 필터 등록-스프링시큐리티설정전에 위치해야 한다</description>
-        <filter-name>MultipartFilter</filter-name>
-        <filter-class>org.springframework.web.multipart.support.MultipartFilter</filter-class>
-    </filter>
-    
-    
+
+
 
     <!-- method = post방식으로 전달된 한글을 안깨지게 한다.
          request.setCharacterEncoding("utf-8"); 코드를 추가하지 않아도 된다.-->
-
     <filter>
         <filter-name>encoding</filter-name>
         <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
@@ -55,12 +46,21 @@
             <param-value>UTF-8</param-value>
         </init-param>
     </filter>
-
     <filter-mapping>
         <filter-name>encoding</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
+    <!-- Multipart 필터 -->
+    <filter>
+        <display-name>springMultipartFilter</display-name>
+        <filter-name>springMultipartFilter</filter-name>
+        <filter-class>org.springframework.web.multipart.support.MultipartFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>springMultipartFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
 
     <!-- security 필터 적용-->
     <filter>

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletResponse;
@@ -227,6 +228,22 @@ public class ContentController { // 신고, 구독, 즐겨찾기 아작스
 
         return "redirect:/content";
 
+    }
+
+
+    // 레시피 작성 뷰
+    @RequestMapping("/recipeWrite")
+    public String recipeWrite(){
+        return "/content/recipeWrite";
+    }
+
+    // 레시피 작성내용 업로드
+    @PostMapping("/recipeUpload")
+    public String recipeUpload(RecipeUploadDTO recipeContent, Principal principal
+    , MultipartFile thumbnailImg, List<MultipartFile> recipeImgs){
+        System.out.println("아이디 정보: "+principal.getName());
+        System.out.println("글 내용: "+recipeContent);
+        return "redirect:/";
     }
 
 }

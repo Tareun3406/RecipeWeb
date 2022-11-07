@@ -53,9 +53,9 @@
     </nav>
     <div id="search-recipe-div">
         <div id="search-trans">
-            <form id="search-border" action="/category" name="find_name">
+            <form id="search-border" action="/category" name="find_name" onsubmit="return ">
                 <input id="search-Input" name="find_name" type="text"
-                       placeholder="#추천검색어">
+                       placeholder="#${recommendKeyword}">
                 <button type="submit">
 							<span class="material-symbols-outlined" style="font-size: 30px;">
 								search </span>
@@ -63,7 +63,7 @@
             </form>
             <!--  -->
             <button type="button" onclick="location.href='/recipeWrite';">레시피 등록</button>
-            <a href="#">#추천검색어 를 검색해보세요</a>
+            <a href="/category?find_name=${recommendKeyword}">#${recommendKeyword}${lastChar} 검색해보세요</a>
         </div>
         <div id="chef-rank-list">
             <h3 style="margin-bottom: 10px;">인기 셰프

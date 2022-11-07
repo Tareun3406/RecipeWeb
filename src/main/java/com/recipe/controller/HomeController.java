@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
+import java.util.Random;
 
 @Controller
 public class HomeController {
@@ -39,9 +40,23 @@ public class HomeController {
     public ModelAndView mainHeader(){
         ModelAndView mv = new ModelAndView("/main/header");
 
+        String[] keywordArr = {"중식","일식","한식","양식","디저트"};
         List<MemberDTO> chefList = homeService.getChefRankedList();
 
+        Random random = new Random();
+        int i = random.nextInt(keywordArr.length);
+        String recommendKeyword = keywordArr[i];
+
+        char lastName = recommendKeyword.charAt(recommendKeyword.length() - 1);
+        int index= (lastName - 0xAC00) % 28;
+
+        String lastChar;
+        if (index==0) lastChar="를";
+        else lastChar = "을";
+
         mv.addObject("chefList", chefList);
+        mv.addObject("recommendKeyword",recommendKeyword);
+        mv.addObject("lastChar", lastChar);
         return mv;
     }
 }

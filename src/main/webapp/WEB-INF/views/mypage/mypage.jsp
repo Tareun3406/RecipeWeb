@@ -51,12 +51,12 @@
                      <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" id="token">
                      <input type="hidden" name="userid" value="${userlist.userid}">
 
-                     <button type="submit">수정</button>
+                     <button type="submit"><img src="/resources/images/update.PNG" width="100px" height="100px"></button>
                  </form>
                  <form action="mem/delete" method="post" style="display: inline-block" onsubmit="return onDeleteBtn()">
                      <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" id="token">
                      <input type="hidden" name="userid" value="${userlist.userid}">
-                     <button type="submit">탈퇴</button>
+                     <button type="submit"><img src="/resources/images/delete.png" width="100px" height="100px"></button>
                  </form>
              </div>
 

@@ -11,4 +11,7 @@ public interface CategoryService {
 
     List<CategoryVO> getcategoryList(CategoryVO b); // 게시글 내용 불러오는
 
+    List<CategoryVO> bookmarkList(CategoryVO recipe);
+
+    int getbookCount(CategoryVO recipe);
 }

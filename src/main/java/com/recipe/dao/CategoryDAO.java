@@ -10,4 +10,7 @@ public interface CategoryDAO {
 
     List<CategoryVO> getcategoryList(CategoryVO b);
 
+    List<CategoryVO> getbookmarkList(CategoryVO recipe);
+
+    int getbookCount(CategoryVO recipe);
 }

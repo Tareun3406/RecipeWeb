@@ -24,4 +24,14 @@ public class CategoryDAOImpl implements CategoryDAO{
        return this.sqlSession.selectList("cate_list",b);
     }
 
+    @Override
+    public List<CategoryVO> getbookmarkList(CategoryVO recipe) {
+        return this.sqlSession.selectList("book_list",recipe);
+    }
+
+    @Override
+    public int getbookCount(CategoryVO recipe) {
+        return this.sqlSession.selectOne("book_count",recipe);
+    }
+
 }

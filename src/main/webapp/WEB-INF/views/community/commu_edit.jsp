@@ -42,16 +42,16 @@ $(document).ready(function(){
 	<form name="form1" method="post" >
 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" id="token">
 	
-    <div>
+    <div id="bsW_title">
         제목
-        <input name="title" id="title" size="80" value="${dto.title}" placeholder="제목을 입력해주세요">
+        <input name="title" id="title" size="50" value="${dto.title}" placeholder="제목을 입력해주세요">
     </div>
     
-    <div>
+    <div id="bsW_content">
         내용
-        <textarea name="content" id="content" rows="4" cols="80" placeholder="내용을 입력해주세요">${dto.content}</textarea>
+        <textarea name="content" id="content" rows="4" cols="50" placeholder="내용을 입력해주세요">${dto.content}</textarea>
     </div>
-    <div>
+    <div id="bsW_name">
         이름
         <input name="writer" id="writer" value="${dto.nickname}" readonly="${dto.nickname}"/>
     </div>

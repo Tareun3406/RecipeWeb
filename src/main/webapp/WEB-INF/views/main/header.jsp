@@ -22,7 +22,9 @@
     <!-- 위 내용 추가시 css에서 header nav 부분 fixed를 sticky로 변경-->
     <nav id="headerTop">
         <div id="logo">
-            <a href="/">로고</a>
+        <a href="/">
+        <img src="/resources/images/logo.png" alt="로고"/>
+        </a>
         </div>
 
         <div id="header-menu">
@@ -52,6 +54,7 @@
         </div>
     </nav>
     <div id="search-recipe-div">
+       
         <div id="search-trans">
             <form id="search-border" action="/category" name="find_name">
                 <input id="search-Input" name="find_name" type="text"
@@ -77,7 +80,9 @@
                     <!-- 한글 6자, 영문 10자 -->
                 </figure>
             </c:forEach>
-
         </div>
+        
+        
+      
     </div>
 </header>

@@ -13,7 +13,7 @@ import java.sql.Date;
 public class CategoryVO {
 
     //recipe_post 테이블 변수
-    private String post_no;
+    private int post_no;
     private String title;
     private int hit;
     private Date regdate;

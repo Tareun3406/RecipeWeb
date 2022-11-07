@@ -55,10 +55,13 @@ h1, h2, h3, h4, h5, h6 {
 } /* 대체 텍스트가 아닌 접근성을 위한 숨김 텍스트를 제공할 때 */
 
 /*레이아웃*/
-
+#contents{
+	background-color: #fff;
+}
 #contents .container {
 	border-right: 1px solid #dbdbdb;
 	border-left: 1px solid #dbdbdb;
+
 }
 
 #cont_left {

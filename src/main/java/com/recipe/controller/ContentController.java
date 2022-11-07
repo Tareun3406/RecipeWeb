@@ -250,7 +250,7 @@ public class ContentController { // 신고, 구독, 즐겨찾기 아작스
         List<String> recipeTexts = recipeContent.getRecipeText();       // db에 들어갈 내용 텍스트 리스트
         List<RecipeContentDTO> contentlist; // db에 들어갈 내용 이미지 경로
 
-        int post_no = 30; //postService.getNextNo();    // 글번호
+        int post_no = postService.getNextNo();    // 글번호
 
         System.out.println(thumbnail);
         String fileName = thumbnail.getOriginalFilename();  // 원본파일명 가져오기. Internet Explorer의 경우 경로까지 가져오니 유의

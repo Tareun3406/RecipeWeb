@@ -174,10 +174,11 @@
 			</article>
       </section>
       <section id="cont_right">
-         <article class="column col6">
-            <h4 class="col_tit">광고</h4>
-            <p class="col_ppl">이 곳은 광고 부분입니다.</p>
-         </article>
+      <img alt="이곳은 광고 부분입니다." src="/resources/images/commu/ads.png">
+<!--          <article class="column col6"> -->
+<!--             <h4 class="col_tit">광고</h4> -->
+<!--             <p class="col_ppl">이 곳은 광고 부분입니다.</p> -->
+<!--          </article> -->
 
       </section>
 

@@ -11,7 +11,12 @@
 
 <link href="${pageContext.request.contextPath}/resources/css/category.css" rel="stylesheet" type="text/css">
 <!-- 헤더-->
-
+<script>
+    function onDeleteBtn() {
+        let ans = prompt("정말로 삭제하시겠습니까? \n 삭제하려면 '삭제하기'를 입력해주세요")
+        return ans === '삭제하기';
+    }
+</script>
 <html>
 <head>
     <title>Title</title>
@@ -42,6 +47,17 @@
              <div>내 아이디 : ${userlist.userid}</div>
              <div>내 이름 : ${userlist.nickname}</div>
              <div style="margin-bottom: 0px;">내 이메일 : ${userlist.email}</div>
+                 <form action="mem/edit" method="post" style="display: inline-block">
+                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" id="token">
+                     <input type="hidden" name="userid" value="${userlist.userid}">
+
+                     <button type="submit">수정</button>
+                 </form>
+                 <form action="mem/delete" method="post" style="display: inline-block" onsubmit="return onDeleteBtn()">
+                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" id="token">
+                     <input type="hidden" name="userid" value="${userlist.userid}">
+                     <button type="submit">탈퇴</button>
+                 </form>
              </div>
 
          </div>

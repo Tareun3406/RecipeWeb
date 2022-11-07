@@ -44,9 +44,7 @@ public class RankingController {
 
         if(find_name == null) {
             find_name="";
-        }
-
-        //find_name에 빈값이 아닌 null이 들어왔을때 공백으로 만들어준다.
+        }//find_name에 빈값이 아닌 null이 들어왔을때 공백으로 만들어준다.
 
         r.setFind_name(find_name);
 

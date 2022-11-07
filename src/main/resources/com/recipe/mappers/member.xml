@@ -25,18 +25,26 @@
         <result property="nickname" column="nickname"/>
         <result property="email" column="email"/>
 
+        <collection property="recipeList" resultMap="recipeMap"/>
         <collection property="bookList" resultMap="bookMap"/>
-        <collection property="messageList" resultMap="messageMap"/>
         <collection property="recipereplyList" resultMap="recipereplyMap"/>
         <collection property="subList" resultMap="subMap"/>
-        <collection property="recipeList" resultMap="recipeMap"/>
+        <collection property="messageList" resultMap="messageMap"/>
+        <collection property="messageList2" resultMap="message2Map"/>
+
     </resultMap>
 
-
-
+    <resultMap id="recipeMap" type="recipe">
+        <result property="post_no" column="post_no1"/>
+    </resultMap>
+    <resultMap id="recipereplyMap" type="recipereply">
+        <result property="post_no" column="post_no2"/>
+        <result property="content" column="content"/>
+        <result property="regdate" column="regdate"/>
+    </resultMap>
     <resultMap id="bookMap" type="book">
         <result property="userid" column="userid1"/>
-        <result property="post_no" column="post_no1" />
+        <result property="post_no" column="post_no3" />
     </resultMap>
     <resultMap id="messageMap" type="message">
         <result property="sender" column="sender"/>
@@ -44,25 +52,21 @@
         <result property="message" column="message"/>
         <result property="senddate" column="senddate"/>
         <result property="isread" column="isread"/>
+        <result property="snickname" column="snickname"/>
     </resultMap>
-
-    <resultMap id="recipeMap" type="recipe">
-        <result property="post_no" column="post_no2"/>
-        <result property="writer" column="writer"/>
-        <result property="title" column="title"/>
-        <result property="regdate" column="regdate1"/>
+    <resultMap id="message2Map" type="message">
+        <result property="sender2" column="sender2"/>
+        <result property="receiver2" column="receiver2"/>
+        <result property="message2" column="message2"/>
+        <result property="senddate2" column="senddate2"/>
+        <result property="isread2" column="isread2"/>
+        <result property="rnickname" column="rnickname"/>
     </resultMap>
     <resultMap id="subMap" type="sub">
         <result property="subscriber_id" column="subscriber_id"/>
         <result property="target_id" column="target_id"/>
     </resultMap>
-    <resultMap id="recipereplyMap" type="recipereply">
-        <result property="post_no" column="post_no3"/>
-        <result property="content" column="content"/>
-        <result property="regdate" column="regdate2"/>
-        <result property="reviewer" column="reviewer"/>
-        <result property="re_no" column="re_no"/>
-    </resultMap>
+
 
 
 
@@ -101,24 +105,36 @@
 
     <!-- mypage -->
     <select id="my_list" resultMap="mypageMap">
-        select  a.USERID,a.userpw,a.nickname,a.EMAIL,
-                g.target_id,g.SUBSCRIBER_ID,
-                c.POST_NO as POST_NO1,c.USERID as userid1,
-                d.POST_NO as POST_NO2,d.REGDATE as regdate1, d.title,
-                e.POST_NO as POST_NO3,e.REGDATE as regdate2,e.CONTENT,
-                f.sender, f.receiver, f.message, f.senddate, f.isread
-        from MEMBER a left join (select NICKNAME as target_id,b.SUBSCRIBER_ID
-                                 from SUBSCRIBE b left join MEMBER M on b.TARGET_ID = M.USERID) g
-                                on (a.USERID = g.SUBSCRIBER_ID)
-                      left join  BOOKMARK c
-                                 on (a.USERID = c.USERID )
-                      left join RECIPE_POST d
-                                on (a.USERID = d.WRITER)
-                      left join RECIPE_REPLY e
-                                on (a.USERID = e.REVIEWER)
-                      left join MESSAGE f
-                                on (a.USERID = f.SENDER or a.USERID=f.RECEIVER)
-        where a.USERID = #{id}
+        select a.userid,a.nickname,a.email,
+               b.POST_NO as post_no1,
+               c.post_no as post_no2,c.CONTENT,c.REGDATE,
+               d.target_id,
+               e.POST_NO as post_no3,
+               s.SENDER,s.RECEIVER,s.MESSAGE,s.SENDDATE,s.snickname,
+               r.sender2,r.receiver2,r.message2,r.senddate2,r.rnickname
+        from MEMBER a
+        left join RECIPE_POST b
+            on (b.writer=a.USERID)
+        left join recipe_reply c
+            on (c.REVIEWER=a.USERID)
+        left join (select SUBSCRIBER_ID,NICKNAME as target_id
+                   from SUBSCRIBE
+                   left join member on (SUBSCRIBE.TARGET_ID = MEMBER.USERID))d <!--구독한 쉐프아이디에 맞는 닉네임-->
+        on (d.SUBSCRIBER_ID=a.USERID)
+        left join BOOKMARK e on (a.USERID=e.USERID)
+
+        left join (select SENDER,RECEIVER,SENDDATE,MESSAGE,NICKNAME as snickname
+                   from MESSAGE
+                   left join member on MESSAGE.SENDER=MEMBER.USERID where RECEIVER=#{id})s <!--받은 사람이 로그인한 사람일 때 쪽지테이블+보낸사람 닉네임 -->
+        on (a.USERID=s.RECEIVER)
+
+        left join (select SENDER as sender2,RECEIVER as receiver2,SENDDATE as senddate2,MESSAGE as message2,NICKNAME as rnickname
+                   from MESSAGE
+                   left join member on RECEIVER=MEMBER.USERID where sender=#{id})r <!--보낸 사람이 로그인한 사람일 때 쪽지테이블+받은사람 닉네임 -->
+        on (a.USERID=r.sender2)
+
+        where a.userid=#{id}
+
     </select>
 
 </mapper>

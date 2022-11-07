@@ -61,8 +61,8 @@
              <div>내가 쓴 댓글 <hr/>
                  <c:forEach items="${userlist.recipereplyList}" var="reply" varStatus="i">
                      <span class="subbookspan" onclick="location.href='/content?post_no=${reply.post_no}'">
-                     댓글을 단 글번호:<c:out value="${reply.post_no}"/>
-                     댓글 내용:<c:out value="${reply.content}"/>
+                     댓글을 단 글번호:<c:out value="${reply.post_no}"/> /
+                     댓글 내용:<c:out value="${reply.content}"/> /
                      작성 날짜:<c:out value="${reply.regdate}"/></span><hr/>
                  </c:forEach>
                  <c:choose>
@@ -107,7 +107,7 @@
                  <c:if test="${userlist.userid == message.receiver}"><span class="subbookspan">
                   보낸사람 : <c:out value="${message.snickname}"/>  /
                      내용 : <c:out value="${message.message}"/>  /
-                  보낸 날짜 : <c:out value="${message.senddate}"/></span><hr/>
+                  받은 날짜 : <c:out value="${message.senddate}"/></span><hr/>
                  </c:if>
              </c:forEach>
                  <c:choose>

@@ -3,9 +3,33 @@
 
 <!-- header -->
 <c:import url="/header"/>
+
+<script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify"></script>
+<script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.polyfills.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.css" rel="stylesheet" type="text/css" />
+
 <link rel="stylesheet" type="text/css" href="../../../resources/css/registration.css"/>
 <script src="/resources/js/jquery.js"></script>
 <script src="/resources/js/recipePost.js"></script>
+
+<style>
+    .tagify{
+        height: 40px;
+        width: 600px;
+        margin: -30px 0px 0px 100px;
+        border-radius: 5px;
+        border: 2px solid rgba(0,0,0,0.1);
+        color: black;
+        background: white;
+    }
+</style>
+
+
+
+
+<script>
+
+</script>
 
 <section id="backimg">
     <article>
@@ -28,7 +52,7 @@
                             <ul>
                                 <li>
                                     <span style="font-size:16px">썸네일</span>
-                                    <input type='file' name='thumnailImg' id="thumnail" accept="image/*"/>
+                                    <input type='file' name='thumnailImg' id="thumnail"/>
                                 </li>
                             </ul>
                         </div>
@@ -36,8 +60,7 @@
                             <ul>
                                 <li>
                                     <span style="font-size:16px">태그</span>
-                                    <input type="text" id="post_tag" name="post_tag"
-                                           placeholder=" #을 사용하고 태그를 등록할때는 스페이스바를 눌러주세요. 예) #한식,#떡볶이"/>
+                                    <input type="hidden" id="post_tag" name="post_tag" placeholder="예) 장조림"/>
                                 </li>
                             </ul>
                         </div>
@@ -49,8 +72,8 @@
                     <ul>
                         <li>
                             <span style="font-size:16px"> 재료 </span>
-                            <input id="ck_ing" name="ingredient"
-                                   placeholder="콜론(:)을 사용하여 재료와 분량을 구분하고 스페이스바로 등록해주세요 . 예) 설탕:한큰술">
+                            <input type="hidden" id="ck_ing" name="ingredient"
+                                   placeholder="예) 설탕:한 큰술">
                         </li>
                         <br/>
                     </ul>
@@ -75,11 +98,11 @@
                         <br/>
                     </ul>
                 </div>
-        <div>
-            <input type="reset" class="btn red rounded" value="취소" onclick="ck.title.focus()">
-            <input type="submit" class="btn green rounded" value="등록">
-        </div>
-        </form>
+                <div>
+                    <input type="reset" class="btn red rounded" value="취소" onclick="ck.title.focus()">
+                    <input type="submit" class="btn green rounded" value="등록">
+                </div>
+            </form>
         </div>
     </article>
 </section>

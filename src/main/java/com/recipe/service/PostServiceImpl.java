@@ -100,7 +100,6 @@ public class PostServiceImpl implements PostService{
         postDAO.insertPost(recipeContent);
 
         Map<String, Object> map = new HashMap<>();
-        System.out.println(contentlist);
         map.put("contentlist",contentlist);
 
         postDAO.insertPostContent(map);

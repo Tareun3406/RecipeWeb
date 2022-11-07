@@ -157,7 +157,7 @@
             </c:forEach>
         </table>
         <table>
-            <caption><a href="#">자유게시판</a></caption>
+            <caption><a href="/commu_list">자유게시판</a></caption>
             <tr class="hotPost">
                 <td class="border-no">번호</td>
                 <td class="border-title">제목</td>

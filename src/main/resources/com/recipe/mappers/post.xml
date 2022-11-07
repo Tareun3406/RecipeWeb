@@ -159,4 +159,19 @@
         select subscriber_id from subscribe where target_id=#{target_id}
     </select>
 
+    <select id="selectPostNextVal" resultType="int">
+        select POST_NO_SEQ.nextval from DUAL;
+    </select>
+
+    <insert id="insertPost">
+        insert into RECIPE_POST(POST_NO, TITLE, REGDATE, THUMNAIL, INGREDIENT, POST_TAG, WRITER)
+        values (#{post_no}, #{title}, sysdate, #{thumnail}, #{ingredient}, #{post_tag}, #{writer})
+    </insert>
+
+    <insert id="insertPostContent" parameterType="java.util.Map">
+            <foreach collection="contentlist" item="content" separator=" " open="insert all" close="SELECT * FROM DUAL">
+                into RECIPE_CONTENT (STEP, IMAGE, MANUAL, POST_NO)
+                VALUES (#{content.step}, #{content.image}, #{content.manual}, #{content.post_no})
+            </foreach>
+    </insert>
 </mapper>

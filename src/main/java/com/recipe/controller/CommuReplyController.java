@@ -62,6 +62,7 @@ public class CommuReplyController {
 		//PUT은 전체자료 수정, PATCH는 일부자료 수정
 		public ResponseEntity<String> editReply(@PathVariable("reply_no") int reply_no, @RequestBody CommuReplyVO vo){
 			ResponseEntity<String> entity = null;
+			
 			//reply_no는 주소창에서 구해주는 댓글 번호이다. 즉json데이터가 아니다. 그러므로 @RequestBody 에의해서json데이터가 ReplyVO
 			//타입으로 변경 안된다. 코드로 따로 저장해야한다.
 			

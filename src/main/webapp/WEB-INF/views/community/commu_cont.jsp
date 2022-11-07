@@ -127,8 +127,7 @@
     			$str += "<li data-reply_no='"+this.reply_no+"' class='replyLi'>"
     			+this.reply_no+this.nickname
     			+" : <span class='com' style='color:blue;font-weight:bold;'>"
-    			+this.content+"</span>"
-    			+"<c:if test='${"+userlist.nickname +"!="+ this.nickname+ "}'><button>댓글수정</button></c:if></li><br/>"    		
+    			+this.content+"</span>"+"<button>댓글수정</button></li><br/>"    		
     		});
     		$('#replies').html($str);//html()함수로 문자와 태그를 함께변경 적용
     	});

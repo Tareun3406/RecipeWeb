@@ -2,9 +2,9 @@ package com.recipe.dao;
 
 
 import com.recipe.vo.*;
-import com.recipe.vo.ContentVO;
-import com.recipe.vo.PostVO;
+
 import java.util.List;
+import java.util.Map;
 
 public interface PostDAO {
     List<PostVO> getPost(int post_no);
@@ -40,6 +40,9 @@ public interface PostDAO {
 
     List<SubscribeVO> getSubscriberList(String writer);
 
-	void insertRp(PostVO pv, ContentVO cv);
+    int getNextNo();
 
+    void insertPost(RecipeUploadDTO recipeContent);
+
+    void insertPostContent(Map<String, Object> map);
 }

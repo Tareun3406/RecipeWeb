@@ -12,10 +12,12 @@
  /* type 속성은 생략해도  웹브라우저가 기본 값을 css로 인식한다*/
  /*댓글 수정 화면*/
   #modDiv{
-    width:300px; height:100px; background-color:#ecb895;
+    width:480px; height:60px; background-color:#fce7c2;
+    border: 1px solid black;
+    border-radius:5px;
     position:absolute; /*절대위치*/
     top:50%; left:50%;
-    margin-top:500px; margin-left:-150px;
+    margin-top:500px; margin-left:-270px;
     padding:30px;
     z-index:1000; /*position 속성이 absolute or fixed 인 곳에서 사용한다. 이 속성은 요소가 겹쳐지는 순서를 제어할수있다.
     				물론, 큰숫자일수록 앞에 나온다.*/ 
@@ -42,7 +44,7 @@
   <h2 class="bsC_title">자료실 내용보기</h2>
   <table id="bsC_t">
    <tr>
-    <th>제목</th> <td bordercolor="#c0c0c0;">${dto.title}</td>   
+    <th>제목</th> <td>${dto.title}</td>   
    </tr>
    <tr>
     <th>내용</th> <td>${dto.content}</td>
@@ -78,7 +80,7 @@
     
     <div class="modal-title"></div>  <%--댓글번호 --%>
     <div>
-      <textarea rows="3" cols="30" id="content"></textarea>
+      <textarea rows="2" cols="50" id="content"></textarea>
     </div>
     <div>
       <button type="button" id="replyModBtn">댓글 수정</button>
@@ -89,7 +91,7 @@
   
 
 
-  <div>
+  <div id="replyform">
 <%--   <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" id="token"> --%>
   <div>
   	댓글 작성자:<input name="reviewer" id="newreviewer" value="${userlist.nickname}" readonly="${userlist.nickname}"/> 
@@ -97,19 +99,18 @@
   </div>
   <br/>
   <div>
-  	댓글 내용:<textarea rows="5" cols="30" name="content" id="newcontent"></textarea>
-  </div>
-  <br/>
-    <button id="commuReplyBtn" type="button">댓글 등록</button>
-    
+  	댓글 내용:<textarea rows="2" cols="50" name="content" id="newcontent"></textarea>
+	<button id="commuReplyBtn" type="button">댓글 등록</button>
+   </div> 
   </div>
   
   <br/>
 
   
   <%--댓글 목록 --%>
+  <div id="replyList">
   <ul id="replies"></ul><%--비동기식으로 가져온 댓글목록 --%>
-  
+  </div>
   <script>
     $comu_no=${dto.comu_no};//게시판 번호
 	

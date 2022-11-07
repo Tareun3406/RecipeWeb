@@ -3,7 +3,7 @@
 @charset "UTF-8";
 /* 여백 초기화*/
 body, div, ul, li, dl, dd, dt, ol, h1, h2, h3, h4, h5, h6, input,
-	fieldset, legend, p, select, table, th, td, textarea, button, form,
+	fieldset, legend, p, select, table,  textarea, button, form,
 	figure, figcaption {
 	margin: 0;
 	padding: 0;
@@ -117,7 +117,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .column.col5 {
-	padding: 15px 0px 0px 0px;
+	padding: 15px 0px 0px 0px; color:black;
 }
 
 /* 메뉴 */
@@ -327,6 +327,7 @@ h1, h2, h3, h4, h5, h6 {
 	.column.col4 {
 		border-top: 1px solid #dbdbdb;
 	}
+
 }
 
 #liSearchOption {
@@ -393,9 +394,9 @@ h1, h2, h3, h4, h5, h6 {
 
 /* commu_write.jsp ui */
 #bsW_wrap{
-   width:390px; height:auto; overflow:hidden; border:1px solid skyblue;
+   width:390px; height:auto; overflow:hidden; border:1px solid #e49967;
    border-radius:5px; margin-left:auto; margin-right:auto;
-   margin-top:70px; margin-bottom:50px;
+   margin-top:70px; margin-bottom:50px; background:white;
 }
 #bsW_wrap .bsW_title{
    margin:20px 0 0 120px; width:140px; background:pink;
@@ -420,20 +421,27 @@ h1, h2, h3, h4, h5, h6 {
 /* commu_cont.jsp ui */
 #bsC_wrap{
    width:330px; padding:10px;
-   border:1px solid skyblue; border-radius:5px;
+   border:1px solid #e49967; border-radius:5px;
    margin-left:auto; margin-right:auto;
    margin-top:50px;margin-bottom:50px; box-shadow:15px 15px 15px #ccc;
+   background:white;
 }
 #bsC_wrap .bsC_title{
    margin:10px 0 0 80px; width:150px; font-size:19px;
-   background:pink; border-radius:5px; text-align:center;
-   padding:2px;
+   background:#fce7c2; border-radius:5px; text-align:center;
+   padding:2px; color:#696161;
 }
 #bsC_t{
-   margin:15px 0 0 20px;
+   margin:15px 0 0 20px; color:black; 
 }
 #bsC_t th{
-   background:pink; border-radius:5px;
+   background:#fce7c2; border-radius:5px;color:#696161;
+    margin: 0 15px 0 20px; color:black;
+}
+#bsC_t td{
+   padding:0 20px 0 40px;
+   text-align:left; 
+   
 }
 #bsC_menu{
     margin:15px 0 5px 75px;   
@@ -466,12 +474,54 @@ h1, h2, h3, h4, h5, h6 {
 	font-size:14px;
 	margin: 0 0 20px 60px;
 	text-align:center;
+	color:black;
 }
-
+#bList_t th{
+	color:#e49967;
+}
 #bList_paging{
 		margin: 0 0 20px 0;
 }
 #bFind_wrap{
 		margin: 20px 0 20px 0;
 	
+}
+
+#replyform {
+	width: 500px;
+	padding: 10px;
+	border: 1px solid #e49967;
+	border-radius: 3px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 50px;
+	margin-bottom: 0px;
+	background: white;
+	text-align: left;
+}
+#replyList{
+	width: 500px;
+	padding: 10px;
+	border: 1px solid #e49967;
+	border-radius: 3px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 0px;
+	margin-bottom: 50px;
+	background: white;
+	text-align: left;
+}
+
+#bList_wrap{
+
+	padding: 10px;
+	border-radius: 3px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 0px;
+}
+.bList_count{
+	margin-left: 50px;
+	text-align: left;
+	color:#e49967;
 }

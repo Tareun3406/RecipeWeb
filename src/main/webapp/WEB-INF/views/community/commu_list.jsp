@@ -46,7 +46,6 @@
 				<form method="get" action="commu_list">
 				
 					<div id="bList_wrap">
-						<h2 class="bList_title">자료실 목록</h2>
 						<div class="bList_count">글개수: ${listcount}</div>
 						<table id="bList_t">
 							<tr>

@@ -394,17 +394,26 @@ h1, h2, h3, h4, h5, h6 {
 
 /* commu_write.jsp ui */
 #bsW_wrap{
-   width:390px; height:auto; overflow:hidden; border:1px solid #e49967;
+   width:400px; height:auto; overflow:hidden; border:1px solid #e49967;
    border-radius:5px; margin-left:auto; margin-right:auto;
    margin-top:70px; margin-bottom:50px; background:white;
 }
 #bsW_wrap .bsW_title{
-   margin:20px 0 0 120px; width:140px; background:pink;
+   margin:20px 0 20px 120px; width:140px; background:#fce7c2;
    border-radius:5px; padding:3px; text-align:center;
    font-size:19px;
 }
+#bsW_title{
+	margin-bottom: 20px;
+}
+#bsW_content{
+	margin-bottom: 20px;	
+}
+#bsW_name{
+	margin-bottom: 20px;		
+}
 #bsW_wrap .absW_title{
-   margin:20px 0 0 90px; width:200px; background:pink;
+   margin:20px 0 20px 90px; width:200px; background:#fce7c2;
    border-radius:5px; padding:3px; text-align:center;
    font-size:19px;
 }
@@ -412,7 +421,7 @@ h1, h2, h3, h4, h5, h6 {
    margin:20px 0 0 20px;
 }
 #bsW_t th{
-   background:pink; border-radius:5px;
+   background:#fce7c2; border-radius:5px;
 }
 #bsW_menu{
    margin:17px 0 0 140px;

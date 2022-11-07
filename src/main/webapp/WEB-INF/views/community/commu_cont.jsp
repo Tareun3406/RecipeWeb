@@ -125,7 +125,7 @@
     		$(data).each(function(){//each()함수에의해서 li태그 단위로 댓글 개수만큼반복
     			$str += "<li data-reply_no='"+this.reply_no+"' class='replyLi'>"
     			+this.reply_no+this.nickname
-    			+" : <span class='com' style='color:blue;font-weight:bold;'>"
+    			+" : <span class='com' style='color:black;font-weight:bold;'>"
     			+this.content+"</span>"+"<button>댓글수정</button></li><br/>"    		
     		});
     		$('#replies').html($str);//html()함수로 문자와 태그를 함께변경 적용

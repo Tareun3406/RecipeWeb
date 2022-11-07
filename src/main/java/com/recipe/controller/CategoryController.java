@@ -35,21 +35,22 @@ public class CategoryController {
             find_name="";
         } //find_name에 빈값이 아닌 null이 들어왔을때 공백으로 만들어준다.
 
-        recipe.setFind_name("%"+find_name+"%"); //%는 데이터베이스에서 검색 와일드카드문자로서
-        //하나이상의 임의의 모르는 문자와 매핑대응
+        recipe.setFind_name("%"+find_name+"%"); //%는 데이터베이스에서 검색 와일드카드문자로서 하나이상의 임의의 모르는 문자와 매핑대응
 
-        int totalCount=this.categoryService.getListCount(recipe);
-        //총레코드 개수,검색후 레코드 개수,
+
+        int totalCount=this.categoryService.getListCount(recipe);//총레코드 개수,검색후 레코드 개수,
+
 
         recipe.setStartrow((page-1)*12+1);//시작행번호
         recipe.setEndrow(recipe.getStartrow()+limit-1);//끝행 번호
-
-        List<CategoryVO> blist = this.categoryService.getcategoryList(recipe);//검색 전후 목록
 
         int maxpage=(int)((double)totalCount/limit+0.95);//총 페이지수
         int startpage=(((int)((double)page/10+0.9))-1)*10+1;//시작페이지(1,11,21 ..)
         int endpage=maxpage; //현재 페이지에 보여질 마지막 페이지(10,20 ..)
         if(endpage>startpage+10-1) endpage=startpage+10-1;
+
+        List<CategoryVO> blist = this.categoryService.getcategoryList(recipe);//검색 전후 목록
+
 
         listM.addAttribute("blist",blist); //작성글 리스트
         listM.addAttribute("startrow",recipe.getStartrow());

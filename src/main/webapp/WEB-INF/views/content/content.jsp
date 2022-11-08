@@ -33,6 +33,22 @@
     function UnReviewable(){
         alert('본인 글에는 리뷰를 등록할 수 없습니다.');
     }
+    function postDelete(){
+        if(confirm('삭제하시겠습니까?')){
+            alert('식제되었습니다.');
+            document.getElementById('postDelete').submit();
+        }else{
+            return false;
+        }
+    }
+    function replyDelete(){
+        if(confirm('삭제하시겠습니까?')){
+            alert('삭제되었습니다.');
+            document.getElementById('replyDelete').submit();
+        }else{
+            return false;
+        }
+    }
 </script>
 
 <div class="wrap">
@@ -46,19 +62,39 @@
                 <h1>${plist[0].title}</h1>
             </div>
 
-            <c:if test="${userid == 'notlogin'}">
+            <!-- 로그인한 사람 == 글쓴이 -->
+            <c:if test="${userid == plist.get(0).memberDTOList.get(0).userid}">
+                <form method="post" action="edit_post">
+                    <input type="hidden" name="post_no" value="${post_no}">
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" id="token" >
+                    <input type="hidden" name="plist" value="${plist}">
+                    <div class="post_edit">
+                        <button type="submit">수정</button>
+                    </div>
+                </form>
+                <form id="postDelete" method="post" action="delete_post">
+                    <input type="hidden" name="post_no" value="${post_no}">
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" id="token" >
+                    <div class="post_del">
+                        <button type="button" onclick="postDelete()">삭제</button>
+                    </div>
+                </form>
+            </c:if>
 
+            <!-- 비로그인 -->
+            <c:if test="${userid == 'notlogin'}">
                 <div class="report">
                     <button type="button" onclick="goLogin()">신고하기</button>
                 </div>
-
             </c:if>
 
+            <!-- 로그인 -->
             <c:if test="${userid != 'notlogin'}">
 
+                <!-- 신고 여부 -->
                 <c:if test="${report_state == 0}">
                     <form method="post" action="insert_report">
-                        <input type="hidden" name="post_no" value="1">
+                        <input type="hidden" name="post_no" value="${post_no}">
                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" id="token" >
                         <input type="hidden" name="userid" value="${userid}">
                         <div class="report">
@@ -66,10 +102,9 @@
                         </div>
                     </form>
                 </c:if>
-
                 <c:if test="${report_state == 1}">
                     <form method="post" action="del_report">
-                        <input type="hidden" name="post_no" value="1">
+                        <input type="hidden" name="post_no" value="${post_no}">
                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" id="token" >
                         <input type="hidden" name="userid" value="${userid}">
                         <div class="report">
@@ -88,7 +123,8 @@
             <div class="writer">
                 <a href="#"> <img class="writer_image"
                                   src="/resources/images/content/apple.png" alt="글쓴이 이미지" /></a> <a
-                    class="writer_name" href="#"> <b>${plist[0].member[0].nickname}</b></a>
+                    class="writer_name" href="#"> <b>${plist.get(0).memberDTOList.get(0).nickname}</b></a>
+                <!-- 본문 수정 여부에 따라 날짜 표시 -->
                 <c:if test="${!empty plist[0].updatedate}">
                     <p>${plist[0].updatedate}(수정됨)</p>
                 </c:if>
@@ -99,7 +135,7 @@
 
             <div class="subscribe">
 
-            <!-- 비로그인 -->
+                <!-- 비로그인 -->
                 <c:if test="${userid == 'notlogin'}">
                     <button class="sub_btn" type="button" onclick="goLogin()" style="border:0px; background-image:url(/resources/images/content/backgroundimage.png);">
                         <i class="fa-regular fa-bookmark" style="font-size:30px"></i>
@@ -109,24 +145,26 @@
                     </button>
                 </c:if>
 
-            <!-- 로그인 -->
+                <!-- 로그인 -->
                 <c:if test="${userid != 'notlogin'}">
 
                     <!-- 로그인한 사람 == 글쓴이 -->
-                    <c:if test="${userid == plist[0].member[0].userid}">
+                    <c:if test="${userid == plist.get(0).memberDTOList.get(0).userid}">
                         <button class="sub_btn" type="button" onclick="UnSubscribeable()" style="border:0px; background-image:url(/resources/images/content/backgroundimage.png);">
                             <i class="fa-regular fa-bookmark" style="font-size:30px"></i>
                         </button>
                     </c:if>
 
                     <!-- 로그인한 사람 != 글쓴이 -->
-                    <c:if test="${userid != plist[0].member[0].userid}">
-                        <!-- 비구독 -->
+                    <c:if test="${userid != plist.get(0).memberDTOList.get(0).userid}">
+
+                        <!-- 구독 여부 -->
                         <c:if test="${subscribe_state == 0}">
                             <form method="post" action="insert_subscribe">
+                                <input type="hidden" name="post_no" value="${post_no}">
                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" id="token" >
                                 <input type="hidden" name="subscriber_id" value="${userid}">
-                                <input type="hidden" name="target_id" value="${plist[0].member[0].userid}">
+                                <input type="hidden" name="target_id" value="${plist.get(0).memberDTOList.get(0).userid}">
                                 <div class="sub_btn">
                                     <button type="submit" style="border:0px; background-image:url(/resources/images/content/backgroundimage.png);">
                                         <i class="fa-regular fa-bookmark" style="font-size:30px"></i>
@@ -134,13 +172,12 @@
                                 </div>
                             </form>
                         </c:if>
-
-                        <!-- 구독 -->
                         <c:if test="${subscribe_state == 1}">
                             <form method="post" action="del_subscribe">
+                                <input type="hidden" name="post_no" value="${post_no}">
                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" id="token" >
                                 <input type="hidden" name="subscriber_id" value="${userid}">
-                                <input type="hidden" name="target_id" value="${plist[0].member[0].userid}">
+                                <input type="hidden" name="target_id" value="${plist.get(0).memberDTOList.get(0).userid}">
                                 <div class="sub_btn">
                                     <button type="submit" style="border:0px; background-image:url(/resources/images/content/backgroundimage.png);">
                                         <i class="fa-solid fa-bookmark" style="font-size:30px"></i>
@@ -150,24 +187,22 @@
                         </c:if>
                     </c:if>
 
-                    <!-- 비즐찾 -->
+                    <!-- 즐찾 여부 -->
                     <c:if test="${bookmark_state == 0}">
-                         <form method="post" action="insert_bookmark">
-                             <input type="hidden" name="post_no" value="1">
-                             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" id="token" >
-                             <input type="hidden" name="userid" value="${userid}">
-                             <div class="sub_btn">
-                                 <button type="submit" style="border:0px; background-image:url(/resources/images/content/backgroundimage.png);">
-                                     <i class="fa-regular fa-star" style="font-size:30px"></i>
-                                 </button>
+                        <form method="post" action="insert_bookmark">
+                            <input type="hidden" name="post_no" value="${post_no}">
+                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" id="token" >
+                            <input type="hidden" name="userid" value="${userid}">
+                            <div class="sub_btn">
+                                <button type="submit" style="border:0px; background-image:url(/resources/images/content/backgroundimage.png);">
+                                    <i class="fa-regular fa-star" style="font-size:30px"></i>
+                                </button>
                             </div>
-                         </form>
+                        </form>
                     </c:if>
-
-                    <!-- 즐찾 -->
                     <c:if test="${bookmark_state == 1}">
                         <form method="post" action="del_bookmark">
-                            <input type="hidden" name="post_no" value="1">
+                            <input type="hidden" name="post_no" value="${post_no}">
                             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" id="token" >
                             <input type="hidden" name="userid" value="${userid}">
                             <div class="sub_btn">
@@ -197,10 +232,10 @@
             <h2 style="font-size:35px">재료</h2>
         </div>
         <c:forEach var="name" items="${ingredient_names}" varStatus="status">
-                    <div class="item">
-                        <a href="#">${name}</a>
-                        <p>${ingredient_amounts[status.index]}</p>
-                    </div>
+            <div class="item">
+                <a href="#">${name}</a>
+                <p>${ingredient_amounts[status.index]}</p>
+            </div>
         </c:forEach>
     </div>
 
@@ -215,7 +250,7 @@
 
     <div class="recipe">
         <h2 style="font-size:35px">순서</h2>
-        <c:forEach var="c" items="${plist[0].content}">
+        <c:forEach var="c" items="${plist[0].contentVOList}">
             <div class="recipeStep">
                 <div class="recipeStep_manual">
                     <p>${c.manual}</p>
@@ -236,32 +271,24 @@
             </h2>
         </div>
         <div class="comment_container">
-            <c:if test="${!empty rlist}">
-                <c:forEach var="r" items="${rlist}">
+            <c:if test="${!empty plist[0].replyVOList}">
+                <c:forEach var="r" items="${plist[0].replyVOList}">
                     <div class="comment_content">
                         <div class="comment_writer">
                             <a href="#"><img class="comment_writer_image" src="/resources/images/content/apple.png" alt="글쓴이 이미지" /></a>
-                            <a class="comment_writer_name" href="#"> <b>${r.member.get(0).nickname}</b></a>
-                            <c:if test="${!empty r.updatedate}">
-                                <p>${r.updatedate}(수정됨)</p>
-                            </c:if>
-                            <c:if test="${empty r.updatedate}">
-                                <p>${r.regdate}</p>
-                            </c:if>
-                            <c:if test="${userid == r.member.get(0).userid}">
-                                <form action="edit_reply" style="float:left;">
-                                    <input type="hidden" name="post_no" value="1">
+                            <a class="comment_writer_name" href="#"> <b>${r.reviewernickname}</b></a>
+                            <p>${r.regdate}</p>
+
+                            <!-- 로그인한 사람 == 댓글 등록자 -->
+                            <c:if test="${userid == r.reviewer}">
+                                <form id="replyDelete" action="del_reply" style="float:left;">
+                                    <input type="hidden" name="post_no" value="${post_no}">
                                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" id="token" >
                                     <input type="hidden" name="reviewer" value="${userid}">
-                                    <button type="submit">수정</button>
-                                </form>
-                                <form action="del_reply" style="float:left;">
-                                    <input type="hidden" name="post_no" value="1">
-                                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" id="token" >
-                                    <input type="hidden" name="reviewer" value="${userid}">
-                                    <button type="submit">삭제</button>
+                                    <button type="button" onclick="replyDelete()">삭제</button>
                                 </form>
                             </c:if>
+
                         </div>
                         <div class="comment_text">
                             <div class="star_container">
@@ -278,9 +305,6 @@
                     </div>
                 </c:forEach>
             </c:if>
-
-
-
 
             <!--
             <div id="add_comment_btn">
@@ -302,7 +326,7 @@
              -->
 
             <form action="insert_reply" name="starForm" id="starForm" method="post">
-                <input type="hidden" name="post_no" value="1">
+                <input type="hidden" name="post_no" value="${post_no}">
                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" id="token" >
                 <c:if test="${userid != 'notlogin'}">
                     <input type="hidden" name="reviewer" value="${userid}">
@@ -325,20 +349,31 @@
                         <textarea id="review_text" cols="93" name="content">댓글을 입력해주세요.</textarea>
                     </div>
                     <div class="comment_submit_btn">
+
+                        <!-- 비로그인 -->
                         <c:if test="${userid == 'notlogin'}">
                             <input type="button" onclick="goLogin()" value="등록" />
                         </c:if>
+
+                        <!-- 로그인 -->
                         <c:if test="${userid != 'notlogin'}">
-                            <c:if test="${userid == plist[0].member[0].userid}">
+
+                            <!-- 로그인한 사람 == 글작성자 -->
+                            <c:if test="${userid == plist[0].memberDTOList[0].userid}">
                                 <input type="button" onclick="UnReviewable()" value="등록" />
                             </c:if>
-                            <c:if test="${userid != plist[0].member[0].userid}">
+
+                            <!-- 로그인한 사람 != 글작성자 -->
+                            <c:if test="${userid != plist[0].memberDTOList[0].userid}">
+
+                                <!-- 댓글 등록 여부 -->
                                 <c:if test="${reply_state == 0}">
                                     <input type="button" onclick="reviewCheck()" value="등록" />
                                 </c:if>
                                 <c:if test="${reply_state == 1}">
                                     <input type="button" onclick="duplicateRegistration()" value="등록" />
                                 </c:if>
+
                             </c:if>
                         </c:if>
                     </div>

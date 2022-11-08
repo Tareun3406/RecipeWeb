@@ -16,7 +16,7 @@ public class PostDAOImpl implements PostDAO{
     private SqlSession sqlSession;
 
     @Override
-    public List<PostVO> getPost(int post_no) {
+    public List<CategoryVO> getPost(int post_no) {
         return sqlSession.selectList("post_getList", post_no);
     }
 
@@ -36,11 +36,6 @@ public class PostDAOImpl implements PostDAO{
     }
 
     @Override
-    public List<BookmarkVO> getBookmarkList(int post_no) {
-        return sqlSession.selectList("bookmark_getList", post_no);
-    }
-
-    @Override
     public void deleteBookmark(BookmarkVO bookmarkVO) {
         sqlSession.delete("bookmark_delete", bookmarkVO);
     }
@@ -48,11 +43,6 @@ public class PostDAOImpl implements PostDAO{
     @Override
     public void minusBookmark(int post_no) {
         sqlSession.update("bookmark_updateMinus", post_no);
-    }
-
-    @Override
-    public List<ReportVO> getReportList(int post_no) {
-        return sqlSession.selectList("report_getList", post_no);
     }
 
     @Override
@@ -96,8 +86,8 @@ public class PostDAOImpl implements PostDAO{
     }
 
     @Override
-    public List<SubscribeVO> getSubscriberList(String target_id) {
-        return sqlSession.selectList("subscribe_getList", target_id);
+    public void deletePost(int post_no) {
+        sqlSession.delete("post_delete", post_no);
     }
 
     @Override

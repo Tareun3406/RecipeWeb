@@ -12,9 +12,11 @@
 <form id="joinForm" action="editUpdate" method="post" onsubmit="return joinCheck()">
     <div class="caption" style="margin: 20px">
         <h3 style="display: inline-block">회원수정</h3>
-        <span style="display:inline-block;border: solid 1px; width: 100px; height: 50px; float: right">
-                로고
-        </span>
+        <div id="logo" style="float: right; ">
+        <a href="/">
+        <img src="/resources/images/Mwhite_logo.png" alt="로고"/>
+        </a>
+        </div>
     </div>
     <div>
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" id="token">

@@ -242,7 +242,6 @@ public class ContentController {
 
         int post_no = postService.getNextNo();    // 글번호
 
-        System.out.println(thumbnail);
         String fileName = thumbnail.getOriginalFilename();  // 원본파일명 가져오기. Internet Explorer의 경우 경로까지 가져오니 유의
         String uploadPath = session.getServletContext().getRealPath("/resources/uploadImg/"+post_no);   //저장될 경로 가져오기
 
@@ -269,7 +268,6 @@ public class ContentController {
         if(!folder.exists()){
             try{
                 folder.mkdir();
-                System.out.println("폴더 생성");
             }catch (SecurityException e){
 
             }

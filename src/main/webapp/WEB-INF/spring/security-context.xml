@@ -35,6 +35,7 @@
                              authentication-failure-forward-url="/member/login?error"/>
 
         <security:remember-me key="test1342"
+                              data-source-ref="dataSource"
                               token-validity-seconds="64000"/>
 
         <security:logout logout-url="/member/logout" invalidate-session="true"

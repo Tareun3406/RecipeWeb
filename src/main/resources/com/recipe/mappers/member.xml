@@ -113,26 +113,18 @@
                s.SENDER,s.RECEIVER,s.MESSAGE,s.SENDDATE,s.snickname,
                r.sender2,r.receiver2,r.message2,r.senddate2,r.rnickname
         from MEMBER a
-        left join RECIPE_POST b
-            on (b.writer=a.USERID)
-        left join recipe_reply c
-            on (c.REVIEWER=a.USERID)
+        left join RECIPE_POST b on (b.writer=a.USERID)
+        left join recipe_reply c on (c.REVIEWER=a.USERID)
         left join (select SUBSCRIBER_ID,NICKNAME as target_id
                    from SUBSCRIBE
-                   left join member on (SUBSCRIBE.TARGET_ID = MEMBER.USERID))d <!--구독한 쉐프아이디에 맞는 닉네임-->
-        on (d.SUBSCRIBER_ID=a.USERID)
+                   left join member on (SUBSCRIBE.TARGET_ID = MEMBER.USERID))d on (d.SUBSCRIBER_ID=a.USERID) <!--구독한 쉐프아이디에 맞는 닉네임-->
         left join BOOKMARK e on (a.USERID=e.USERID)
-
         left join (select SENDER,RECEIVER,SENDDATE,MESSAGE,NICKNAME as snickname
                    from MESSAGE
-                   left join member on MESSAGE.SENDER=MEMBER.USERID where RECEIVER=#{id})s <!--받은 사람이 로그인한 사람일 때 쪽지테이블+보낸사람 닉네임 -->
-        on (a.USERID=s.RECEIVER)
-
+                   left join member on MESSAGE.SENDER=MEMBER.USERID where RECEIVER=#{id})s on (a.USERID=s.RECEIVER)<!--받은 사람이 로그인한 사람일 때 쪽지테이블+보낸사람 닉네임 -->
         left join (select SENDER as sender2,RECEIVER as receiver2,SENDDATE as senddate2,MESSAGE as message2,NICKNAME as rnickname
                    from MESSAGE
-                   left join member on RECEIVER=MEMBER.USERID where sender=#{id})r <!--보낸 사람이 로그인한 사람일 때 쪽지테이블+받은사람 닉네임 -->
-        on (a.USERID=r.sender2)
-
+                   left join member on RECEIVER=MEMBER.USERID where sender=#{id})r on (a.USERID=r.sender2)<!--보낸 사람이 로그인한 사람일 때 쪽지테이블+받은사람 닉네임 -->
         where a.userid=#{id}
 
     </select>

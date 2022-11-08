@@ -45,7 +45,7 @@
     </select>
 
     <select id="book_list" resultType="category">
-        select * from (select * from BOOKMARK bm left join (select ROWNUM rNum,g.*,h.THUMNAIL,h.TITLE,h.HIT from
+        select * from (select t.*,ROWNUM rNum from BOOKMARK bm left join (select g.*,h.THUMNAIL,h.TITLE,h.HIT from
         RECIPE_POST h left join (select e.*,nickname from
         member f right join (select c.*,writer from
         RECIPE_POST d left join (select a.post_no, nvl(round(avg(score),2),0) as score

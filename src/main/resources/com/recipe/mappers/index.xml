@@ -18,7 +18,7 @@
     </select>
 
     <select id="recipeRecent" resultType="category">
-        select ROWNUM rNum,d.NICKNAME writer,d.* from (select a.POST_NO,a.THUMNAIL,a.TITLE, a.INGREDIENT, b.nickname, a.BOOKMARK
+        select ROWNUM rNum,d.NICKNAME writer,d.* from (select a.POST_NO,a.THUMNAIL,a.TITLE, a.INGREDIENT, b.nickname, a.BOOKMARK, a.HIT
                                      from RECIPE_POST a left join MEMBER b on (a.WRITER = b.USERID)
                                      order by POST_NO desc) d where ROWNUM &lt;= 10
     </select>

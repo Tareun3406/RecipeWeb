@@ -43,13 +43,14 @@ public class HomeController {
         String[] keywordArr = {"중식","일식","한식","양식","디저트"};
         List<MemberDTO> chefList = homeService.getChefRankedList();
 
+        // 랜덤 인덱스로 배열의 값 꺼내기
         Random random = new Random();
         int i = random.nextInt(keywordArr.length);
         String recommendKeyword = keywordArr[i];
 
+        // 종성 구분하여 을or를 정해주기
         char lastName = recommendKeyword.charAt(recommendKeyword.length() - 1);
         int index= (lastName - 0xAC00) % 28;
-
         String lastChar;
         if (index==0) lastChar="를";
         else lastChar = "을";

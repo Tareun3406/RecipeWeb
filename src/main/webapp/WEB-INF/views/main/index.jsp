@@ -11,11 +11,13 @@
             <ul class="rank-image-container">
                 <c:forEach var="recipe" items="${rankedRecipeList}">
                     <li class="container-item">
-                        <input type="radio" value="${recipe.RNum}" style="display: none;" onclick="rankOnClick(this)">
-                        <img class="menu-image" alt=""
-                             src="${recipe.thumnail}">
+                        <label>
+                            <input type="radio" value="${recipe.RNum-1}" style="display: none;" onclick="rankOnClick(this)">
+                            <img class="menu-image" alt="" src="${recipe.thumnail}"
+                                 onclick="sendRedirect(${recipe.post_no},${recipe.RNum-1})">
+                        </label>
                         <ul class="recipe-info" style="background:  #fffde4; border: 1px solid var(--point-color);">
-                            <li class="recipe-title">${recipe.RNum}. ${recipe.title}</li>
+                            <li class="recipe-title">${recipe.post_no}. ${recipe.title}</li>
                             <li>재료 1</li>
                             <li>재료 2</li>
                             <li>재료 3</li>
@@ -53,7 +55,8 @@
 
             if (num <= 7)
                 rankImageContainer.style.transform = "translateX(-" + num * 180 + "px)";
-            // rankImageContainer.style.transform = "translateX(-" + parseInt(num/4) * 180*4 + "px)";
+            else
+                rankImageContainer.style.transform = "translateX(-" + 7 * 180 + "px)";
         }
 
         function unSelectMenu(num) {
@@ -88,6 +91,20 @@
             unSelectMenu(num);
             num = parseInt(radio.value);
             selectMenu(num);
+            clearInterval(interval);
+            interval = rankingInterval();
+        }
+
+        function sendRedirect(no,RNum){
+            if (RNum === num){
+                location.href='/content?post_no=' + no;
+            }
+        }
+        let interval = rankingInterval();
+        function rankingInterval() {
+             return setInterval(function() {
+                rankNext();
+            }, 5000);
         }
     </script>
     <article class="popular-menu">
@@ -99,7 +116,7 @@
                 <c:if test="${recipe.RNum == 7}">
                     <div id="moreList" style="display: none; flex-wrap: wrap">
                 </c:if>
-                <li onclick="location.href='/content?post_no=${recipe.RNum}'">
+                <li onclick="location.href='/content?post_no=${recipe.post_no}'">
                     <span class="menu-number"> ${recipe.RNum} </span>
                     <div class="menu-recipe">
                         <img src="${recipe.thumnail}">
@@ -148,8 +165,8 @@
                 <td class="likes-number">조회수</td>
             </tr>
             <c:forEach var="recipe" items="${recentRecipeList}">
-                <tr onclick="location.href='/content?post_no=${recipe.RNum}'">
-                    <td class="border-no">${recipe.RNum}</td>
+                <tr onclick="location.href='/content?post_no=${recipe.post_no}'">
+                    <td class="border-no">${recipe.post_no}</td>
                     <td class="border-title">${recipe.title}</td>
                     <td class="border-writer">${recipe.writer}</td>
                     <td class="likes-number">${recipe.hit}</td> <%-- 조회수 --%>

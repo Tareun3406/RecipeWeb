@@ -4,43 +4,17 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="Reply">
 
-    <resultMap id="rlist" type="reply">
-        <result property="post_no" column="post_no"/>
-        <result property="re_no" column="re_no"/>
-        <result property="reviewer" column="reviewer"/>
-        <result property="content" column="content"/>
-        <result property="score" column="score"/>
-        <result property="regdate" column="regdate"/>
-        <result property="updatedate" column="updatedate"/>
-        <collection property="member" resultMap="mlist"/>
-    </resultMap>
-
-    <resultMap id="mlist" type="member">
-        <result property="userid" column="userid"/>
-        <result property="userpw" column="userpw"/>
-        <result property="nickname" column="nickname"/>
-        <result property="email" column="email"/>
-    </resultMap>
-
+    <!-- 리뷰 등록 -->
     <insert id="insert_reply">
-        insert into recipe_reply(post_no, re_no, reviewer, content, score, regdate) values(#{post_no}, re_no_seq.nextval, #{reviewer}, #{content}, #{score}, sysdate)
+        insert into recipe_reply(post_no, re_no, reviewernickname, content, score, regdate, reviewer) values(#{post_no}, re_no_seq.nextval, (select nickname from member where userid=#{reviewer}), #{content}, #{score}, sysdate, #{reviewer})
     </insert>
 
-    <select id="reply_getList" resultMap="rlist">
-        Select r.re_no,r.content,
-               r.score,r.regdate,
-               m.nickname,
-               m.userid
-        From recipe_reply r
-                 Inner join member m
-                            On r.reviewer = m.userid
-        Where r.post_no = #{post_no} order by re_no desc
-    </select>
-
+    <!-- 리뷰 등록 상태 -->
     <select id="getReplyState" resultType="int">
         select count(*) from recipe_reply where post_no=#{post_no} and reviewer=#{reviewer}
     </select>
 
+    <!-- 리뷰 삭제 -->
     <delete id="delete_reply">
         delete from recipe_reply where post_no=#{post_no} and reviewer=#{reviewer}
     </delete>

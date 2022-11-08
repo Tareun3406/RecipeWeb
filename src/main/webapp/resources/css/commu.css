@@ -432,23 +432,23 @@ h1, h2, h3, h4, h5, h6 {
 
 /* commu_cont.jsp ui */
 #bsC_wrap{
-   width:330px; padding:10px;
+   width:500px; padding:10px;
    border:1px solid #e49967; border-radius:5px;
    margin-left:auto; margin-right:auto;
    margin-top:50px;margin-bottom:50px; box-shadow:15px 15px 15px #ccc;
    background:white;
 }
 #bsC_wrap .bsC_title{
-   margin:10px 0 0 80px; width:150px; font-size:19px;
+   margin:10px 0 0 165px; width:150px; font-size:19px;
    background:#fce7c2; border-radius:5px; text-align:center;
    padding:2px; color:#696161;
 }
 #bsC_t{
-   margin:15px 0 0 20px; color:black; 
+   margin:15px 0 0 60px; color:black; 
 }
 #bsC_t th{
    background:#fce7c2; border-radius:5px;color:#696161;
-    margin: 0 15px 0 20px; color:black;
+    margin: 0 0 10px 10px; color:black;
 }
 #bsC_t td{
    padding:0 20px 0 40px;
@@ -456,7 +456,7 @@ h1, h2, h3, h4, h5, h6 {
    
 }
 #bsC_menu{
-    margin:15px 0 5px 75px;   
+    margin:15px 0 5px 300px;   
 }
 
 /* commu_del.jsp ui */

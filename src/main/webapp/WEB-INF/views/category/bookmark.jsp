@@ -93,5 +93,13 @@ border: solid 1px white; ">
 
 	</ul>
 </nav>
+<div style="display: flex; justify-content: center; padding: 5px;">
+	<form action="/bookmark" name="find_name">
+		<input style="width: 200px; height: 30px;" name="find_name" type="text"
+			   placeholder="내가 즐겨찾기 한 게시글 중 검색">
+		<button type="submit">검색
+		</button>
+	</form>
+</div>
 <%-- -----------------------footer------------------------ --%>
 <jsp:include page="../main/footer.jsp" flush="false"/>

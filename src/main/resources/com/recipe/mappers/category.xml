@@ -10,7 +10,7 @@
         <where>
          <if test="find_name == ''"></if>
          <if test="find_name != ''">
-         title like #{find_name} or ingredient like #{find_name} or nickname like #{find_name}
+             post_tag like #{find_name} or  title like #{find_name} or ingredient like #{find_name} or nickname like #{find_name}
          </if>
         </where>
     </select>
@@ -25,7 +25,7 @@
                    on (e.WRITER=f.USERID) order by post_no desc)g on (g.POST_NO=h.POST_NO)
         <where>
             <if test="find_name == ''"></if>
-            <if test="find_name != ''">title like #{find_name} or ingredient like #{find_name} or nickname like #{find_name} </if>
+            <if test="find_name != ''">post_tag like #{find_name} or  title like #{find_name} or ingredient like #{find_name} or nickname like #{find_name} </if>
         </where>)
         where rNum &gt;=#{startrow} and rNum &lt;=#{endrow} order by rnum
 <!-- #gt;= 은 >=의 뜻, &lt;= 은 <= 의 뜻 -->
@@ -39,7 +39,7 @@
         <where>
             <if test="find_name == ''"></if>
             <if test="find_name != ''">
-                title like #{find_name} or ingredient like #{find_name} or nickname like #{find_name})
+                post_tag like #{find_name} or title like #{find_name} or ingredient like #{find_name} or nickname like #{find_name})
             </if>
         </where>
     </select>
@@ -54,7 +54,7 @@
         on (e.WRITER=f.USERID) order by post_no desc)g on (g.POST_NO=h.POST_NO)
         <where>
             <if test="find_name == ''"></if>
-            <if test="find_name != ''">title like #{find_name} or ingredient like #{find_name} or nickname like #{find_name} </if>
+            <if test="find_name != ''">post_tag like #{find_name} or  title like #{find_name} or ingredient like #{find_name} or nickname like #{find_name} </if>
         </where>)t on bm.POST_NO=t.post_no where bm.USERID=#{userid})
         where rNum &gt;=#{startrow} and rNum &lt;=#{endrow} order by rnum
         <!-- #gt;= 은 >=의 뜻, &lt;= 은 <= 의 뜻 -->

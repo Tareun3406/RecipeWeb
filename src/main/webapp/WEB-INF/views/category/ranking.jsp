@@ -32,7 +32,7 @@ border: solid 1px white;">
    <%-- 레시피 게시판 반복문으로 게시물 표시하기 --%>
    <c:forEach var="rank" items="${rlist}" varStatus="i" step="1" begin="0" end="11">
    <div>
-       <a href="/content?post_no=${recipe.post_no}"><img alt="1" width="300" height="300" src=${rank.thumnail}  ></a>
+       <a href="/content?post_no=${rank.post_no}"><img alt="1" width="300" height="300" src=${rank.thumnail}  ></a>
     <div class="contents">
      <div style="margin-left: 2px;">${rank.post_no}.${rank.title}</div>
      <div style="margin-left: 2px;">작성자 : ${rank.nickname} </div>

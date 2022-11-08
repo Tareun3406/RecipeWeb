@@ -53,7 +53,7 @@
 
 <div class="wrap">
     <div class="main_image">
-        <img src="/resources/images/content/${plist[0].thumnail}" class="img">
+        <img src="${plist[0].thumnail}" class="img">
     </div>
 
     <div class="title">
@@ -256,7 +256,7 @@
                     <p>${c.manual}</p>
                 </div>
                 <div class="recipeStep_image">
-                    <img width="299px" height="250px" src="/resources/images/content/${c.image}">
+                    <img width="299px" height="250px" src="${c.image}">
                 </div>
             </div>
         </c:forEach>

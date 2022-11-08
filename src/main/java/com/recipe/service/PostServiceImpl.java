@@ -24,13 +24,18 @@ public class PostServiceImpl implements PostService{
         List<CategoryVO> postVOList = postDAO.getPost(post_no);
 
         // 팁, 레시피, 댓글 줄바꾸기
-        for (CategoryVO postVO : postVOList){
-            postVO.setTip(postVO.getTip().replace("\n", "</br>"));
-            for (ContentVO contentVO : postVO.getContentVOList()) {
-                contentVO.setManual(contentVO.getManual().replace("\n", "</br>"));
+        try{
+            for (CategoryVO postVO : postVOList){
+                postVO.setTip(postVO.getTip().replace("\n", "</br>"));
             }
-            for(ReplyVO replyVO : postVO.getReplyVOList()) {
-                replyVO.setContent(replyVO.getContent().replace("\n", "</br>"));
+        }catch (Exception e){
+            for (CategoryVO postVO : postVOList){
+                for (ContentVO contentVO : postVO.getContentVOList()) {
+                    contentVO.setManual(contentVO.getManual().replace("\n", "</br>"));
+                }
+                for(ReplyVO replyVO : postVO.getReplyVOList()) {
+                    replyVO.setContent(replyVO.getContent().replace("\n", "</br>"));
+                }
             }
         }
 

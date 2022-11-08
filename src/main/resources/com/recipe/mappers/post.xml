@@ -160,7 +160,7 @@
     </select>
 
     <select id="selectPostNextVal" resultType="int">
-        select POST_NO_SEQ.nextval from DUAL;
+        select POST_NO_SEQ.nextval from DUAL
     </select>
 
     <insert id="insertPost">

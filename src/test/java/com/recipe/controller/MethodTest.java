@@ -39,6 +39,5 @@ public class MethodTest {
                     break;
             }
         }
-        System.out.println(stringBuilder);
     }
 }

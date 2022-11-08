@@ -60,7 +60,7 @@ public class RankingController {
         int startpage=(((int)((double)page/10+0.9))-1)*10+1;//시작페이지(1,11,21 ..)
         int endpage=maxpage; //현재 페이지에 보여질 마지막 페이지(10,20 ..)
         if(endpage>startpage+10-1) endpage=startpage+10-1;
-
+        
         model.addAttribute("rlist",rlist); //작성글 리스트
         model.addAttribute("startrow",r.getStartrow());
         model.addAttribute("endrow",r.getEndrow());

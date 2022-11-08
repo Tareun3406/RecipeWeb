@@ -19,8 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-public class ContentController { // 신고, 구독, 즐겨찾기 아작스
-
+public class ContentController {
 
     @Autowired
     private ReplyService replyService;
@@ -31,20 +30,12 @@ public class ContentController { // 신고, 구독, 즐겨찾기 아작스
 
     // 본문 페이지
     @RequestMapping("/content")
-    public String content(Model m, Principal principal) {
+    public String content(Model m, Principal principal, int post_no) {
 
-        // 받아올 정보
-        int post_no = 1;
-
-        ReplyVO replyVO = new ReplyVO();
-        List<PostVO> plist = postService.getPost(post_no); // 본문내용, 작성자, 레시피
-        List<ReplyVO> rlist = replyService.getReply(post_no); // 댓글, 댓글 작성자
+        List<CategoryVO> plist = postService.getPost(post_no); // 본문내용 필요 내용
         List<String> tagList = new ArrayList<>(); //태그 리스트
         List<String> ingredient_names = new ArrayList<>(); // 재료 이름 리스트
         List<String> ingredient_amounts = new ArrayList<>(); // 재료 양 리스트
-        List<SubscribeVO> subscriberList = postService.getSubscriberList(plist.get(0).getMember().get(0).getUserid()); // 구독자 리스트
-        List<BookmarkVO> bookmarkList = postService.getBookmarkList(post_no); // 즐겨찾기 아이디 리스트
-        List<ReportVO> reportList = postService.getReportList(post_no); // 신고자 리스트
         String userid = null; // 로그인한 유저 아이디
         int report_state = 0; // 신고 여부
         int subscribe_state = 0; // 글쓴이 구독 여부
@@ -61,31 +52,31 @@ public class ContentController { // 신고, 구독, 즐겨찾기 아작스
             }
         }catch (Exception e){
             userid = "notlogin";
-            e.printStackTrace();
         }
 
         // 리뷰 중복 등록 방지용
+        ReplyVO replyVO = new ReplyVO();
         replyVO.setPost_no(post_no);
         replyVO.setReviewer(userid);
         reply_state = replyService.getReplyState(replyVO);
 
-        // 즐겨찾기 상태 표시 (1일때 즐겨찾기 상태)
-        for(BookmarkVO bookmark : bookmarkList){
-            if(bookmark.getUserid().equals(userid)){
+        // 즐겨찾기, 신고, 구독 상태 표시
+        for(BookmarkVO bookmark : plist.get(0).getBookmarkVOList()){
+            System.out.println("buserid : " + bookmark.getBuserid());
+            if(bookmark.getBuserid().equals(userid)){
                 bookmark_state = 1;
             }
         }
-        for(ReportVO reportVO : reportList){
+        for(ReportVO reportVO : plist.get(0).getReportVOList()){
             if(reportVO.getUserid().equals(userid)){
                 report_state = 1;
             }
         }
-        for(SubscribeVO subscribeVO: subscriberList){
+        for(SubscribeVO subscribeVO: plist.get(0).getSubscribeVOList()){
             if(subscribeVO.getSubscriber_id().equals(userid)){
                 subscribe_state = 1;
             }
         }
-
 
         // 태그 문자열 나눠서 저장
         String tags = plist.get(0).getPost_tag();
@@ -98,19 +89,20 @@ public class ContentController { // 신고, 구독, 즐겨찾기 아작스
         String ingredientList = plist.get(0).getIngredient();
         String[] ingArray = ingredientList.split(",");
         for (int i = 0; i < ingArray.length; i++) {
-            String a1 = ingArray[i].split("!")[0];
-            String b1 = ingArray[i].split("!")[1];
+            String a1 = ingArray[i].split(":")[0];
+            String b1 = ingArray[i].split(":")[1];
             ingredient_names.add(a1);
             ingredient_amounts.add(b1);
         }
 
         // 리뷰 개수 구하기, 평점 구하기
-        for(ReplyVO r : rlist) {
+        for(ReplyVO r : plist.get(0).getReplyVOList()) {
             replyCount += 1; // 리뷰 개수
             total += r.getScore();
         }
         averageScore = (float)total / replyCount;
 
+        m.addAttribute("post_no", post_no);
         m.addAttribute("userid", userid);
         m.addAttribute("report_state", report_state);
         m.addAttribute("subscribe_state", subscribe_state);
@@ -119,7 +111,6 @@ public class ContentController { // 신고, 구독, 즐겨찾기 아작스
         m.addAttribute("tagList", tagList);
         m.addAttribute("ingredient_names", ingredient_names);
         m.addAttribute("ingredient_amounts", ingredient_amounts);
-        m.addAttribute("rlist", rlist);
         m.addAttribute("replyCount", replyCount);
         m.addAttribute("averageScore", averageScore);
         m.addAttribute("reply_state", reply_state);
@@ -130,32 +121,11 @@ public class ContentController { // 신고, 구독, 즐겨찾기 아작스
 
     // 리뷰 저장
     @RequestMapping("/insert_reply")
-    public ModelAndView insert_reply(HttpServletResponse response, ReplyVO r) throws IOException {
-
-        ModelAndView cm = new ModelAndView();
-        PrintWriter out = response.getWriter();
+    public String insert_reply(ReplyVO r){
 
         replyService.insertReply(r);
 
-        out.println("<script>");
-        out.println("alert('등록 완료');");
-        out.println("</script>");
-
-        cm.setViewName("redirect:/content");
-
-        return cm;
-
-    }
-
-    // 리뷰 수정
-    @RequestMapping("/edit_reply")
-    public String edit_reply(HttpServletResponse response, ReplyVO replyVO){
-
-        response.setContentType("text/html;charset=UTF-8");
-
-        //replyService.editReply(replyVO);
-
-        return null;
+        return "redirect:/content?post_no=" + r.getPost_no();
 
     }
 
@@ -165,27 +135,27 @@ public class ContentController { // 신고, 구독, 즐겨찾기 아작스
 
         replyService.deleteReply(replyVO);
 
-        return "redirect:/content";
+        return "redirect:/content?post_no=" + replyVO.getPost_no();
 
     }
 
     // 구독 추가
     @RequestMapping("/insert_subscribe")
-    public String update_subscribe(SubscribeVO subscribeVO){
+    public String update_subscribe(SubscribeVO subscribeVO, int post_no){
 
         postService.insertSubscribe(subscribeVO);
 
-        return "redirect:/content";
+        return "redirect:/content?post_no=" + post_no;
 
     }
 
     // 구독 삭제
     @RequestMapping("/del_subscribe")
-    public String check_subscribe(SubscribeVO subscribeVO){
+    public String check_subscribe(SubscribeVO subscribeVO, int post_no){
 
         postService.deleteSubscribe(subscribeVO);
 
-        return "redirect:/content";
+        return "redirect:/content?post_no=" + post_no;
 
     }
 
@@ -195,7 +165,7 @@ public class ContentController { // 신고, 구독, 즐겨찾기 아작스
 
         postService.insertBookmark(bookmarkVO);
 
-        return "redirect:/content";
+        return "redirect:/content?post_no=" + bookmarkVO.getPost_no();
 
     }
 
@@ -205,7 +175,7 @@ public class ContentController { // 신고, 구독, 즐겨찾기 아작스
 
         postService.deleteBookmark(bookmarkVO);
 
-        return "redirect:/content";
+        return "redirect:/content?post_no=" + bookmarkVO.getPost_no();
 
     }
 
@@ -215,7 +185,7 @@ public class ContentController { // 신고, 구독, 즐겨찾기 아작스
 
         postService.insertReport(reportVO);
 
-        return "redirect:/content";
+        return "redirect:/content?post_no=" + reportVO.getPost_no();
 
     }
 
@@ -225,7 +195,27 @@ public class ContentController { // 신고, 구독, 즐겨찾기 아작스
 
         postService.deleteReport(reportVO);
 
-        return "redirect:/content";
+        return "redirect:/content?post_no=" + reportVO.getPost_no();
+
+    }
+
+    // 본문 삭제
+    @RequestMapping("/delete_post")
+    public String delete_post(int post_no){
+
+        postService.deletePost(post_no);
+
+        return "redirect:/category";
+
+    }
+
+    // 본문 수정
+    @RequestMapping("/edit_post")
+    public String edit_post(CategoryVO postVO){
+
+        //postService.editPost(postVO);
+
+        return "redirect:/editPost";
 
     }
 

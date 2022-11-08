@@ -5,21 +5,20 @@ import com.recipe.vo.*;
 import java.util.List;
 
 public interface PostDAO {
-    List<PostVO> getPost(int post_no);
+
+    List<CategoryVO> getPost(int post_no);
+
     void insertRp(Recipe_PostDTO rpd);
+
     void updateHit(int post_no);
 
     void inserBookmark(BookmarkVO bookmarkVO);
 
     void updateBookmark(int post_no);
 
-    List<BookmarkVO> getBookmarkList(int post_no);
-
     void deleteBookmark(BookmarkVO bookmarkVO);
 
     void minusBookmark(int post_no);
-
-    List<ReportVO> getReportList(int post_no);
 
     void insertReport(ReportVO reportVO);
 
@@ -37,5 +36,5 @@ public interface PostDAO {
 
     void minusSubscribe(String target_id);
 
-    List<SubscribeVO> getSubscriberList(String writer);
+    void deletePost(int post_no);
 }

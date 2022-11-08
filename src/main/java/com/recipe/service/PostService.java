@@ -20,8 +20,6 @@ public interface PostService {
 
     void deleteSubscribe(SubscribeVO subscribeVO);
 
-    List<SubscribeVO> getSubscriberList(String writer);
-
     void insertPost(RecipeUploadDTO recipeContent, List<RecipeContentDTO> contentlist);
 
     int getNextNo();

@@ -58,7 +58,7 @@ function onSubmitCheck(){
 // 레시피 내용 추가
 let num = 0;
 const add_textbox = () => {
-	const box = document.getElementById("box");
+	const box = document.getElementById("addedContent");
 	const newP = document.createElement('p');
 	newP.innerHTML = "<input type='file' name='recipeImgs["+num+"]' id='recipeImgs["+num+"]' accept=\"image/*\"/>" +
 		"<textarea style='margin: 5px;' rows='20' cols='60' name='recipeText["+num+"]' id='recipe[" + num + "]'></textarea>";
@@ -68,11 +68,8 @@ const add_textbox = () => {
 const remove = () => {
 	if(num > 1){
 		num -= 1;
-		let lastTextBox = 'recipe' + num;
+		let lastTextBox = 'recipe[' + num+']';
 		let obj = document.getElementById(lastTextBox);
-		document.getElementById('box').removeChild(obj.parentNode);
+		document.getElementById('addedContent').removeChild(obj.parentNode);
 	}
 }
-
-
-// 태그 관련

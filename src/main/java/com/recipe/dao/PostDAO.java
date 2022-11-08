@@ -36,8 +36,6 @@ public interface PostDAO {
 
     void minusSubscribe(String target_id);
 
-    List<SubscribeVO> getSubscriberList(String writer);
-
     int getNextNo();
 
     void insertPost(RecipeUploadDTO recipeContent);

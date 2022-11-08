@@ -63,22 +63,27 @@ public class ContentController {
         reply_state = replyService.getReplyState(replyVO);
 
         // 즐겨찾기, 신고, 구독 상태 표시
-        for(BookmarkVO bookmark : plist.get(0).getBookmarkVOList()){
-            System.out.println("buserid : " + bookmark.getBuserid());
-            if(bookmark.getBuserid().equals(userid)){
-                bookmark_state = 1;
+        try{
+            for(BookmarkVO bookmark : plist.get(0).getBookmarkVOList()){
+              if(bookmark.getBuserid().equals(userid)){
+                  bookmark_state = 1;
+               }
             }
-        }
-        for(ReportVO reportVO : plist.get(0).getReportVOList()){
-            if(reportVO.getUserid().equals(userid)){
-                report_state = 1;
+        }catch (NullPointerException e){}
+        try {
+            for (ReportVO reportVO : plist.get(0).getReportVOList()) {
+                if (reportVO.getUserid().equals(userid)) {
+                    report_state = 1;
+                }
             }
-        }
-        for(SubscribeVO subscribeVO: plist.get(0).getSubscribeVOList()){
-            if(subscribeVO.getSubscriber_id().equals(userid)){
-                subscribe_state = 1;
+        }catch (NullPointerException e){}
+        try {
+            for (SubscribeVO subscribeVO : plist.get(0).getSubscribeVOList()) {
+                if (subscribeVO.getSubscriber_id().equals(userid)) {
+                    subscribe_state = 1;
+                }
             }
-        }
+        }catch (NullPointerException e){}
 
         // 태그 문자열 나눠서 저장
         String tags = plist.get(0).getPost_tag();

@@ -83,6 +83,7 @@
                         <p></p>
                         <li><span style="font-size:16px">요리순서</span>
                             <div id="box">
+                                <div id="addedContent"></div>
                                 <input type="button" id="btn_blue" value="추가" onclick="add_textbox()">
                                 <input type='button' id='btn_orange' value='삭제' onclick='remove()'>
                             </div>

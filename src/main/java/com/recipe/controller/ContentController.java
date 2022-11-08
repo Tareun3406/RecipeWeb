@@ -233,10 +233,7 @@ public class ContentController {
     // 레시피 작성내용 업로드
     @PostMapping("/recipeUpload")
     public String recipeUpload(RecipeUploadDTO recipeContent, Principal principal, HttpSession session){
-
         recipeContent.setWriter(principal.getName());
-
-
         MultipartFile thumbnail = recipeContent.getThumnailImg();   // 업로드 될 썸네일 이미지파일
         List<MultipartFile> recipeImgs = recipeContent.getRecipeImgs(); // 업로드 될 내용 이미지파일 리스트
         List<String> recipeTexts = recipeContent.getRecipeText();       // db에 들어갈 내용 텍스트 리스트
@@ -246,8 +243,6 @@ public class ContentController {
 
         String fileName = thumbnail.getOriginalFilename();  // 원본파일명 가져오기. Internet Explorer의 경우 경로까지 가져오니 유의
         String uploadPath = session.getServletContext().getRealPath("/resources/uploadImg/"+post_no);   //저장될 경로 가져오기
-
-
 
         uploadImg(thumbnail, fileName, uploadPath); // 썸네일 업로드
         recipeContent.setThumnail("/resources/uploadImg/"+post_no+"/"+fileName);
@@ -271,7 +266,7 @@ public class ContentController {
             try{
                 folder.mkdir();
             }catch (SecurityException e){
-
+                e.printStackTrace();
             }
         }
         try{

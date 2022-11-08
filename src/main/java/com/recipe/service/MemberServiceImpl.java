@@ -32,7 +32,7 @@ public class MemberServiceImpl implements MemberService{
     @Override
     public void insertMemberUser(MemberDTO member) {
         member.setUserpw(passwordEncoder.encode(member.getUserpw()));   // 비밀번호 인코딩
-        AuthDTO auth = new AuthDTO();                             // 권한 VO
+        AuthDTO auth = new AuthDTO();                             // 권한 DTO
         auth.setUserid(member.getUserid());
         auth.setAuth(AuthDTO.AUTH_USER);
 

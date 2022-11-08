@@ -17,7 +17,7 @@
                                  onclick="sendRedirect(${recipe.post_no},${recipe.RNum-1})">
                         </label>
                         <ul class="recipe-info" style="background:  #fffde4; border: 1px solid var(--point-color);">
-                            <li class="recipe-title">${recipe.post_no}. ${recipe.title}</li>
+                            <li class="recipe-title">${recipe.RNum}. ${recipe.title}</li>
                             <c:set var="notDone" value="true"/>
                             <c:forEach items="${recipe.ingredientList}" var="ingr">
                                 <li>${ingr}</li>

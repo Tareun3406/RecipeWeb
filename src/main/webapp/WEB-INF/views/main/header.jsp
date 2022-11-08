@@ -60,7 +60,7 @@
         </a>
         </div>
         <div id="search-trans">
-            <form id="search-border" action="/category" name="find_name" onsubmit="return ">
+            <form id="search-border" action="/category" name="find_name" onsubmit="return onSearch()">
                 <input id="search-Input" name="find_name" type="text"
                        placeholder="#${recommendKeyword}">
                 <button type="submit">
@@ -68,6 +68,16 @@
 								search </span>
                 </button>
             </form>
+            <script>
+                function onSearch(){
+                    const searchInput = document.getElementById("search-Input");
+                    if (searchInput.value === ""){
+                        location.href='/category?find_name=${recommendKeyword}'
+                        return false;
+                    }
+                    return true;
+                }
+            </script>
             <!--  -->
             <button type="button" onclick="location.href='/recipeWrite';">레시피 등록</button>
             <a href="/category?find_name=${recommendKeyword}">#${recommendKeyword}${lastChar} 검색해보세요</a>

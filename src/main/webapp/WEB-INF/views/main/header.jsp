@@ -31,7 +31,7 @@
             <ul>
                 <li class="alt"><a href="/category">레시피</a></li>
                 <li class="alt"><a href="/ranking">레시피 전당</a></li>
-                <li><a href="#">즐겨찾는 레시피</a></li>
+                <li><a href="/bookmark">즐겨찾는 레시피</a></li>
                 <li><a href="/commu_list">커뮤니티</a></li>
             </ul>
         </div>

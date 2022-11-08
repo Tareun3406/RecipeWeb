@@ -25,4 +25,14 @@ public class CategoryServiceImpl implements CategoryService{
         return this.categoryDAO.getcategoryList(b);
     }
 
+    @Override
+    public List<CategoryVO> bookmarkList(CategoryVO recipe) {
+        return this.categoryDAO.getbookmarkList(recipe);
+    }
+
+    @Override
+    public int getbookCount(CategoryVO recipe) {
+        return this.categoryDAO.getbookCount(recipe);
+    }
+
 }

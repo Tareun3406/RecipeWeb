@@ -13,7 +13,7 @@ import java.sql.Date;
 public class CategoryVO {
 
     //recipe_post 테이블 변수
-    private String post_no;
+    private int post_no;
     private String title;
     private int hit;
     private Date regdate;
@@ -40,4 +40,6 @@ public class CategoryVO {
 
     // 메인페이지 순위체크용
     private int rNum;
+    
+    private String userid;//즐겨찾기 페이지를 위한 로그인한 아이디
 }

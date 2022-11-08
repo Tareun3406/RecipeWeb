@@ -18,17 +18,10 @@
                         </label>
                         <ul class="recipe-info" style="background:  #fffde4; border: 1px solid var(--point-color);">
                             <li class="recipe-title">${recipe.post_no}. ${recipe.title}</li>
-                            <li>재료 1</li>
-                            <li>재료 2</li>
-                            <li>재료 3</li>
-                            <li>재료 4</li>
-                            <li>재료 5</li>
-                            <li>재료 6</li>
-                            <li>재료 7</li>
-                            <li>재료 8</li>
-                            <li>재료 9</li>
-                            <li>재료 10</li>
-                            <li>&#8942;</li>
+                            <c:set var="notDone" value="true"/>
+                            <c:forEach items="${recipe.ingredientList}" var="ingr">
+                                <li>${ingr}</li>
+                            </c:forEach>
                         </ul>
                     </li>
                 </c:forEach>
@@ -74,6 +67,8 @@
                 num = imageList.length - 1;
                 selectMenu(num);
             }
+            clearInterval(interval);
+            interval = rankingInterval();
         }
 
         function rankNext() {
@@ -85,6 +80,8 @@
                 num = 0
                 selectMenu(num);
             }
+            clearInterval(interval);
+            interval = rankingInterval();
         }
 
         function rankOnClick(radio) {

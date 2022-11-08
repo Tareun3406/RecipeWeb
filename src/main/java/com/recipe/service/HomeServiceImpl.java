@@ -7,17 +7,36 @@ import com.recipe.vo.MemberDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class HomeServiceImpl implements HomeService{
+public class HomeServiceImpl implements HomeService {
 
     @Autowired
     private HomeDAO homeDAO;
 
     @Override
     public List<CategoryVO> getRecipeRankedList() {
-        return homeDAO.getRecipeRankedList();
+        List<CategoryVO> recipeList = homeDAO.getRecipeRankedList();
+
+        List<CategoryVO> ans = new ArrayList<>();
+        for (CategoryVO recipe : recipeList) {
+            String ingredientListStr = recipe.getIngredient();
+            String[] ingredientArr = ingredientListStr.split(",");
+            List<String> ingrList = new ArrayList<>();
+            for (int i = 0; i < 11; i++) {
+                if (i < ingredientArr.length) {
+                    if(i==10 && ingredientArr.length>11) ingrList.add("&#8942;");
+                    else ingrList.add(ingredientArr[i]);
+                }
+                else ingrList.add("-");
+            }
+            recipe.setIngredientList(ingrList);
+            ans.add(recipe);
+        }
+
+        return ans;
     }
 
     @Override

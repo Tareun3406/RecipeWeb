@@ -16,8 +16,6 @@ public class ReplyVO {
     private int score;
     private String regdate;
     private String updatedate;
-
-    // 댓글 작성자 정보 리스트로 가져오기
-    private List<MemberDTO> member;
+    private String reviewernickname;
 
 }

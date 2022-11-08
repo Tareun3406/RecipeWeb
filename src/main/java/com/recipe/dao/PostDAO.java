@@ -7,20 +7,18 @@ import java.util.List;
 import java.util.Map;
 
 public interface PostDAO {
-    List<PostVO> getPost(int post_no);
+
+    List<CategoryVO> getPost(int post_no);
+
     void updateHit(int post_no);
 
     void inserBookmark(BookmarkVO bookmarkVO);
 
     void updateBookmark(int post_no);
 
-    List<BookmarkVO> getBookmarkList(int post_no);
-
     void deleteBookmark(BookmarkVO bookmarkVO);
 
     void minusBookmark(int post_no);
-
-    List<ReportVO> getReportList(int post_no);
 
     void insertReport(ReportVO reportVO);
 
@@ -45,4 +43,7 @@ public interface PostDAO {
     void insertPost(RecipeUploadDTO recipeContent);
 
     void insertPostContent(Map<String, Object> map);
+
+    void deletePost(int post_no);
+
 }

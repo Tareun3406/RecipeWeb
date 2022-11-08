@@ -3,7 +3,6 @@ package com.recipe.service;
 import com.recipe.dao.PostDAO;
 import com.recipe.vo.*;
 import com.recipe.vo.ContentVO;
-import com.recipe.vo.PostVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,16 +18,19 @@ public class PostServiceImpl implements PostService{
     private PostDAO postDAO;
 
     @Override
-    public List<PostVO> getPost(int post_no) {
+    public List<CategoryVO> getPost(int post_no) {
         postDAO.updateHit(post_no);
 
-        List<PostVO> postVOList = postDAO.getPost(post_no);
+        List<CategoryVO> postVOList = postDAO.getPost(post_no);
 
-        // 팁, 레시피 텍스트 줄바꾸기
-        for (PostVO postVO : postVOList){
+        // 팁, 레시피, 댓글 줄바꾸기
+        for (CategoryVO postVO : postVOList){
             postVO.setTip(postVO.getTip().replace("\n", "</br>"));
-            for (ContentVO contentVO : postVO.getContent()) {
+            for (ContentVO contentVO : postVO.getContentVOList()) {
                 contentVO.setManual(contentVO.getManual().replace("\n", "</br>"));
+            }
+            for(ReplyVO replyVO : postVO.getReplyVOList()) {
+                replyVO.setContent(replyVO.getContent().replace("\n", "</br>"));
             }
         }
 
@@ -44,21 +46,11 @@ public class PostServiceImpl implements PostService{
         postDAO.updateBookmark(bookmarkVO.getPost_no());
     }
 
-    @Override
-    public List<BookmarkVO> getBookmarkList(int post_no) {
-        return postDAO.getBookmarkList(post_no);
-    }
-
     @Transactional
     @Override
     public void deleteBookmark(BookmarkVO bookmarkVO) {
         postDAO.deleteBookmark(bookmarkVO);
         postDAO.minusBookmark(bookmarkVO.getPost_no());
-    }
-
-    @Override
-    public List<ReportVO> getReportList(int post_no) {
-        return postDAO.getReportList(post_no);
     }
 
     @Transactional
@@ -90,8 +82,8 @@ public class PostServiceImpl implements PostService{
     }
 
     @Override
-    public List<SubscribeVO> getSubscriberList(String writer) {
-        return postDAO.getSubscriberList(writer);
+    public void deletePost(int post_no) {
+        postDAO.deletePost(post_no);
     }
 
     @Transactional

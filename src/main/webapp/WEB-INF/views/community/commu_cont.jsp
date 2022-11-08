@@ -12,7 +12,7 @@
  /* type 속성은 생략해도  웹브라우저가 기본 값을 css로 인식한다*/
  /*댓글 수정 화면*/
   #modDiv{
-    width:480px; height:60px; background-color:#fce7c2;
+    width:480px; height:70px; background-color:#fce7c2;
     border: 1px solid black;
     border-radius:5px;
     position:absolute; /*절대위치*/
@@ -41,7 +41,7 @@
 
 <form id="bsW_title" name="form1" method="get" >
  <div id="bsC_wrap">
-  <h2 class="bsC_title">자료실 내용보기</h2>
+  <h2 class="bsC_title">자유게시판</h2>
   <table id="bsC_t">
    <tr>
     <th>제목</th> <td>${dto.title}</td>   
@@ -58,8 +58,6 @@
    
   </table>
   <div id="bsC_menu">
-
-
 <c:if test="${userlist.nickname == dto.nickname }">
 <input type="hidden" name="comu_no" value="${dto.comu_no}">
 <input type="button" value="수정"onclick="location='/community/commu_edit?comu_no=${dto.comu_no}';" />

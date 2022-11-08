@@ -9,13 +9,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
@@ -248,7 +245,7 @@ public class ContentController {
 
 
         uploadImg(thumbnail, fileName, uploadPath); // 썸네일 업로드
-        recipeContent.setThumnail(uploadPath+"/"+fileName);
+        recipeContent.setThumnail("/resources/uploadImg/"+post_no+"/"+fileName);
         recipeContent.setPost_no(post_no);
 
         contentlist = uploadList(recipeImgs,recipeTexts,uploadPath,post_no);  // 내용 업로드+ db에 넣을 값 저장
@@ -291,7 +288,7 @@ public class ContentController {
             uploadImg(file,fileName,uploadPath);
 
             RecipeContentDTO content = new RecipeContentDTO();
-            content.setImage(uploadPath+"/"+fileName);
+            content.setImage("/resources/uploadImg/"+post_no+"/"+fileName);
             content.setManual(recipeTexts.get(i));
             content.setStep(i);
             content.setPost_no(post_no);

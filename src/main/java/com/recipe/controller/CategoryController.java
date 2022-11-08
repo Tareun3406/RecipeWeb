@@ -101,7 +101,6 @@ public class CategoryController {
 
         List<CategoryVO> blist = this.categoryService.bookmarkList(recipe);//검색 전후 목록
 
-        out.println(blist);
         listM.addAttribute("blist",blist); //작성글 리스트
         listM.addAttribute("startrow",recipe.getStartrow());
         listM.addAttribute("endrow",recipe.getEndrow());

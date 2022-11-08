@@ -47,17 +47,17 @@
              <div>내 아이디 : ${userlist.userid}</div>
              <div>내 이름 : ${userlist.nickname}</div>
              <div style="margin-bottom: 0px;">내 이메일 : ${userlist.email}</div>
-                 <form action="mem/edit" method="post" style="display: inline-block">
+                 <div style="display: flex;justify-content: space-around; background-color: white; align-items: center;">
+                     <form action="mem/edit" method="post" style="display: inline-block">
                      <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" id="token">
                      <input type="hidden" name="userid" value="${userlist.userid}">
-
                      <button type="submit"><img src="/resources/images/update.PNG" width="100px" height="100px"></button>
                  </form>
                  <form action="mem/delete" method="post" style="display: inline-block" onsubmit="return onDeleteBtn()">
                      <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" id="token">
                      <input type="hidden" name="userid" value="${userlist.userid}">
                      <button type="submit"><img src="/resources/images/delete.png" width="100px" height="100px"></button>
-                 </form>
+                 </form></div>
              </div>
 
          </div>

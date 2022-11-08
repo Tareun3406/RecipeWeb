@@ -142,8 +142,8 @@
     background: var(--back-header-color);
     margin-top: 10px;
     margin-bottom: 10px;
-    
-    /* border: solid 3.5px var(--point-color); */
+    border: solid 2.5px #dbdbdb;
+
 }
 .contents{
 	text-align: left;

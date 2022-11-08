@@ -60,8 +60,8 @@ let num = 0;
 const add_textbox = () => {
 	const box = document.getElementById("addedContent");
 	const newP = document.createElement('p');
-	newP.innerHTML = "<input type='file' name='recipeImgs["+num+"]' id='recipeImgs["+num+"]' accept=\"image/*\"/>" +
-		"<textarea style='margin: 5px;' rows='20' cols='60' name='recipeText["+num+"]' id='recipe[" + num + "]'></textarea>";
+	newP.innerHTML = "<input type='file' name='recipeImgs["+num+"]' id='recipeImgs["+num+"]' accept=\"image/*\" style='width: 500px; margin-top: 5px'/>" +
+		"<textarea class='contentText' style='margin: 5px;' name='recipeText["+num+"]' id='recipe[" + num + "]'></textarea>";
 	box.appendChild(newP);
 	num += 1;
 }

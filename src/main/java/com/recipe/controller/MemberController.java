@@ -2,14 +2,15 @@ package com.recipe.controller;
 
 import com.recipe.service.MemberService;
 import com.recipe.vo.MemberDTO;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.PrintWriter;
 import java.util.List;
 
@@ -82,11 +83,13 @@ public class MemberController {
         response.setContentType("text/html; charset=UTF-8");
 
         int result = memberService.changePwSend(member);
+
         String message;
         try{
             PrintWriter out =  response.getWriter();
             if (result == 0){ message = "아이디와 이메일을 다시 확인해주세요";}
             else { message = "이메일로 비밀번호가 전송되었습니다."; }
+
             out.println("<script>");
             out.println("alert('"+message+"');");
             if (result == 0)
@@ -95,7 +98,7 @@ public class MemberController {
                 out.println("location='/member/login';");
             out.println("</script>");
         }catch (Exception e){
-
+            e.printStackTrace();
         }
 
 

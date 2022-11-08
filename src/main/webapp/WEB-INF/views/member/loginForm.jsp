@@ -38,7 +38,7 @@
 
 </form>
 <div class="helpInfo">
-    <a href="findID">아이디 찾기</a> | <a href="findPW">비밀번호 찾기</a> | <a href="join">회원가입</a>
+    <a href="/member/findID">아이디 찾기</a> | <a href="/member/findPW">비밀번호 찾기</a> | <a href="/member/join">회원가입</a>
 </div>
 
 <script>

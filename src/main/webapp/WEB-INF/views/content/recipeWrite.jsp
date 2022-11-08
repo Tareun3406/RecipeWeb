@@ -14,13 +14,14 @@
 
 <style>
     .tagify{
-        height: 40px;
+        min-height: 40px;
         width: 600px;
         margin: -30px 0px 0px 100px;
         border-radius: 5px;
         border: 2px solid rgba(0,0,0,0.1);
         color: black;
         background: white;
+
     }
 </style>
 

@@ -54,7 +54,11 @@
         </div>
     </nav>
     <div id="search-recipe-div">
-       
+       <div id="bigLogo">
+        <a href="/">
+        <img src="/resources/images/Biglogo.png" alt="로고"/>
+        </a>
+        </div>
         <div id="search-trans">
             <form id="search-border" action="/category" name="find_name" onsubmit="return ">
                 <input id="search-Input" name="find_name" type="text"

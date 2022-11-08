@@ -8,7 +8,11 @@
 <body id="loginForm">
 <header>
 
-    <div class="logo"><a href="/">로고</a></div>
+    <div id="logo">
+        <a href="/">
+        <img src="/resources/images/white_logo.png" alt="로고"/>
+        </a>
+        </div>
 </header>
 <form action="/login" method="post">
     <%-- 위조방지 토큰 --%>

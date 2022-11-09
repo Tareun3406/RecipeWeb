@@ -69,7 +69,7 @@ public class ContentController {
         }catch (NullPointerException e){}
         try {
             for (ReportVO reportVO : plist.get(0).getReportVOList()) {
-                if (reportVO.getUserid().equals(userid)) {
+                if (reportVO.getRtuserid().equals(userid)) {
                     report_state = 1;
                 }
             }
@@ -213,16 +213,37 @@ public class ContentController {
 
     }
 
-    // 본문 수정
-    @RequestMapping("/edit_post")
-    public String edit_post(CategoryVO postVO){
-
-        //postService.editPost(postVO);
-
-        return "redirect:/editPost";
-
-    }
-
+//    // 본문 수정
+//    @RequestMapping("/recipeEdit")
+//    public String recipeEdit(int post_no, Model m){
+//        List<CategoryVO> plist =  postService.getPost2(post_no);
+//
+//        m.addAttribute("plist", plist);
+//        return "/content/recipeEdit";
+//    }
+//
+//    // 레시피 수정 업로드
+//    @PostMapping("/recipeEditUpload")
+//    public String recipeEditUpload(RecipeUploadDTO recipeContent, HttpSession session, int post_no){
+//
+//        MultipartFile thumbnail = recipeContent.getThumnailImg(); // 업로드 될 썸네일 이미지파일
+//        List<MultipartFile> recipeImgs = recipeContent.getRecipeImgs(); // 업로드 될 내용 이미지파일 리스트
+//        List<String> recipeTexts = recipeContent.getRecipeText(); // db에 들어갈 내용 텍스트 리스트
+//        List<RecipeContentDTO> contentlist; // db에 들어갈 내용 이미지 경로
+//
+//        String fileName = thumbnail.getOriginalFilename();  // 원본파일명 가져오기. Internet Explorer의 경우 경로까지 가져오니 유의
+//        String uploadPath = session.getServletContext().getRealPath("/resources/uploadImg/"+post_no);   //저장될 경로 가져오기
+//
+//        uploadImg(thumbnail, fileName, uploadPath); // 썸네일 업로드
+//        recipeContent.setThumnail("/resources/uploadImg/"+post_no+"/"+fileName);
+//        recipeContent.setPost_no(post_no);
+//
+//        contentlist = uploadList(recipeImgs,recipeTexts,uploadPath,post_no);  // 내용 업로드+ db에 넣을 값 저장
+//
+//        postService.editPost(recipeContent, contentlist);
+//
+//        return "redirect:/category";
+//    }
 
     // 레시피 작성 뷰
     @RequestMapping("/recipeWrite")

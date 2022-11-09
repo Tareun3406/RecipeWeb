@@ -28,14 +28,13 @@ public class PostServiceImpl implements PostService{
             for (CategoryVO postVO : postVOList){
                 postVO.setTip(postVO.getTip().replace("\n", "</br>"));
             }
-        }catch (Exception e){
-            for (CategoryVO postVO : postVOList){
-                for (ContentVO contentVO : postVO.getContentVOList()) {
-                    contentVO.setManual(contentVO.getManual().replace("\n", "</br>"));
-                }
-                for(ReplyVO replyVO : postVO.getReplyVOList()) {
-                    replyVO.setContent(replyVO.getContent().replace("\n", "</br>"));
-                }
+        }catch (Exception e){}
+        for (CategoryVO postVO : postVOList){
+            for (ContentVO contentVO : postVO.getContentVOList()) {
+                contentVO.setManual(contentVO.getManual().replace("\n", "</br>"));
+            }
+            for(ReplyVO replyVO : postVO.getReplyVOList()) {
+                replyVO.setContent(replyVO.getContent().replace("\n", "</br>"));
             }
         }
 
@@ -89,6 +88,33 @@ public class PostServiceImpl implements PostService{
     @Override
     public void deletePost(int post_no) {
         postDAO.deletePost(post_no);
+    }
+
+    @Override
+    public List<CategoryVO> getPost2(int post_no) {
+        List<CategoryVO> postVOList= postDAO.getPost2(post_no);
+        try{
+            for (CategoryVO postVO : postVOList){
+                postVO.setTip(postVO.getTip().replace("</br>", "\n"));
+            }
+        }catch (Exception e){}
+        for (CategoryVO postVO : postVOList){
+            for (ContentVO contentVO : postVO.getContentVOList()) {
+                contentVO.setManual(contentVO.getManual().replace("</br>", "\n"));
+            }
+        }
+
+        return postVOList;
+    }
+
+    @Override
+    public void editPost(RecipeUploadDTO recipeContent, List<RecipeContentDTO> contentlist) {
+        postDAO.editPost(recipeContent);
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("contentlist",contentlist);
+
+        postDAO.editPostContent(map);
     }
 
     @Transactional

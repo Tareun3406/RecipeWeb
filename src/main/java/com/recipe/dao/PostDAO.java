@@ -44,4 +44,9 @@ public interface PostDAO {
 
     void deletePost(int post_no);
 
+    List<CategoryVO> getPost2(int post_no);
+
+    void editPost(RecipeUploadDTO recipeContent);
+
+    void editPostContent(Map<String, Object> map);
 }

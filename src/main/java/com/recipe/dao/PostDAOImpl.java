@@ -90,6 +90,20 @@ public class PostDAOImpl implements PostDAO{
         sqlSession.delete("post_delete", post_no);
     }
 
+    public List<CategoryVO> getPost2(int post_no) {
+        return sqlSession.selectList("post_getList2", post_no);
+    }
+
+    @Override
+    public void editPost(RecipeUploadDTO recipeContent) {
+        sqlSession.update("editPost",recipeContent);
+    }
+
+    @Override
+    public void editPostContent(Map<String, Object> map) {
+        sqlSession.update("editPostContent",map);
+    }
+
     @Override
     public int getNextNo() {
         return sqlSession.selectOne("selectPostNextVal");

@@ -84,12 +84,12 @@
         </div>
         <div id="chef-rank-list">
             <h3 style="margin-bottom: 10px;">인기 셰프
-                Top10
+                Top9
             </h3>
             <c:forEach items="${chefList}" var="chef">
                 <figure class="chef-profile">
                     <img class="profile-img" onerror=this.src="/resources/images/profile.png"
-                         src="/resources/images/profile.png">
+                         src="/resources/images/chefRank/chefRank${chef.RNum}.png">
                     <figcaption>${chef.nickname}</figcaption>
                     <!-- 한글 6자, 영문 10자 -->
                 </figure>

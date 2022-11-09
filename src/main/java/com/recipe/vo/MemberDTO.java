@@ -2,7 +2,6 @@ package com.recipe.vo;
 
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 
 import java.util.List;
 
@@ -27,7 +26,8 @@ public class MemberDTO {
     private List<MessageVO> messageList;  //메세지테이블(보낸사람)
     private List<MessageVO> messageList2; //메세지테이블(받은사람)
 
-    
+    //셰프 순위
+    private int rNum;
 
     // 관리자 페이지.
     private int rowMin; // 레코드 시작번호

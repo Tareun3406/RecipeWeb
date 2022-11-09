@@ -16,7 +16,7 @@
     </select>
 
     <select id="cate_list" resultType="category">
-        select * from (select ROWNUM rNum,g.*,h.THUMNAIL,h.TITLE,h.HIT from
+        select * from (select ROWNUM rNum,g.*,h.THUMNAIL,h.TITLE,h.HIT,h.BOOKMARK from
         RECIPE_POST h left join
             (select e.*,nickname from member f right join
                 (select c.*,writer from RECIPE_POST d left join

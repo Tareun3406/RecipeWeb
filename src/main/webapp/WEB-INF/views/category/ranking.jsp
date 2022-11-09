@@ -47,7 +47,7 @@ border: solid 1px white;">
    <c:choose>
    <c:when test="${empty rlist[0].post_no}">
    작성된 레시피 글이 없습니다. <hr/>
-   <button type="button">레시피 등록 하기</button>
+   <button type="button" onclick="location.href='/recipeWrite';">레시피 등록 하기</button>
    </c:when>
    </c:choose>
   </div>

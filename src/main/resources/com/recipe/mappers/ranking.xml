@@ -35,9 +35,9 @@
             )p
         <where>
             <if test="find_date == ''"></if>
-            <if test="find_date == 1">REGDATE &gt;= to_date(sysdate-1,'yy-mm-dd') </if>
-            <if test="find_date == 7">REGDATE &gt;= to_date(sysdate-7,'yy-mm-dd') </if>
-            <if test="find_date == 30">REGDATE &gt;= to_date(sysdate-30,'yy-mm-dd') </if>
+            <if test="find_date == 1">REGDATE &gt;= to_date(sysdate-2,'yy-mm-dd') </if>
+            <if test="find_date == 7">REGDATE &gt;= to_date(sysdate-8,'yy-mm-dd') </if>
+            <if test="find_date == 30">REGDATE &gt;= to_date(sysdate-31,'yy-mm-dd') </if>
         </where>
         )where rNum &gt;=#{startrow} and rNum &lt;=#{endrow} order by rNum
     </select>

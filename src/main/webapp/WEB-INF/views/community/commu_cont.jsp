@@ -63,6 +63,11 @@
 <input type="button" value="수정"onclick="location='/community/commu_edit?comu_no=${dto.comu_no}';" />
 <button type="button" id="btnDelete">삭제</button>
 </c:if>
+      <s:authorize access="hasAuthority('ADMIN')">
+          <input type="hidden" name="comu_no" value="${dto.comu_no}">
+          <input type="button" value="수정"onclick="location='/community/commu_edit?comu_no=${dto.comu_no}';" />
+          <button type="button" id="btnDelete">삭제</button>
+      </s:authorize>
 <input type="button" value="목록" onclick="location='/commu_list';" />     
   </div>
   </div>

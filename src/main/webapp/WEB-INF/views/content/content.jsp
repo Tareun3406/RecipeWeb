@@ -8,6 +8,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="s" uri="http://www.springframework.org/security/tags" %>
 <c:import url="/header"/>
 <link href="${pageContext.request.contextPath}/resources/css/content.css" rel="stylesheet" type="text/css">
 <script src="https://kit.fontawesome.com/129ea0b18b.js" crossorigin="anonymous"></script>
@@ -80,6 +81,23 @@
                     </div>
                 </form>
             </c:if>
+            <s:authorize access="hasAuthority('ADMIN')">
+                <form method="post" action="edit_post">
+                    <input type="hidden" name="post_no" value="${post_no}">
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" id="token" >
+                    <input type="hidden" name="plist" value="${plist}">
+                    <div class="post_edit">
+                        <button type="submit">수정</button>
+                    </div>
+                </form>
+                <form id="postDelete" method="post" action="delete_post">
+                    <input type="hidden" name="post_no" value="${post_no}">
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" id="token" >
+                    <div class="post_del">
+                        <button type="button" onclick="postDelete()">삭제</button>
+                    </div>
+                </form>
+            </s:authorize>
 
             <!-- 비로그인 -->
             <c:if test="${userid == 'notlogin'}">

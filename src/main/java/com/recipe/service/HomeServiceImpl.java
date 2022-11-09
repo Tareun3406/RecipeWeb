@@ -30,7 +30,6 @@ public class HomeServiceImpl implements HomeService {
                     if(i==10 && ingredientArr.length>11) ingrList.add("&#8942;");
                     else ingrList.add(ingredientArr[i]);
                 }
-                else ingrList.add("-");
             }
             recipe.setIngredientList(ingrList);
             ans.add(recipe);

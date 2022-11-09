@@ -10,4 +10,6 @@ public class ReportVO {
     private int post_no;
     private String userid;
 
+    private String rtuserid;
+
 }

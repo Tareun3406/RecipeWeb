@@ -65,10 +65,9 @@
 
             <!-- 로그인한 사람 == 글쓴이 -->
             <c:if test="${userid == plist.get(0).memberDTOList.get(0).userid}">
-                <form method="post" action="edit_post">
+                <form method="post" action="recipeEdit">
                     <input type="hidden" name="post_no" value="${post_no}">
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" id="token" >
-                    <input type="hidden" name="plist" value="${plist}">
                     <div class="post_edit">
                         <button type="submit">수정</button>
                     </div>

@@ -26,4 +26,7 @@ public interface PostService {
 
     void deletePost(int post_no);
 
+    List<CategoryVO> getPost2(int post_no);
+
+    void editPost(RecipeUploadDTO recipeContent, List<RecipeContentDTO> contentlist);
 }

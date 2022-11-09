@@ -34,6 +34,7 @@
     <resultMap id="rtlist" type="report">
         <result property="post_no" column="post_no"/>
         <result property="userid" column="userid"/>
+        <result property="rtuserid" column="rtuserid"/>
     </resultMap>
 
     <resultMap id="blist" type="book">
@@ -65,17 +66,6 @@
         <result property="subscribe" column="subscribe"/>
     </resultMap>
 
-    <!-- 게시글 등록 -->
-    <insert id="rp_in">
-        insert into RECIPE_POST (post_no, writer, title, hit, regdate, update, thumnail, ingredient, bookmark, post_tag, tip, writer ) values
-            (post_no_seq.nextval, #{writer}, #{title}, 0, sysdate, sysdate, #{thumnail}, #{ingredient}, 0, #{post_tag}, #{tip}, #{writer} )
-	</insert>
-
-    <insert id="rc_post">
-        insert into RECIPE_POST (post_no, title, hit, regdate, thumnail, ingredient, bookmark, post_tag, tip, writer) values
-            (post_no, #{title}, 0, sysdate, #{thumnail}, #{ingredient}, 0, #{post_tag}, #{tip}, #{writer} )
-    </insert>
-
     <!-- 정보 가져오기 -->
     <select id="post_getList" resultMap="plist">
         Select
@@ -101,6 +91,18 @@
                             On (p.writer = m.userid)
                  left outer join recipe_reply ry
                                  On (p.post_no = ry.post_no)
+        Where p.post_no = #{post_no}
+    </select>
+
+    <select id="post_getList2" resultMap="plist">
+        Select
+            p.post_no,p.title,
+            p.thumnail,p.ingredient,
+            p.post_tag,p.tip,
+            c.image,c.manual
+        From recipe_post p
+                 Inner join recipe_content c
+                            On (p.post_no = c.post_no)
         Where p.post_no = #{post_no}
     </select>
 
@@ -178,9 +180,22 @@
         select POST_NO_SEQ.nextval from DUAL
     </select>
 
+    <update id="editPost">
+        update RECIPE_POST set TITLE=#{title}, UPDATEDATE=sysdate, THUMNAIL=#{thumnail}, INGREDIENT=#{ingredient},
+                               POST_TAG=#{post_tag}, TIP=#{tip}
+                               where post_no=#{post_no}
+    </update>
+
+    <update id="editPostContent" parameterType="java.util.Map">
+        <foreach collection="contentlist" item="content" separator=" ">
+            update RECIPE_CONTENT set IMAGE=#{content.image}, MANUAL=#{content.manual}
+            where STEP=#{content.step} and POST_NO=#{content.post_no}
+        </foreach>
+    </update>
+
     <insert id="insertPost">
-        insert into RECIPE_POST(POST_NO, TITLE, REGDATE, THUMNAIL, INGREDIENT, POST_TAG, WRITER)
-        values (#{post_no}, #{title}, sysdate, #{thumnail}, #{ingredient}, #{post_tag}, #{writer})
+        insert into RECIPE_POST(POST_NO, TITLE, REGDATE, THUMNAIL, INGREDIENT, POST_TAG, WRITER, TIP)
+        values (#{post_no}, #{title}, sysdate, #{thumnail}, #{ingredient}, #{post_tag}, #{writer}, #{tip})
     </insert>
 
     <insert id="insertPostContent" parameterType="java.util.Map">

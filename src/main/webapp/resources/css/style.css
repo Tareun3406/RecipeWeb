@@ -454,3 +454,37 @@ footer a:hover {
     width: 100px;
 }
 
+
+.rollingBanner{
+    width: 1200px;
+    overflow-x: hidden;
+    margin: auto;
+    position: relative;
+}
+.rollingBanner > button{
+    position: absolute;
+    top: 50%;
+    margin-top: -23px;
+    background: none;
+    border: none;
+}
+.rollingBanner > button > .material-symbols-outlined {
+    font-size: 40px;
+}
+.rollingBanner .image-container{
+    display: flex;
+    width: 1200px;  /* 부모객체와 같게설정 할 것*/
+    transform: translateX(0%);
+    transition: 0.5s;
+}
+.rollingBanner .banner_prev{
+    left: 0%;
+}
+.rollingBanner .banner_next{
+    right: 0%;
+}
+.rollingBanner .banner_item{
+}
+.rollingBanner img{
+    width: 1200px; /* 부모객체와 같게설정 할 것*/
+}

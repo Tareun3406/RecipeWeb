@@ -71,7 +71,7 @@
             <script>
                 function onSearch(){
                     const searchInput = document.getElementById("search-Input");
-                    if (searchInput.value === ""){
+                    if (searchInput.value === ""){ // 검색어 입력 없음
                         location.href='/category?find_name=${recommendKeyword}'
                         return false;
                     }
@@ -95,8 +95,8 @@
                 </figure>
             </c:forEach>
         </div>
-        
-        
-      
+
+
+
     </div>
 </header>
